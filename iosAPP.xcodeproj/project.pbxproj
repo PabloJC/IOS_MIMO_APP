@@ -17,6 +17,15 @@
 		B593A23E1C5E93500085C5C8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A23D1C5E93500085C5C8 /* IngredientTableViewCell.swift */; };
 		B593A2401C5E98B40085C5C8 /* FormIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A23F1C5E98B40085C5C8 /* FormIngredientsViewController.swift */; };
 		B593A2421C5E9AA80085C5C8 /* ListaIngredientes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2411C5E9AA80085C5C8 /* ListaIngredientes.swift */; };
+		B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5E02BDD1C61FA4500FB99F0 /* Models.xcdatamodeld */; };
+		B5E02C201C627A8400FB99F0 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C181C627A8400FB99F0 /* Task+CoreDataProperties.swift */; };
+		B5E02C211C627A8400FB99F0 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C191C627A8400FB99F0 /* Task.swift */; };
+		B5E02C221C627A8400FB99F0 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1A1C627A8400FB99F0 /* Store+CoreDataProperties.swift */; };
+		B5E02C231C627A8400FB99F0 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1B1C627A8400FB99F0 /* Store.swift */; };
+		B5E02C241C627A8400FB99F0 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1C1C627A8400FB99F0 /* Recipe+CoreDataProperties.swift */; };
+		B5E02C251C627A8400FB99F0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1D1C627A8400FB99F0 /* Recipe.swift */; };
+		B5E02C261C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1E1C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift */; };
+		B5E02C271C627A8400FB99F0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1F1C627A8400FB99F0 /* Ingredient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +41,15 @@
 		B593A23D1C5E93500085C5C8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		B593A23F1C5E98B40085C5C8 /* FormIngredientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormIngredientsViewController.swift; sourceTree = "<group>"; };
 		B593A2411C5E9AA80085C5C8 /* ListaIngredientes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaIngredientes.swift; sourceTree = "<group>"; };
+		B5E02BDE1C61FA4500FB99F0 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
+		B5E02C181C627A8400FB99F0 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "../Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5E02C191C627A8400FB99F0 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = ../Task.swift; sourceTree = "<group>"; };
+		B5E02C1A1C627A8400FB99F0 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataProperties.swift"; path = "../Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5E02C1B1C627A8400FB99F0 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = ../Store.swift; sourceTree = "<group>"; };
+		B5E02C1C1C627A8400FB99F0 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Recipe+CoreDataProperties.swift"; path = "../Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5E02C1D1C627A8400FB99F0 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = ../Recipe.swift; sourceTree = "<group>"; };
+		B5E02C1E1C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ingredient+CoreDataProperties.swift"; path = "../Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B5E02C1F1C627A8400FB99F0 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = ../Ingredient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +82,14 @@
 		B593A2241C5E87EE0085C5C8 /* iosAPP */ = {
 			isa = PBXGroup;
 			children = (
+				B5E02C181C627A8400FB99F0 /* Task+CoreDataProperties.swift */,
+				B5E02C191C627A8400FB99F0 /* Task.swift */,
+				B5E02C1A1C627A8400FB99F0 /* Store+CoreDataProperties.swift */,
+				B5E02C1B1C627A8400FB99F0 /* Store.swift */,
+				B5E02C1C1C627A8400FB99F0 /* Recipe+CoreDataProperties.swift */,
+				B5E02C1D1C627A8400FB99F0 /* Recipe.swift */,
+				B5E02C1E1C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift */,
+				B5E02C1F1C627A8400FB99F0 /* Ingredient.swift */,
 				B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */,
 				B593A2271C5E87EE0085C5C8 /* ViewController.swift */,
 				B593A2291C5E87EE0085C5C8 /* Main.storyboard */,
@@ -75,6 +101,7 @@
 				B593A23D1C5E93500085C5C8 /* IngredientTableViewCell.swift */,
 				B593A23F1C5E98B40085C5C8 /* FormIngredientsViewController.swift */,
 				B593A2411C5E9AA80085C5C8 /* ListaIngredientes.swift */,
+				B5E02BDD1C61FA4500FB99F0 /* Models.xcdatamodeld */,
 			);
 			path = iosAPP;
 			sourceTree = "<group>";
@@ -153,11 +180,20 @@
 			files = (
 				B593A23E1C5E93500085C5C8 /* IngredientTableViewCell.swift in Sources */,
 				B593A2421C5E9AA80085C5C8 /* ListaIngredientes.swift in Sources */,
+				B5E02C211C627A8400FB99F0 /* Task.swift in Sources */,
+				B5E02C231C627A8400FB99F0 /* Store.swift in Sources */,
+				B5E02C271C627A8400FB99F0 /* Ingredient.swift in Sources */,
 				B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */,
+				B5E02C221C627A8400FB99F0 /* Store+CoreDataProperties.swift in Sources */,
 				B593A23A1C5E8D8A0085C5C8 /* ListIngredientsViewController.swift in Sources */,
+				B5E02C201C627A8400FB99F0 /* Task+CoreDataProperties.swift in Sources */,
 				B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */,
+				B5E02C261C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift in Sources */,
+				B5E02C251C627A8400FB99F0 /* Recipe.swift in Sources */,
 				B593A2381C5E89410085C5C8 /* ShoopingListViewController.swift in Sources */,
 				B593A2401C5E98B40085C5C8 /* FormIngredientsViewController.swift in Sources */,
+				B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */,
+				B5E02C241C627A8400FB99F0 /* Recipe+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +346,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B5E02BDD1C61FA4500FB99F0 /* Models.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B5E02BDE1C61FA4500FB99F0 /* Models.xcdatamodel */,
+			);
+			currentVersion = B5E02BDE1C61FA4500FB99F0 /* Models.xcdatamodel */;
+			path = Models.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B593A21A1C5E87EE0085C5C8 /* Project object */;
 }
