@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E961B85E7B3B5CBE813A3A0F /* Pods.framework */; };
+		B5304EFE1C65652A00E7CB17 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */; };
+		B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */; };
+		B55D8F8B1C6552FD00CA9224 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F831C6552FD00CA9224 /* Ingredient.swift */; };
+		B55D8F8C1C6552FD00CA9224 /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F841C6552FD00CA9224 /* Ingredient+CoreDataProperties.swift */; };
+		B55D8F8D1C6552FD00CA9224 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F851C6552FD00CA9224 /* Recipe.swift */; };
+		B55D8F8E1C6552FD00CA9224 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F861C6552FD00CA9224 /* Recipe+CoreDataProperties.swift */; };
+		B55D8F8F1C6552FD00CA9224 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F871C6552FD00CA9224 /* Store.swift */; };
+		B55D8F901C6552FD00CA9224 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F881C6552FD00CA9224 /* Store+CoreDataProperties.swift */; };
+		B55D8F911C6552FD00CA9224 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F891C6552FD00CA9224 /* Task.swift */; };
+		B55D8F921C6552FD00CA9224 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F8A1C6552FD00CA9224 /* Task+CoreDataProperties.swift */; };
+		B55D8F941C6557C200CA9224 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D8F931C6557C200CA9224 /* RecipesViewController.swift */; };
+		B581B8A91C6E26980049CA1C /* IngredientsSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B581B8A81C6E26980049CA1C /* IngredientsSB.storyboard */; };
 		B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */; };
 		B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2271C5E87EE0085C5C8 /* ViewController.swift */; };
 		B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A2291C5E87EE0085C5C8 /* Main.storyboard */; };
@@ -17,19 +30,25 @@
 		B593A23E1C5E93500085C5C8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A23D1C5E93500085C5C8 /* IngredientTableViewCell.swift */; };
 		B593A2401C5E98B40085C5C8 /* FormIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A23F1C5E98B40085C5C8 /* FormIngredientsViewController.swift */; };
 		B593A2421C5E9AA80085C5C8 /* ListaIngredientes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2411C5E9AA80085C5C8 /* ListaIngredientes.swift */; };
+		B5B3D5241C6D362100B29031 /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3D5231C6D362100B29031 /* RecipeViewController.swift */; };
 		B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5E02BDD1C61FA4500FB99F0 /* Models.xcdatamodeld */; };
-		B5E02C201C627A8400FB99F0 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C181C627A8400FB99F0 /* Task+CoreDataProperties.swift */; };
-		B5E02C211C627A8400FB99F0 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C191C627A8400FB99F0 /* Task.swift */; };
-		B5E02C221C627A8400FB99F0 /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1A1C627A8400FB99F0 /* Store+CoreDataProperties.swift */; };
-		B5E02C231C627A8400FB99F0 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1B1C627A8400FB99F0 /* Store.swift */; };
-		B5E02C241C627A8400FB99F0 /* Recipe+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1C1C627A8400FB99F0 /* Recipe+CoreDataProperties.swift */; };
-		B5E02C251C627A8400FB99F0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1D1C627A8400FB99F0 /* Recipe.swift */; };
-		B5E02C261C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1E1C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift */; };
-		B5E02C271C627A8400FB99F0 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E02C1F1C627A8400FB99F0 /* Ingredient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B593A2221C5E87EE0085C5C8 /* iosAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
+		B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
+		B55D8F831C6552FD00CA9224 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		B55D8F841C6552FD00CA9224 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B55D8F851C6552FD00CA9224 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		B55D8F861C6552FD00CA9224 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B55D8F871C6552FD00CA9224 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		B55D8F881C6552FD00CA9224 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B55D8F891C6552FD00CA9224 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		B55D8F8A1C6552FD00CA9224 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B55D8F931C6557C200CA9224 /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		B581B8A81C6E26980049CA1C /* IngredientsSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IngredientsSB.storyboard; sourceTree = "<group>"; };
+		B593A2221C5E87EE0085C5C8 /* OtakuCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtakuCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B593A2271C5E87EE0085C5C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B593A22A1C5E87EE0085C5C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -41,15 +60,10 @@
 		B593A23D1C5E93500085C5C8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		B593A23F1C5E98B40085C5C8 /* FormIngredientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormIngredientsViewController.swift; sourceTree = "<group>"; };
 		B593A2411C5E9AA80085C5C8 /* ListaIngredientes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListaIngredientes.swift; sourceTree = "<group>"; };
+		B5B3D5231C6D362100B29031 /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeViewController.swift; sourceTree = "<group>"; };
 		B5E02BDE1C61FA4500FB99F0 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
-		B5E02C181C627A8400FB99F0 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "../Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B5E02C191C627A8400FB99F0 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = ../Task.swift; sourceTree = "<group>"; };
-		B5E02C1A1C627A8400FB99F0 /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataProperties.swift"; path = "../Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B5E02C1B1C627A8400FB99F0 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = ../Store.swift; sourceTree = "<group>"; };
-		B5E02C1C1C627A8400FB99F0 /* Recipe+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Recipe+CoreDataProperties.swift"; path = "../Recipe+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B5E02C1D1C627A8400FB99F0 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = ../Recipe.swift; sourceTree = "<group>"; };
-		B5E02C1E1C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Ingredient+CoreDataProperties.swift"; path = "../Ingredient+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B5E02C1F1C627A8400FB99F0 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = ../Ingredient.swift; sourceTree = "<group>"; };
+		C8202BCCE08F3DBEBAC269C9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E961B85E7B3B5CBE813A3A0F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,24 +71,70 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5304EFE1C65652A00E7CB17 /* AFNetworking.framework in Frameworks */,
+				6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		865EFEBB98EEB55B7E93C654 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C8202BCCE08F3DBEBAC269C9 /* Pods.debug.xcconfig */,
+				0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		971AFBF608513A1576D1C472 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */,
+				E961B85E7B3B5CBE813A3A0F /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B581B8AB1C6E8A670049CA1C /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				B55D8F931C6557C200CA9224 /* RecipesViewController.swift */,
+				B5B3D5231C6D362100B29031 /* RecipeViewController.swift */,
+			);
+			name = Recipes;
+			sourceTree = "<group>";
+		};
+		B581B8AC1C6E8A740049CA1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B55D8F831C6552FD00CA9224 /* Ingredient.swift */,
+				B55D8F841C6552FD00CA9224 /* Ingredient+CoreDataProperties.swift */,
+				B55D8F851C6552FD00CA9224 /* Recipe.swift */,
+				B55D8F861C6552FD00CA9224 /* Recipe+CoreDataProperties.swift */,
+				B55D8F871C6552FD00CA9224 /* Store.swift */,
+				B55D8F881C6552FD00CA9224 /* Store+CoreDataProperties.swift */,
+				B55D8F891C6552FD00CA9224 /* Task.swift */,
+				B55D8F8A1C6552FD00CA9224 /* Task+CoreDataProperties.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		B593A2191C5E87EE0085C5C8 = {
 			isa = PBXGroup;
 			children = (
 				B593A2241C5E87EE0085C5C8 /* iosAPP */,
 				B593A2231C5E87EE0085C5C8 /* Products */,
+				865EFEBB98EEB55B7E93C654 /* Pods */,
+				971AFBF608513A1576D1C472 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		B593A2231C5E87EE0085C5C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B593A2221C5E87EE0085C5C8 /* iosAPP.app */,
+				B593A2221C5E87EE0085C5C8 /* OtakuCook.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,14 +142,8 @@
 		B593A2241C5E87EE0085C5C8 /* iosAPP */ = {
 			isa = PBXGroup;
 			children = (
-				B5E02C181C627A8400FB99F0 /* Task+CoreDataProperties.swift */,
-				B5E02C191C627A8400FB99F0 /* Task.swift */,
-				B5E02C1A1C627A8400FB99F0 /* Store+CoreDataProperties.swift */,
-				B5E02C1B1C627A8400FB99F0 /* Store.swift */,
-				B5E02C1C1C627A8400FB99F0 /* Recipe+CoreDataProperties.swift */,
-				B5E02C1D1C627A8400FB99F0 /* Recipe.swift */,
-				B5E02C1E1C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift */,
-				B5E02C1F1C627A8400FB99F0 /* Ingredient.swift */,
+				B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */,
+				B581B8AC1C6E8A740049CA1C /* Models */,
 				B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */,
 				B593A2271C5E87EE0085C5C8 /* ViewController.swift */,
 				B593A2291C5E87EE0085C5C8 /* Main.storyboard */,
@@ -102,6 +156,8 @@
 				B593A23F1C5E98B40085C5C8 /* FormIngredientsViewController.swift */,
 				B593A2411C5E9AA80085C5C8 /* ListaIngredientes.swift */,
 				B5E02BDD1C61FA4500FB99F0 /* Models.xcdatamodeld */,
+				B581B8AB1C6E8A670049CA1C /* Recipes */,
+				B581B8A81C6E26980049CA1C /* IngredientsSB.storyboard */,
 			);
 			path = iosAPP;
 			sourceTree = "<group>";
@@ -113,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B593A2341C5E87EE0085C5C8 /* Build configuration list for PBXNativeTarget "iosAPP" */;
 			buildPhases = (
+				FA3861567DE84502C8549A2E /* Check Pods Manifest.lock */,
 				B593A21E1C5E87EE0085C5C8 /* Sources */,
 				B593A21F1C5E87EE0085C5C8 /* Frameworks */,
 				B593A2201C5E87EE0085C5C8 /* Resources */,
+				F8E36EEB3C3B1C55BC4D33C3 /* Embed Pods Frameworks */,
+				D7FF0C6861D3753AADEB1E3E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,7 +182,7 @@
 			);
 			name = iosAPP;
 			productName = iosAPP;
-			productReference = B593A2221C5E87EE0085C5C8 /* iosAPP.app */;
+			productReference = B593A2221C5E87EE0085C5C8 /* OtakuCook.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -165,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B581B8A91C6E26980049CA1C /* IngredientsSB.storyboard in Resources */,
 				B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */,
 				B593A22D1C5E87EE0085C5C8 /* Assets.xcassets in Resources */,
 				B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */,
@@ -173,27 +233,78 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D7FF0C6861D3753AADEB1E3E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8E36EEB3C3B1C55BC4D33C3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA3861567DE84502C8549A2E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B593A21E1C5E87EE0085C5C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B3D5241C6D362100B29031 /* RecipeViewController.swift in Sources */,
 				B593A23E1C5E93500085C5C8 /* IngredientTableViewCell.swift in Sources */,
 				B593A2421C5E9AA80085C5C8 /* ListaIngredientes.swift in Sources */,
-				B5E02C211C627A8400FB99F0 /* Task.swift in Sources */,
-				B5E02C231C627A8400FB99F0 /* Store.swift in Sources */,
-				B5E02C271C627A8400FB99F0 /* Ingredient.swift in Sources */,
+				B55D8F8B1C6552FD00CA9224 /* Ingredient.swift in Sources */,
 				B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */,
-				B5E02C221C627A8400FB99F0 /* Store+CoreDataProperties.swift in Sources */,
+				B55D8F8C1C6552FD00CA9224 /* Ingredient+CoreDataProperties.swift in Sources */,
 				B593A23A1C5E8D8A0085C5C8 /* ListIngredientsViewController.swift in Sources */,
-				B5E02C201C627A8400FB99F0 /* Task+CoreDataProperties.swift in Sources */,
+				B55D8F921C6552FD00CA9224 /* Task+CoreDataProperties.swift in Sources */,
 				B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */,
-				B5E02C261C627A8400FB99F0 /* Ingredient+CoreDataProperties.swift in Sources */,
-				B5E02C251C627A8400FB99F0 /* Recipe.swift in Sources */,
+				B55D8F911C6552FD00CA9224 /* Task.swift in Sources */,
+				B55D8F8F1C6552FD00CA9224 /* Store.swift in Sources */,
 				B593A2381C5E89410085C5C8 /* ShoopingListViewController.swift in Sources */,
 				B593A2401C5E98B40085C5C8 /* FormIngredientsViewController.swift in Sources */,
+				B55D8F8E1C6552FD00CA9224 /* Recipe+CoreDataProperties.swift in Sources */,
+				B55D8F941C6557C200CA9224 /* RecipesViewController.swift in Sources */,
+				B55D8F901C6552FD00CA9224 /* Store+CoreDataProperties.swift in Sources */,
 				B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */,
-				B5E02C241C627A8400FB99F0 /* Recipe+CoreDataProperties.swift in Sources */,
+				B55D8F8D1C6552FD00CA9224 /* Recipe.swift in Sources */,
+				B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,25 +413,35 @@
 		};
 		B593A2351C5E87EE0085C5C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8202BCCE08F3DBEBAC269C9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = iosAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.iosAPP.iosAPP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
+				PRODUCT_NAME = OtakuCook;
 			};
 			name = Debug;
 		};
 		B593A2361C5E87EE0085C5C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = iosAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.iosAPP.iosAPP;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
+				PRODUCT_NAME = OtakuCook;
 			};
 			name = Release;
 		};
