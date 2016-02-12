@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B593A2211C5E87EE0085C5C8"
-               BuildableName = "iosAPP.app"
+               BuildableName = "OtakuCook.app"
                BlueprintName = "iosAPP"
                ReferencedContainer = "container:iosAPP.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B593A2211C5E87EE0085C5C8"
-            BuildableName = "iosAPP.app"
+            BuildableName = "OtakuCook.app"
             BlueprintName = "iosAPP"
             ReferencedContainer = "container:iosAPP.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B593A2211C5E87EE0085C5C8"
-            BuildableName = "iosAPP.app"
+            BuildableName = "OtakuCook.app"
             BlueprintName = "iosAPP"
             ReferencedContainer = "container:iosAPP.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B593A2211C5E87EE0085C5C8"
-            BuildableName = "iosAPP.app"
+            BuildableName = "OtakuCook.app"
             BlueprintName = "iosAPP"
             ReferencedContainer = "container:iosAPP.xcodeproj">
          </BuildableReference>
