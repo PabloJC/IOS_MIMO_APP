@@ -2,7 +2,7 @@
 
 import Foundation
 import AFNetworking
-
+import CoreData
 class MyAPIClient: AFHTTPSessionManager {
     
     
@@ -19,6 +19,7 @@ class MyAPIClient: AFHTTPSessionManager {
         recipes: ((String,Int) -> ())?,
 		finished: (() -> ())?,
 		failure:  (NSError -> ())?) {
+            
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
 
@@ -42,5 +43,46 @@ class MyAPIClient: AFHTTPSessionManager {
 				failure?(error)
 			})
     }
-    
+    func getrecipe(idRecipe: String,
+        recipe2:((Recipe) -> ())?,
+        finished : (() -> ())?,
+        failure: (NSError -> ())?) {
+            self.requestSerializer = AFJSONRequestSerializer()
+            self.responseSerializer = AFJSONResponseSerializer()
+            
+            let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            let managedContext = appDelegate.managedObjectContext
+            
+            //2
+            let entity =  NSEntityDescription.entityForName("Recipe",
+                inManagedObjectContext:managedContext)
+            
+            let recipe = NSManagedObject(entity: entity!,
+                insertIntoManagedObjectContext: managedContext)
+            //3
+            
+            let url = "/recipe/\(idRecipe)"
+            self.GET(url,
+                parameters: nil,
+                progress: nil,
+                success: { operation, responseObject in
+                    
+                    let result = responseObject! as! [String:AnyObject]
+                    print("\(result)")
+                    let name = result["name"]
+                    let id = result["id"]
+                    let portions = result["portions"]
+                    recipe.setValue(id, forKey: "recipeID")
+                    recipe.setValue(name, forKey: "name")
+                    recipe.setValue(portions, forKey: "portions")
+                    recipe2!((recipe as? Recipe)!)
+                    finished?()
+                    
+                },
+                failure:  { operation, error in
+                    failure?(error)
+            })
+    }
 }

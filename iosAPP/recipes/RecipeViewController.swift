@@ -17,13 +17,32 @@ class RecipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         id.text = idText
-        nombreReceta.text = nombreText
+        
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
+        recibir()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func recibir(){
+        let myapiClient = MyAPIClient()
+       
+        myapiClient.getrecipe(idText, recipe2: { (r) -> () in
+            self.nombreReceta.text  = "\(r.name!)"
+            
+            
+            }, finished: { () -> () in
+                print("finalizado2")
+            }) { (error) -> () in
+                print("\(error.debugDescription)")
+        }
+        
+        
     }
     
 }

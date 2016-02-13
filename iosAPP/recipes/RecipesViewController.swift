@@ -12,20 +12,24 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     @IBOutlet weak var tableView: UITableView!
     var recetasString = [Dictionary<String,AnyObject>]()
-    var recipes = [NSManagedObject]()
-    var idseleccionado = 0
+    //var recipes = [NSManagedObject]()
+    //var idseleccionado = 0
+    var sincronized = false
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Recetas\""
         
-        tableView.delegate = self
+        
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        recibir()
+        if !sincronized {
+            recibir()
+        }
+        print(sincronized)
         /*//1
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
@@ -41,6 +45,10 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         } catch let error as NSError {
         print("Could not fetch \(error), \(error.userInfo)")
         }*/
+    }
+    override func viewDidAppear(animated: Bool) {
+        
+        tableView.reloadData()
     }
     
     //MARK : UITableViewDataSource
@@ -64,26 +72,22 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell!
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let row = indexPath.row
-        let recipe = recetasString[row]
-        idseleccionado = (recipe["id"]! as? Int)!
+       // let row = indexPath.row
+        //let recipe = recetasString[row]
+        //idseleccionado = (recipe["id"]! as? Int)!
         // let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
         
         //self.navigationController!.pushViewController(secondViewController, animated: true)
         self.performSegueWithIdentifier("recipe", sender: self)
-        print("\(recipe["id"]!)")
+        //print("\(recipe["id"]!)")
     }
-    override func viewDidAppear(animated: Bool) {
-        
-        tableView.reloadData()
-    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "recipe") {
             let svc = segue.destinationViewController as! RecipeViewController
             let row = tableView.indexPathForSelectedRow?.row
             let recipe = recetasString[row!]
             svc.idText = "\(recipe["id"]!)"
-            svc.nombreText = "\(recipe["name"]!)"
             print("dentro")
             
         }
@@ -158,7 +162,14 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.recetasString.append(post)
             
             }, finished: { () -> () in
-                print("finalizado")
+                if !self.recetasString.isEmpty {
+                    self.sincronized = true
+                    self.tableView.reloadData()
+                    print("finalizado \(self.recetasString.count)")
+                }else {
+                    print("sin recetas agregadas")
+                }
+                
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }
