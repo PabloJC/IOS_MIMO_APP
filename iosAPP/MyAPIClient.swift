@@ -7,7 +7,7 @@ class MyAPIClient: AFHTTPSessionManager {
     
     
     init() {
-		super.init(baseURL: NSURL(string: "http://aqueous-beyond-94598.herokuapp.com/")!,
+		super.init(baseURL: NSURL(string: "http://otakucook.herokuapp.com/")!,
 			sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
     }
     
@@ -63,7 +63,7 @@ class MyAPIClient: AFHTTPSessionManager {
                 insertIntoManagedObjectContext: managedContext)
             //3
             
-            let url = "/recipe/\(idRecipe)"
+            let url = "/recipes/\(idRecipe)"
             self.GET(url,
                 parameters: nil,
                 progress: nil,
