@@ -7,21 +7,24 @@
 //
 
 import UIKit
-
+import CoreData
 class RecipeViewController: UIViewController {
 
     @IBOutlet weak var nombreReceta: UILabel!
+    @IBOutlet weak var TextBox: UITextView!
     @IBOutlet weak var id: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     var idText = ""
     var nombreText = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        recibir()
         id.text = idText
         
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
-        recibir()
+        
         
     }
 
@@ -34,8 +37,17 @@ class RecipeViewController: UIViewController {
        
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
             self.nombreReceta.text  = "\(r.name!)"
-            
-            
+            let url = NSURL(string: r.photo!)
+            let data = NSData(contentsOfURL: url!)
+            var texto = ""
+            self.imageView.image = UIImage(data: data!)
+            print(r.ingredientsRecipe?.count)
+            for i in r.ingredientsRecipe!{
+                var i2 = i as! IngredientTask
+              
+                 texto += (i2.ingredient?.baseName!)! + "\n"
+            }
+            self.TextBox.text = texto
             }, finished: { () -> () in
                 print("finalizado2")
             }) { (error) -> () in

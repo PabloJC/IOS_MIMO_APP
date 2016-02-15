@@ -1,5 +1,5 @@
 //
-//  Ingredient+CoreDataProperties.swift
+//  IngredientTask+CoreDataProperties.swift
 //  iosAPP
 //
 //  Created by mikel balduciel diaz on 15/2/16.
@@ -12,16 +12,12 @@
 import Foundation
 import CoreData
 
-extension Ingredient {
+extension IngredientTask {
 
-    @NSManaged var baseName: String?
-    @NSManaged var category: String?
-    @NSManaged var frozen: NSNumber?
     @NSManaged var measure: String?
     @NSManaged var quantity: NSNumber?
-    @NSManaged var type: String?
-    @NSManaged var ingredientID: NSNumber?
-    @NSManaged var store: NSSet?
-    @NSManaged var ingredientRecipe: NSSet?
+    @NSManaged var ingredientTaskID: NSNumber?
+    @NSManaged var recipe: Recipe?
+    @NSManaged var ingredient: Ingredient?
 
 }
