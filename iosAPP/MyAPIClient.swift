@@ -50,7 +50,12 @@ class MyAPIClient: AFHTTPSessionManager {
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
             
-            let appDelegate =
+            let util = Util.init()
+            let recipe = util.prepareObject("Recipe") as! Recipe
+            let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
+            let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
+            
+           /* let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
             
             let managedContext = appDelegate.managedObjectContext
@@ -72,7 +77,7 @@ class MyAPIClient: AFHTTPSessionManager {
                 inManagedObjectContext:managedContext)
             
             let ingredientsObject = NSManagedObject(entity: entity3!,
-                insertIntoManagedObjectContext: managedContext) as! Ingredient
+                insertIntoManagedObjectContext: managedContext) as! Ingredient */
             
             //3
             
@@ -83,7 +88,7 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     
                     let result = responseObject! as! [String:AnyObject]
-                    print("\(result)")
+                    //print("\(result)")
                     let name = result["name"]
                     let id = result["id"]
                     let photo = result["foto"]
@@ -100,7 +105,9 @@ class MyAPIClient: AFHTTPSessionManager {
                         ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
                         ingredientsObject.setValue(ingre["name"], forKey: "baseName")
                         ingredientsRecipe.ingredient = ingredientsObject
+                        
                         recipe.mutableSetValueForKey("ingredientsRecipe").addObject(ingredientsRecipe)
+                        print(recipe.mutableSetValueForKey("ingredientsRecipe").count)
                     }
                     
                     recipe2!((recipe))
