@@ -29,7 +29,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if !sincronized {
             recibir()
         }
-        print(sincronized)
+        //print(sincronized)
         /*//1
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate

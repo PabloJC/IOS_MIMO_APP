@@ -38,6 +38,7 @@ class IngredientsTableViewController: UITableViewController {
             }) { (error) -> () in
                  print("\(error.debugDescription)")
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,8 +57,6 @@ class IngredientsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return ingredients.count
     }
-    
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientTableViewCell

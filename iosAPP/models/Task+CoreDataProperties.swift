@@ -14,10 +14,11 @@ import CoreData
 
 extension Task {
 
+    @NSManaged var name: String?
     @NSManaged var seconds: NSNumber?
     @NSManaged var taskDescription: String?
-    @NSManaged var name: String?
     @NSManaged var taskID: NSNumber?
+    @NSManaged var photo: String?
     @NSManaged var recipes: Recipe?
 
 }

@@ -18,10 +18,10 @@ extension Recipe {
     @NSManaged var dificulty: NSNumber?
     @NSManaged var favorite: NSNumber?
     @NSManaged var name: String?
-    @NSManaged var portions: NSNumber?
-    @NSManaged var score: NSNumber?
-    @NSManaged var recipeID: NSNumber?
     @NSManaged var photo: String?
+    @NSManaged var portions: NSNumber?
+    @NSManaged var recipeID: NSNumber?
+    @NSManaged var score: NSNumber?
     @NSManaged var ingredientsRecipe: NSSet?
     @NSManaged var tasks: NSSet?
 

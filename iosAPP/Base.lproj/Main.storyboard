@@ -116,7 +116,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cocinar"/>
                                 <connections>
-                                    <segue destination="K4E-ZJ-Vmf" kind="push" id="C9s-bD-Mb3"/>
+                                    <action selector="prepareRecipeAction:" destination="FG9-a9-t29" eventType="touchUpInside" id="mMT-ud-5bg"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tfK-mK-OUV">
@@ -136,7 +136,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Ver Pasos"/>
                                 <connections>
-                                    <segue destination="sQC-nJ-M3Y" kind="push" id="fTg-aa-pva"/>
+                                    <action selector="stepListAction:" destination="FG9-a9-t29" eventType="touchUpInside" id="Yaq-zi-JvB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CfE-Zo-k3I">
@@ -162,6 +162,8 @@
                         <outlet property="id" destination="CfE-Zo-k3I" id="Zfh-9V-SpK"/>
                         <outlet property="imageView" destination="tfK-mK-OUV" id="Asc-ZF-iEi"/>
                         <outlet property="nombreReceta" destination="lSq-aZ-Ti0" id="cTb-KO-MEa"/>
+                        <segue destination="sQC-nJ-M3Y" kind="push" identifier="stepList" id="xfb-o7-h4H"/>
+                        <segue destination="K4E-ZJ-Vmf" kind="push" identifier="step" id="rUD-u5-jiP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z7l-bL-0T5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,51 +180,40 @@
             </objects>
             <point key="canvasLocation" x="721.5" y="351"/>
         </scene>
-        <!--View Controller-->
+        <!--Step List View Controller-->
         <scene sceneID="eaR-t9-Ez2">
             <objects>
-                <viewController id="sQC-nJ-M3Y" sceneMemberID="viewController">
+                <viewController id="sQC-nJ-M3Y" customClass="StepListViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YeS-CS-nPi">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G0X-XK-Tp3">
-                                <rect key="frame" x="109" y="106" width="45" height="30"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JYi-AR-IMz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Paso 1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="K4E-ZJ-Vmf" kind="push" id="XnY-4z-mFp"/>
+                                    <outlet property="dataSource" destination="sQC-nJ-M3Y" id="5gC-iN-KRg"/>
+                                    <outlet property="delegate" destination="sQC-nJ-M3Y" id="m1K-w6-TCw"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cpB-Vy-3CC">
-                                <rect key="frame" x="109" y="154" width="47" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Paso 2"/>
-                                <connections>
-                                    <segue destination="K4E-ZJ-Vmf" kind="push" id="Zp5-TR-sFS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="s64-M9-e3U">
-                                <rect key="frame" x="109" y="194" width="47" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Paso 3"/>
-                                <connections>
-                                    <segue destination="K4E-ZJ-Vmf" kind="push" id="30O-iX-veD"/>
-                                </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="ybS-b5-tox"/>
+                    <connections>
+                        <outlet property="tableView" destination="JYi-AR-IMz" id="Zpz-k0-7HS"/>
+                        <segue destination="K4E-ZJ-Vmf" kind="push" identifier="stepDescription" id="iZv-dy-saN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhW-f5-xKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="118"/>
+            <point key="canvasLocation" x="1912" y="60"/>
         </scene>
-        <!--View Controller-->
+        <!--Step View Controller-->
         <scene sceneID="gGH-If-8QR">
             <objects>
-                <viewController id="K4E-ZJ-Vmf" sceneMemberID="viewController">
+                <viewController id="K4E-ZJ-Vmf" customClass="StepViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ok-ve-6jD">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,7 +231,7 @@
                                 <state key="normal" title="Siguiente"/>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Calentar el aceite a temperatura alta" textAlignment="natural" id="RQ7-v8-Ho1">
-                                <rect key="frame" x="40" y="159" width="240" height="128"/>
+                                <rect key="frame" x="40" y="159" width="240" height="207"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -260,163 +251,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Pzk-uz-cyO"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="RQ7-v8-Ho1" id="Duq-pr-1vN"/>
+                        <outlet property="imageView" destination="Zp5-n9-KSY" id="25T-Ys-bPT"/>
+                        <outlet property="taskName" destination="znr-Bo-mAt" id="WkS-ki-MPG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X3w-Oa-Blz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1934" y="-679"/>
-        </scene>
-        <!--List Ingredients View Controller-->
-        <scene sceneID="iyD-el-R5P">
-            <objects>
-                <viewController id="1NN-ky-YA0" customClass="ListIngredientsViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aQz-GX-rsI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gIS-0x-PaG">
-                                <rect key="frame" x="188" y="91" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Añadir ingrediente"/>
-                                <connections>
-                                    <segue destination="Bfp-6j-PvC" kind="push" id="RQM-I4-iiP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nlw-SF-g7G">
-                                <rect key="frame" x="189" y="129" width="125" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Borrar ingrediente"/>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="A3R-zY-lqG">
-                                <rect key="frame" x="20" y="186" width="280" height="362"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Ingredient" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ingredient" id="bCV-QA-OFg" customClass="IngredientTableViewCell" customModule="iosAPP">
-                                        <rect key="frame" x="0.0" y="28" width="280" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bCV-QA-OFg" id="lpz-OM-0wP">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredientes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YkO-QX-gV7">
-                                                    <rect key="frame" x="8" y="8" width="264" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="label" destination="YkO-QX-gV7" id="Qao-rr-gtI"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="YlU-Mt-Kam"/>
-                    <connections>
-                        <outlet property="table" destination="A3R-zY-lqG" id="FBu-5m-YkO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ltq-Zr-XFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1034" y="603"/>
-        </scene>
-        <!--Form Ingredients View Controller-->
-        <scene sceneID="nlG-lw-ksM">
-            <objects>
-                <viewController id="Bfp-6j-PvC" customClass="FormIngredientsViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4YH-BM-wjI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="N6R-9s-ChC">
-                                <rect key="frame" x="247" y="520" width="45" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Añadir"/>
-                                <connections>
-                                    <action selector="addAction:" destination="Bfp-6j-PvC" eventType="touchUpInside" id="Dss-0d-HJ9"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="wre-hN-0iQ">
-                                <rect key="frame" x="30" y="104" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingrediente" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q99-1H-p9r">
-                                <rect key="frame" x="30" y="75" width="87" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="Xxy-cb-EoN">
-                                <rect key="frame" x="30" y="171" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cantidad" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Buw-mb-9ER">
-                                <rect key="frame" x="30" y="142" width="69" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="6UD-m3-sGJ">
-                                <rect key="frame" x="30" y="243" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medida" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sbc-gq-kCp">
-                                <rect key="frame" x="30" y="214" width="57" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="xHc-b6-kxQ">
-                                <rect key="frame" x="30" y="319" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categoria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IIb-Qd-0XY">
-                                <rect key="frame" x="30" y="290" width="85" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="PDx-Z5-LKD">
-                                <rect key="frame" x="30" y="386" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Congelado" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9X8-Ig-Zju">
-                                <rect key="frame" x="34" y="357" width="83" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="teh-i4-pWk"/>
-                    <connections>
-                        <outlet property="nombreIngrediente" destination="wre-hN-0iQ" id="qFn-K9-TzH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8SK-oA-JpA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1551" y="603"/>
         </scene>
         <!--Shooping List View Controller-->
         <scene sceneID="RaZ-xH-cHG">
@@ -454,6 +297,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="C9s-bD-Mb3"/>
+        <segue reference="iZv-dy-saN"/>
     </inferredMetricsTieBreakers>
 </document>
