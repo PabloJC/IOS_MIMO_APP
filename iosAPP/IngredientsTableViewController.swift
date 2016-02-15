@@ -15,6 +15,7 @@ class IngredientsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        recibir()
         print(category)
 
         // Uncomment the following line to preserve selection between presentations
@@ -27,34 +28,16 @@ class IngredientsTableViewController: UITableViewController {
     func recibir(){
         self.ingredients = []
         let myapiClient = MyAPIClient()
-        myapiClient.getCategory({ (<#String#>, <#Int#>) -> () in
-            <#code#>
-            }, finished: { () -> () in
-                <#code#>
-            }) { (<#NSError#>) -> () in
-                <#code#>
-        }
-        
-        
-        ({ (receta,id) -> () in
+        myapiClient.getCategory({ (name, id) -> () in
             var post=Dictionary<String,AnyObject>()
-            post = ["id":id,"name":receta]
+            post = ["id":id,"name":name]
             
-            self.recetasString.append(post)
-            
+            self.ingredients.append(post)
             }, finished: { () -> () in
-                if !self.recetasString.isEmpty {
-                    self.sincronized = true
-                    self.tableView.reloadData()
-                    print("finalizado \(self.recetasString.count)")
-                }else {
-                    print("sin recetas agregadas")
-                }
-                
+                self.tableView.reloadData()
             }) { (error) -> () in
-                print("\(error.debugDescription)")
+                 print("\(error.debugDescription)")
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,48 +49,23 @@ class IngredientsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return ingredients.count
     }
     
-    func recibir(){
-        self.recetasString = []
-        let myapiClient = MyAPIClient()
-        myapiClient.getRecipes({ (receta,id) -> () in
-            var post=Dictionary<String,AnyObject>()
-            post = ["id":id,"name":receta]
-            
-            self.recetasString.append(post)
-            
-            }, finished: { () -> () in
-                if !self.recetasString.isEmpty {
-                    self.sincronized = true
-                    self.tableView.reloadData()
-                    print("finalizado \(self.recetasString.count)")
-                }else {
-                    print("sin recetas agregadas")
-                }
-                
-            }) { (error) -> () in
-                print("\(error.debugDescription)")
-        }
-        
-    }
 
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientTableViewCell
+    
+        cell.textLabel!.text = ingredients[indexPath.row]["name"] as? String
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
