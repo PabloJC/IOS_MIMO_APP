@@ -1,5 +1,5 @@
 //
-//  Recipe.swift
+//  IngredientTask.swift
 //  iosAPP
 //
 //  Created by mikel balduciel diaz on 15/2/16.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Recipe: NSManagedObject {
+class IngredientTask: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

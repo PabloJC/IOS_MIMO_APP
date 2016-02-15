@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  iosAPP
 //
-//  Created by mikel balduciel diaz on 3/2/16.
+//  Created by mikel balduciel diaz on 15/2/16.
 //  Copyright © 2016 mikel balduciel diaz. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,7 @@ extension Task {
 
     @NSManaged var seconds: NSNumber?
     @NSManaged var taskDescription: String?
+    @NSManaged var name: String?
     @NSManaged var taskID: NSNumber?
     @NSManaged var recipes: Recipe?
 

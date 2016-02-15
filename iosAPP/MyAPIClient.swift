@@ -50,7 +50,12 @@ class MyAPIClient: AFHTTPSessionManager {
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
             
-            let appDelegate =
+            let util = Util.init()
+            let recipe = util.prepareObject("Recipe") as! Recipe
+            let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
+            let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
+            
+           /* let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
             
             let managedContext = appDelegate.managedObjectContext
@@ -60,7 +65,20 @@ class MyAPIClient: AFHTTPSessionManager {
                 inManagedObjectContext:managedContext)
             
             let recipe = NSManagedObject(entity: entity!,
-                insertIntoManagedObjectContext: managedContext)
+                insertIntoManagedObjectContext: managedContext) as! Recipe
+            
+            let entity2 =  NSEntityDescription.entityForName("IngredientTask",
+                inManagedObjectContext:managedContext)
+            
+            let ingredientsRecipe = NSManagedObject(entity: entity2!,
+                insertIntoManagedObjectContext: managedContext) as! IngredientTask
+            
+            let entity3 =  NSEntityDescription.entityForName("Ingredient",
+                inManagedObjectContext:managedContext)
+            
+            let ingredientsObject = NSManagedObject(entity: entity3!,
+                insertIntoManagedObjectContext: managedContext) as! Ingredient */
+            
             //3
             
             let url = "/recipes/\(idRecipe)"
@@ -70,14 +88,29 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     
                     let result = responseObject! as! [String:AnyObject]
-                    print("\(result)")
+                    //print("\(result)")
                     let name = result["name"]
                     let id = result["id"]
+                    let photo = result["foto"]
                     let portions = result["portions"]
                     recipe.setValue(id, forKey: "recipeID")
                     recipe.setValue(name, forKey: "name")
                     recipe.setValue(portions, forKey: "portions")
-                    recipe2!((recipe as? Recipe)!)
+                    recipe.setValue(photo, forKey: "photo")
+                    let ingredients = result["measureIngredients"] as! [[String:AnyObject]]
+                    for i in ingredients {
+                        var ingre = i["ingredient"] as! [String:AnyObject]
+                        ingredientsObject.setValue(ingre["baseType"], forKey: "type")
+                        ingredientsObject.setValue(ingre["category"], forKey: "category")
+                        ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
+                        ingredientsObject.setValue(ingre["name"], forKey: "baseName")
+                        ingredientsRecipe.ingredient = ingredientsObject
+                        
+                        recipe.mutableSetValueForKey("ingredientsRecipe").addObject(ingredientsRecipe)
+                        print(recipe.mutableSetValueForKey("ingredientsRecipe").count)
+                    }
+                    
+                    recipe2!((recipe))
                     finished?()
                     
                 },

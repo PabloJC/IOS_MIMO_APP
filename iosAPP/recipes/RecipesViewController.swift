@@ -88,7 +88,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let row = tableView.indexPathForSelectedRow?.row
             let recipe = recetasString[row!]
             svc.idText = "\(recipe["id"]!)"
-            print("dentro")
+           // print("dentro")
             
         }
     }
@@ -165,7 +165,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
                     self.tableView.reloadData()
-                    print("finalizado \(self.recetasString.count)")
+                   // print("finalizado \(self.recetasString.count)")
                 }else {
                     print("sin recetas agregadas")
                 }

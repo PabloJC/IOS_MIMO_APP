@@ -2,7 +2,7 @@
 //  Store+CoreDataProperties.swift
 //  iosAPP
 //
-//  Created by mikel balduciel diaz on 3/2/16.
+//  Created by mikel balduciel diaz on 15/2/16.
 //  Copyright © 2016 mikel balduciel diaz. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,7 +14,7 @@ import CoreData
 
 extension Store {
 
-    @NSManaged var tipo: String?
+    @NSManaged var type: String?
     @NSManaged var ingredientsStore: NSSet?
 
 }
