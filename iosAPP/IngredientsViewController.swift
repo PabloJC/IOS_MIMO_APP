@@ -10,16 +10,23 @@ import UIKit
 
 class IngredientsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
+    @IBOutlet weak var categorias: UICollectionView!
+    
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     var items = [String]()
+    var category = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoryInit()
+    }
+    
+    func categoryInit(){
         
         let filePath = NSBundle.mainBundle().pathForResource("Category", ofType: "json")
         
         let jsonData = NSData.init(contentsOfFile: filePath!)
-       
+        
         do {
             let objOrigen = try NSJSONSerialization.JSONObjectWithData(jsonData!,
                 options: [.MutableContainers, .MutableLeaves]) as! [String:AnyObject]
@@ -31,13 +38,6 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         } catch let error as NSError {
             print("json error: \(error.localizedDescription)")
         }
-        // Do any additional setup after loading the view.
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,14 +46,29 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        // get a reference to our storyboard cell
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
-        
         
         cell.categoryLabel.text = self.items[indexPath.item]
         cell.backgroundColor = UIColor.yellowColor()
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        category = items[indexPath.row]
+        performSegueWithIdentifier("ingredientsCategory", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let segueID = segue.identifier{
+            if segueID == "ingredientsCategory"{
+                if let destinoVC = segue.destinationViewController as? IngredientsTableViewController{
+                    destinoVC.category = self.category
+                }
+            }
+            
+        }
+
     }
     
 

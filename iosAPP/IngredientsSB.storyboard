@@ -82,9 +82,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zYX-gA-XsL">
-                                                    <rect key="frame" x="8" y="14" width="34" height="23"/>
+                                                    <rect key="frame" x="8" y="14" width="58" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -105,10 +105,43 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="QOJ-kA-zfE"/>
+                    <connections>
+                        <outlet property="categorias" destination="ieJ-aa-zY2" id="7fa-P0-Yxg"/>
+                        <segue destination="7TC-aJ-nfM" kind="push" identifier="ingredientsCategory" id="CQ7-ah-XSW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OwY-op-IdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="573" y="225"/>
+        </scene>
+        <!--Ingredients Table View Controller-->
+        <scene sceneID="TpM-Wg-kc0">
+            <objects>
+                <tableViewController id="7TC-aJ-nfM" customClass="IngredientsTableViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ogN-Vv-jGg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DzJ-rq-Q5C">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DzJ-rq-Q5C" id="K53-wS-V8q">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7TC-aJ-nfM" id="l7z-5y-xj6"/>
+                            <outlet property="delegate" destination="7TC-aJ-nfM" id="1UP-iL-kRj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="uLc-o2-xua"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJM-Mb-Ikl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965" y="225"/>
         </scene>
     </scenes>
 </document>

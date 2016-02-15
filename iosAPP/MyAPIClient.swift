@@ -15,7 +15,7 @@ class MyAPIClient: AFHTTPSessionManager {
         self.init(coder: aDecoder)
     }
     
-    func getUsersPage(
+    func getRecipes(
         recipes: ((String,Int) -> ())?,
 		finished: (() -> ())?,
 		failure:  (NSError -> ())?) {
@@ -78,6 +78,34 @@ class MyAPIClient: AFHTTPSessionManager {
                     recipe.setValue(name, forKey: "name")
                     recipe.setValue(portions, forKey: "portions")
                     recipe2!((recipe as? Recipe)!)
+                    finished?()
+                    
+                },
+                failure:  { operation, error in
+                    failure?(error)
+            })
+    }
+    func getCategory(
+        ingredients: ((String,Int) -> ())?,
+        finished: (() -> ())?,
+        failure:  (NSError -> ())?) {
+            
+            self.requestSerializer = AFJSONRequestSerializer()
+            self.responseSerializer = AFJSONResponseSerializer()
+            
+            let url = "/ingredients"
+            self.GET(url,
+                parameters: nil,
+                progress: nil,
+                success: { operation, responseObject in
+                    
+                    let result = responseObject! as! [[String:AnyObject]]
+                    for ingredient in result {
+                        let id = ingredient["id"]!
+                        let nombre = ingredient["name"]!
+                        ingredients!(nombre as! String, id as! Int)
+                    }
+                    
                     finished?()
                     
                 },

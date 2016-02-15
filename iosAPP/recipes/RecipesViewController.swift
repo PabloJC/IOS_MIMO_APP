@@ -155,7 +155,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func recibir(){
         self.recetasString = []
         let myapiClient = MyAPIClient()
-        myapiClient.getUsersPage({ (receta,id) -> () in
+        myapiClient.getRecipes({ (receta,id) -> () in
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             

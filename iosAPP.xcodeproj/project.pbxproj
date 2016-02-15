@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A1667DD1C70B9F900A02BD5 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1667DC1C70B9F900A02BD5 /* IngredientsViewController.swift */; };
 		3A1667DF1C70CD2000A02BD5 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1667DE1C70CD2000A02BD5 /* CategoryCollectionViewCell.swift */; };
+		3A2136D01C70FF6100246089 /* IngredientsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2136CF1C70FF6100246089 /* IngredientsTableViewController.swift */; };
 		3AA6F4981C7094C200161E89 /* KitchenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA6F4971C7094C200161E89 /* KitchenViewController.swift */; };
 		3AA6F49A1C70ACA700161E89 /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6F4991C70ACA600161E89 /* Category.json */; };
 		6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E961B85E7B3B5CBE813A3A0F /* Pods.framework */; };
@@ -42,6 +43,7 @@
 		0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3A1667DC1C70B9F900A02BD5 /* IngredientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsViewController.swift; sourceTree = "<group>"; };
 		3A1667DE1C70CD2000A02BD5 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		3A2136CF1C70FF6100246089 /* IngredientsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewController.swift; sourceTree = "<group>"; };
 		3AA6F4971C7094C200161E89 /* KitchenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenViewController.swift; sourceTree = "<group>"; };
 		3AA6F4991C70ACA600161E89 /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Category.json; sourceTree = "<group>"; };
 		B5036DD61C6FB4EB00C180DE /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = models/Ingredient.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				3AA6F4991C70ACA600161E89 /* Category.json */,
 				3A1667DC1C70B9F900A02BD5 /* IngredientsViewController.swift */,
 				3A1667DE1C70CD2000A02BD5 /* CategoryCollectionViewCell.swift */,
+				3A2136CF1C70FF6100246089 /* IngredientsTableViewController.swift */,
 			);
 			path = iosAPP;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				B5036DE31C6FB4EB00C180DE /* Store+CoreDataProperties.swift in Sources */,
 				3AA6F4981C7094C200161E89 /* KitchenViewController.swift in Sources */,
 				B5036DE51C6FB4EB00C180DE /* Task+CoreDataProperties.swift in Sources */,
+				3A2136D01C70FF6100246089 /* IngredientsTableViewController.swift in Sources */,
 				B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */,
 				3A1667DD1C70B9F900A02BD5 /* IngredientsViewController.swift in Sources */,
 				B5036DE01C6FB4EB00C180DE /* Recipe.swift in Sources */,
