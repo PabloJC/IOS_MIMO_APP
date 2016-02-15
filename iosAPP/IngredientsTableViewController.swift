@@ -25,7 +25,7 @@ class IngredientsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    /* func recibir(){
+    func recibir(){
         self.ingredients = []
         let myapiClient = MyAPIClient()
         myapiClient.getCategory({ (name, id) -> () in
@@ -39,7 +39,7 @@ class IngredientsTableViewController: UITableViewController {
                  print("\(error.debugDescription)")
         }
         
-    }*/
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,32 +57,6 @@ class IngredientsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return ingredients.count
     }
-    
-   /* func recibir(){
-        self.recetasString = []
-        let myapiClient = MyAPIClient()
-        myapiClient.getRecipes({ (receta,id) -> () in
-            var post=Dictionary<String,AnyObject>()
-            post = ["id":id,"name":receta]
-            
-            self.recetasString.append(post)
-            
-            }, finished: { () -> () in
-                if !self.recetasString.isEmpty {
-                    self.sincronized = true
-                    self.tableView.reloadData()
-                    print("finalizado \(self.recetasString.count)")
-                }else {
-                    print("sin recetas agregadas")
-                }
-                
-            }) { (error) -> () in
-                print("\(error.debugDescription)")
-        }
-        
-    }*/
-
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientTableViewCell

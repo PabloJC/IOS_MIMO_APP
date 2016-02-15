@@ -45,7 +45,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = self.myKitchen.dequeueReusableCellWithIdentifier("Ingredient")!
         
         let ingredient = self.ingredients[indexPath.row] as? Ingredient
-        cell.textLabel?.text =  ingredient?.baseName
+        cell.textLabel?.text =  ingredient?.name
         
         return cell
     }

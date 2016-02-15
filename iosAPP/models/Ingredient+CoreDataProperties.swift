@@ -14,14 +14,13 @@ import CoreData
 
 extension Ingredient {
 
-    @NSManaged var baseName: String?
+    @NSManaged var name: String?
     @NSManaged var category: String?
     @NSManaged var frozen: NSNumber?
-    @NSManaged var measure: String?
-    @NSManaged var quantity: NSNumber?
-    @NSManaged var type: String?
     @NSManaged var ingredientID: NSNumber?
-    @NSManaged var store: NSSet?
+    @NSManaged var baseType: String?
+    @NSManaged var photo: String?
     @NSManaged var ingredientRecipe: NSSet?
+    @NSManaged var store: NSSet?
 
 }

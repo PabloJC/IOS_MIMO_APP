@@ -14,10 +14,10 @@ import CoreData
 
 extension IngredientTask {
 
+    @NSManaged var ingredientTaskID: NSNumber?
     @NSManaged var measure: String?
     @NSManaged var quantity: NSNumber?
-    @NSManaged var ingredientTaskID: NSNumber?
-    @NSManaged var recipe: Recipe?
     @NSManaged var ingredient: Ingredient?
+    @NSManaged var recipe: Recipe?
 
 }

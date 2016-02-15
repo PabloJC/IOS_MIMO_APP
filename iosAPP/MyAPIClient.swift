@@ -90,7 +90,7 @@ class MyAPIClient: AFHTTPSessionManager {
                     //print("\(result)")
                     let name = result["name"]
                     let id = result["id"]
-                    let photo = result["foto"]
+                    let photo = result["photo"]
                     let portions = result["portions"]
                     recipe.setValue(id, forKey: "recipeID")
                     recipe.setValue(name, forKey: "name")
@@ -102,10 +102,10 @@ class MyAPIClient: AFHTTPSessionManager {
                         let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
                         let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
                         var ingre = i["ingredient"] as! [String:AnyObject]
-                        ingredientsObject.setValue(ingre["baseType"], forKey: "type")
+                        ingredientsObject.setValue(ingre["baseType"], forKey: "BaseType")
                         ingredientsObject.setValue(ingre["category"], forKey: "category")
                         ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
-                        ingredientsObject.setValue(ingre["name"], forKey: "baseName")
+                        ingredientsObject.setValue(ingre["name"], forKey: "name")
                         ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
                         ingredientsRecipe.measure = i["measure"] as? String
                         ingredientsRecipe.quantity = i["quantity"] as? Int
@@ -113,8 +113,20 @@ class MyAPIClient: AFHTTPSessionManager {
                         ingredientsRecipe.ingredient = ingredientsObject
                         array.append(ingredientsRecipe)
                     }
+                    let tasks = result["tasks"] as! [[String:AnyObject]]
+                    var arrayTasks = [AnyObject]()
+                    for t in tasks {
+                        let taskObject = util.prepareObject("Task") as! Task
+                        taskObject.taskID = t["id"] as? Int
+                        taskObject.name = t["name"] as? String
+                        taskObject.taskDescription = t["description"] as? String
+                        taskObject.seconds = t["seconds"] as? Int
+                        arrayTasks.append(taskObject)
+                    }
+
                     
                     recipe.mutableSetValueForKey("ingredientsRecipe").addObjectsFromArray(array)
+                    recipe.mutableSetValueForKey("tasks").addObjectsFromArray(arrayTasks)
                     recipe2!((recipe))
                     finished?()
                     

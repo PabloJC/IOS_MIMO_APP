@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class RecipeViewController: UIViewController {
+class RecipeViewController: UIViewController{
 
     @IBOutlet weak var nombreReceta: UILabel!
     @IBOutlet weak var TextBox: UITextView!
@@ -16,6 +16,7 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var idText = ""
     var nombreText = ""
+    var recipe : Recipe?
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
@@ -36,16 +37,18 @@ class RecipeViewController: UIViewController {
         let myapiClient = MyAPIClient()
        
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
+           
             self.nombreReceta.text  = "\(r.name!)"
             let url = NSURL(string: r.photo!)
             let data = NSData(contentsOfURL: url!)
             var texto = ""
             self.imageView.image = UIImage(data: data!)
            // print(r.ingredientsRecipe?.count)
+            self.recipe = (r as? Recipe)!
             for i in r.ingredientsRecipe!{
                 let i2 = i as! IngredientTask
               
-                 texto += (i2.ingredient?.baseName!)! + "\(i2.quantity!)" + (i2.measure)! + "\n"
+                 texto += (i2.ingredient?.name!)! + "\(i2.quantity!)" + (i2.measure)! + "\n"
             }
             self.TextBox.text = texto
             }, finished: { () -> () in
@@ -55,6 +58,23 @@ class RecipeViewController: UIViewController {
         }
         
         
+    }
+    @IBAction func prepareRecipeAction(sender: AnyObject) {
+        self.performSegueWithIdentifier("step", sender: self)
+    }
+    @IBAction func stepListAction(sender: AnyObject) {
+        self.performSegueWithIdentifier("stepList", sender: self)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "step" {
+         let stepDestination = segue.destinationViewController as! StepViewController
+            stepDestination.recipe = recipe
+        }
+        else if segue.identifier == "stepList" {
+            let stepListDestination = segue.destinationViewController as! StepListViewController
+            stepListDestination.recipe = recipe
+        }
     }
     
 }
