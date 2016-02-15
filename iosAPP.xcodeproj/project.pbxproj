@@ -331,7 +331,6 @@
 				B539009E1C714C2B005A2973 /* Ingredient+CoreDataProperties.swift in Sources */,
 				B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */,
 				3AA6F4981C7094C200161E89 /* KitchenViewController.swift in Sources */,
-				B5036DE51C6FB4EB00C180DE /* Task+CoreDataProperties.swift in Sources */,
 				3A2136D01C70FF6100246089 /* IngredientsTableViewController.swift in Sources */,
 				B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */,
 				B539009B1C714C2B005A2973 /* Task.swift in Sources */,

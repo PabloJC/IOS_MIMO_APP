@@ -41,15 +41,15 @@ class RecipeViewController: UIViewController {
             let data = NSData(contentsOfURL: url!)
             var texto = ""
             self.imageView.image = UIImage(data: data!)
-            print(r.ingredientsRecipe?.count)
+           // print(r.ingredientsRecipe?.count)
             for i in r.ingredientsRecipe!{
-                var i2 = i as! IngredientTask
+                let i2 = i as! IngredientTask
               
-                 texto += (i2.ingredient?.baseName!)! + "\n"
+                 texto += (i2.ingredient?.baseName!)! + "\(i2.quantity!)" + (i2.measure)! + "\n"
             }
             self.TextBox.text = texto
             }, finished: { () -> () in
-                print("finalizado2")
+                //print("finalizado2")
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }

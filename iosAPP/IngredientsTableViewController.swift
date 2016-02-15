@@ -24,7 +24,7 @@ class IngredientsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func recibir(){
+    /* func recibir(){
         self.ingredients = []
         let myapiClient = MyAPIClient()
         myapiClient.getCategory({ (<#String#>, <#Int#>) -> () in
@@ -55,7 +55,7 @@ class IngredientsTableViewController: UITableViewController {
                 print("\(error.debugDescription)")
         }
         
-    }
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -74,7 +74,7 @@ class IngredientsTableViewController: UITableViewController {
         return 0
     }
     
-    func recibir(){
+   /* func recibir(){
         self.recetasString = []
         let myapiClient = MyAPIClient()
         myapiClient.getRecipes({ (receta,id) -> () in
@@ -96,7 +96,7 @@ class IngredientsTableViewController: UITableViewController {
                 print("\(error.debugDescription)")
         }
         
-    }
+    }*/
 
 
     /*

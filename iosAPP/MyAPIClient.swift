@@ -52,8 +52,7 @@ class MyAPIClient: AFHTTPSessionManager {
             
             let util = Util.init()
             let recipe = util.prepareObject("Recipe") as! Recipe
-            let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
-            let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
+            
             
            /* let appDelegate =
             UIApplication.sharedApplication().delegate as! AppDelegate
@@ -98,18 +97,24 @@ class MyAPIClient: AFHTTPSessionManager {
                     recipe.setValue(portions, forKey: "portions")
                     recipe.setValue(photo, forKey: "photo")
                     let ingredients = result["measureIngredients"] as! [[String:AnyObject]]
+                    var array = [AnyObject]()
                     for i in ingredients {
+                        let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
+                        let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
                         var ingre = i["ingredient"] as! [String:AnyObject]
                         ingredientsObject.setValue(ingre["baseType"], forKey: "type")
                         ingredientsObject.setValue(ingre["category"], forKey: "category")
                         ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
                         ingredientsObject.setValue(ingre["name"], forKey: "baseName")
+                        ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
+                        ingredientsRecipe.measure = i["measure"] as? String
+                        ingredientsRecipe.quantity = i["quantity"] as? Int
+                        ingredientsRecipe.ingredientTaskID = i["id"] as? Int
                         ingredientsRecipe.ingredient = ingredientsObject
-                        
-                        recipe.mutableSetValueForKey("ingredientsRecipe").addObject(ingredientsRecipe)
-                        print(recipe.mutableSetValueForKey("ingredientsRecipe").count)
+                        array.append(ingredientsRecipe)
                     }
                     
+                    recipe.mutableSetValueForKey("ingredientsRecipe").addObjectsFromArray(array)
                     recipe2!((recipe))
                     finished?()
                     
