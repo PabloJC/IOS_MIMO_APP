@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 class IngredientsTableViewController: UITableViewController {
     
     var category = ""
@@ -64,6 +64,30 @@ class IngredientsTableViewController: UITableViewController {
     
         cell.textLabel!.text = ingredients[indexPath.row]["name"] as? String
         return cell
+    }
+    
+    func addIngredient(name: String, ) {
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+
+        let entity =  NSEntityDescription.entityForName("Ingredient",
+            inManagedObjectContext:managedContext)
+        
+        let ingredient = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext: managedContext)
+        
+        ingredient.setValue(name, forKey: "name")
+        
+        //4
+        do {
+            try managedContext.save()
+            //5
+            songs.append(song)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
     }
     
 
