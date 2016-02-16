@@ -91,11 +91,14 @@ class MyAPIClient: AFHTTPSessionManager {
                     let name = result["name"]
                     let id = result["id"]
                     let photo = result["photo"]
+                    if photo == nil {
+                      recipe.setValue(photo, forKey: "photo")  
+                    }
                     let portions = result["portions"]
                     recipe.setValue(id, forKey: "recipeID")
                     recipe.setValue(name, forKey: "name")
                     recipe.setValue(portions, forKey: "portions")
-                    recipe.setValue(photo, forKey: "photo")
+                    
                     let ingredients = result["measureIngredients"] as! [[String:AnyObject]]
                     var array = [AnyObject]()
                     for i in ingredients {

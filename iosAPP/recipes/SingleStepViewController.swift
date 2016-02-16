@@ -1,26 +1,22 @@
 //
-//  StepViewController.swift
+//  SingleStepViewController.swift
 //  iosAPP
 //
-//  Created by mikel balduciel diaz on 15/2/16.
+//  Created by mikel balduciel diaz on 16/2/16.
 //  Copyright © 2016 mikel balduciel diaz. All rights reserved.
 //
 
 import UIKit
 
-class StepViewController: UIViewController {
-    var recipe : Recipe?
-    var tasks = [AnyObject]()
+class SingleStepViewController: UIViewController {
+    var task : Task?
+    @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var taskDescriptionTextView: UITextView!
+    @IBOutlet weak var taskImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if recipe?.tasks?.count > 0 {
-            tasks = (recipe!.tasks?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]))!
-            let t = tasks[0] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
-            self.descriptionLabel.text = t?.taskDescription
-        }
-        
-        
+        self.taskNameLabel.text = "Paso " + (task?.name)!
+        self.taskDescriptionTextView.text = task?.taskDescription
         // Do any additional setup after loading the view.
     }
 
@@ -29,9 +25,7 @@ class StepViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var taskName: UILabel!
-    @IBOutlet weak var descriptionLabel: UITextView!
+  
 
     /*
     // MARK: - Navigation

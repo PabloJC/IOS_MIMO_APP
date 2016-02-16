@@ -39,10 +39,14 @@ class RecipeViewController: UIViewController{
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
            
             self.nombreReceta.text  = "\(r.name!)"
-            let url = NSURL(string: r.photo!)
-            let data = NSData(contentsOfURL: url!)
+            if r.photo != nil {
+                let url = NSURL(string: r.photo!)
+                let data = NSData(contentsOfURL: url!)
+                self.imageView.image = UIImage(data: data!)
+            }
+            
             var texto = ""
-            self.imageView.image = UIImage(data: data!)
+            
            // print(r.ingredientsRecipe?.count)
             self.recipe = (r as? Recipe)!
             for i in r.ingredientsRecipe!{

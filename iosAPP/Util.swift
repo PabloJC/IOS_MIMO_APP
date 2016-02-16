@@ -19,12 +19,21 @@ class Util{
     }
     func prepareObject(nameObject: String) -> NSManagedObject {
         
-        let entity =  NSEntityDescription.entityForName(nameObject,
-            inManagedObjectContext:managedContext)
-        
-        let recipe = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext: managedContext)
-        return recipe
+        //let entity =  NSEntityDescription.entityForName(nameObject,inManagedObjectContext:managedContext)
+       let object = NSEntityDescription.insertNewObjectForEntityForName(nameObject, inManagedObjectContext: managedContext)
+        //let recipe = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        return object
+    }
+    func saveContext(){
+        if managedContext.hasChanges {
+            do {
+                try managedContext.save()
+            }
+            catch let error as NSError {
+                print ("Error: \(error.localizedDescription)")
+                abort()
+            }
+        }
     }
     
 

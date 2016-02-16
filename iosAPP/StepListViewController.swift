@@ -15,8 +15,11 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Lista de tareas\""
-        tasks = (recipe!.tasks?.allObjects)!
-         self.tableView.reloadData()
+        if recipe?.tasks?.count > 0 {
+            tasks = (recipe!.tasks?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]))!
+            self.tableView.reloadData()
+        }
+        
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
@@ -48,7 +51,7 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             //cell!.textLabel!.text = recipe.valueForKey("name") as? String
             cell!.textLabel!.text = "Paso " + (task?.name)!
         }
-        print (tasks.count)
+       // print (tasks.count)
         
         return cell!
     }
@@ -59,8 +62,18 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         // let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
         
         //self.navigationController!.pushViewController(secondViewController, animated: true)
-        //self.performSegueWithIdentifier("recipe", sender: self)
+        self.performSegueWithIdentifier("stepDescription", sender: self)
         //print("\(recipe["id"]!)")
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "stepDescription") {
+            let svc = segue.destinationViewController as! SingleStepViewController
+            let taskrow = tasks[(tableView.indexPathForSelectedRow?.row)!]
+            let task = taskrow as? Task
+            svc.task = task
+            // print("dentro")
+            
+        }
     }
 
 
