@@ -136,12 +136,13 @@ class MyAPIClient: AFHTTPSessionManager {
             })
     }
     func getCategory(
-        ingredients: ((String,Int) -> ())?,
+        ingredients: ((Ingredient) -> ())?,
         finished: (() -> ())?,
         failure:  (NSError -> ())?) {
             
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
+            let util = Util.init()
             
             let url = "/ingredients"
             self.GET(url,
@@ -151,11 +152,14 @@ class MyAPIClient: AFHTTPSessionManager {
                     
                     let result = responseObject! as! [[String:AnyObject]]
                     for ingredient in result {
-                        let id = ingredient["id"]!
-                        let nombre = ingredient["name"]!
-                        ingredients!(nombre as! String, id as! Int)
-                    }
-                    
+                        let ingredientObject = util.prepareObject("Ingredient") as! Ingredient
+                        ingredientObject.setValue(ingredient["baseType"], forKey: "BaseType")
+                        ingredientObject.setValue(ingredient["category"], forKey: "category")
+                        ingredientObject.setValue(ingredient["id"], forKey: "ingredientID")
+                        ingredientObject.setValue(ingredient["name"], forKey: "name")
+                        ingredientObject.setValue(ingredient["frozen"], forKey: "frozen")
+                        ingredients!(ingredientObject)
+                    }  
                     finished?()
                     
                 },

@@ -11,39 +11,25 @@ import CoreData
 class IngredientsTableViewController: UITableViewController {
     
     var category = ""
-    var ingredients = [Dictionary<String,AnyObject>]()
+    var ingredients = [Ingredient]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
-        print(category)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func recibir(){
         self.ingredients = []
         let myapiClient = MyAPIClient()
-        myapiClient.getCategory({ (name, id) -> () in
-            var post=Dictionary<String,AnyObject>()
-            post = ["id":id,"name":name]
-            
-            self.ingredients.append(post)
+        myapiClient.getCategory({ (ingredient) -> () in
+            self.ingredients.append(ingredient)
             }, finished: { () -> () in
                 self.tableView.reloadData()
             }) { (error) -> () in
                  print("\(error.debugDescription)")
         }
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -61,32 +47,92 @@ class IngredientsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientTableViewCell
     
-        cell.textLabel!.text = ingredients[indexPath.row]["name"] as? String
+        cell.textLabel!.text = ingredients[indexPath.row].name
         return cell
     }
     
-    func addIngredient(name: String, ) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let newIngredient = ingredients[indexPath.row]
+        addIngredient(newIngredient)
+        assignIngredientStore(newIngredient)
+    }
+    
+    func addIngredient(ingredient: Ingredient) {
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
 
-        let entity =  NSEntityDescription.entityForName("Ingredient",
-            inManagedObjectContext:managedContext)
-        
-        let ingredient = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext: managedContext)
-        
-        ingredient.setValue(name, forKey: "name")
-        
-        //4
         do {
             try managedContext.save()
-            //5
-            songs.append(song)
+            ingredients.append(ingredient)
+            
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
         }
+    }
+    
+    func assignIngredientStore(ingredient: Ingredient){
+        let util = Util.init()
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let fetchRequest = NSFetchRequest(entityName: "Store")
+        let fetchRequest2 = NSFetchRequest(entityName: "Recipe")
+        
+
+        //Type = 0 -> Almacen
+        let predicate = NSPredicate(format: "type == 0")
+        
+        fetchRequest.predicate = predicate
+        
+        var store: Store?
+        
+        do {
+            let fetchResults = try managedContext.executeFetchRequest(fetchRequest)
+            if(fetchResults.count == 1){
+                store = fetchResults[0] as? Store
+                print("Contiene")
+                
+            }else{
+                store = util.prepareObject("Store") as? Store
+                store?.type = "0"
+                print("No contiene")
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        
+        do {
+            let fetchResults2 = try managedContext.executeFetchRequest(fetchRequest2)
+            let recipe = fetchResults2[0] as? Recipe
+            print(recipe?.name)
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        store?.mutableSetValueForKey("ingredientsStore").addObject(ingredient)
+        print(store?.ingredientsStore?.count)
+        /*if((store!.ingredientsStore?.containsObject(ingredient)) != nil){
+            print("Lo contiene")
+        }else{
+            print("No lo contiene")
+        }*/
+        
+      
+        
+        
     }
     
 
