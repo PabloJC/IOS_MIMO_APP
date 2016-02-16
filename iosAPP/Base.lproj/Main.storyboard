@@ -203,7 +203,7 @@
                     <navigationItem key="navigationItem" id="ybS-b5-tox"/>
                     <connections>
                         <outlet property="tableView" destination="JYi-AR-IMz" id="Zpz-k0-7HS"/>
-                        <segue destination="K4E-ZJ-Vmf" kind="push" identifier="stepDescription" id="iZv-dy-saN"/>
+                        <segue destination="elV-Gh-4Wx" kind="push" identifier="stepDescription" id="O62-yE-dJp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhW-f5-xKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -295,8 +295,51 @@
             </objects>
             <point key="canvasLocation" x="-142" y="257"/>
         </scene>
+        <!--Single Step View Controller-->
+        <scene sceneID="wlx-Kp-Yn8">
+            <objects>
+                <viewController id="elV-Gh-4Wx" customClass="SingleStepViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9GP-ci-AeX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calentar el aceite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d5E-HH-0ZJ">
+                                <rect key="frame" x="167" y="52" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Calentar el aceite a temperatura alta" textAlignment="natural" id="CiJ-4g-V1J">
+                                <rect key="frame" x="40" y="159" width="240" height="207"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZYE-OJ-nt4">
+                                <rect key="frame" x="192" y="81" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Campana"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rwS-5j-3YX">
+                                <rect key="frame" x="20" y="35" width="119" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="k4T-LP-wod"/>
+                    <connections>
+                        <outlet property="taskDescriptionTextView" destination="CiJ-4g-V1J" id="OPF-oc-P5A"/>
+                        <outlet property="taskImageView" destination="rwS-5j-3YX" id="629-Gq-SCu"/>
+                        <outlet property="taskNameLabel" destination="d5E-HH-0ZJ" id="U7q-Kn-7om"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MNm-dj-XUI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2396" y="51"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="iZv-dy-saN"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -41,6 +41,8 @@
 		B5A09FA81C72885F0052494B /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09F9E1C72885F0052494B /* Recipe.swift */; };
 		B5A09FA91C72885F0052494B /* Store+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09F9F1C72885F0052494B /* Store+CoreDataProperties.swift */; };
 		B5A09FAA1C72885F0052494B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09FA01C72885F0052494B /* Store.swift */; };
+		B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */; };
+		B5A09FAE1C73AF070052494B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09FAD1C73AF070052494B /* CoreDataStack.swift */; };
 		B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5E02BDD1C61FA4500FB99F0 /* Models.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		B5A09F9E1C72885F0052494B /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = models/Recipe.swift; sourceTree = "<group>"; };
 		B5A09F9F1C72885F0052494B /* Store+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataProperties.swift"; path = "models/Store+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B5A09FA01C72885F0052494B /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = models/Store.swift; sourceTree = "<group>"; };
+		B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleStepViewController.swift; path = recipes/SingleStepViewController.swift; sourceTree = "<group>"; };
+		B5A09FAD1C73AF070052494B /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B5E02BDE1C61FA4500FB99F0 /* Models.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Models.xcdatamodel; sourceTree = "<group>"; };
 		C8202BCCE08F3DBEBAC269C9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E961B85E7B3B5CBE813A3A0F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,7 @@
 				B5036DE71C6FB62300C180DE /* RecipesViewController.swift */,
 				B5661F5D1C725730001230ED /* StepListViewController.swift */,
 				B5661F5F1C725741001230ED /* StepViewController.swift */,
+				B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 		B593A2241C5E87EE0085C5C8 /* iosAPP */ = {
 			isa = PBXGroup;
 			children = (
+				B5A09FAD1C73AF070052494B /* CoreDataStack.swift */,
 				B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */,
 				B581B8AC1C6E8A740049CA1C /* Models */,
 				B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */,
@@ -322,6 +328,7 @@
 				B593A23E1C5E93500085C5C8 /* IngredientTableViewCell.swift in Sources */,
 				B5A09FA61C72885F0052494B /* IngredientTask.swift in Sources */,
 				B593A2421C5E9AA80085C5C8 /* ListaIngredientes.swift in Sources */,
+				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
 				B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */,
 				B593A23A1C5E8D8A0085C5C8 /* ListIngredientsViewController.swift in Sources */,
 				B5A09FAA1C72885F0052494B /* Store.swift in Sources */,
@@ -331,6 +338,7 @@
 				B593A2381C5E89410085C5C8 /* ShoopingListViewController.swift in Sources */,
 				B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */,
 				B5A09FA41C72885F0052494B /* Ingredient.swift in Sources */,
+				B5A09FAE1C73AF070052494B /* CoreDataStack.swift in Sources */,
 				B5661F601C725741001230ED /* StepViewController.swift in Sources */,
 				B593A2401C5E98B40085C5C8 /* FormIngredientsViewController.swift in Sources */,
 				B5A09FA21C72885F0052494B /* Task.swift in Sources */,
