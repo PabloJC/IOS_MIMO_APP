@@ -22,9 +22,9 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+      /*  let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        let managedContext = appDelegate.managedObjectContext
+       let managedContext = appDelegate.managedObjectContext
         
         let fetchRequest = NSFetchRequest(entityName: "Store")
         
@@ -33,7 +33,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             ingredients = results as! [NSManagedObject]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
-        }
+        }*/
         
     }
     
@@ -44,8 +44,8 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.myKitchen.dequeueReusableCellWithIdentifier("Ingredient")!
         
-        let ingredient = self.ingredients[indexPath.row] as? Ingredient
-        cell.textLabel?.text =  ingredient?.name
+       // let ingredient = self.ingredients[indexPath.row] as? Ingredient
+       // cell.textLabel?.text =  ingredient?.name
         
         return cell
     }

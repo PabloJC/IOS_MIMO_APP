@@ -15,8 +15,14 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Lista de tareas\""
-        if recipe?.tasks?.count > 0 {
-            tasks = (recipe!.tasks?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]))!
+        if recipe?.tasks.count > 0 {
+            tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
+                var t = task as Task
+                var t2 = task2 as Task
+                return t.name > t2.name
+            })
+
+            //tasks = (recipe!.tasks?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]))!
             self.tableView.reloadData()
         }
         

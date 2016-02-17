@@ -15,7 +15,7 @@ class SingleStepViewController: UIViewController {
     @IBOutlet weak var taskImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.taskNameLabel.text = "Paso " + (task?.name)!
+       self.taskNameLabel.text = "Paso " + (task?.name)!
         self.taskDescriptionTextView.text = task?.taskDescription
         // Do any additional setup after loading the view.
     }

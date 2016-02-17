@@ -38,9 +38,9 @@ class RecipeViewController: UIViewController{
        
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
            
-            self.nombreReceta.text  = "\(r.name!)"
-            if r.photo != nil {
-                let url = NSURL(string: r.photo!)
+            self.nombreReceta.text  = "\(r.name)"
+            if r.photo != "" {
+                let url = NSURL(string: r.photo)
                 let data = NSData(contentsOfURL: url!)
                 self.imageView.image = UIImage(data: data!)
             }
@@ -49,10 +49,10 @@ class RecipeViewController: UIViewController{
             
            // print(r.ingredientsRecipe?.count)
             self.recipe = (r as? Recipe)!
-            for i in r.ingredientsRecipe!{
-                let i2 = i as! IngredientTask
+            for i in r.measures{
+                let i2 = i as! MeasureIngredients
               
-                 texto += (i2.ingredient?.name!)! + "\(i2.quantity!)" + (i2.measure)! + "\n"
+                 texto += "\(i2.ingredient.name)" + "\(i2.quantity)" + (i2.measure) + "\n"
             }
             self.TextBox.text = texto
             }, finished: { () -> () in

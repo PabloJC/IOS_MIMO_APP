@@ -43,15 +43,16 @@ class MyAPIClient: AFHTTPSessionManager {
 				failure?(error)
 			})
     }
-    func getrecipe(idRecipe: String,
+        func getrecipe(idRecipe: String,
         recipe2:((Recipe) -> ())?,
         finished : (() -> ())?,
         failure: (NSError -> ())?) {
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
             
-            let util = Util.init()
-            let recipe = util.prepareObject("Recipe") as! Recipe
+       // let util = Util.init()
+           // let recipe = util.prepareObject("Recipe") as! Recipe
+            
             
             
            /* let appDelegate =
@@ -85,51 +86,78 @@ class MyAPIClient: AFHTTPSessionManager {
                 parameters: nil,
                 progress: nil,
                 success: { operation, responseObject in
-                    
+                    let recipe = Recipe()
                     let result = responseObject! as! [String:AnyObject]
-                    //print("\(result)")
+                    print("\(result)")
                     let name = result["name"]
                     let id = result["id"]
                     let photo = result["photo"]
-                    if photo == nil {
-                      recipe.setValue(photo, forKey: "photo")  
+                    if photo != nil {
+                        recipe.photo = (photo as? String)!
+                      //recipe.setValue(photo, forKey: "photo")
                     }
                     let portions = result["portions"]
-                    recipe.setValue(id, forKey: "recipeID")
-                    recipe.setValue(name, forKey: "name")
-                    recipe.setValue(portions, forKey: "portions")
+                    recipe.recipeIdServer = Int64(id as! Int)
+                    recipe.name = (name as? String)!
+                    
+                    recipe.portions = Int64(portions as! Int)
+                   // recipe.setValue(id, forKey: "recipeID")
+                    //recipe.setValue(name, forKey: "name")
+                    //recipe.setValue(portions, forKey: "portions")
                     
                     let ingredients = result["measureIngredients"] as! [[String:AnyObject]]
-                    var array = [AnyObject]()
+                   // var array = [AnyObject]()
                     for i in ingredients {
-                        let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
-                        let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
+                        //let ingredientsRecipe = util.prepareObject("IngredientTask") as! IngredientTask
+                        let ingredientsRecipe = MeasureIngredients()
+                        //let ingredientsObject = util.prepareObject("Ingredient") as! Ingredient
+                        let ingredientsObject = Ingredient()
                         var ingre = i["ingredient"] as! [String:AnyObject]
-                        ingredientsObject.setValue(ingre["baseType"], forKey: "BaseType")
-                        ingredientsObject.setValue(ingre["category"], forKey: "category")
-                        ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
-                        ingredientsObject.setValue(ingre["name"], forKey: "name")
-                        ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
-                        ingredientsRecipe.measure = i["measure"] as? String
-                        ingredientsRecipe.quantity = i["quantity"] as? Int
-                        ingredientsRecipe.ingredientTaskID = i["id"] as? Int
+                        ingredientsObject.baseType = ingre["baseType"] as! String
+                        //ingredientsObject.setValue(ingre["baseType"], forKey: "BaseType")
+                        ingredientsObject.category = ingre["category"] as! String
+                        //ingredientsObject.setValue(ingre["category"], forKey: "category")
+                        ingredientsObject.ingredientIdServer = Int64(ingre["id"] as! Int)
+                        //ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
+                        ingredientsObject.name = ingre["name"] as! String
+                        //ingredientsObject.setValue(ingre["name"], forKey: "name")
+                       // ingredientsObject.frozen = FrozenTypes(rawValue: ingre["frozen"] as! FrozenTypes)
+                        //ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
+                        ingredientsRecipe.measure = (i["measure"] as? String)!
+                        //ingredientsRecipe.measure = i["measure"] as? String
+                        ingredientsRecipe.quantity = Float(i["quantity"] as! Int)
+                        //ingredientsRecipe.quantity = i["quantity"] as? Int
+                        ingredientsRecipe.measureIdServer = Int64(ingre["id"] as! Int)
+                        //ingredientsRecipe.ingredientTaskID = i["id"] as? Int
                         ingredientsRecipe.ingredient = ingredientsObject
-                        array.append(ingredientsRecipe)
+                        //ingredientsRecipe.ingredient = ingredientsObject
+                       // array.append(ingredientsRecipe)
+                        recipe.measures.append(ingredientsRecipe)
                     }
                     let tasks = result["tasks"] as! [[String:AnyObject]]
-                    var arrayTasks = [AnyObject]()
+                   // var arrayTasks = [AnyObject]()
                     for t in tasks {
-                        let taskObject = util.prepareObject("Task") as! Task
-                        taskObject.taskID = t["id"] as? Int
-                        taskObject.name = t["name"] as? String
-                        taskObject.taskDescription = t["description"] as? String
-                        taskObject.seconds = t["seconds"] as? Int
-                        arrayTasks.append(taskObject)
+                       // let taskObject = util.prepareObject("Task") as! Task
+                        let taskObject = Task()
+                        taskObject.taskIdServer = Int64(t["id"] as! Int)
+                        //taskObject.taskID = t["id"] as? Int
+                        taskObject.name = (t["name"] as? String)!
+                        //taskObject.name = t["name"] as? String
+                        taskObject.taskDescription = (t["description"] as? String)!
+                        //taskObject.taskDescription = t["description"] as? String
+                        if t["seconds"] is NSNull {}
+                        else{
+                           taskObject.seconds = Int64(t["seconds"] as! Int)
+                        }
+                        
+                        //taskObject.seconds = t["seconds"] as? Int
+                        recipe.tasks.append(taskObject)
+                       // arrayTasks.append(taskObject)
                     }
 
                     
-                    recipe.mutableSetValueForKey("ingredientsRecipe").addObjectsFromArray(array)
-                    recipe.mutableSetValueForKey("tasks").addObjectsFromArray(arrayTasks)
+                   // recipe.mutableSetValueForKey("ingredientsRecipe").addObjectsFromArray(array)
+                    //recipe.mutableSetValueForKey("tasks").addObjectsFromArray(arrayTasks)
                     recipe2!((recipe))
                     finished?()
                     
@@ -138,6 +166,7 @@ class MyAPIClient: AFHTTPSessionManager {
                     failure?(error)
             })
     }
+    /*
     func getCategory(
         ingredients: ((Ingredient) -> ())?,
         finished: (() -> ())?,
@@ -169,5 +198,5 @@ class MyAPIClient: AFHTTPSessionManager {
                 failure:  { operation, error in
                     failure?(error)
             })
-    }
+    }*/
 }

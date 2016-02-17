@@ -11,7 +11,7 @@ import CoreData
 class IngredientsTableViewController: UITableViewController {
     
     var category = ""
-    var ingredients = [Ingredient]()
+   // var ingredients = [Ingredient]()
     
 
     override func viewDidLoad() {
@@ -20,15 +20,15 @@ class IngredientsTableViewController: UITableViewController {
     }
     
     func recibir(){
-        self.ingredients = []
+    //    self.ingredients = []
         let myapiClient = MyAPIClient()
-        myapiClient.getCategory({ (ingredient) -> () in
+       /* myapiClient.getCategory({ (ingredient) -> () in
             self.ingredients.append(ingredient)
             }, finished: { () -> () in
                 self.tableView.reloadData()
             }) { (error) -> () in
                  print("\(error.debugDescription)")
-        }
+        }*/
         
     }
 
@@ -38,7 +38,7 @@ class IngredientsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+/*
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return ingredients.count
@@ -58,7 +58,7 @@ class IngredientsTableViewController: UITableViewController {
     }
     
     func addIngredient(ingredient: Ingredient) {
-        let appDelegate =
+       /* let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
@@ -69,11 +69,11 @@ class IngredientsTableViewController: UITableViewController {
             
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
-        }
+        }*/
     }
     
     func assignIngredientStore(ingredient: Ingredient){
-        let util = Util.init()
+      /*  let util = Util.init()
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -123,7 +123,7 @@ class IngredientsTableViewController: UITableViewController {
         
         
         store?.mutableSetValueForKey("ingredientsStore").addObject(ingredient)
-        print(store?.ingredientsStore?.count)
+        print(store?.ingredientsStore?.count)*/
         /*if((store!.ingredientsStore?.containsObject(ingredient)) != nil){
             print("Lo contiene")
         }else{
@@ -133,7 +133,7 @@ class IngredientsTableViewController: UITableViewController {
       
         
         
-    }
+    }*/
     
 
     /*
