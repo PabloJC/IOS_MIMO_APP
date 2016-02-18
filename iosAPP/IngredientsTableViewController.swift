@@ -12,6 +12,7 @@ class IngredientsTableViewController: UITableViewController {
     
     var category = ""
     var ingredients = [Ingredient]()
+    var ingredientId : Int64!
     
 
     override func viewDidLoad() {
@@ -51,30 +52,36 @@ class IngredientsTableViewController: UITableViewController {
         return cell
     }
     
-    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let newIngredient = ingredients[indexPath.row]
-        /*addIngredient(newIngredient)
-        assignIngredientStore(newIngredient)*/
-    }*/
+        addIngredient(newIngredient)
+        assignIngredientStore(newIngredient)
+    }
     
     func addIngredient(ingredient: Ingredient) {
         
-        
-       /* let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
+        do{
+          ingredientId =  try IngredientDataHelper.insert(ingredient)
 
-        do {
-            try managedContext.save()
-            ingredients.append(ingredient)
-            
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }*/
+            print(ingredientId)
+            print(ingredient.ingredientIdServer)
+        }catch _{
+            print("Error al crear el ingrediente")
+        }
     }
     
     func assignIngredientStore(ingredient: Ingredient){
+ 
+        do{
+            ingredient.ingredientId = ingredientId
+            ingredient.storageId = 1
+            try IngredientDataHelper.updateStorage(ingredient)
+            print("Ingrediente almacenado")
+        }catch _{
+            print("Error al almacenar")
+        }
+       
+        
       /*  let util = Util.init()
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate

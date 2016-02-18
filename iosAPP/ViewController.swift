@@ -8,12 +8,20 @@
 
 import UIKit
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         let dataStore = SQLiteDataStore.sharedInstance
         do{
             try dataStore.createTables()
+            
+            if try StorageDataHelper.find(1) == nil {
+                
+            let  S = Storage()
+             let id = try  StorageDataHelper.insert(S)
+                print ("storage creado \(id)" )
+                
+            }
+           
           /*  let  recipe = Recipe()
             recipe.name = "mikel"
             let recipeId = try RecipeDataHelper.insert(

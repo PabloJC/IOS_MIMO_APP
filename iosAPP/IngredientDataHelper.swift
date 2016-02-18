@@ -76,6 +76,22 @@ class IngredientDataHelper: DataHelperProtocol {
             }
     }
     
+    static func updateStorage (item: T) throws -> Void {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+
+        let query = table.filter(ingredientId == item.ingredientId)
+        do {
+            let tmp = try DB.run(query.update(storageId <- item.storageId))
+            guard tmp == 1 else {
+                throw DataAccessError.Delete_Error
+            }
+        } catch _ {
+            throw DataAccessError.Delete_Error
+        }
+    }
+    
     static func find(id: Int64) throws -> T? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
             throw DataAccessError.Datastore_Connection_Error

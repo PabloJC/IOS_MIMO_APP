@@ -26,7 +26,7 @@ class SQLiteDataStore {
             NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as [NSString] {
                 let dir = dirs[0]
                 path = dir.stringByAppendingPathComponent("OtakuCookBD.sqlite")
-               // print(path)
+                print(path)
         }
         do {
             DB = try Connection(path)
