@@ -99,7 +99,10 @@ class MyAPIClient: AFHTTPSessionManager {
                     let portions = result["portions"]
                     recipe.recipeIdServer = Int64(id as! Int)
                     recipe.name = (name as? String)!
-                    
+                    let fav = result ["favorite"] as! Bool
+                    if fav {
+                        recipe.favorite = FavoriteTypes.favorite
+                    }
                     recipe.portions = Int64(portions as! Int)
                    // recipe.setValue(id, forKey: "recipeID")
                     //recipe.setValue(name, forKey: "name")
@@ -121,7 +124,10 @@ class MyAPIClient: AFHTTPSessionManager {
                         //ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
                         ingredientsObject.name = ingre["name"] as! String
                         //ingredientsObject.setValue(ingre["name"], forKey: "name")
-                       // ingredientsObject.frozen = FrozenTypes(rawValue: ingre["frozen"] as! FrozenTypes)
+                        var frozen = ingre["frozen"] as! Bool
+                        if frozen {
+                            ingredientsObject.frozen = FrozenTypes.frozen
+                        }
                         //ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
                         ingredientsRecipe.measure = (i["measure"] as? String)!
                         //ingredientsRecipe.measure = i["measure"] as? String
