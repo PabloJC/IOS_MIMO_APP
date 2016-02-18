@@ -11,7 +11,7 @@ import CoreData
 class IngredientsTableViewController: UITableViewController {
     
     var category = ""
-   // var ingredients = [Ingredient]()
+    var ingredients = [Ingredient]()
     
 
     override func viewDidLoad() {
@@ -22,13 +22,13 @@ class IngredientsTableViewController: UITableViewController {
     func recibir(){
     //    self.ingredients = []
         let myapiClient = MyAPIClient()
-       /* myapiClient.getCategory({ (ingredient) -> () in
+       myapiClient.getCategory(category, ingredients: { (ingredient) -> () in
             self.ingredients.append(ingredient)
             }, finished: { () -> () in
                 self.tableView.reloadData()
             }) { (error) -> () in
                  print("\(error.debugDescription)")
-        }*/
+        }
         
     }
 
@@ -38,7 +38,7 @@ class IngredientsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-/*
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return ingredients.count
@@ -51,13 +51,15 @@ class IngredientsTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    /*override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let newIngredient = ingredients[indexPath.row]
-        addIngredient(newIngredient)
-        assignIngredientStore(newIngredient)
-    }
+        /*addIngredient(newIngredient)
+        assignIngredientStore(newIngredient)*/
+    }*/
     
     func addIngredient(ingredient: Ingredient) {
+        
+        
        /* let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -133,7 +135,7 @@ class IngredientsTableViewController: UITableViewController {
       
         
         
-    }*/
+    }
     
 
     /*
