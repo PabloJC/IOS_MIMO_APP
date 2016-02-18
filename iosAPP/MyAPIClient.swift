@@ -166,30 +166,38 @@ class MyAPIClient: AFHTTPSessionManager {
                     failure?(error)
             })
     }
-    /*
-    func getCategory(
+    
+    func getCategory(category: String,
         ingredients: ((Ingredient) -> ())?,
         finished: (() -> ())?,
         failure:  (NSError -> ())?) {
             
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
-            let util = Util.init()
+            self.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            //let util = Util.init()
             
-            let url = "/ingredients"
-            self.GET(url,
-                parameters: nil,
+            let url = "/ingredients/category/\(category)"
+            
+            let parameters = ["Filters" : []]
+            self.POST(url,
+                parameters: parameters,
                 progress: nil,
                 success: { operation, responseObject in
                     
                     let result = responseObject! as! [[String:AnyObject]]
                     for ingredient in result {
-                        let ingredientObject = util.prepareObject("Ingredient") as! Ingredient
-                        ingredientObject.setValue(ingredient["baseType"], forKey: "BaseType")
-                        ingredientObject.setValue(ingredient["category"], forKey: "category")
-                        ingredientObject.setValue(ingredient["id"], forKey: "ingredientID")
-                        ingredientObject.setValue(ingredient["name"], forKey: "name")
-                        ingredientObject.setValue(ingredient["frozen"], forKey: "frozen")
+                        let ingredientObject = Ingredient()
+                        ingredientObject.baseType = ingredient["baseType"] as! String
+                        ingredientObject.category = ingredient["category"] as! String
+                        ingredientObject.ingredientIdServer = Int64(ingredient["id"] as! Int)
+                        ingredientObject.name = ingredient["name"] as! String
+                        let frozen = ingredient["frozen"] as! Int
+                        if frozen == 0{
+                            ingredientObject.frozen = FrozenTypes.noFrozen
+                        }else{
+                            ingredientObject.frozen = FrozenTypes.frozen
+                        }
                         ingredients!(ingredientObject)
                     }  
                     finished?()
@@ -198,5 +206,5 @@ class MyAPIClient: AFHTTPSessionManager {
                 failure:  { operation, error in
                     failure?(error)
             })
-    }*/
+    }
 }
