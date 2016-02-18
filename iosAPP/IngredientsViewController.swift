@@ -62,7 +62,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueID = segue.identifier{
             if segueID == "ingredientsCategory"{
-                if let destinoVC = segue.destinationViewController as? IngredientsTableViewController{
+                if let destinoVC = segue.destinationViewController as? IngredientListViewController{
                     destinoVC.category = self.category
                 }
             }
