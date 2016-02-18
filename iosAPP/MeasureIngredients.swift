@@ -14,6 +14,6 @@ class MeasureIngredients : NSObject{
     var measure = String()
     var recipeId = Int64()
     var ingredientId = Int64()
-    var quantity = Float()
+    var quantity = Int64()
     var ingredient = Ingredient()
 }

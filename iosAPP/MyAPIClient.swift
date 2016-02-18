@@ -128,14 +128,14 @@ class MyAPIClient: AFHTTPSessionManager {
                         //ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
                         ingredientsObject.name = ingre["name"] as! String
                         //ingredientsObject.setValue(ingre["name"], forKey: "name")
-                        var frozen = ingre["frozen"] as! Bool
+                        let frozen = ingre["frozen"] as! Bool
                         if frozen {
                             ingredientsObject.frozen = FrozenTypes.frozen
                         }
                         //ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
                         ingredientsRecipe.measure = (i["measure"] as? String)!
                         //ingredientsRecipe.measure = i["measure"] as? String
-                        ingredientsRecipe.quantity = Float(i["quantity"] as! Int)
+                        ingredientsRecipe.quantity = Int64(i["quantity"] as! Int)
                         //ingredientsRecipe.quantity = i["quantity"] as? Int
                         ingredientsRecipe.measureIdServer = Int64(ingre["id"] as! Int)
                         //ingredientsRecipe.ingredientTaskID = i["id"] as? Int
