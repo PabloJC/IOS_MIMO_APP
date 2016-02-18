@@ -13,6 +13,7 @@ class IngredientDataHelper: DataHelperProtocol {
     static let TABLE_NAME = "Ingredients"
     
     static let table = Table(TABLE_NAME)
+   // let storage = Table("users")
     static let ingredientId = Expression<Int64>("ingredientId")
     static let ingredientIdServer = Expression<Int64>("ingredientIdServer")
     static let name = Expression<String>("name")

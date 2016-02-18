@@ -30,6 +30,7 @@ class MyAPIClient: AFHTTPSessionManager {
 			success: { operation, responseObject in
 	            
     	            let result = responseObject! as! [[String:AnyObject]]
+                 print("\(result)")
                 for recipe in result {
                     let id = recipe["id"]!
                     let nombre = recipe["name"]!
@@ -92,13 +93,19 @@ class MyAPIClient: AFHTTPSessionManager {
                     let name = result["name"]
                     let id = result["id"]
                     let photo = result["photo"]
-                    if photo != nil {
+                    if !(photo  is NSNull) {
                         recipe.photo = (photo as? String)!
                       //recipe.setValue(photo, forKey: "photo")
                     }
                     let portions = result["portions"]
                     recipe.recipeIdServer = Int64(id as! Int)
                     recipe.name = (name as? String)!
+                    if result["favorite"] != nil {
+                        let fav = result ["favorite"] as! Bool
+                        if fav {
+                            recipe.favorite = FavoriteTypes.favorite
+                        }
+                    }
                     
                     recipe.portions = Int64(portions as! Int)
                    // recipe.setValue(id, forKey: "recipeID")
@@ -121,11 +128,14 @@ class MyAPIClient: AFHTTPSessionManager {
                         //ingredientsObject.setValue(ingre["id"], forKey: "ingredientID")
                         ingredientsObject.name = ingre["name"] as! String
                         //ingredientsObject.setValue(ingre["name"], forKey: "name")
-                       // ingredientsObject.frozen = FrozenTypes(rawValue: ingre["frozen"] as! FrozenTypes)
+                        let frozen = ingre["frozen"] as! Bool
+                        if frozen {
+                            ingredientsObject.frozen = FrozenTypes.frozen
+                        }
                         //ingredientsObject.setValue(ingre["frozen"], forKey: "frozen")
                         ingredientsRecipe.measure = (i["measure"] as? String)!
                         //ingredientsRecipe.measure = i["measure"] as? String
-                        ingredientsRecipe.quantity = Float(i["quantity"] as! Int)
+                        ingredientsRecipe.quantity = Int64(i["quantity"] as! Int)
                         //ingredientsRecipe.quantity = i["quantity"] as? Int
                         ingredientsRecipe.measureIdServer = Int64(ingre["id"] as! Int)
                         //ingredientsRecipe.ingredientTaskID = i["id"] as? Int

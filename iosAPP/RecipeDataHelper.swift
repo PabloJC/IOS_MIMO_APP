@@ -58,7 +58,67 @@ class RecipeDataHelper: DataHelperProtocol {
                 return rowId
             }catch _ {
                 throw DataAccessError.Insert_Error
+        }
+    }
+    static func delete (item: T) throws -> Void {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let query = table.filter(recipeId == item.recipeId)
+        do {
+            let tmp = try DB.run(query.delete())
+            guard tmp == 1 else {
+                throw DataAccessError.Delete_Error
             }
-       
+        } catch _ {
+            throw DataAccessError.Delete_Error
+        }
+    }
+    
+    static func find(id: Int64) throws -> T? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        let query = table.filter(recipeId == id)
+        let items = try DB.prepare(query)
+        for item in  items {
+            let recipe = Recipe()
+            recipe.recipeId = item[recipeId]
+            recipe.recipeIdServer = item[recipeIdServer]
+            recipe.name = item[name]
+            recipe.portions = item[portions]
+            recipe.photo = item[photo]
+            recipe.favorite = FavoriteTypes(rawValue:  item[favorite])
+            recipe.author = item[author]
+            recipe.score = item[score]
+          return recipe
+        }
+        
+        return nil
+        
+    }
+    
+    static func findAll() throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let items = try DB.prepare(table)
+        for item in items {
+            let recipe = Recipe()
+            recipe.recipeId = item[recipeId]
+            recipe.recipeIdServer = item[recipeIdServer]
+            recipe.name = item[name]
+            recipe.portions = item[portions]
+            recipe.photo = item[photo]
+            recipe.favorite = FavoriteTypes(rawValue:  item[favorite])
+            recipe.author = item[author]
+            recipe.score = item[score]
+            retArray.append(recipe)
+        }
+        
+        return retArray
+        
     }
 }

@@ -22,6 +22,11 @@
 		B574617E1C74FE2C0065511B /* MeasureDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574617D1C74FE2C0065511B /* MeasureDataHelper.swift */; };
 		B57461811C750DF10065511B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57461801C750DF10065511B /* Task.swift */; };
 		B581B8A91C6E26980049CA1C /* IngredientsSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B581B8A81C6E26980049CA1C /* IngredientsSB.storyboard */; };
+		B58A9B551C75D940003A1676 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A9B541C75D940003A1676 /* Storage.swift */; };
+		B58A9B571C75D9A1003A1676 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A9B561C75D9A1003A1676 /* Cart.swift */; };
+		B58A9B591C75D9DB003A1676 /* TaskDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A9B581C75D9DB003A1676 /* TaskDataHelper.swift */; };
+		B58A9B5B1C75DBB1003A1676 /* StorageDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A9B5A1C75DBB1003A1676 /* StorageDataHelper.swift */; };
+		B58A9B5D1C75DC84003A1676 /* CartDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A9B5C1C75DC84003A1676 /* CartDataHelper.swift */; };
 		B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */; };
 		B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2271C5E87EE0085C5C8 /* ViewController.swift */; };
 		B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A2291C5E87EE0085C5C8 /* Main.storyboard */; };
@@ -61,6 +66,11 @@
 		B574617D1C74FE2C0065511B /* MeasureDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureDataHelper.swift; sourceTree = "<group>"; };
 		B57461801C750DF10065511B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		B581B8A81C6E26980049CA1C /* IngredientsSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IngredientsSB.storyboard; sourceTree = "<group>"; };
+		B58A9B541C75D940003A1676 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		B58A9B561C75D9A1003A1676 /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		B58A9B581C75D9DB003A1676 /* TaskDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDataHelper.swift; sourceTree = "<group>"; };
+		B58A9B5A1C75DBB1003A1676 /* StorageDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageDataHelper.swift; sourceTree = "<group>"; };
+		B58A9B5C1C75DC84003A1676 /* CartDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartDataHelper.swift; sourceTree = "<group>"; };
 		B593A2221C5E87EE0085C5C8 /* OtakuCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtakuCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B593A2271C5E87EE0085C5C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +150,8 @@
 				B5F579FD1C74E51F006A2FF2 /* Ingredient.swift */,
 				B5F57A011C74EF7E006A2FF2 /* MeasureIngredients.swift */,
 				B57461801C750DF10065511B /* Task.swift */,
+				B58A9B541C75D940003A1676 /* Storage.swift */,
+				B58A9B561C75D9A1003A1676 /* Cart.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -195,11 +207,14 @@
 		B5F579F41C74CFAD006A2FF2 /* BD */ = {
 			isa = PBXGroup;
 			children = (
-				B5F579F71C74D47F006A2FF2 /* RecipeDataHelper.swift */,
 				B5F579F21C74CFA6006A2FF2 /* SQLiteDataStore.swift */,
 				B5F579F51C74D3BF006A2FF2 /* DataHelperProtocol.swift */,
+				B5F579F71C74D47F006A2FF2 /* RecipeDataHelper.swift */,
 				B5F579FF1C74EABD006A2FF2 /* IngredientDataHelper.swift */,
 				B574617D1C74FE2C0065511B /* MeasureDataHelper.swift */,
+				B58A9B581C75D9DB003A1676 /* TaskDataHelper.swift */,
+				B58A9B5A1C75DBB1003A1676 /* StorageDataHelper.swift */,
+				B58A9B5C1C75DC84003A1676 /* CartDataHelper.swift */,
 			);
 			name = BD;
 			sourceTree = "<group>";
@@ -330,18 +345,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B593A23E1C5E93500085C5C8 /* IngredientTableViewCell.swift in Sources */,
+				B58A9B5B1C75DBB1003A1676 /* StorageDataHelper.swift in Sources */,
 				B5F579F81C74D47F006A2FF2 /* RecipeDataHelper.swift in Sources */,
 				B593A2421C5E9AA80085C5C8 /* ListaIngredientes.swift in Sources */,
 				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
 				B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */,
 				B574617E1C74FE2C0065511B /* MeasureDataHelper.swift in Sources */,
 				B5F57A021C74EF7E006A2FF2 /* MeasureIngredients.swift in Sources */,
+				B58A9B571C75D9A1003A1676 /* Cart.swift in Sources */,
 				B593A23A1C5E8D8A0085C5C8 /* ListIngredientsViewController.swift in Sources */,
 				B5F579F61C74D3BF006A2FF2 /* DataHelperProtocol.swift in Sources */,
 				B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */,
 				B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */,
 				3A1667DF1C70CD2000A02BD5 /* CategoryCollectionViewCell.swift in Sources */,
 				B57461811C750DF10065511B /* Task.swift in Sources */,
+				B58A9B591C75D9DB003A1676 /* TaskDataHelper.swift in Sources */,
 				B5F579FC1C74D7A7006A2FF2 /* Recipe.swift in Sources */,
 				B593A2381C5E89410085C5C8 /* ShoopingListViewController.swift in Sources */,
 				B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */,
@@ -350,12 +368,14 @@
 				B593A2401C5E98B40085C5C8 /* FormIngredientsViewController.swift in Sources */,
 				B5F57A001C74EABD006A2FF2 /* IngredientDataHelper.swift in Sources */,
 				B5E02BDF1C61FA4500FB99F0 /* Models.xcdatamodeld in Sources */,
+				B58A9B5D1C75DC84003A1676 /* CartDataHelper.swift in Sources */,
 				3AA6F4981C7094C200161E89 /* KitchenViewController.swift in Sources */,
 				3A2136D01C70FF6100246089 /* IngredientsTableViewController.swift in Sources */,
 				B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */,
 				B5F579FE1C74E51F006A2FF2 /* Ingredient.swift in Sources */,
 				B5F579F31C74CFA6006A2FF2 /* SQLiteDataStore.swift in Sources */,
 				B5661F5E1C725730001230ED /* StepListViewController.swift in Sources */,
+				B58A9B551C75D940003A1676 /* Storage.swift in Sources */,
 				3A1667DD1C70B9F900A02BD5 /* IngredientsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

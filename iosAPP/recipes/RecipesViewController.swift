@@ -11,6 +11,7 @@ import CoreData
 class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var recetasString = [Dictionary<String,AnyObject>]()
     //var recipes = [NSManagedObject]()
     //var idseleccionado = 0
@@ -18,33 +19,13 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Recetas\""
-        
+        if !sincronized {
+            recibir()
+        }
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         // Do any additional setup after loading the view.
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if !sincronized {
-            recibir()
-        }
-        //print(sincronized)
-        /*//1
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        //2
-        let fetchRequest = NSFetchRequest(entityName: "Recipe")
-        
-        //3
-        do {
-        let results = try managedContext.executeFetchRequest(fetchRequest)
-        recipes = results as! [NSManagedObject]
-        } catch let error as NSError {
-        print("Could not fetch \(error), \(error.userInfo)")
-        }*/
     }
     override func viewDidAppear(animated: Bool) {
         
@@ -52,7 +33,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     //MARK : UITableViewDataSource
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return recetasString.count
@@ -155,6 +135,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func recibir(){
         self.recetasString = []
         let myapiClient = MyAPIClient()
+        self.activityIndicator.startAnimating()
         myapiClient.getRecipes({ (receta,id) -> () in
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
@@ -165,6 +146,8 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
                     self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
                    // print("finalizado \(self.recetasString.count)")
                 }else {
                     print("sin recetas agregadas")

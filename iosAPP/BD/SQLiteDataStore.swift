@@ -21,11 +21,11 @@ class SQLiteDataStore {
     static let sharedInstance = SQLiteDataStore()
     let DB: Connection?
     private init() {
-        var path = "RecipeBD.sqlite"
+        var path = "OtakuCookBD.sqlite"
         if let dirs: [NSString] =
             NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as [NSString] {
                 let dir = dirs[0]
-                path = dir.stringByAppendingPathComponent("RecipeBD.sqlite")
+                path = dir.stringByAppendingPathComponent("OtakuCookBD.sqlite")
                // print(path)
         }
         do {
@@ -39,6 +39,9 @@ class SQLiteDataStore {
             try RecipeDataHelper.createTable()
             try IngredientDataHelper.createTable()
             try MeasureDataHelper.createTable()
+            try TaskDataHelper.createTable()
+            try StorageDataHelper.createTable()
+            try CartDataHelper.createTable()
             
         }catch{
             throw DataAccessError.Datastore_Connection_Error
