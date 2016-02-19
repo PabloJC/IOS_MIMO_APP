@@ -175,11 +175,9 @@ class MyAPIClient: AFHTTPSessionManager {
                     ids.append(dict)
                 }
             }*/
-            
-            
-            let parameters = ["Filters" : []]
-            self.POST(url,
-                parameters: parameters,
+
+            self.GET(url,
+                parameters: nil,
                 progress: nil,
                 success: { operation, responseObject in
                     
