@@ -13,6 +13,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var myKitchen: UITableView!
     
     var ingredients = [Ingredient]()
+    var ingredientId : Int64!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +32,9 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 let ingredient = Ingredient()
                 ingredient.name = (alert.textFields!.first?.text!)!
+                self.addIngredient(ingredient)
+                self.assignIngredientStore(ingredient)
                 
-                do{
-                    try IngredientDataHelper.insert(ingredient)
-                    print("Ingrediente Agregado")
-                    print(ingredient.ingredientIdServer)
-                }catch _{
-                    print("Error al crear el ingrediente")
-                }
                 
         })
         
@@ -93,6 +89,32 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func addIngredient(ingredient: Ingredient) {
+        
+        do{
+            ingredientId =  try IngredientDataHelper.insert(ingredient)
+            print(ingredientId)
+            print(ingredient.ingredientIdServer)
+        }catch _{
+            print("Error al crear el ingrediente")
+        }
+    }
+    
+    func assignIngredientStore(ingredient: Ingredient){
+        
+        do{
+            ingredient.ingredientId = ingredientId
+            ingredient.storageId = 1
+            try IngredientDataHelper.updateStorage(ingredient)
+            self.ingredients.append(ingredient)
+            self.myKitchen.reloadData()
+            print("Ingrediente almacenado")
+        }catch _{
+            print("Error al almacenar")
+        }
+    }
+
     
 
     /*
