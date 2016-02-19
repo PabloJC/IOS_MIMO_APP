@@ -162,10 +162,20 @@ class MyAPIClient: AFHTTPSessionManager {
             
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
-            self.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            //self.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
             //let util = Util.init()
             
             let url = "/ingredients/category/\(category)"
+            
+            //var ids = [Dictionary<String,Int64>]()
+            
+            /*if !filters!.isEmpty {
+                for i in filters!{
+                    let dict = ["id":i.ingredientIdServer]
+                    ids.append(dict)
+                }
+            }*/
+            
             
             let parameters = ["Filters" : []]
             self.POST(url,

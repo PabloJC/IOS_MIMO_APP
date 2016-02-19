@@ -32,7 +32,7 @@ class IngredientDataHelper: DataHelperProtocol {
             let _ = try DB.run(table.create(temporary: false, ifNotExists: true) { t in
                 t.column(ingredientId, primaryKey: true)
                 t.column(ingredientIdServer)
-                t.column(name)
+                t.column(name, unique: true)
                 t.column(baseType)
                 t.column(category)
                 t.column(frozen)
@@ -90,6 +90,30 @@ class IngredientDataHelper: DataHelperProtocol {
         } catch _ {
             throw DataAccessError.Delete_Error
         }
+    }
+    
+    static func findIngredientsInStorage () throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let query = table.filter(storageId == 1)
+        var retArray = [T]()
+        let items = try DB.prepare(query)
+        for item in items {
+            let ingredient = Ingredient()
+            ingredient.ingredientId = item[ingredientId]
+            ingredient.ingredientIdServer = item[ingredientIdServer]
+            ingredient.name = item[name]
+            ingredient.baseType = item[baseType]
+            ingredient.category = item[category]
+            ingredient.frozen = FrozenTypes(rawValue: item[frozen])!
+            ingredient.storageId = item[storageId]
+            ingredient.cartId = item[cartId]
+            retArray.append(ingredient)
+        }
+        return retArray
+
     }
     
     static func find(id: Int64) throws -> T? {

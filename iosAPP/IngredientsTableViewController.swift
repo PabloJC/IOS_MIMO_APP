@@ -21,7 +21,6 @@ class IngredientsTableViewController: UITableViewController {
     }
     
     func recibir(){
-    //    self.ingredients = []
         let myapiClient = MyAPIClient()
        myapiClient.getCategory(category, ingredients: { (ingredient) -> () in
             self.ingredients.append(ingredient)
