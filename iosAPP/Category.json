@@ -1,6 +1,6 @@
 {"Categories":[
  {"idCategory":1,"category":"Aceites/Salsas"},
- {"idCategory":2,"category":"Carne"},
+ {"idCategory":2,"category":"Carnes"},
  {"idCategory":3,"category":"Congelados"},
  {"idCategory":4,"category":"Derivados"},
  {"idCategory":5,"category":"Dulces"},
@@ -8,7 +8,7 @@
  {"idCategory":7,"category":"Frutas"},
  {"idCategory":8,"category":"Lacteos"},
  {"idCategory":9,"category":"Otros"},
- {"idCategory":10,"category":"Pescado"},
- {"idCategory":11,"category":"Tuberculo"},
+ {"idCategory":10,"category":"Pescados"},
+ {"idCategory":11,"category":"Tuberculos"},
  {"idCategory":12,"category":"Verduras"}
   ]}
