@@ -136,7 +136,29 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.recetasString = []
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
-        myapiClient.getRecipes({ (receta,id) -> () in
+        myapiClient.getRecipesIngredients("Patata", recipes: { (receta, id) -> () in
+            var post=Dictionary<String,AnyObject>()
+            post = ["id":id,"name":receta]
+            
+            self.recetasString.append(post)
+            
+            }, finished: { () -> () in
+                if !self.recetasString.isEmpty {
+                    self.sincronized = true
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                    // print("finalizado \(self.recetasString.count)")
+                }else {
+                    print("sin recetas agregadas")
+                }
+            }) { (error) -> () in
+                print("\(error.debugDescription)")
+        }
+        
+        
+        
+        /*myapiClient.getRecipes({ (receta,id) -> () in
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
@@ -155,7 +177,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
             }) { (error) -> () in
                 print("\(error.debugDescription)")
-        }
+        }*/
         
     }
     @IBAction func recibirServer(sender: AnyObject) {

@@ -217,15 +217,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k8A-jZ-x1o">
-                                <rect key="frame" x="192" y="81" width="65" height="30"/>
+                                <rect key="frame" x="241" y="80" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Campana"/>
+                                <connections>
+                                    <action selector="countDownAction:" destination="K4E-ZJ-Vmf" eventType="touchUpInside" id="VLF-lg-BD2"/>
+                                </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zp5-n9-KSY">
-                                <rect key="frame" x="20" y="35" width="119" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tlc-dY-Gwk">
                                 <rect key="frame" x="40" y="426" width="56" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -242,6 +240,18 @@
                                     <action selector="nextAction:" destination="K4E-ZJ-Vmf" eventType="touchUpInside" id="maJ-N6-BV0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tiempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aha-rg-BoF">
+                                <rect key="frame" x="139" y="85" width="89" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zp5-n9-KSY">
+                                <rect key="frame" x="9" y="35" width="119" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -252,6 +262,7 @@
                         <outlet property="imageView" destination="Zp5-n9-KSY" id="25T-Ys-bPT"/>
                         <outlet property="nextBT" destination="cRR-iD-VCJ" id="LJI-mV-md8"/>
                         <outlet property="taskName" destination="znr-Bo-mAt" id="WkS-ki-MPG"/>
+                        <outlet property="time" destination="Aha-rg-BoF" id="Wc6-lB-41T"/>
                         <segue destination="4UD-aN-I7p" kind="push" identifier="endRecipe" id="2mU-B2-tWd"/>
                     </connections>
                 </viewController>
