@@ -13,6 +13,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var recetasString = [Dictionary<String,AnyObject>]()
+    var ingredients = [Ingredient]()
     //var recipes = [NSManagedObject]()
     //var idseleccionado = 0
     var sincronized = false
@@ -136,7 +137,20 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.recetasString = []
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
-        myapiClient.getRecipesIngredients("Patata", recipes: { (receta, id) -> () in
+        var ingredientesString = ""
+        do {
+            ingredients = try IngredientDataHelper.findIngredientsInStorage()!
+            
+            for ing in ingredients {
+                var io = ing as Ingredient
+              ingredientesString  += io.name + ",";
+            }
+        } catch _ {
+            print ("error al coger los ingredientes del almacen")
+        }
+        
+        myapiClient.getRecipesIngredients(ingredientesString, recipes: { (receta, id) -> () in
+            
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
@@ -150,6 +164,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     self.activityIndicator.hidden = true
                     // print("finalizado \(self.recetasString.count)")
                 }else {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+
                     print("sin recetas agregadas")
                 }
             }) { (error) -> () in
