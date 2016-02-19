@@ -162,9 +162,7 @@ class MyAPIClient: AFHTTPSessionManager {
             
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
-           // self.requestSerializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            //let util = Util.init()
-            
+                      
             let url = "/ingredients/category/\(category)"
             
             //var ids = [Dictionary<String,Int64>]()

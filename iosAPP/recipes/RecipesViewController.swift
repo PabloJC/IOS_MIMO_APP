@@ -142,9 +142,10 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
             
             for ing in ingredients {
-                var io = ing as Ingredient
+                let io = ing as Ingredient
               ingredientesString  += io.name + ",";
             }
+            print(ingredientesString)
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
