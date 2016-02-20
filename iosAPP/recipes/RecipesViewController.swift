@@ -11,40 +11,29 @@ import CoreData
 class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var recetasString = [Dictionary<String,AnyObject>]()
-    var recipes = [NSManagedObject]()
-    var idseleccionado = 0
+    var ingredients = [Ingredient]()
+    //var recipes = [NSManagedObject]()
+    //var idseleccionado = 0
+    var sincronized = false
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Recetas\""
+        if !sincronized {
+            recibir()
+        }
         
-        tableView.delegate = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        recibir()
-        /*//1
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
+    override func viewDidAppear(animated: Bool) {
         
-        let managedContext = appDelegate.managedObjectContext
-        //2
-        let fetchRequest = NSFetchRequest(entityName: "Recipe")
-        
-        //3
-        do {
-        let results = try managedContext.executeFetchRequest(fetchRequest)
-        recipes = results as! [NSManagedObject]
-        } catch let error as NSError {
-        print("Could not fetch \(error), \(error.userInfo)")
-        }*/
+        tableView.reloadData()
     }
     
     //MARK : UITableViewDataSource
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return recetasString.count
@@ -64,27 +53,24 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell!
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let row = indexPath.row
-        let recipe = recetasString[row]
-        idseleccionado = (recipe["id"]! as? Int)!
+       // let row = indexPath.row
+        //let recipe = recetasString[row]
+        //idseleccionado = (recipe["id"]! as? Int)!
         // let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
         
         //self.navigationController!.pushViewController(secondViewController, animated: true)
         self.performSegueWithIdentifier("recipe", sender: self)
-        print("\(recipe["id"]!)")
+        //print("\(recipe["id"]!)")
     }
-    override func viewDidAppear(animated: Bool) {
-        
-        tableView.reloadData()
-    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "recipe") {
             let svc = segue.destinationViewController as! RecipeViewController
             let row = tableView.indexPathForSelectedRow?.row
             let recipe = recetasString[row!]
             svc.idText = "\(recipe["id"]!)"
-            svc.nombreText = "\(recipe["name"]!)"
-            print("dentro")
+            svc.ingredients = ingredients
+           // print("dentro")
             
         }
     }
@@ -151,17 +137,67 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func recibir(){
         self.recetasString = []
         let myapiClient = MyAPIClient()
-        myapiClient.getUsersPage({ (receta,id) -> () in
+        self.activityIndicator.startAnimating()
+        var ingredientesString = ""
+        do {
+            ingredients = try IngredientDataHelper.findIngredientsInStorage()!
+            
+            for ing in ingredients {
+                let io = ing as! Ingredient
+                let id = String(io.ingredientIdServer)
+              ingredientesString  += id  + ",";
+            }
+            print(ingredientesString)
+        } catch _ {
+            print ("error al coger los ingredientes del almacen")
+        }
+        
+        myapiClient.getRecipesIngredients(ingredientesString, recipes: { (receta, id) -> () in
+            
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
             self.recetasString.append(post)
             
             }, finished: { () -> () in
-                print("finalizado")
+                if !self.recetasString.isEmpty {
+                    self.sincronized = true
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                    // print("finalizado \(self.recetasString.count)")
+                }else {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+
+                    print("sin recetas agregadas")
+                }
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }
+        
+        
+        
+        /*myapiClient.getRecipes({ (receta,id) -> () in
+            var post=Dictionary<String,AnyObject>()
+            post = ["id":id,"name":receta]
+            
+            self.recetasString.append(post)
+            
+            }, finished: { () -> () in
+                if !self.recetasString.isEmpty {
+                    self.sincronized = true
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                   // print("finalizado \(self.recetasString.count)")
+                }else {
+                    print("sin recetas agregadas")
+                }
+                
+            }) { (error) -> () in
+                print("\(error.debugDescription)")
+        }*/
         
     }
     @IBAction func recibirServer(sender: AnyObject) {
