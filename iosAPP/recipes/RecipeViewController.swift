@@ -54,9 +54,9 @@ class RecipeViewController: UIViewController{
             var texto = ""
             
             // print(r.ingredientsRecipe?.count)
-            self.recipe = (r as? Recipe)!
+            self.recipe = r
             for i in r.measures{
-                let i2 = i as! MeasureIngredients
+                let i2 = i
                 if self.ingredientsBDServerId.contains(i2.ingredient.ingredientIdServer) {
                     texto += "\(i2.ingredient.name)" + "\(i2.quantity)" + (i2.measure) + "\n"
                 }else {

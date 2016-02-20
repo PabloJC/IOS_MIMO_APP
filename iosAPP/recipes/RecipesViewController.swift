@@ -14,8 +14,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var recetasString = [Dictionary<String,AnyObject>]()
     var ingredients = [Ingredient]()
-    //var recipes = [NSManagedObject]()
-    //var idseleccionado = 0
     var sincronized = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +51,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return cell!
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       // let row = indexPath.row
+        // let row = indexPath.row
         //let recipe = recetasString[row]
         //idseleccionado = (recipe["id"]! as? Int)!
         // let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
@@ -70,7 +68,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let recipe = recetasString[row!]
             svc.idText = "\(recipe["id"]!)"
             svc.ingredients = ingredients
-           // print("dentro")
+            // print("dentro")
             
         }
     }
@@ -145,7 +143,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             for ing in ingredients {
                 let io = ing as! Ingredient
                 let id = String(io.ingredientIdServer)
-              ingredientesString  += id  + ",";
+                ingredientesString  += id  + ",";
             }
             print(ingredientesString)
         } catch _ {
@@ -169,7 +167,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }else {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
-
+                    
                     print("sin recetas agregadas")
                 }
             }) { (error) -> () in
@@ -179,6 +177,32 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
         /*myapiClient.getRecipes({ (receta,id) -> () in
+        var post=Dictionary<String,AnyObject>()
+        post = ["id":id,"name":receta]
+        
+        self.recetasString.append(post)
+        
+        }, finished: { () -> () in
+        if !self.recetasString.isEmpty {
+        self.sincronized = true
+        self.tableView.reloadData()
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.hidden = true
+        // print("finalizado \(self.recetasString.count)")
+        }else {
+        print("sin recetas agregadas")
+        }
+        
+        }) { (error) -> () in
+        print("\(error.debugDescription)")
+        }*/
+        
+    }
+    func recibirTodas(){
+        self.recetasString = []
+        let myapiClient = MyAPIClient()
+        self.activityIndicator.startAnimating()
+        myapiClient.getRecipes({ (receta,id) -> () in
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
@@ -190,26 +214,25 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
-                   // print("finalizado \(self.recetasString.count)")
+                    // print("finalizado \(self.recetasString.count)")
                 }else {
                     print("sin recetas agregadas")
                 }
                 
             }) { (error) -> () in
                 print("\(error.debugDescription)")
-        }*/
+        }
         
     }
-    @IBAction func recibirServer(sender: AnyObject) {
-      /*  let myapiClient = MyAPIClient()
-        myapiClient.getUsersPage({ (receta) -> () in
-            
-            
-            }, finished: { () -> () in
-                print("finalizado")
-            }) { (error) -> () in
-                print("\(error.debugDescription)")
-        }*/
+    
+    @IBAction func recetasDisponiblesAction(sender: UIButton) {
+        
+        recibir()
+        self.tableView.reloadData()
+    }
+    @IBAction func todasLasRecetasAction(sender: UIButton) {
+        recibirTodas()
+        self.tableView.reloadData()
     }
     
     

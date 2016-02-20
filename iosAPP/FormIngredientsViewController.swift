@@ -25,7 +25,7 @@ class FormIngredientsViewController: UIViewController {
         //var lista = ListaIngredientes()
         ListaIngredientes.ingredientes.append(nombreIngrediente.text!)
         print("\(nombreIngrediente.text!)")
-        for var i in ListaIngredientes.ingredientes {
+        for  i in ListaIngredientes.ingredientes {
             print(i)
         }
         
