@@ -69,6 +69,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let row = tableView.indexPathForSelectedRow?.row
             let recipe = recetasString[row!]
             svc.idText = "\(recipe["id"]!)"
+            svc.ingredients = ingredients
            // print("dentro")
             
         }
@@ -142,8 +143,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
             
             for ing in ingredients {
-                let io = ing as Ingredient
-              ingredientesString  += io.name + ",";
+                let io = ing as! Ingredient
+                let id = String(io.ingredientIdServer)
+              ingredientesString  += id  + ",";
             }
             print(ingredientesString)
         } catch _ {

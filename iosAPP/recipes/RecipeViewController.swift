@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 class RecipeViewController: UIViewController{
-
+    
     @IBOutlet weak var nombreReceta: UILabel!
     @IBOutlet weak var TextBox: UITextView!
     @IBOutlet weak var id: UILabel!
@@ -17,10 +17,16 @@ class RecipeViewController: UIViewController{
     var idText = ""
     var nombreText = ""
     var recipe : Recipe?
+    var ingredients = [Ingredient]()
+    var ingredientsBDServerId = [Int64]()
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
         id.text = idText
+        for iBD in self.ingredients {
+            ingredientsBDServerId.append(iBD.ingredientIdServer)
+        }
+        
         
         // Do any additional setup after loading the view.
     }
@@ -28,16 +34,16 @@ class RecipeViewController: UIViewController{
         
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     func recibir(){
         let myapiClient = MyAPIClient()
-       
+        
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
-           
+            
             self.nombreReceta.text  = "\(r.name)"
             if r.photo != "" {
                 let url = NSURL(string: r.photo)
@@ -47,12 +53,15 @@ class RecipeViewController: UIViewController{
             
             var texto = ""
             
-           // print(r.ingredientsRecipe?.count)
+            // print(r.ingredientsRecipe?.count)
             self.recipe = (r as? Recipe)!
             for i in r.measures{
                 let i2 = i as! MeasureIngredients
-              
-                 texto += "\(i2.ingredient.name)" + "\(i2.quantity)" + (i2.measure) + "\n"
+                if self.ingredientsBDServerId.contains(i2.ingredient.ingredientIdServer) {
+                    texto += "\(i2.ingredient.name)" + "\(i2.quantity)" + (i2.measure) + "\n"
+                }else {
+                    texto += "Falta el ingrediente \(i2.ingredient.name) \n"
+                }
             }
             self.TextBox.text = texto
             }, finished: { () -> () in
@@ -72,7 +81,7 @@ class RecipeViewController: UIViewController{
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "step" {
-         let stepDestination = segue.destinationViewController as! StepViewController
+            let stepDestination = segue.destinationViewController as! StepViewController
             stepDestination.recipe = recipe
         }
         else if segue.identifier == "stepList" {
