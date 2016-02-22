@@ -23,7 +23,6 @@ class StepViewController: UIViewController {
                 let t2 = task2 as Task
                 return t.name < t2.name
             })
-           // tasks = (recipe!.tasks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]))!
             t = tasks[currentTaskPos] as? Task
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
@@ -147,7 +146,7 @@ class StepViewController: UIViewController {
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
             if currentTaskPos == 0 {
-                print("boton desabilitado")
+                print("boton disable")
                 let bt = sender as! UIButton
                 bt.enabled = false
             }
@@ -155,16 +154,16 @@ class StepViewController: UIViewController {
         }
     }
     @IBAction func alert(sender: UIBarButtonItem) {
-        let picker : UIDatePicker = UIDatePicker()
+       /* let picker : UIDatePicker = UIDatePicker()
         picker.datePickerMode = UIDatePickerMode.CountDownTimer
         picker.addTarget(self, action: "dueDateChanged:", forControlEvents: UIControlEvents.ValueChanged)
         let pickerSize : CGSize = picker.sizeThatFits(CGSizeZero)
         picker.frame = CGRectMake(0.0, 250, pickerSize.width, 460)
         //you probably don't want to set background color as black
        // picker.backgroundColor = UIColor.blackColor()
-        self.view.addSubview(picker)
+        self.view.addSubview(picker)*/
     }
-    func dueDateChanged(sender:UIDatePicker){
+    /*func dueDateChanged(sender:UIDatePicker){
        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "mm:ss";
@@ -172,7 +171,7 @@ class StepViewController: UIViewController {
         self.time.text = dateFormatter.stringFromDate(sender.date)
         
         sender.hidden = true
-    }
+    }*/
     @IBOutlet weak var nextBT: UIButton!
 
     /*
