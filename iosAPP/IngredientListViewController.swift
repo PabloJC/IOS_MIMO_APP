@@ -86,6 +86,8 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
             ingredient.ingredientId = ingredientId
             ingredient.storageId = 1
             try IngredientDataHelper.updateStorage(ingredient)
+            ingredients.removeAtIndex(ingredients.indexOf(ingredient)!)
+            table.reloadData()
             print("Ingrediente almacenado")
         }catch _{
             print("Error al almacenar")
