@@ -25,7 +25,7 @@ class CartDataHelper: DataHelperProtocol {
         do {
             let _ = try DB.run(table.create(temporary: false, ifNotExists: true) { t in
                 t.column(cartId, primaryKey: true)
-                print("tabla cart creada")
+               
                 })
         }catch _ {
             print("error create table")

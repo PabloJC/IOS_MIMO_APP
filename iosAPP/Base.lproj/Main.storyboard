@@ -68,20 +68,29 @@
                                     <outlet property="delegate" destination="9Ck-CN-nld" id="hRh-mu-Jk9"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dPU-v4-xsh">
-                                <rect key="frame" x="152" y="15" width="120" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Todas las recetas"/>
-                                <connections>
-                                    <action selector="todasLasRecetasAction:" destination="9Ck-CN-nld" eventType="touchUpInside" id="ep2-z2-dU2"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OJX-py-bpu">
-                                <rect key="frame" x="12" y="15" width="117" height="30"/>
+                                <rect key="frame" x="20" y="28" width="117" height="22.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Recetas Posibles"/>
                                 <connections>
                                     <action selector="recetasDisponiblesAction:" destination="9Ck-CN-nld" eventType="touchUpInside" id="4no-iG-yDK"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="uhf-Of-dKS">
+                                <rect key="frame" x="112" y="0.0" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchAction2:" destination="9Ck-CN-nld" eventType="editingChanged" id="wMa-R1-esr"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dPU-v4-xsh">
+                                <rect key="frame" x="165" y="29" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Todas las recetas"/>
+                                <connections>
+                                    <action selector="todasLasRecetasAction:" destination="9Ck-CN-nld" eventType="touchUpInside" id="ep2-z2-dU2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -271,7 +280,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Pzk-uz-cyO"/>
+                    <navigationItem key="navigationItem" id="Pzk-uz-cyO">
+                        <barButtonItem key="rightBarButtonItem" title="cambiar Tiempo" id="7N0-sL-fDq">
+                            <connections>
+                                <action selector="alert:" destination="K4E-ZJ-Vmf" id="Zz5-Zp-lWD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="PreviousBT" destination="Tlc-dY-Gwk" id="rML-6t-hcf"/>
                         <outlet property="descriptionLabel" destination="RQ7-v8-Ho1" id="Duq-pr-1vN"/>

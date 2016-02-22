@@ -25,7 +25,6 @@ class StorageDataHelper: DataHelperProtocol {
         do {
             let _ = try DB.run(table.create(temporary: false, ifNotExists: true) { t in
                 t.column(storageId, primaryKey: true)
-                print("tabla storage creada")
                 })
         }catch _ {
             print("error create table")

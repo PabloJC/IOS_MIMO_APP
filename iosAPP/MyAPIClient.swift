@@ -29,7 +29,7 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     
                     let result = responseObject! as! [[String:AnyObject]]
-                    print("\(result)")
+                    //print("\(result)")
                     for recipe in result {
                         let id = recipe["id"]!
                         let nombre = recipe["name"]!
@@ -58,7 +58,7 @@ class MyAPIClient: AFHTTPSessionManager {
 			success: { operation, responseObject in
 	            
     	            let result = responseObject! as! [[String:AnyObject]]
-                 print("\(result)")
+                 //print("\(result)")
                 for recipe in result {
                     let id = recipe["id"]!
                     let nombre = recipe["name"]!
@@ -87,7 +87,7 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     let recipe = Recipe()
                     let result = responseObject! as! [String:AnyObject]
-                    print("\(result)")
+                   // print("\(result)")
                     let name = result["name"]
                     let id = result["id"]
                     let photo = result["photo"]

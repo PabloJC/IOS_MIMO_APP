@@ -37,7 +37,6 @@ class TaskDataHelper: DataHelperProtocol {
                 t.column(seconds)
                 t.column(recipeId)
                 t.column(taskDescription)
-                print("tabla task creada")
                 })
         }catch _ {
             print("error create table")

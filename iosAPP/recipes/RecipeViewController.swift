@@ -52,8 +52,6 @@ class RecipeViewController: UIViewController{
             }
             
             var texto = ""
-            
-            // print(r.ingredientsRecipe?.count)
             self.recipe = r
             for i in r.measures{
                 let i2 = i
@@ -65,7 +63,7 @@ class RecipeViewController: UIViewController{
             }
             self.TextBox.text = texto
             }, finished: { () -> () in
-                //print("finalizado2")
+
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }

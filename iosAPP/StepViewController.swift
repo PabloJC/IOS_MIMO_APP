@@ -154,6 +154,25 @@ class StepViewController: UIViewController {
 
         }
     }
+    @IBAction func alert(sender: UIBarButtonItem) {
+        let picker : UIDatePicker = UIDatePicker()
+        picker.datePickerMode = UIDatePickerMode.CountDownTimer
+        picker.addTarget(self, action: "dueDateChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        let pickerSize : CGSize = picker.sizeThatFits(CGSizeZero)
+        picker.frame = CGRectMake(0.0, 250, pickerSize.width, 460)
+        //you probably don't want to set background color as black
+       // picker.backgroundColor = UIColor.blackColor()
+        self.view.addSubview(picker)
+    }
+    func dueDateChanged(sender:UIDatePicker){
+       
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "mm:ss";
+         print ( dateFormatter.stringFromDate(sender.date))
+        self.time.text = dateFormatter.stringFromDate(sender.date)
+        
+        sender.hidden = true
+    }
     @IBOutlet weak var nextBT: UIButton!
 
     /*

@@ -38,7 +38,7 @@ class IngredientDataHelper: DataHelperProtocol {
                 t.column(frozen)
                 t.column(storageId)
                 t.column(cartId)
-                print("tabla ingredient creada")
+               
                 })
         }catch _ {
             print("error create table")

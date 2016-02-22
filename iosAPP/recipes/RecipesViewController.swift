@@ -13,6 +13,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var recetasString = [Dictionary<String,AnyObject>]()
+    var recetasStringAux = [Dictionary<String,AnyObject>]()
     var ingredients = [Ingredient]()
     var sincronized = false
     override func viewDidLoad() {
@@ -40,25 +41,16 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")
-        
-        //let recipe = recipes[indexPath.row]
+
         if recetasString.count > 0 {
             let recipe = recetasString[indexPath.row]
-            //cell!.textLabel!.text = recipe.valueForKey("name") as? String
             cell!.textLabel!.text = recipe["name"] as? String
         }
         
         return cell!
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // let row = indexPath.row
-        //let recipe = recetasString[row]
-        //idseleccionado = (recipe["id"]! as? Int)!
-        // let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
-        
-        //self.navigationController!.pushViewController(secondViewController, animated: true)
         self.performSegueWithIdentifier("recipe", sender: self)
-        //print("\(recipe["id"]!)")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -105,33 +97,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         presentViewController(alert, animated: true, completion: nil)*/
         
     }
-    func save (name: String){
-        /*   //1
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        //2
-        let entity =  NSEntityDescription.entityForName("Recipe",
-        inManagedObjectContext:managedContext)
-        
-        let recipe = NSManagedObject(entity: entity!,
-        insertIntoManagedObjectContext: managedContext)
-        
-        //3
-        recipe.setValue(name, forKey: "name")
-        
-        //4
-        do {
-        try managedContext.save()
-        //5
-        recipes.append(recipe)
-        } catch let error as NSError  {
-        print("Could not save \(error), \(error.userInfo)")
-        }*/
-        
-    }
+    
     func recibir(){
         self.recetasString = []
         let myapiClient = MyAPIClient()
@@ -141,29 +107,27 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
             
             for ing in ingredients {
-                let io = ing as! Ingredient
+                let io = ing 
                 let id = String(io.ingredientIdServer)
                 ingredientesString  += id  + ",";
             }
-            print(ingredientesString)
+            //print(ingredientesString)
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
-        
         myapiClient.getRecipesIngredients(ingredientesString, recipes: { (receta, id) -> () in
-            
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
             self.recetasString.append(post)
             
             }, finished: { () -> () in
+                self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
-                    // print("finalizado \(self.recetasString.count)")
                 }else {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
@@ -173,8 +137,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }
-        
-    
     }
     func recibirTodas(){
         self.recetasString = []
@@ -183,16 +145,14 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         myapiClient.getRecipes({ (receta,id) -> () in
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
-            
             self.recetasString.append(post)
-            
             }, finished: { () -> () in
+                self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
-                    // print("finalizado \(self.recetasString.count)")
                 }else {
                     print("sin recetas agregadas")
                 }
@@ -202,7 +162,16 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
     }
-    
+    @IBAction func searchAction2(sender: UITextField) {
+        self.recetasString = self.recetasStringAux
+        if !sender.text!.isEmpty {
+            recetasString = self.recetasString.filter({ (recipe) -> Bool in
+                recipe["name"]!.lowercaseString.rangeOfString(sender.text!.lowercaseString) != nil
+                
+            })
+        }
+        tableView.reloadData()
+    }
     @IBAction func recetasDisponiblesAction(sender: UIButton) {
         
         recibir()

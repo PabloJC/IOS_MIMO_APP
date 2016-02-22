@@ -38,7 +38,7 @@ class RecipeDataHelper: DataHelperProtocol {
                 t.column(author)
                 t.column(score)
                 t.column(photo)
-               print("tabla recipe creada")
+              
             })
         }catch _ {
             print("error create table")

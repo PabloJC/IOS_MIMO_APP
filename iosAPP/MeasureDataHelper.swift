@@ -31,7 +31,11 @@ class MeasureDataHelper: DataHelperProtocol {
         do {
             let _ = try DB.run(table.create(temporary: false, ifNotExists: true) { t in
                 t.column(measureId, primaryKey: true)
+                t.column(measureIdServer)
                 t.column(measure)
+                t.column(quantity)
+                t.column(recipeId)
+                t.column(ingredientId)
                
                 print("tabla recipe creada")
                 })
@@ -44,7 +48,7 @@ class MeasureDataHelper: DataHelperProtocol {
             throw DataAccessError.Datastore_Connection_Error
         }
         
-            let insert = table.insert(measure <- item.measure)
+            let insert = table.insert(measureIdServer <- item.measureIdServer,measure <- item.measure,quantity <- item.quantity,recipeId <- item.recipeId,ingredientId <- item.ingredientId)
             print (insert)
             do {
                 let rowId = try DB.run(insert)
