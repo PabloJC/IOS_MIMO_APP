@@ -163,16 +163,27 @@ class MyAPIClient: AFHTTPSessionManager {
             self.requestSerializer = AFJSONRequestSerializer()
             self.responseSerializer = AFJSONResponseSerializer()
                       
-            let url = "/ingredients/category/\(category)"
-            
-            //var ids = [Dictionary<String,Int64>]()
-            
-            /*if !filters!.isEmpty {
-                for i in filters!{
-                    let dict = ["id":i.ingredientIdServer]
-                    ids.append(dict)
+            var url = "/ingredients/category/\(category)"
+            var ingredientsStore = [Ingredient]()
+
+            do{
+               ingredientsStore = try IngredientDataHelper.findIngredientsInStorage()!
+            }catch _{
+                print("Error al leer el almacén")
+            }
+            var filters = [String]()
+            for i in ingredientsStore{
+                if i.ingredientIdServer != 0 && i.category == category{
+                    filters.append(String(i.ingredientIdServer))
                 }
-            }*/
+            }
+            
+            if !filters.isEmpty{
+                let filterString = filters.joinWithSeparator(",")
+                url = url+"?ids="+filterString
+            }
+            
+            print(url)
 
             self.GET(url,
                 parameters: nil,
