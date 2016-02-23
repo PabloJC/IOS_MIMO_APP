@@ -19,7 +19,7 @@
                                 <color key="backgroundColor" red="0.48430296649999999" green="0.97508129799999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Shooping List"/>
                                 <connections>
-                                    <segue destination="p4f-gd-K2k" kind="push" id="uLS-7C-Hx8"/>
+                                    <segue destination="YQl-lv-HQZ" kind="push" id="MvL-OK-OLI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5gi-cg-rlG">
@@ -46,6 +46,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="390" y="257"/>
+        </scene>
+        <!--ShoppingListSB-->
+        <scene sceneID="MQF-Ns-wAy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ShoppingListSB" id="YQl-lv-HQZ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7td-8B-ePC"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v5p-Ys-WFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721.5" y="-119"/>
         </scene>
         <!--Recipes View Controller-->
         <scene sceneID="1kh-8M-EPN">
@@ -379,21 +389,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bnY-FJ-Upz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2763" y="-1013"/>
-        </scene>
-        <!--Shooping List View Controller-->
-        <scene sceneID="RaZ-xH-cHG">
-            <objects>
-                <viewController storyboardIdentifier="ListShooping" id="p4f-gd-K2k" customClass="ShoopingListViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6Ez-Vs-stu">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Wqw-VY-BBx"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HED-WO-lFv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="622" y="-752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jjb-Yq-Fk3">

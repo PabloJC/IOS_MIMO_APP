@@ -8,18 +8,45 @@
 
 import UIKit
 
-class ShoopingListViewController: UIViewController {
+class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
 
+    @IBOutlet weak var table: UITableView!
+    
+    var ingredients = [Ingredient]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "shoppingCell")
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        do{
+            ingredients = try IngredientDataHelper.findIngredientsInCart()!
+            ingredients.sortInPlace({ $0.name < $1.name })
+            table.reloadData()
+            print("\(ingredients.count)")
+        }catch _{
+            print("Error al recibir los ingredientes")
+        }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.table.dequeueReusableCellWithIdentifier("shoppingCell")!
+        
+        cell.textLabel!.text = ingredients[indexPath.row].name
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+
     
 
     /*

@@ -14,6 +14,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var myKitchen: UITableView!
     
     var ingredients = [Ingredient]()
+    var sections = [[Ingredient]]()
     var ingredientId : Int64!
     
     override func viewDidLoad() {
@@ -34,9 +35,6 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
                 let ingredient = Ingredient()
                 ingredient.name = (alert.textFields!.first?.text!)!
                 self.addIngredient(ingredient)
-                self.assignIngredientStore(ingredient)
-                
-                
         })
         
         let cancelAction = UIAlertAction (title: "Cancelar",
@@ -56,34 +54,67 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
 
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sections.count
+    }
     
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        sections.removeAll()
         do{
-            ingredients = try IngredientDataHelper.findIngredientsInStorage()!
+            var ingredients1 = try IngredientDataHelper.findIngredientsInStorage()!
+            var ingredients2 = try IngredientDataHelper.findIngredientsNotInStorage()!
+            ingredients1.sortInPlace({ $0.name < $1.name })
+            ingredients2.sortInPlace({ $0.name < $1.name })
+            sections.append(ingredients1)
+            sections.append(ingredients2)
             myKitchen.reloadData()
             print("\(ingredients.count)")
         }catch _{
             print("Error al recibir los ingredientes")
         }
 
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.ingredients.count
+        return sections[section].count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.myKitchen.dequeueReusableCellWithIdentifier("Ingredient")!
         
-       let ingredient = self.ingredients[indexPath.row] 
-       cell.textLabel?.text =  ingredient.name
+        let section = sections[indexPath.section]
+        
+        cell.textLabel!.text = section[indexPath.row].name
         
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1{
+            let ingredient = sections[1][indexPath.row]
+            do{
+                ingredient.storageId = 1
+                try IngredientDataHelper.updateStorage(ingredient)
+                
+                sections[indexPath.section].removeAtIndex(indexPath.row)
+                myKitchen.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+                
+                sections[0].append(ingredient)
+                sections[0].sortInPlace({ $0.name < $1.name })
+                
+                let index = sections[0].indexOf(ingredient)
+                myKitchen.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
+
+            }catch _{
+                print("Error al insertar ingrediente en storage")
+            }
+            
+        }
+    }
     
 
     override func didReceiveMemoryWarning() {
@@ -94,7 +125,16 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     func addIngredient(ingredient: Ingredient) {
         
         do{
+            ingredient.storageId = 1
             ingredientId =  try IngredientDataHelper.insert(ingredient)
+            
+            
+            sections[0].append(ingredient)
+            sections[0].sortInPlace({ $0.name < $1.name })
+            
+            let index = sections[0].indexOf(ingredient)
+            myKitchen.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
+
             print(ingredientId)
             print(ingredient.ingredientIdServer)
         }catch _{
@@ -102,19 +142,6 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func assignIngredientStore(ingredient: Ingredient){
-        
-        do{
-            ingredient.ingredientId = ingredientId
-            ingredient.storageId = 1
-            try IngredientDataHelper.updateStorage(ingredient)
-            self.ingredients.append(ingredient)
-            self.myKitchen.reloadData()
-            print("Ingrediente almacenado")
-        }catch _{
-            print("Error al almacenar")
-        }
-    }
     
     func deleteIngredientStore(ingredient: Ingredient){
         do{
@@ -127,16 +154,39 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        
-        return true
+        if indexPath.section == 0{
+            return true
+        }else{
+            return false
+        }
     }
+    
+    
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete{
-            let ingredient = self.ingredients[indexPath.row]
-            ingredients.removeAtIndex(indexPath.row)
+            var section = sections[indexPath.section]
+            let ingredient = section[indexPath.row]
+            sections[indexPath.section].removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
             deleteIngredientStore(ingredient)
+            
+            print(ingredient.name)
+            sections[1].append(ingredient)
+            sections[1].sortInPlace({ $0.name < $1.name })
+            
+            let index = sections[1].indexOf(ingredient)
+            print(ingredient.name)
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 1)], withRowAnimation: .Automatic)
+        }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+        if section == 0{
+            return "Almacén"
+        }else{
+            return "Histórico"
         }
     }
     
