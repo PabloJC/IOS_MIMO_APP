@@ -17,7 +17,6 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     var ingredients = [Ingredient]()
     var ingredientsSection = Dictionary<String,[Ingredient]>()
     var ingredientsSection2 = Dictionary<String,[Ingredient]>()
-    var baseTypes = Set<String>()
     
     var ingredients2 = [Ingredient]()
     
