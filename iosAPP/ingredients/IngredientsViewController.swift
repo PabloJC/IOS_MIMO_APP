@@ -65,14 +65,12 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
                 if let destinoVC = segue.destinationViewController as? IngredientListViewController{
                     destinoVC.category = self.category
                 }
-            }
-            
+            }  
         }
 
     }
     
-
-    /*
+        /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -156,7 +156,7 @@ class MyAPIClient: AFHTTPSessionManager {
     }
     
     func getCategory(category: String,
-        ingredients: ((Ingredient) -> ())?,
+        ingredients: ((String,[Ingredient]) -> ())?,
         finished: (() -> ())?,
         failure:  (NSError -> ())?) {
             
@@ -191,6 +191,7 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     
                     let result = responseObject! as! [[String:AnyObject]]
+                    var dict = Dictionary<String,[Ingredient]>()
                     for ingredient in result {
                         let ingredientObject = Ingredient()
                         ingredientObject.baseType = ingredient["baseType"] as! String
@@ -203,8 +204,18 @@ class MyAPIClient: AFHTTPSessionManager {
                         }else{
                             ingredientObject.frozen = FrozenTypes.frozen
                         }
-                        ingredients!(ingredientObject)
-                    }  
+                        if dict[ingredientObject.baseType] != nil{
+                            var array = dict[ingredientObject.baseType]! as [Ingredient]
+                            array.append(ingredientObject)
+                            dict[ingredientObject.baseType] = array
+                        }else{
+                             dict[ingredientObject.baseType] = [ingredientObject]
+                        }
+                    }
+                    for clave in dict.keys {
+                        ingredients!(clave,dict[clave]!)
+                       
+                    }
                     finished?()
                     
                 },

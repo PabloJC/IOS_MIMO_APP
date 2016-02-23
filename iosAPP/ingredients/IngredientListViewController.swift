@@ -15,6 +15,9 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     
     var category = ""
     var ingredients = [Ingredient]()
+    var ingredientsSection = Dictionary<String,[Ingredient]>()
+    var ingredientsSection2 = Dictionary<String,[Ingredient]>()
+    var baseTypes = Set<String>()
     
     var ingredients2 = [Ingredient]()
     
@@ -38,10 +41,10 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     
     func recibir(){
         let myapiClient = MyAPIClient()
-        myapiClient.getCategory(category, ingredients: { (ingredient) -> () in
-            self.ingredients.append(ingredient)
-            }, finished: { () -> () in
-                self.ingredients2 = self.ingredients
+        myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
+            self.ingredientsSection[baseType] = ingredients
+            },finished: { () -> () in
+                self.ingredientsSection2 = self.ingredientsSection
                 self.table.reloadData()
             }) { (error) -> () in
                 print("\(error.debugDescription)")
@@ -50,35 +53,46 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return ingredientsSection.count
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let key = Array(ingredientsSection.keys)[section]
+        return key
     }
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients.count
+        let key = Array(ingredientsSection.keys)[section]
+        return (ingredientsSection[key]?.count)!
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.table.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientTableViewCell
         
-        cell.textLabel!.text = ingredients[indexPath.row].name
+        let key = Array(ingredientsSection.keys)[indexPath.section]
+        
+        cell.textLabel!.text = ingredientsSection[key]![indexPath.row].name
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let newIngredient = ingredients[indexPath.row]
-        addIngredient(newIngredient)
+        let key = Array(ingredientsSection.keys)[indexPath.section]
+        let newIngredient = ingredientsSection[key]![indexPath.row]
+        addIngredient(key,ingredient: newIngredient)
         table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
-    func addIngredient(ingredient: Ingredient) {
+    func addIngredient(key: String,ingredient: Ingredient) {
         
         do{
             ingredient.storageId = 1
             print(ingredient.storageId)
             let ingredientId =  try IngredientDataHelper.insert(ingredient)
-            ingredients.removeAtIndex(ingredients.indexOf(ingredient)!)
+            let arraySection = ingredientsSection[key]
+            ingredientsSection[key]?.removeAtIndex((arraySection?.indexOf(ingredient))!)
             
-            if ingredients.count == 0{
-                self.performSegueWithIdentifier("ingredientsCategory", sender: self)
+            if ingredientsSection[key]!.count == 0{
+                self.navigationController?.popViewControllerAnimated(true)
             }
             
             print(ingredientId)
@@ -87,5 +101,6 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
             print("Error al crear el ingrediente")
         }
     }
+    
 
 }
