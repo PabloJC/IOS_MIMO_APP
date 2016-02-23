@@ -105,7 +105,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         var ingredientesString = ""
         do {
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
-            
+            if self.ingredients.count == 0{
+                ingredientesString = "0"
+            }
             for ing in ingredients {
                 let io = ing 
                 let id = String(io.ingredientIdServer)
