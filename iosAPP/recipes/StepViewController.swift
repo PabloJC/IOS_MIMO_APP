@@ -9,14 +9,27 @@
 import UIKit
 
 class StepViewController: UIViewController {
+    @IBOutlet weak var PreviousBT: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var taskName: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
+    @IBOutlet weak var nextBT: UIButton!
+    @IBOutlet weak var uiTextField: UITextField!
     var recipe : Recipe?
     var tasks = [AnyObject]()
     var currentTaskPos = 0
     var timer = NSTimer();
     var startDate:NSDate?;
+    var tiempoPicker = ""
+    var pickerNSDate :NSDate?
     var t : Task?
+    
+    
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        toolbar()
        if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
                 let t = task as Task
@@ -26,27 +39,17 @@ class StepViewController: UIViewController {
             t = tasks[currentTaskPos] as? Task
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
-           self.time.text = tiempo(Double((t?.seconds)!))
+            self.tiempoPicker = tiempo(Double((t?.seconds)!))
         
+            self.uiTextField.text = tiempo(Double((t?.seconds)!))
+            
        }else {
         self.nextBT.setTitle("Finalizar", forState: .Normal)
         
         }
-        
-        
-        // Do any additional setup after loading the view.
     }
 
-    @IBAction func countDownAction(sender: UIButton) {
-        sender.selected = !sender.selected;
-        //if selected fire timer, otherwise stop
-        if (sender.selected) {
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-            self.startDate = NSDate();
-        } else {
-            self.stopTimer();
-        }
-    }
+    
     func stopTimer() {
         self.timer.invalidate();
     }
@@ -56,10 +59,19 @@ class StepViewController: UIViewController {
         let currentDate:NSDate = NSDate();
         let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
         
-        //300 seconds count down
-        let intseconds = Double((t?.seconds)!)
-       
-        let timeIntervalCountDown = intseconds - timeInterval
+        
+        var total = Double((t?.seconds)!)
+        if let pD = pickerNSDate  {
+            let calendar = NSCalendar.currentCalendar()
+            let comp = calendar.components([.Hour, .Minute, .Second], fromDate: pD)
+            let hour = comp.hour * 3600
+            let minute = comp.minute * 60
+            let second = comp.second
+            total =  Double(hour + minute + second)
+        }
+        
+        
+        let timeIntervalCountDown = total - timeInterval
         let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
         
         // Create a date formatter
@@ -72,37 +84,11 @@ class StepViewController: UIViewController {
         if timeIntervalCountDown <= 0 {
             stopTimer()
         }else{
-           self.time?.text = timeString;
+            self.uiTextField.text = timeString
         }
     }
-    func tiempo (seconds: Double) -> String{
-         self.startDate = NSDate();
-        let currentDate:NSDate = NSDate();
-        let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
-        
-        
-        let timeIntervalCountDown = seconds - timeInterval
-        let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
-        
-        // Create a date formatter
-        let dateFormatter = NSDateFormatter();
-        dateFormatter.dateFormat = "mm:ss";
-        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0);
-        
-        // Format the elapsed time and set it to the label
-        let timeString = dateFormatter.stringFromDate(timerDate);
-        return timeString
-    }
-    
    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-     @IBOutlet weak var time: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var taskName: UILabel!
-    @IBOutlet weak var descriptionLabel: UITextView!
+    
     @IBAction func nextAction(sender: AnyObject) {
         stopTimer()
         
@@ -118,7 +104,6 @@ class StepViewController: UIViewController {
             }
             currentTaskPos++
             t = tasks[currentTaskPos] as? Task
-              self.time.text = tiempo(Double((t?.seconds)!))
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
             
@@ -130,7 +115,7 @@ class StepViewController: UIViewController {
             //realizar la comprobacion de ingredientes restantes
         }
     }
-    @IBOutlet weak var PreviousBT: UIButton!
+    
     @IBAction func previousAction(sender: AnyObject) {
         stopTimer()
         
@@ -143,7 +128,6 @@ class StepViewController: UIViewController {
             
             currentTaskPos--
             t = tasks[currentTaskPos] as? Task
-             self.time.text = tiempo(Double((t?.seconds)!))
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
             if currentTaskPos == 0 {
@@ -152,6 +136,19 @@ class StepViewController: UIViewController {
                 bt.enabled = false
             }
 
+        }
+    }
+    @IBAction func countDownAction(sender: UIButton) {
+        
+        sender.selected = !sender.selected;
+        //if selected fire timer, otherwise stop
+        if (sender.selected) {
+            uiTextField.enabled = false
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            self.startDate = NSDate();
+        } else {
+            uiTextField.enabled = true
+            self.stopTimer();
         }
     }
     @IBAction func alert(sender: UIBarButtonItem) {
@@ -173,7 +170,44 @@ class StepViewController: UIViewController {
         
         sender.hidden = true
     }*/
-    @IBOutlet weak var nextBT: UIButton!
+    @IBAction func textFieldEditing(sender: UITextField) {
+        let datePickerView: UIDatePicker = UIDatePicker()
+        
+        datePickerView.datePickerMode = UIDatePickerMode.CountDownTimer
+        
+        sender.inputView = datePickerView
+        
+        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+    }
+    
+    func datePickerValueChanged(sender: UIDatePicker) {
+       
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "mm:ss";
+        tiempoPicker = dateFormatter.stringFromDate(sender.date)
+        pickerNSDate  = sender.date
+        uiTextField.text = dateFormatter.stringFromDate(sender.date)
+        
+    }
+    func tiempo (seconds: Double) -> String{
+        self.startDate = NSDate();
+        let currentDate:NSDate = NSDate();
+        let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
+        
+        
+        let timeIntervalCountDown = seconds - timeInterval
+        let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
+        
+        // Create a date formatter
+        let dateFormatter = NSDateFormatter();
+        dateFormatter.dateFormat = "HH:mm:ss";
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0);
+        
+        // Format the elapsed time and set it to the label
+        let timeString = dateFormatter.stringFromDate(timerDate);
+        return timeString
+    }
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "endRecipe") {
@@ -187,6 +221,25 @@ class StepViewController: UIViewController {
             // print("dentro")
             
         }
+    }
+    func toolbar (){
+        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
+        
+        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+        
+        toolBar.barStyle = UIBarStyle.BlackTranslucent
+        
+        toolBar.tintColor = UIColor.whiteColor()
+        
+        toolBar.backgroundColor = UIColor.blackColor()
+        let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "donePressed:")
+        toolBar.setItems([okBarBtn], animated: true)
+        uiTextField.inputAccessoryView = toolBar
+    }
+    func donePressed(sender: UIBarButtonItem) {
+        
+        uiTextField.resignFirstResponder()
+        
     }
 
 }

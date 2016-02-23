@@ -235,7 +235,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Calentar el aceite a temperatura alta" textAlignment="natural" id="RQ7-v8-Ho1">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Calentar el aceite a temperatura alta" textAlignment="natural" id="RQ7-v8-Ho1">
                                 <rect key="frame" x="40" y="159" width="240" height="207"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -266,18 +266,20 @@
                                     <action selector="nextAction:" destination="K4E-ZJ-Vmf" eventType="touchUpInside" id="maJ-N6-BV0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tiempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aha-rg-BoF">
-                                <rect key="frame" x="139" y="85" width="89" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zp5-n9-KSY">
                                 <rect key="frame" x="9" y="35" width="119" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="TFX-MO-Uni">
+                                <rect key="frame" x="136" y="81" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldEditing:" destination="K4E-ZJ-Vmf" eventType="editingDidBegin" id="fHx-PP-8Te"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -294,7 +296,7 @@
                         <outlet property="imageView" destination="Zp5-n9-KSY" id="25T-Ys-bPT"/>
                         <outlet property="nextBT" destination="cRR-iD-VCJ" id="LJI-mV-md8"/>
                         <outlet property="taskName" destination="znr-Bo-mAt" id="WkS-ki-MPG"/>
-                        <outlet property="time" destination="Aha-rg-BoF" id="Wc6-lB-41T"/>
+                        <outlet property="uiTextField" destination="TFX-MO-Uni" id="N2a-p3-0d4"/>
                         <segue destination="4UD-aN-I7p" kind="push" identifier="endRecipe" id="2mU-B2-tWd"/>
                     </connections>
                 </viewController>
@@ -458,6 +460,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CQb-VM-lRQ"/>
+        <segue reference="2mU-B2-tWd"/>
     </inferredMetricsTieBreakers>
 </document>
