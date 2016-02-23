@@ -24,7 +24,7 @@ class StepViewController: UIViewController {
     var pickerNSDate :NSDate?
     var timerAlert : NSDate?
     var t : Task?
-    
+    var total :Double?
     
     
     override func viewDidLoad() {
@@ -41,9 +41,10 @@ class StepViewController: UIViewController {
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
             self.tiempoPicker = tiempo(Double((t?.seconds)!))
-        
+            total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            
+            print (NSDate())
+        
        }else {
         self.nextBT.setTitle("Finalizar", forState: .Normal)
         
@@ -61,7 +62,7 @@ class StepViewController: UIViewController {
         let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
         
         
-        var total = Double((t?.seconds)!)
+       
         if let pD = pickerNSDate  {
             let calendar = NSCalendar.currentCalendar()
             let comp = calendar.components([.Hour, .Minute, .Second], fromDate: pD)
@@ -72,15 +73,16 @@ class StepViewController: UIViewController {
         }
         
         
-        let timeIntervalCountDown = total - timeInterval
-        let timeAlert = total + timeInterval
+        let timeIntervalCountDown = total! - timeInterval
+        let timeAlert = total! + timeInterval
         let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
         print(timerDate)
-        timerAlert = NSDate(timeIntervalSince1970: timeAlert)
+        
+        timerAlert = NSDate(timeIntervalSinceNow: total!)
 
         // Create a date formatter
         let dateFormatter = NSDateFormatter();
-        dateFormatter.dateFormat = "mm:ss";
+        dateFormatter.dateFormat = "HH:mm:ss";
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0);
         
         // Format the elapsed time and set it to the label
@@ -157,28 +159,30 @@ class StepViewController: UIViewController {
     }
     
     @IBAction func alarmAction(sender: AnyObject) {
+        timerAlert = NSDate(timeIntervalSinceNow: total!)
         // 1
         let notification = UILocalNotification()
         // 15
         print(timerAlert)
         notification.fireDate = fixedNotificationDate(timerAlert!)
         // 3
-        notification.alertBody = "Tarea pendiente de revision"
-        // 4
-        notification.timeZone = NSTimeZone.defaultTimeZone()
+        notification.alertBody = "Tarea pendiente de revision \(timerAlert)"
+        // 4 
+        
+        //notification.timeZone = NSTimeZone.defaultTimeZone()
         // 5
         //notification.repeatInterval = NSCalendarUnit.Minute
         // 6
-        notification.applicationIconBadgeNumber = 1
+        notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         // 7
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     func fixedNotificationDate(dateToFix: NSDate) -> NSDate {
         
-        let dateComponents: NSDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Hour, NSCalendarUnit.Minute], fromDate: dateToFix)
+        let dateComponents: NSDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Hour, NSCalendarUnit.Minute,NSCalendarUnit.Second], fromDate: dateToFix)
         
-        dateComponents.second = 0
+        //dateComponents.second = 0
         
         let fixedDate: NSDate = NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
         
