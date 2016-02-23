@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.removeObserver(self)
     }
 
  
