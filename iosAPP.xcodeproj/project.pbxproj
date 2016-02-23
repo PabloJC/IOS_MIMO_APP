@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A16F7D21C7D1137005BF00D /* ShoppingListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A16F7D11C7D1137005BF00D /* ShoppingListSB.storyboard */; };
-		3A16F7D41C7D1231005BF00D /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A16F7D31C7D1231005BF00D /* ShoppingListTableViewCell.swift */; };
 		3AA6F49A1C70ACA700161E89 /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6F4991C70ACA600161E89 /* Category.json */; };
 		3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */; };
-		3ACE5BEE1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACE5BED1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift */; };
 		6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E961B85E7B3B5CBE813A3A0F /* Pods.framework */; };
 		B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5036DE61C6FB62300C180DE /* RecipeViewController.swift */; };
 		B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5036DE71C6FB62300C180DE /* RecipesViewController.swift */; };
@@ -38,9 +35,12 @@
 		B51199381C7BEF170017B164 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511992D1C7BEF170017B164 /* IngredientsViewController.swift */; };
 		B511993A1C7BEF170017B164 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */; };
 		B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */; };
-		B511993D1C7BEF170017B164 /* ShoopingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51199321C7BEF170017B164 /* ShoopingListViewController.swift */; };
 		B5304EFE1C65652A00E7CB17 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */; };
 		B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */; };
+		B53770351C7D21060088326E /* ShoopingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770311C7D21060088326E /* ShoopingListViewController.swift */; };
+		B53770361C7D21060088326E /* ShoppingListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53770321C7D21060088326E /* ShoppingListSB.storyboard */; };
+		B53770371C7D21060088326E /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770331C7D21060088326E /* ShoppingListTableViewCell.swift */; };
+		B53770381C7D21060088326E /* StorageCellListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770341C7D21060088326E /* StorageCellListTableViewCell.swift */; };
 		B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */; };
 		B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2271C5E87EE0085C5C8 /* ViewController.swift */; };
 		B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A2291C5E87EE0085C5C8 /* Main.storyboard */; };
@@ -52,11 +52,8 @@
 
 /* Begin PBXFileReference section */
 		0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		3A16F7D11C7D1137005BF00D /* ShoppingListSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShoppingListSB.storyboard; sourceTree = "<group>"; };
-		3A16F7D31C7D1231005BF00D /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 		3AA6F4991C70ACA600161E89 /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Category.json; sourceTree = "<group>"; };
 		3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
-		3ACE5BED1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageCellListTableViewCell.swift; sourceTree = "<group>"; };
 		B5036DE61C6FB62300C180DE /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeViewController.swift; path = recipes/RecipeViewController.swift; sourceTree = "<group>"; };
 		B5036DE71C6FB62300C180DE /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipesViewController.swift; path = recipes/RecipesViewController.swift; sourceTree = "<group>"; };
 		B51199051C7BC8010017B164 /* FinalStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinalStepViewController.swift; path = recipes/FinalStepViewController.swift; sourceTree = "<group>"; };
@@ -82,9 +79,12 @@
 		B511992D1C7BEF170017B164 /* IngredientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientsViewController.swift; path = ingredients/IngredientsViewController.swift; sourceTree = "<group>"; };
 		B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = ingredients/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientTableViewCell.swift; path = ingredients/IngredientTableViewCell.swift; sourceTree = "<group>"; };
-		B51199321C7BEF170017B164 /* ShoopingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoopingListViewController.swift; path = ingredients/ShoopingListViewController.swift; sourceTree = "<group>"; };
 		B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
+		B53770311C7D21060088326E /* ShoopingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoopingListViewController.swift; path = shopping/ShoopingListViewController.swift; sourceTree = "<group>"; };
+		B53770321C7D21060088326E /* ShoppingListSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShoppingListSB.storyboard; path = shopping/ShoppingListSB.storyboard; sourceTree = "<group>"; };
+		B53770331C7D21060088326E /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingListTableViewCell.swift; path = shopping/ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		B53770341C7D21060088326E /* StorageCellListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageCellListTableViewCell.swift; path = shopping/StorageCellListTableViewCell.swift; sourceTree = "<group>"; };
 		B593A2221C5E87EE0085C5C8 /* OtakuCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtakuCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B593A2271C5E87EE0085C5C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,12 +142,19 @@
 				B511992D1C7BEF170017B164 /* IngredientsViewController.swift */,
 				B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */,
 				B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */,
-				B51199321C7BEF170017B164 /* ShoopingListViewController.swift */,
-				3ACE5BED1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift */,
-				3A16F7D11C7D1137005BF00D /* ShoppingListSB.storyboard */,
-				3A16F7D31C7D1231005BF00D /* ShoppingListTableViewCell.swift */,
 			);
 			name = ingredients;
+			sourceTree = "<group>";
+		};
+		B53770301C7D20F00088326E /* shopping */ = {
+			isa = PBXGroup;
+			children = (
+				B53770311C7D21060088326E /* ShoopingListViewController.swift */,
+				B53770321C7D21060088326E /* ShoppingListSB.storyboard */,
+				B53770331C7D21060088326E /* ShoppingListTableViewCell.swift */,
+				B53770341C7D21060088326E /* StorageCellListTableViewCell.swift */,
+			);
+			name = shopping;
 			sourceTree = "<group>";
 		};
 		B581B8AB1C6E8A670049CA1C /* Recipes */ = {
@@ -198,6 +205,7 @@
 		B593A2241C5E87EE0085C5C8 /* iosAPP */ = {
 			isa = PBXGroup;
 			children = (
+				B53770301C7D20F00088326E /* shopping */,
 				B51199271C7BEF090017B164 /* ingredients */,
 				B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */,
 				B581B8AC1C6E8A740049CA1C /* Models */,
@@ -294,8 +302,8 @@
 				B51199361C7BEF170017B164 /* IngredientsSB.storyboard in Resources */,
 				3AA6F49A1C70ACA700161E89 /* Category.json in Resources */,
 				B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */,
-				3A16F7D21C7D1137005BF00D /* ShoppingListSB.storyboard in Resources */,
 				B593A22D1C5E87EE0085C5C8 /* Assets.xcassets in Resources */,
+				B53770361C7D21060088326E /* ShoppingListSB.storyboard in Resources */,
 				B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,32 +364,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51199331C7BEF170017B164 /* IngredientListViewController.swift in Sources */,
-				3A16F7D41C7D1231005BF00D /* ShoppingListTableViewCell.swift in Sources */,
 				B51199111C7BEE900017B164 /* RecipeDataHelper.swift in Sources */,
 				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
 				B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */,
 				B51199381C7BEF170017B164 /* IngredientsViewController.swift in Sources */,
 				B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */,
 				B51199121C7BEE900017B164 /* CartDataHelper.swift in Sources */,
+				B53770381C7D21060088326E /* StorageCellListTableViewCell.swift in Sources */,
 				B51199221C7BEEB40017B164 /* Storage.swift in Sources */,
 				B51199351C7BEF170017B164 /* KitchenViewController.swift in Sources */,
 				B51199141C7BEE900017B164 /* TaskDataHelper.swift in Sources */,
 				B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */,
 				B51199101C7BEE900017B164 /* IngredientDataHelper.swift in Sources */,
 				B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */,
+				B53770351C7D21060088326E /* ShoopingListViewController.swift in Sources */,
 				B511991A1C7BEEA00017B164 /* StepListViewController.swift in Sources */,
 				B51199231C7BEEB40017B164 /* MeasureIngredients.swift in Sources */,
 				B51199131C7BEE900017B164 /* StorageDataHelper.swift in Sources */,
 				B51199151C7BEE900017B164 /* MeasureDataHelper.swift in Sources */,
 				B51199211C7BEEB40017B164 /* Cart.swift in Sources */,
 				B51199161C7BEE900017B164 /* DataHelperProtocol.swift in Sources */,
+				B53770371C7D21060088326E /* ShoppingListTableViewCell.swift in Sources */,
 				B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */,
 				B51199081C7BC8400017B164 /* SelectIngredientTableViewCell.swift in Sources */,
 				B51199191C7BEEA00017B164 /* StepViewController.swift in Sources */,
-				B511993D1C7BEF170017B164 /* ShoopingListViewController.swift in Sources */,
 				B51199061C7BC8010017B164 /* FinalStepViewController.swift in Sources */,
 				B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */,
-				3ACE5BEE1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift in Sources */,
 				B51199261C7BEEB40017B164 /* Ingredient.swift in Sources */,
 				B51199241C7BEEB40017B164 /* Task.swift in Sources */,
 				B5F579F31C74CFA6006A2FF2 /* SQLiteDataStore.swift in Sources */,
