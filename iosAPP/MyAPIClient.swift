@@ -167,7 +167,7 @@ class MyAPIClient: AFHTTPSessionManager {
             var ingredientsStore = [Ingredient]()
 
             do{
-               ingredientsStore = try IngredientDataHelper.findIngredientsInStorage()!
+               ingredientsStore = try IngredientDataHelper.findAll()!
             }catch _{
                 print("Error al leer el almacén")
             }
