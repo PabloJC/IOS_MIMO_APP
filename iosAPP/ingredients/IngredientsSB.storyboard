@@ -75,7 +75,7 @@
         <!--Ingredients View Controller-->
         <scene sceneID="pLU-BI-6my">
             <objects>
-                <viewController id="n9K-Fx-JeQ" customClass="IngredientsViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryView" id="n9K-Fx-JeQ" customClass="IngredientsViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="STY-uO-2d9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
