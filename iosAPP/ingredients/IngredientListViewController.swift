@@ -76,8 +76,6 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
             print(ingredient.storageId)
             let ingredientId =  try IngredientDataHelper.insert(ingredient)
             ingredients.removeAtIndex(ingredients.indexOf(ingredient)!)
-           
-            //table.reloadData()
             print(ingredientId)
             print(ingredient.ingredientIdServer)
         }catch _{
