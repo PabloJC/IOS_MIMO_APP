@@ -93,6 +93,28 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1{
+            let ingredient = sections[1][indexPath.row]
+            do{
+                ingredient.storageId = 1
+                try IngredientDataHelper.updateStorage(ingredient)
+                
+                sections[indexPath.section].removeAtIndex(indexPath.row)
+                myKitchen.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+                
+                sections[0].append(ingredient)
+                sections[0].sortInPlace({ $0.name < $1.name })
+                
+                let index = sections[0].indexOf(ingredient)
+                myKitchen.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
+
+            }catch _{
+                
+            }
+            
+        }
+    }
     
 
     override func didReceiveMemoryWarning() {
