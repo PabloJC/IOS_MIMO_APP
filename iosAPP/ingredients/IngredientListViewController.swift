@@ -77,6 +77,10 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
             let ingredientId =  try IngredientDataHelper.insert(ingredient)
             ingredients.removeAtIndex(ingredients.indexOf(ingredient)!)
             
+            if ingredients.count == 0{
+                self.performSegueWithIdentifier("ingredientsCategory", sender: self)
+            }
+            
             print(ingredientId)
             print(ingredient.ingredientIdServer)
         }catch _{
