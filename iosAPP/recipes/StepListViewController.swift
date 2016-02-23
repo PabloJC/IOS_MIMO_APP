@@ -79,7 +79,7 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             svc.task = task
             // print("dentro")
             
-        }
+        } 
     }
 
 

@@ -71,7 +71,14 @@ class RecipeViewController: UIViewController{
         
     }
     @IBAction func prepareRecipeAction(sender: AnyObject) {
-        self.performSegueWithIdentifier("step", sender: self)
+        print (recipe?.tasks.count)
+        if recipe?.tasks.count != 0 {
+           self.performSegueWithIdentifier("step", sender: self)
+        }else{
+             self.performSegueWithIdentifier("finalRecipeSegue", sender: self)
+        }
+        
+        
     }
     @IBAction func stepListAction(sender: AnyObject) {
         self.performSegueWithIdentifier("stepList", sender: self)
@@ -81,10 +88,17 @@ class RecipeViewController: UIViewController{
         if segue.identifier == "step" {
             let stepDestination = segue.destinationViewController as! StepViewController
             stepDestination.recipe = recipe
-        }
+        } 
         else if segue.identifier == "stepList" {
             let stepListDestination = segue.destinationViewController as! StepListViewController
             stepListDestination.recipe = recipe
+        }else {
+            let svc = segue.destinationViewController as! FinalStepViewController
+            var ingredientsFinish = [Int64]()
+            for m in (self.recipe?.measures)!{
+                ingredientsFinish.append(m.ingredient.ingredientIdServer)
+            }
+            svc.ingredientsFinishIDS = ingredientsFinish
         }
     }
     

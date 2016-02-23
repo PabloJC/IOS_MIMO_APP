@@ -30,6 +30,7 @@ class StepViewController: UIViewController {
         
        }else {
         self.nextBT.setTitle("Finalizar", forState: .Normal)
+        
         }
         
         
@@ -174,14 +175,18 @@ class StepViewController: UIViewController {
     }*/
     @IBOutlet weak var nextBT: UIButton!
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "endRecipe") {
+            let svc = segue.destinationViewController as! FinalStepViewController
+            var ingredientsFinish = [Int64]()
+            for m in (self.recipe?.measures)!{
+                ingredientsFinish.append(m.ingredient.ingredientIdServer)
+            }
+            
+            svc.ingredientsFinishIDS = ingredientsFinish
+            // print("dentro")
+            
+        }
     }
-    */
 
 }

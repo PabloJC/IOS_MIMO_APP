@@ -138,6 +138,28 @@ class IngredientDataHelper: DataHelperProtocol {
         return nil
         
     }
+    static func findIdServer(id: Int64) throws -> T? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        let query = table.filter(ingredientIdServer == id)
+        let items = try DB.prepare(query)
+        for item in  items {
+            let ingredient = Ingredient()
+            ingredient.ingredientId = item[ingredientId]
+            ingredient.ingredientIdServer = item[ingredientIdServer]
+            ingredient.name = item[name]
+            ingredient.baseType = item[baseType]
+            ingredient.category = item[category]
+            ingredient.frozen = FrozenTypes(rawValue: item[frozen])!
+            ingredient.storageId = item[storageId]
+            ingredient.cartId = item[cartId]
+            return ingredient
+        }
+        
+        return nil
+        
+    }
     
     static func findAll() throws -> [T]? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
