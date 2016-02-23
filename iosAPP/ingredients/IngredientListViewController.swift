@@ -15,7 +15,7 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     
     var category = ""
     var ingredients = [Ingredient]()
-    var ingredientId : Int64!
+    
     var ingredients2 = [Ingredient]()
     
     @IBAction func search(sender: UITextField) {
@@ -67,30 +67,21 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let newIngredient = ingredients[indexPath.row]
         addIngredient(newIngredient)
-        assignIngredientStore(newIngredient)
+        table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
     func addIngredient(ingredient: Ingredient) {
         
         do{
-            ingredientId =  try IngredientDataHelper.insert(ingredient)
+            ingredient.storageId = 1
+            print(ingredient.storageId)
+            let ingredientId =  try IngredientDataHelper.insert(ingredient)
+            ingredients.removeAtIndex(ingredients.indexOf(ingredient)!)
+           
+            //table.reloadData()
             print(ingredientId)
             print(ingredient.ingredientIdServer)
         }catch _{
             print("Error al crear el ingrediente")
-        }
-    }
-    
-    func assignIngredientStore(ingredient: Ingredient){
-        
-        do{
-            ingredient.ingredientId = ingredientId
-            ingredient.storageId = 1
-            try IngredientDataHelper.updateStorage(ingredient)
-            ingredients.removeAtIndex(ingredients.indexOf(ingredient)!)
-            table.reloadData()
-            print("Ingrediente almacenado")
-        }catch _{
-            print("Error al almacenar")
         }
     }
 

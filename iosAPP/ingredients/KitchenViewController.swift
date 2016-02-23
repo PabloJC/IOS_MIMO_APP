@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 class KitchenViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
+
     @IBOutlet weak var myKitchen: UITableView!
     
     var ingredients = [Ingredient]()
@@ -114,7 +115,30 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             print("Error al almacenar")
         }
     }
+    
+    func deleteIngredientStore(ingredient: Ingredient){
+        do{
+            ingredient.storageId = 0
+            try IngredientDataHelper.updateStorage(ingredient)
+            print("Ingrediente eliminado del storage")
+        }catch _{
+            print("Error al eliminar del storage")
+        }
+    }
 
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete{
+            let ingredient = self.ingredients[indexPath.row]
+            ingredients.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+            deleteIngredientStore(ingredient)
+        }
+    }
     
 
     /*
