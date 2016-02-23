@@ -280,16 +280,18 @@
                                     <action selector="textFieldEditing:" destination="K4E-ZJ-Vmf" eventType="editingDidBegin" id="fHx-PP-8Te"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7y5-yf-GUF">
+                                <rect key="frame" x="249" y="100" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Alarma"/>
+                                <connections>
+                                    <action selector="alarmAction:" destination="K4E-ZJ-Vmf" eventType="touchUpInside" id="GFq-Sw-83W"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Pzk-uz-cyO">
-                        <barButtonItem key="rightBarButtonItem" title="cambiar Tiempo" id="7N0-sL-fDq">
-                            <connections>
-                                <action selector="alert:" destination="K4E-ZJ-Vmf" id="Zz5-Zp-lWD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Pzk-uz-cyO"/>
                     <connections>
                         <outlet property="PreviousBT" destination="Tlc-dY-Gwk" id="rML-6t-hcf"/>
                         <outlet property="descriptionLabel" destination="RQ7-v8-Ho1" id="Duq-pr-1vN"/>
@@ -321,7 +323,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x4p-87-s2g" id="bwJ-pr-Z18">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingrediente" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tHo-Vd-KO2">

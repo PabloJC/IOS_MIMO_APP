@@ -22,6 +22,7 @@ class StepViewController: UIViewController {
     var startDate:NSDate?;
     var tiempoPicker = ""
     var pickerNSDate :NSDate?
+    var timerAlert : NSDate?
     var t : Task?
     
     
@@ -72,8 +73,11 @@ class StepViewController: UIViewController {
         
         
         let timeIntervalCountDown = total - timeInterval
+        let timeAlert = total + timeInterval
         let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
-        
+        print(timerDate)
+        timerAlert = NSDate(timeIntervalSince1970: timeAlert)
+
         // Create a date formatter
         let dateFormatter = NSDateFormatter();
         dateFormatter.dateFormat = "mm:ss";
@@ -151,25 +155,38 @@ class StepViewController: UIViewController {
             self.stopTimer();
         }
     }
-    @IBAction func alert(sender: UIBarButtonItem) {
-       /* let picker : UIDatePicker = UIDatePicker()
-        picker.datePickerMode = UIDatePickerMode.CountDownTimer
-        picker.addTarget(self, action: "dueDateChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        let pickerSize : CGSize = picker.sizeThatFits(CGSizeZero)
-        picker.frame = CGRectMake(0.0, 250, pickerSize.width, 460)
-        //you probably don't want to set background color as black
-       // picker.backgroundColor = UIColor.blackColor()
-        self.view.addSubview(picker)*/
+    
+    @IBAction func alarmAction(sender: AnyObject) {
+        // 1
+        let notification = UILocalNotification()
+        // 15
+        print(timerAlert)
+        notification.fireDate = fixedNotificationDate(timerAlert!)
+        // 3
+        notification.alertBody = "Tarea pendiente de revision"
+        // 4
+        notification.timeZone = NSTimeZone.defaultTimeZone()
+        // 5
+        //notification.repeatInterval = NSCalendarUnit.Minute
+        // 6
+        notification.applicationIconBadgeNumber = 1
+        // 7
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
-    /*func dueDateChanged(sender:UIDatePicker){
-       
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "mm:ss";
-         print ( dateFormatter.stringFromDate(sender.date))
-        self.time.text = dateFormatter.stringFromDate(sender.date)
+    
+    func fixedNotificationDate(dateToFix: NSDate) -> NSDate {
         
-        sender.hidden = true
-    }*/
+        let dateComponents: NSDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Hour, NSCalendarUnit.Minute], fromDate: dateToFix)
+        
+        dateComponents.second = 0
+        
+        let fixedDate: NSDate = NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
+        
+        return fixedDate
+        
+    }
+
+    
     @IBAction func textFieldEditing(sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         
