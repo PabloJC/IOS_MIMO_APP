@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A16F7D21C7D1137005BF00D /* ShoppingListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A16F7D11C7D1137005BF00D /* ShoppingListSB.storyboard */; };
+		3A16F7D41C7D1231005BF00D /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A16F7D31C7D1231005BF00D /* ShoppingListTableViewCell.swift */; };
 		3AA6F49A1C70ACA700161E89 /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6F4991C70ACA600161E89 /* Category.json */; };
 		3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */; };
 		3ACE5BEE1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACE5BED1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3A16F7D11C7D1137005BF00D /* ShoppingListSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShoppingListSB.storyboard; sourceTree = "<group>"; };
+		3A16F7D31C7D1231005BF00D /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 		3AA6F4991C70ACA600161E89 /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Category.json; sourceTree = "<group>"; };
 		3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
 		3ACE5BED1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageCellListTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 				B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */,
 				B51199321C7BEF170017B164 /* ShoopingListViewController.swift */,
 				3ACE5BED1C7CBF7500FC22C6 /* StorageCellListTableViewCell.swift */,
+				3A16F7D11C7D1137005BF00D /* ShoppingListSB.storyboard */,
+				3A16F7D31C7D1231005BF00D /* ShoppingListTableViewCell.swift */,
 			);
 			name = ingredients;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 				B51199361C7BEF170017B164 /* IngredientsSB.storyboard in Resources */,
 				3AA6F49A1C70ACA700161E89 /* Category.json in Resources */,
 				B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */,
+				3A16F7D21C7D1137005BF00D /* ShoppingListSB.storyboard in Resources */,
 				B593A22D1C5E87EE0085C5C8 /* Assets.xcassets in Resources */,
 				B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */,
 			);
@@ -349,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51199331C7BEF170017B164 /* IngredientListViewController.swift in Sources */,
+				3A16F7D41C7D1231005BF00D /* ShoppingListTableViewCell.swift in Sources */,
 				B51199111C7BEE900017B164 /* RecipeDataHelper.swift in Sources */,
 				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
 				B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */,

@@ -136,9 +136,30 @@ class IngredientDataHelper: DataHelperProtocol {
         }
         return retArray
     }
+    
+    static func findIngredientsInCart () throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let query = table.filter(cartId != 1)
+        var retArray = [T]()
+        let items = try DB.prepare(query)
+        for item in items {
+            let ingredient = Ingredient()
+            ingredient.ingredientId = item[ingredientId]
+            ingredient.ingredientIdServer = item[ingredientIdServer]
+            ingredient.name = item[name]
+            ingredient.baseType = item[baseType]
+            ingredient.category = item[category]
+            ingredient.frozen = FrozenTypes(rawValue: item[frozen])!
+            ingredient.storageId = item[storageId]
+            ingredient.cartId = item[cartId]
+            retArray.append(ingredient)
+        }
+        return retArray
+    }
 
-    
-    
     static func find(id: Int64) throws -> T? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
             throw DataAccessError.Datastore_Connection_Error

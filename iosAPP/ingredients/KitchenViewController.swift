@@ -110,7 +110,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
                 myKitchen.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
 
             }catch _{
-                
+                print("Error al insertar ingrediente en storage")
             }
             
         }
