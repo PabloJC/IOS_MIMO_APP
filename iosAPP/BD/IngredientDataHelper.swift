@@ -91,6 +91,21 @@ class IngredientDataHelper: DataHelperProtocol {
             throw DataAccessError.Delete_Error
         }
     }
+    static func updateCart (item: T) throws -> Void {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let query = table.filter(ingredientId == item.ingredientId)
+        do {
+            let tmp = try DB.run(query.update(cartId <- item.cartId))
+            guard tmp == 1 else {
+                throw DataAccessError.Delete_Error
+            }
+        } catch _ {
+            throw DataAccessError.Delete_Error
+        }
+    }
     
     static func findIngredientsInStorage () throws -> [T]? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
@@ -136,13 +151,36 @@ class IngredientDataHelper: DataHelperProtocol {
         }
         return retArray
     }
+    static func findIngredientsNotInStorageCart () throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        
+        let query = table.filter(storageId != 1)
+        let query2 = query.filter(cartId != 1)
+        var retArray = [T]()
+        let items = try DB.prepare(query2)
+        for item in items {
+            let ingredient = Ingredient()
+            ingredient.ingredientId = item[ingredientId]
+            ingredient.ingredientIdServer = item[ingredientIdServer]
+            ingredient.name = item[name]
+            ingredient.baseType = item[baseType]
+            ingredient.category = item[category]
+            ingredient.frozen = FrozenTypes(rawValue: item[frozen])!
+            ingredient.storageId = item[storageId]
+            ingredient.cartId = item[cartId]
+            retArray.append(ingredient)
+        }
+        return retArray
+    }
     
     static func findIngredientsInCart () throws -> [T]? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
             throw DataAccessError.Datastore_Connection_Error
         }
         
-        let query = table.filter(cartId != 1)
+        let query = table.filter(cartId == 1)
         var retArray = [T]()
         let items = try DB.prepare(query)
         for item in items {

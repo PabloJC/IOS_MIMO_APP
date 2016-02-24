@@ -21,6 +21,14 @@ class ViewController: UIViewController {
                 print ("storage creado \(id)" )
                 
             }
+            if try CartDataHelper.find(1) == nil {
+                
+                let  C = Cart()
+                let id = try  CartDataHelper.insert(C)
+                print ("cart creado \(id)" )
+                
+            }
+            
         
         }catch _ {
             print ("error insert")

@@ -41,6 +41,10 @@
 		B53770361C7D21060088326E /* ShoppingListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53770321C7D21060088326E /* ShoppingListSB.storyboard */; };
 		B53770371C7D21060088326E /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770331C7D21060088326E /* ShoppingListTableViewCell.swift */; };
 		B53770381C7D21060088326E /* StorageCellListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770341C7D21060088326E /* StorageCellListTableViewCell.swift */; };
+		B537703A1C7D2FF10088326E /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770391C7D2FF10088326E /* CategoriesViewController.swift */; };
+		B537703C1C7D30780088326E /* CategoryCartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */; };
+		B53770401C7D33570088326E /* IngredientsCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537703F1C7D33570088326E /* IngredientsCartViewController.swift */; };
+		B53770421C7D354F0088326E /* IngredientCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */; };
 		B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */; };
 		B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2271C5E87EE0085C5C8 /* ViewController.swift */; };
 		B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A2291C5E87EE0085C5C8 /* Main.storyboard */; };
@@ -85,6 +89,10 @@
 		B53770321C7D21060088326E /* ShoppingListSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShoppingListSB.storyboard; path = shopping/ShoppingListSB.storyboard; sourceTree = "<group>"; };
 		B53770331C7D21060088326E /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoppingListTableViewCell.swift; path = shopping/ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
 		B53770341C7D21060088326E /* StorageCellListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StorageCellListTableViewCell.swift; path = shopping/StorageCellListTableViewCell.swift; sourceTree = "<group>"; };
+		B53770391C7D2FF10088326E /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesViewController.swift; path = shopping/CategoriesViewController.swift; sourceTree = "<group>"; };
+		B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCartCollectionViewCell.swift; path = shopping/CategoryCartCollectionViewCell.swift; sourceTree = "<group>"; };
+		B537703F1C7D33570088326E /* IngredientsCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientsCartViewController.swift; path = shopping/IngredientsCartViewController.swift; sourceTree = "<group>"; };
+		B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCartTableViewCell.swift; path = shopping/IngredientCartTableViewCell.swift; sourceTree = "<group>"; };
 		B593A2221C5E87EE0085C5C8 /* OtakuCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtakuCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B593A2271C5E87EE0085C5C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +161,10 @@
 				B53770321C7D21060088326E /* ShoppingListSB.storyboard */,
 				B53770331C7D21060088326E /* ShoppingListTableViewCell.swift */,
 				B53770341C7D21060088326E /* StorageCellListTableViewCell.swift */,
+				B53770391C7D2FF10088326E /* CategoriesViewController.swift */,
+				B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */,
+				B537703F1C7D33570088326E /* IngredientsCartViewController.swift */,
+				B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */,
 			);
 			name = shopping;
 			sourceTree = "<group>";
@@ -365,6 +377,7 @@
 			files = (
 				B51199331C7BEF170017B164 /* IngredientListViewController.swift in Sources */,
 				B51199111C7BEE900017B164 /* RecipeDataHelper.swift in Sources */,
+				B53770421C7D354F0088326E /* IngredientCartTableViewCell.swift in Sources */,
 				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
 				B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */,
 				B51199381C7BEF170017B164 /* IngredientsViewController.swift in Sources */,
@@ -384,8 +397,11 @@
 				B51199151C7BEE900017B164 /* MeasureDataHelper.swift in Sources */,
 				B51199211C7BEEB40017B164 /* Cart.swift in Sources */,
 				B51199161C7BEE900017B164 /* DataHelperProtocol.swift in Sources */,
+				B53770401C7D33570088326E /* IngredientsCartViewController.swift in Sources */,
 				B53770371C7D21060088326E /* ShoppingListTableViewCell.swift in Sources */,
 				B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */,
+				B537703A1C7D2FF10088326E /* CategoriesViewController.swift in Sources */,
+				B537703C1C7D30780088326E /* CategoryCartCollectionViewCell.swift in Sources */,
 				B51199081C7BC8400017B164 /* SelectIngredientTableViewCell.swift in Sources */,
 				B51199191C7BEEA00017B164 /* StepViewController.swift in Sources */,
 				B51199061C7BC8010017B164 /* FinalStepViewController.swift in Sources */,
