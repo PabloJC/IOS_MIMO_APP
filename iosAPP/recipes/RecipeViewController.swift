@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Cosmos
 class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     @IBOutlet weak var nombreReceta: UILabel!
@@ -15,6 +16,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var id: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var starsRating: CosmosView!
     var missingIngredients = [Ingredient]()
     var storedIngredients = [Ingredient]()
     var sections = [[Ingredient]]()
@@ -26,8 +28,9 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ingredientCell")
+        self.starsRating.settings.updateOnTouch = false
         recibir()
-        id.text = idText
+        //id.text = idText
         for iBD in self.ingredients {
             ingredientsBDServerId.append(iBD.ingredientIdServer)
         }
@@ -35,6 +38,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(animated: Bool) {
         
         
@@ -55,6 +59,8 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                 let data = NSData(contentsOfURL: url!)
                 self.imageView.image = UIImage(data: data!)
             }
+            print (r.score)
+           self.starsRating.rating = Double(r.score)
             
             var texto = ""
             self.recipe = r

@@ -45,6 +45,8 @@
 		B537703C1C7D30780088326E /* CategoryCartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */; };
 		B53770401C7D33570088326E /* IngredientsCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537703F1C7D33570088326E /* IngredientsCartViewController.swift */; };
 		B53770421C7D354F0088326E /* IngredientCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */; };
+		B559636C1C8109FD0013764F /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B559636B1C8109FD0013764F /* Cosmos.framework */; };
+		B559636E1C8116490013764F /* Recipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B559636D1C8116490013764F /* Recipe.storyboard */; };
 		B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */; };
 		B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2271C5E87EE0085C5C8 /* ViewController.swift */; };
 		B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A2291C5E87EE0085C5C8 /* Main.storyboard */; };
@@ -94,6 +96,8 @@
 		B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCartCollectionViewCell.swift; path = shopping/CategoryCartCollectionViewCell.swift; sourceTree = "<group>"; };
 		B537703F1C7D33570088326E /* IngredientsCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientsCartViewController.swift; path = shopping/IngredientsCartViewController.swift; sourceTree = "<group>"; };
 		B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCartTableViewCell.swift; path = shopping/IngredientCartTableViewCell.swift; sourceTree = "<group>"; };
+		B559636B1C8109FD0013764F /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = "Pods/../build/Debug-iphoneos/Cosmos.framework"; sourceTree = "<group>"; };
+		B559636D1C8116490013764F /* Recipe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recipe.storyboard; path = recipes/Recipe.storyboard; sourceTree = "<group>"; };
 		B593A2221C5E87EE0085C5C8 /* OtakuCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtakuCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B593A2271C5E87EE0085C5C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B559636C1C8109FD0013764F /* Cosmos.framework in Frameworks */,
 				3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */,
 				B5304EFE1C65652A00E7CB17 /* AFNetworking.framework in Frameworks */,
 				6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */,
@@ -135,6 +140,7 @@
 		971AFBF608513A1576D1C472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B559636B1C8109FD0013764F /* Cosmos.framework */,
 				3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */,
 				B5F579F01C74CF0E006A2FF2 /* SQLite.framework */,
 				B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */,
@@ -174,6 +180,7 @@
 		B581B8AB1C6E8A670049CA1C /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				B559636D1C8116490013764F /* Recipe.storyboard */,
 				B51199171C7BEEA00017B164 /* StepViewController.swift */,
 				B51199181C7BEEA00017B164 /* StepListViewController.swift */,
 				B5036DE61C6FB62300C180DE /* RecipeViewController.swift */,
@@ -316,6 +323,7 @@
 			files = (
 				B51199361C7BEF170017B164 /* IngredientsSB.storyboard in Resources */,
 				3AA6F49A1C70ACA700161E89 /* Category.json in Resources */,
+				B559636E1C8116490013764F /* Recipe.storyboard in Resources */,
 				B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */,
 				B593A22D1C5E87EE0085C5C8 /* Assets.xcassets in Resources */,
 				B53770361C7D21060088326E /* ShoppingListSB.storyboard in Resources */,

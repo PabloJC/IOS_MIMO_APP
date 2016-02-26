@@ -15,6 +15,7 @@ class StepViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var nextBT: UIButton!
     @IBOutlet weak var uiTextField: UITextField!
+    @IBOutlet weak var btAlarm: UIButton!
     var recipe : Recipe?
     var tasks = [AnyObject]()
     var currentTaskPos = 0
@@ -27,10 +28,11 @@ class StepViewController: UIViewController {
     var total :Double?
     
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        toolbar()
+       // toolbar()
        if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
                 let t = task as Task
@@ -40,9 +42,9 @@ class StepViewController: UIViewController {
             t = tasks[currentTaskPos] as? Task
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
-            self.tiempoPicker = tiempo(Double((t?.seconds)!))
+          //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
             total = Double((t?.seconds)!)
-            self.uiTextField.text = tiempo(Double((t?.seconds)!))
+           self.uiTextField.text = tiempo(Double((t?.seconds)!))
             print (NSDate())
         
        }else {
@@ -56,13 +58,13 @@ class StepViewController: UIViewController {
         self.timer.invalidate();
     }
     
-    func updateTimer() {
+   func updateTimer() {
         // Create date from the elapsed time
         let currentDate:NSDate = NSDate();
         let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
         
         
-       
+       /*
         if let pD = pickerNSDate  {
             let calendar = NSCalendar.currentCalendar()
             let comp = calendar.components([.Hour, .Minute, .Second], fromDate: pD)
@@ -70,25 +72,27 @@ class StepViewController: UIViewController {
             let minute = comp.minute * 60
             let second = comp.second
             total =  Double(hour + minute + second)
-        }
+        }*/
         
         
         let timeIntervalCountDown = total! - timeInterval
-        let timeAlert = total! + timeInterval
+        //let timeAlert = total! + timeInterval
         let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
-        print(timerDate)
+       // print(timerDate)
         
-        timerAlert = NSDate(timeIntervalSinceNow: total!)
+        //timerAlert = NSDate(timeIntervalSinceNow: total!)
 
         // Create a date formatter
         let dateFormatter = NSDateFormatter();
-        dateFormatter.dateFormat = "HH:mm:ss";
+        dateFormatter.dateFormat = "mm:ss";
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0);
         
         // Format the elapsed time and set it to the label
         let timeString = dateFormatter.stringFromDate(timerDate);
         if timeIntervalCountDown <= 0 {
             stopTimer()
+            btAlarm.selected = !btAlarm.selected
+            self.uiTextField.text = tiempo(Double((t?.seconds)!))
         }else{
             self.uiTextField.text = timeString
         }
@@ -144,7 +148,7 @@ class StepViewController: UIViewController {
 
         }
     }
-    @IBAction func countDownAction(sender: UIButton) {
+   /* @IBAction func countDownAction(sender: UIButton) {
         
         sender.selected = !sender.selected;
         //if selected fire timer, otherwise stop
@@ -156,9 +160,20 @@ class StepViewController: UIViewController {
             uiTextField.enabled = true
             self.stopTimer();
         }
-    }
+    }*/
     
     @IBAction func alarmAction(sender: AnyObject) {
+        let sender2 = sender as! UIButton
+        sender2.selected = !sender2.selected;
+        //if selected fire timer, otherwise stop
+        if (sender2.selected) {
+            uiTextField.enabled = false
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            self.startDate = NSDate();
+        } else {
+            uiTextField.enabled = true
+            self.stopTimer();
+        }
         timerAlert = NSDate(timeIntervalSinceNow: total!)
         // 1
         let notification = UILocalNotification()
@@ -167,12 +182,6 @@ class StepViewController: UIViewController {
         notification.fireDate = fixedNotificationDate(timerAlert!)
         // 3
         notification.alertBody = "Tarea pendiente de revision \(timerAlert)"
-        // 4 
-        
-        //notification.timeZone = NSTimeZone.defaultTimeZone()
-        // 5
-        //notification.repeatInterval = NSCalendarUnit.Minute
-        // 6
         notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         // 7
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -181,9 +190,6 @@ class StepViewController: UIViewController {
     func fixedNotificationDate(dateToFix: NSDate) -> NSDate {
         
         let dateComponents: NSDateComponents = NSCalendar.currentCalendar().components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Hour, NSCalendarUnit.Minute,NSCalendarUnit.Second], fromDate: dateToFix)
-        
-        //dateComponents.second = 0
-        
         let fixedDate: NSDate = NSCalendar.currentCalendar().dateFromComponents(dateComponents)!
         
         return fixedDate
@@ -191,7 +197,7 @@ class StepViewController: UIViewController {
     }
 
     
-    @IBAction func textFieldEditing(sender: UITextField) {
+    /*@IBAction func textFieldEditing(sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         
         datePickerView.datePickerMode = UIDatePickerMode.CountDownTimer
@@ -209,7 +215,7 @@ class StepViewController: UIViewController {
         pickerNSDate  = sender.date
         uiTextField.text = dateFormatter.stringFromDate(sender.date)
         
-    }
+    }*/
     func tiempo (seconds: Double) -> String{
         self.startDate = NSDate();
         let currentDate:NSDate = NSDate();
@@ -221,7 +227,7 @@ class StepViewController: UIViewController {
         
         // Create a date formatter
         let dateFormatter = NSDateFormatter();
-        dateFormatter.dateFormat = "HH:mm:ss";
+        dateFormatter.dateFormat = "mm:ss";
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0);
         
         // Format the elapsed time and set it to the label
@@ -243,7 +249,7 @@ class StepViewController: UIViewController {
             
         }
     }
-    func toolbar (){
+    /*func toolbar (){
         let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
         
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
@@ -261,6 +267,6 @@ class StepViewController: UIViewController {
         
         uiTextField.resignFirstResponder()
         
-    }
+    }*/
 
 }
