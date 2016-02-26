@@ -144,8 +144,8 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
             self.buyIngredientStore(ingredient)
         }
-        
         buyAction.backgroundColor = UIColor.blueColor()
+        
         let deleteAction = UITableViewRowAction(style: .Normal, title: "Borrar") { action, index in
             var section = self.sections[indexPath.section]
             let ingredient = section[indexPath.row]
@@ -162,7 +162,6 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 1)], withRowAnimation: .Automatic)
             
         }
-        
         deleteAction.backgroundColor = UIColor.redColor()
         return [buyAction,deleteAction]
     }

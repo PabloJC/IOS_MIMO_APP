@@ -172,6 +172,45 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fcu-Y0-ZbT">
+                                <rect key="frame" x="20" y="183" width="286" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ingredientCell" id="PTC-wg-cO0" customClass="RecipeIngredientTableViewCell" customModule="OtakuCook" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="286" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PTC-wg-cO0" id="UOQ-5Z-qsy">
+                                            <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Aa-sl-Mpb">
+                                                    <rect key="frame" x="129" y="0.0" width="149" height="35.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fmn-UN-nXd">
+                                                    <rect key="frame" x="8" y="0.0" width="113" height="35.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameIngredientLabel" destination="Fmn-UN-nXd" id="ARY-lT-pcq"/>
+                                            <outlet property="stateLabel" destination="4Aa-sl-Mpb" id="ZIj-ZA-68J"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FG9-a9-t29" id="SBp-tq-FJU"/>
+                                    <outlet property="delegate" destination="FG9-a9-t29" id="pDI-9P-baq"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -181,6 +220,7 @@
                         <outlet property="id" destination="CfE-Zo-k3I" id="Zfh-9V-SpK"/>
                         <outlet property="imageView" destination="tfK-mK-OUV" id="Asc-ZF-iEi"/>
                         <outlet property="nombreReceta" destination="lSq-aZ-Ti0" id="cTb-KO-MEa"/>
+                        <outlet property="tableView" destination="Fcu-Y0-ZbT" id="JM8-DQ-pwU"/>
                         <segue destination="sQC-nJ-M3Y" kind="push" identifier="stepList" id="xfb-o7-h4H"/>
                         <segue destination="K4E-ZJ-Vmf" kind="push" identifier="step" id="rUD-u5-jiP"/>
                         <segue destination="4UD-aN-I7p" kind="push" identifier="finalRecipeSegue" id="CQb-VM-lRQ"/>
@@ -461,6 +501,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2mU-B2-tWd"/>
+        <segue reference="CQb-VM-lRQ"/>
     </inferredMetricsTieBreakers>
 </document>
