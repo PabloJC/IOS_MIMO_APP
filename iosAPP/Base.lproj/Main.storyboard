@@ -34,13 +34,13 @@
                                 <rect key="frame" x="20" y="14" width="560" height="453"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FSB-TM-wKW">
-                                        <rect key="frame" x="8" y="8" width="544" height="246"/>
+                                        <rect key="frame" x="8" y="8" width="544" height="387"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="246" id="0aA-78-qwm"/>
+                                            <constraint firstAttribute="height" constant="387" id="0aA-78-qwm"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tortilla de patatas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
-                                        <rect key="frame" x="8" y="270" width="544" height="32"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tortilla de patatas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
+                                        <rect key="frame" x="16" y="403" width="544" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="rBv-Pe-J1m"/>
                                         </constraints>
@@ -53,12 +53,24 @@
                                 <constraints>
                                     <constraint firstItem="FSB-TM-wKW" firstAttribute="leading" secondItem="Iir-nh-rVS" secondAttribute="leadingMargin" id="0pA-bh-9nF"/>
                                     <constraint firstItem="FSB-TM-wKW" firstAttribute="trailing" secondItem="dwk-BG-IBj" secondAttribute="trailing" id="5Pf-fN-CCb"/>
-                                    <constraint firstItem="dwk-BG-IBj" firstAttribute="top" secondItem="FSB-TM-wKW" secondAttribute="bottom" constant="16" id="OFd-TE-xck"/>
+                                    <constraint firstItem="dwk-BG-IBj" firstAttribute="top" secondItem="FSB-TM-wKW" secondAttribute="bottom" constant="8" id="OFd-TE-xck"/>
                                     <constraint firstItem="FSB-TM-wKW" firstAttribute="top" secondItem="Iir-nh-rVS" secondAttribute="topMargin" id="PVh-m6-w3j"/>
                                     <constraint firstItem="FSB-TM-wKW" firstAttribute="leading" secondItem="dwk-BG-IBj" secondAttribute="leading" id="udx-j2-x7T"/>
                                     <constraint firstItem="FSB-TM-wKW" firstAttribute="trailing" secondItem="Iir-nh-rVS" secondAttribute="trailingMargin" id="z6l-g4-XI0"/>
                                 </constraints>
                             </view>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teD-AV-YSq">
+                                <rect key="frame" x="0.0" y="487" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem tag="1" title="Lista de la compra" id="Tu5-Ij-xrv"/>
+                                    <tabBarItem tag="2" title="Recetas" id="IBj-A0-mgB"/>
+                                    <tabBarItem tag="3" title="Mis ingredientes" id="L6O-3k-S9A"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="N31-O7-jYN"/>
+                                </connections>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" red="0.30588235294117649" green="0.62352941176470589" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

@@ -38,15 +38,29 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
         // Do any additional setup after loading the view.
     }
     
+    
     func recibir(){
-        let myapiClient = MyAPIClient()
-        myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
-            self.ingredientsSection[baseType] = ingredients
-            },finished: { () -> () in
-                self.ingredientsSection2 = self.ingredientsSection
-                self.table.reloadData()
-            }) { (error) -> () in
-                print("\(error.debugDescription)")
+        if Reachability.isConnectedToNetwork() == true {
+            let myapiClient = MyAPIClient()
+            myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
+                self.ingredientsSection[baseType] = ingredients
+                },finished: { () -> () in
+                    self.ingredientsSection2 = self.ingredientsSection
+                    self.table.reloadData()
+                }) { (error) -> () in
+                    print("\(error.debugDescription)")
+            }
+        } else {
+            let frame = CGRect(x: 10, y: 10, width: UIScreen.mainScreen().bounds.size.width, height: 50)
+            let aView = UIView(frame: frame)
+            
+            aView.backgroundColor = UIColor.blackColor()
+            aView.transform.tx = 0
+            aView.transform.ty = 0
+
+            self.view.addSubview(aView)
+            
+            print("Internet connection FAILED")
         }
         
     }

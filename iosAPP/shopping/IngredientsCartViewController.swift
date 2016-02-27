@@ -37,14 +37,18 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
     }
     
     func recibir(){
-        let myapiClient = MyAPIClient()
-        myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
-            self.ingredientsSection[baseType] = ingredients
-            },finished: { () -> () in
-                self.ingredientsSection2 = self.ingredientsSection
-                self.table.reloadData()
-            }) { (error) -> () in
-                print("\(error.debugDescription)")
+        if Reachability.isConnectedToNetwork() == true {
+            let myapiClient = MyAPIClient()
+            myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
+                self.ingredientsSection[baseType] = ingredients
+                },finished: { () -> () in
+                    self.ingredientsSection2 = self.ingredientsSection
+                    self.table.reloadData()
+                }) { (error) -> () in
+                    print("\(error.debugDescription)")
+            }
+        }else{
+            print("No hay conexión")
         }
         
     }
