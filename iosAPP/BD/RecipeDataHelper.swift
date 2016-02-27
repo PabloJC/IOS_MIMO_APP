@@ -49,7 +49,6 @@ class RecipeDataHelper: DataHelperProtocol {
             throw DataAccessError.Datastore_Connection_Error
         }
             let insert = table.insert(recipeIdServer <- item.recipeIdServer, name <- item.name, portions <- item.portions, favorite <- item.favorite!.rawValue, author <- item.author, score <- item.score, photo <- item.photo)
-             print (insert)
             do {
                 let rowId = try DB.run(insert)
                 guard rowId > 0 else {
@@ -98,6 +97,28 @@ class RecipeDataHelper: DataHelperProtocol {
         return nil
         
     }
+    static func findIdServer(id: Int64) throws -> T? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        let query = table.filter(recipeIdServer == id)
+        let items = try DB.prepare(query)
+        for item in  items {
+            let recipe = Recipe()
+            recipe.recipeId = item[recipeId]
+            recipe.recipeIdServer = item[recipeIdServer]
+            recipe.name = item[name]
+            recipe.portions = item[portions]
+            recipe.photo = item[photo]
+            recipe.favorite = FavoriteTypes(rawValue:  item[favorite])
+            recipe.author = item[author]
+            recipe.score = item[score]
+            return recipe
+        }
+        
+        return nil
+        
+    }
     
     static func findAll() throws -> [T]? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
@@ -105,6 +126,29 @@ class RecipeDataHelper: DataHelperProtocol {
         }
         var retArray = [T]()
         let items = try DB.prepare(table)
+        for item in items {
+            let recipe = Recipe()
+            recipe.recipeId = item[recipeId]
+            recipe.recipeIdServer = item[recipeIdServer]
+            recipe.name = item[name]
+            recipe.portions = item[portions]
+            recipe.photo = item[photo]
+            recipe.favorite = FavoriteTypes(rawValue:  item[favorite])
+            recipe.author = item[author]
+            recipe.score = item[score]
+            retArray.append(recipe)
+        }
+        
+        return retArray
+        
+    }
+    static func findAllFavorites() throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let query = table.filter(favorite == 1)
+        let items = try DB.prepare(query)
         for item in items {
             let recipe = Recipe()
             recipe.recipeId = item[recipeId]

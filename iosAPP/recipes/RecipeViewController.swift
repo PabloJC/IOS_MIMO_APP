@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Cosmos
+
 class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     @IBOutlet weak var nombreReceta: UILabel!
@@ -29,8 +30,12 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewDidLoad()
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ingredientCell")
         self.starsRating.settings.updateOnTouch = false
-        recibir()
-        //id.text = idText
+        if recipe == nil {
+            recibir()
+        }else {
+            drawView()
+        }
+        
         for iBD in self.ingredients {
             ingredientsBDServerId.append(iBD.ingredientIdServer)
         }
@@ -50,26 +55,28 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     func recibir(){
         let myapiClient = MyAPIClient()
-        
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
-            
-            self.nombreReceta.text  = "\(r.name)"
-            if r.photo != "" {
-                let url = NSURL(string: r.photo)
+            self.recipe = r
+            }, finished: { () -> () in
+                self.drawView()
+            }) { (error) -> () in
+                print("\(error.debugDescription)")
+        }
+    }
+    func drawView(){
+        if recipe != nil {
+            self.nombreReceta.text  = "\(recipe!.name)"
+            if recipe!.photo != "" {
+                let url = NSURL(string: recipe!.photo)
                 let data = NSData(contentsOfURL: url!)
                 self.imageView.image = UIImage(data: data!)
             }
-            print (r.score)
-           self.starsRating.rating = Double(r.score)
-            
-            var texto = ""
-            self.recipe = r
-            for i in r.measures{
+            self.starsRating.rating = Double(recipe!.score)
+            for i in recipe!.measures{
                 let i2 = i
                 if self.ingredientsBDServerId.contains(i2.ingredient.ingredientIdServer) {
                     i2.ingredient.storageId = 1
                     self.storedIngredients.append(i2.ingredient)
-                    //texto += "\(i2.ingredient.name)" + "\(i2.quantity)" + (i2.measure) + "\n"
                 }else {
                     do {
                         var iBD = try IngredientDataHelper.findIdServer(i2.ingredient.ingredientIdServer)
@@ -81,28 +88,19 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                     }catch _ {
                         
                     }
-                    
-                    //texto += "Falta el ingrediente \(i2.ingredient.name) \n"
                 }
             }
             self.sections.append(self.storedIngredients)
             self.sections.append(self.missingIngredients)
             self.tableView.reloadData()
-            //self.TextBox.text = texto
-            }, finished: { () -> () in
-
-            }) { (error) -> () in
-                print("\(error.debugDescription)")
         }
-        
-        
     }
     @IBAction func prepareRecipeAction(sender: AnyObject) {
         print (recipe?.tasks.count)
         if recipe?.tasks.count != 0 {
-           self.performSegueWithIdentifier("step", sender: self)
+            self.performSegueWithIdentifier("step", sender: self)
         }else{
-             self.performSegueWithIdentifier("finalRecipeSegue", sender: self)
+            self.performSegueWithIdentifier("finalRecipeSegue", sender: self)
         }
         
         
@@ -115,7 +113,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         if segue.identifier == "step" {
             let stepDestination = segue.destinationViewController as! StepViewController
             stepDestination.recipe = recipe
-        } 
+        }
         else if segue.identifier == "stepList" {
             let stepListDestination = segue.destinationViewController as! StepListViewController
             stepListDestination.recipe = recipe
@@ -139,7 +137,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-         let cell = self.tableView.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! RecipeIngredientTableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! RecipeIngredientTableViewCell
         let section = sections[indexPath.section]
         
         cell.nameIngredientLabel!.text = section[indexPath.row].name
@@ -159,24 +157,24 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         /*if indexPath.section == 1{
-            let ingredient = sections[1][indexPath.row]
-            do{
-                ingredient.cartId = 1
-                try IngredientDataHelper.updateCart(ingredient)
-                
-                sections[indexPath.section].removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
-                
-                sections[0].append(ingredient)
-                sections[0].sortInPlace({ $0.name < $1.name })
-                
-                let index = sections[0].indexOf(ingredient)
-                tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
-                
-            }catch _{
-                print("Error al insertar ingrediente en storage")
-            }
-            
+        let ingredient = sections[1][indexPath.row]
+        do{
+        ingredient.cartId = 1
+        try IngredientDataHelper.updateCart(ingredient)
+        
+        sections[indexPath.section].removeAtIndex(indexPath.row)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+        
+        sections[0].append(ingredient)
+        sections[0].sortInPlace({ $0.name < $1.name })
+        
+        let index = sections[0].indexOf(ingredient)
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
+        
+        }catch _{
+        print("Error al insertar ingrediente en storage")
+        }
+        
         }*/
     }
     func buyIngredientStore(ingredient: Ingredient){
@@ -211,6 +209,73 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             return "Falta"
         }
     }
-
+    @IBAction func saveFavorites(sender: AnyObject) {
+        print("Action salvar")
+        var correcto = true
+        var recipeIns = recipe
+        var measure : MeasureIngredients
+        var RecipeId : Int64?
+        recipeIns?.favorite = FavoriteTypes.favorite
+        do{
+            
+            let r = try RecipeDataHelper.findIdServer((recipeIns?.recipeIdServer)!)
+            if r == nil {
+                RecipeId = try RecipeDataHelper.insert(recipe!)
+            }else {
+                correcto = false
+            }
+           
+            
+        }catch _ {
+            correcto = false
+            print("error al crear receta favorita")
+        }
+        if correcto {
+            var ingredient: Ingredient
+            for m in (self.recipe?.measures)! {
+                do {
+                    
+                    measure = m
+                    measure.recipeId = RecipeId!
+                    ingredient = measure.ingredient
+                    let i = try IngredientDataHelper.findIdServer(ingredient.ingredientIdServer)
+                    if i == nil {
+                         let IngredientId = try IngredientDataHelper.insert(ingredient)
+                        measure.ingredientId = IngredientId
+                        
+                    }else {
+                        measure.ingredientId = (i?.ingredientId)!
+                    }
+                }catch _ {
+                    correcto = false
+                    print("error al crear ingrediente de receta")
+                }
+                if correcto {
+                    do {
+                        try MeasureDataHelper.insert(measure)
+                    }catch _ {
+                        correcto = false
+                        print("error al crear medida de ingrediente")
+                    }
+                }
+            }
+        }
+        if correcto {
+            var task: Task
+            for t in (self.recipe?.tasks)! {
+                do{
+                    t.recipeId = RecipeId!
+                   try TaskDataHelper.insert(t)
+                    
+                } catch _ {
+                    print("error al crear la tarea")
+                }
+            }
+            print("receta agregada")
+        }
+    }
+    
+   
+    
     
 }

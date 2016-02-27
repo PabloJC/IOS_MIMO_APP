@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="spM-5d-r4J">
-                                <rect key="frame" x="0.0" y="77" width="320" height="427"/>
+                                <rect key="frame" x="0.0" y="77" width="320" height="375"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -51,6 +51,19 @@
                                     <outlet property="delegate" destination="9Ck-CN-nld" id="hRh-mu-Jk9"/>
                                 </connections>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" id="t93-MR-jpn">
+                                <rect key="frame" x="0.0" y="455" width="320" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem tag="1" title="Todas" id="nnP-4b-pEs"/>
+                                    <tabBarItem tag="2" title="Favoritas" id="KMQ-dU-fdU"/>
+                                    <tabBarItem tag="3" title="Posibles" id="ChA-uH-ZQK"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="9Ck-CN-nld" id="0Gm-GS-a6x"/>
+                                </connections>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -58,6 +71,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="activityIndicator" destination="VHK-cA-jsm" id="CQi-L8-Urb"/>
+                        <outlet property="tabBar" destination="t93-MR-jpn" id="WZP-2y-dhd"/>
                         <outlet property="tableView" destination="spM-5d-r4J" id="f0a-V5-pP2"/>
                         <segue destination="FG9-a9-t29" kind="push" identifier="recipe" id="JCR-iS-hTm"/>
                     </connections>
@@ -74,19 +88,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZhN-1A-evz">
-                                <rect key="frame" x="59" y="504" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cocinar"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XOQ-Nb-f2h">
-                                <rect key="frame" x="20" y="454" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cocinar"/>
-                                <connections>
-                                    <action selector="prepareRecipeAction:" destination="FG9-a9-t29" eventType="touchUpInside" id="mMT-ud-5bg"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tfK-mK-OUV">
                                 <rect key="frame" x="15" y="60" width="291" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -127,6 +128,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dwz-ZA-jzP">
+                                <rect key="frame" x="142" y="235" width="36" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="favoritos"/>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fcu-Y0-ZbT">
                                 <rect key="frame" x="20" y="188" width="286" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -166,10 +172,28 @@
                                     <outlet property="delegate" destination="FG9-a9-t29" id="pDI-9P-baq"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nRe-9y-7d9">
+                                <rect key="frame" x="264" y="153" width="28" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="favoritos"/>
+                                <connections>
+                                    <action selector="saveFavorites:" destination="FG9-a9-t29" eventType="touchUpInside" id="6EN-9Z-CNo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZhN-1A-evz">
+                                <rect key="frame" x="26" y="454" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cocinar"/>
+                                <connections>
+                                    <action selector="prepareRecipeAction:" destination="FG9-a9-t29" eventType="touchUpInside" id="6B2-ro-uqL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Rtb-PD-Hap"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="id" destination="CfE-Zo-k3I" id="Zfh-9V-SpK"/>
                         <outlet property="imageView" destination="tfK-mK-OUV" id="Asc-ZF-iEi"/>
@@ -413,6 +437,9 @@
             <point key="canvasLocation" x="2716" y="51"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favoritos" width="256" height="256"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="CQb-VM-lRQ"/>
     </inferredMetricsTieBreakers>

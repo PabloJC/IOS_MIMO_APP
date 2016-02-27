@@ -96,6 +96,7 @@
 		B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCartCollectionViewCell.swift; path = shopping/CategoryCartCollectionViewCell.swift; sourceTree = "<group>"; };
 		B537703F1C7D33570088326E /* IngredientsCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientsCartViewController.swift; path = shopping/IngredientsCartViewController.swift; sourceTree = "<group>"; };
 		B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCartTableViewCell.swift; path = shopping/IngredientCartTableViewCell.swift; sourceTree = "<group>"; };
+		B5579E4D1C821F270046EB01 /* Toast_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Toast_Swift.framework; path = "Pods/../build/Debug-iphoneos/Toast_Swift.framework"; sourceTree = "<group>"; };
 		B559636B1C8109FD0013764F /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = "Pods/../build/Debug-iphoneos/Cosmos.framework"; sourceTree = "<group>"; };
 		B559636D1C8116490013764F /* Recipe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recipe.storyboard; path = recipes/Recipe.storyboard; sourceTree = "<group>"; };
 		B593A2221C5E87EE0085C5C8 /* OtakuCook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OtakuCook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +141,7 @@
 		971AFBF608513A1576D1C472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5579E4D1C821F270046EB01 /* Toast_Swift.framework */,
 				B559636B1C8109FD0013764F /* Cosmos.framework */,
 				3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */,
 				B5F579F01C74CF0E006A2FF2 /* SQLite.framework */,

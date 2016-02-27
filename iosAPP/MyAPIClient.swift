@@ -95,6 +95,8 @@ class MyAPIClient: AFHTTPSessionManager {
                         recipe.photo = (photo as? String)!
                       
                     }
+                    let author = result["author"]
+                    recipe.author = (author as? String)!
                     let score = result["score"]
                     recipe.score = Int64(score as! Int)
                     let portions = result["portions"]

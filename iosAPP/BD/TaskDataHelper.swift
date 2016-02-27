@@ -47,7 +47,7 @@ class TaskDataHelper: DataHelperProtocol {
             throw DataAccessError.Datastore_Connection_Error
         }
         let insert = table.insert(taskIdServer <- item.taskIdServer, name <- item.name, photo <- item.photo, seconds <- item.seconds, recipeId <- item.recipeId, taskDescription <- item.taskDescription)
-        print (insert)
+        
         do {
             let rowId = try DB.run(insert)
             guard rowId > 0 else {
@@ -121,4 +121,29 @@ class TaskDataHelper: DataHelperProtocol {
         return retArray
         
     }
+    static func findAllRecipe(id: Int64) throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let query = table.filter(recipeId == id)
+        let items = try DB.prepare(query)
+        for item in items {
+            let task = Task()
+            
+            task.taskId = item[taskId]
+            task.taskIdServer = item[taskIdServer]
+            task.name = item[name]
+            task.photo = item[photo]
+            task.seconds = item[seconds]
+            task.recipeId = item[recipeId]
+            task.taskDescription = item[taskDescription]
+            
+            retArray.append(task)
+        }
+        
+        return retArray
+        
+    }
+
 }

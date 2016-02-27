@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
-class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITabBarDelegate {
     
+    @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var recetasString = [Dictionary<String,AnyObject>]()
@@ -19,9 +20,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Recetas\""
-        if !sincronized {
+        /*if !sincronized {
             recibir()
-        }
+        }*/
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
@@ -54,15 +55,50 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let recipeSegue: Recipe?
         if (segue.identifier == "recipe") {
             let svc = segue.destinationViewController as! RecipeViewController
             let row = tableView.indexPathForSelectedRow?.row
-            let recipe = recetasString[row!]
-            svc.idText = "\(recipe["id"]!)"
-            svc.ingredients = ingredients
-            // print("dentro")
+            let recipeRow = recetasString[row!]
+            do {
+                var id = recipeRow["id"]
+               let recipe = try RecipeDataHelper.findIdServer(Int64(id as! Int))
+                if recipe != nil {
+                    print("bd")
+                  recipeSegue = createRecipe(recipe!)
+                    svc.recipe = recipeSegue
+                     svc.ingredients = ingredients
+                }else {
+                    print("server")
+                    svc.idText = "\(recipeRow["id"]!)"
+                    svc.ingredients = ingredients
+                }
+            }catch _ {
+                print ("error al buscar la receta")
+            }
+        }
+    }
+    func createRecipe(recipe: Recipe) -> Recipe{
+        var recipeTMI: Recipe?
+        var measuresArray = [MeasureIngredients]()
+        
+        do{
+            recipeTMI = recipe
+            let tasks = try TaskDataHelper.findAllRecipe(recipe.recipeIdServer)! as [Task]
+            recipeTMI!.tasks = tasks
+            let measures = try MeasureDataHelper.findAllRecipe(recipe.recipeIdServer)! as [MeasureIngredients]
+            for m in measures {
+                var measure : MeasureIngredients
+                measure = m
+                measure.ingredient = try IngredientDataHelper.find(measure.ingredientId)!
+                measuresArray.append(measure)
+            }
+            recipeTMI?.measures = measuresArray
+        }catch _ {
             
         }
+        return recipeTMI!
+
     }
     
     
@@ -164,6 +200,34 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
     }
+    
+    func recibirFavoritos(){
+        self.recetasString = []
+        var recipe : Recipe?
+        do {
+            let recipes = try RecipeDataHelper.findAllFavorites()! as [Recipe]
+            for r in recipes {
+                recipe = r
+                var post=Dictionary<String,AnyObject>()
+                var idString = NSNumber(double: Double((recipe?.recipeIdServer)!))
+                post = ["id":idString,"name":(recipe?.name)!]
+                self.recetasString.append(post)
+            }
+            self.recetasStringAux = self.recetasString
+            if !self.recetasString.isEmpty {
+                self.sincronized = true
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+            }else {
+                print("sin recetas agregadas")
+            }
+            
+        }catch _ {
+            print("error al recibir favoritos")
+        }
+        
+    }
     @IBAction func searchAction2(sender: UITextField) {
         self.recetasString = self.recetasStringAux
         if !sender.text!.isEmpty {
@@ -182,6 +246,25 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func todasLasRecetasAction(sender: UIButton) {
         recibirTodas()
         self.tableView.reloadData()
+    }
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        switch item.tag{
+        case 1:
+            print ("Todas")
+            recibirTodas()
+            self.tableView.reloadData()
+            break
+        case 2:
+            print ("Favoritas")
+            recibirFavoritos()
+            break
+        default:
+             print ("Posibles")
+             recibir()
+             self.tableView.reloadData()
+            break
+        }
     }
     
     

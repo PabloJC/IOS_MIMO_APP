@@ -49,7 +49,7 @@ class MeasureDataHelper: DataHelperProtocol {
         }
         
             let insert = table.insert(measureIdServer <- item.measureIdServer,measure <- item.measure,quantity <- item.quantity,recipeId <- item.recipeId,ingredientId <- item.ingredientId)
-            print (insert)
+            
             do {
                 let rowId = try DB.run(insert)
                 guard rowId > 0 else {
@@ -117,4 +117,27 @@ class MeasureDataHelper: DataHelperProtocol {
         return retArray
         
     }
+    static func findAllRecipe(id: Int64) throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let query = table.filter(recipeId == id)
+        let items = try DB.prepare(query)
+        for item in items {
+            let measureObj = MeasureIngredients()
+            
+            measureObj.measureId = item[measureId]
+            measureObj.measureIdServer = item[measureIdServer]
+            measureObj.measure = item[measure]
+            measureObj.quantity = item[quantity]
+            measureObj.recipeId = item[recipeId]
+            measureObj.ingredientId = item[ingredientId]
+            retArray.append(measureObj)
+        }
+        
+        return retArray
+        
+    }
+
 }
