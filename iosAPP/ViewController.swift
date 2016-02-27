@@ -8,12 +8,14 @@
 
 import UIKit
 class ViewController: UIViewController, UITabBarDelegate {
+    @IBOutlet weak var back: UIView!
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var mainTable: UITableView!
     var externalStoryboard: UIStoryboard!
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        back.layer.cornerRadius = 5
         let dataStore = SQLiteDataStore.sharedInstance
         do{
             try dataStore.createTables()

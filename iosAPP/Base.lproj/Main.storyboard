@@ -18,20 +18,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ypu-Lo-sZU">
-                                <rect key="frame" x="20" y="0.0" width="560" height="487"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="169" id="IKt-1k-LD5">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="169"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IKt-1k-LD5" id="vfI-if-hRw">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="168"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teD-AV-YSq">
                                 <rect key="frame" x="0.0" y="487" width="600" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -44,21 +30,50 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="N31-O7-jYN"/>
                                 </connections>
                             </tabBar>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iir-nh-rVS">
+                                <rect key="frame" x="20" y="14" width="560" height="453"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FSB-TM-wKW">
+                                        <rect key="frame" x="8" y="8" width="544" height="246"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="246" id="0aA-78-qwm"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tortilla de patatas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
+                                        <rect key="frame" x="8" y="270" width="544" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="rBv-Pe-J1m"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="FSB-TM-wKW" firstAttribute="leading" secondItem="Iir-nh-rVS" secondAttribute="leadingMargin" id="0pA-bh-9nF"/>
+                                    <constraint firstItem="FSB-TM-wKW" firstAttribute="trailing" secondItem="dwk-BG-IBj" secondAttribute="trailing" id="5Pf-fN-CCb"/>
+                                    <constraint firstItem="dwk-BG-IBj" firstAttribute="top" secondItem="FSB-TM-wKW" secondAttribute="bottom" constant="16" id="OFd-TE-xck"/>
+                                    <constraint firstItem="FSB-TM-wKW" firstAttribute="top" secondItem="Iir-nh-rVS" secondAttribute="topMargin" id="PVh-m6-w3j"/>
+                                    <constraint firstItem="FSB-TM-wKW" firstAttribute="leading" secondItem="dwk-BG-IBj" secondAttribute="leading" id="udx-j2-x7T"/>
+                                    <constraint firstItem="FSB-TM-wKW" firstAttribute="trailing" secondItem="Iir-nh-rVS" secondAttribute="trailingMargin" id="z6l-g4-XI0"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.07987690044400686" green="0.93144700755673238" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.30588235294117649" green="0.62352941176470589" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="teD-AV-YSq" firstAttribute="top" secondItem="ypu-Lo-sZU" secondAttribute="bottom" id="9hf-2z-KSb"/>
-                            <constraint firstItem="teD-AV-YSq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Igj-QT-cfG"/>
-                            <constraint firstItem="ypu-Lo-sZU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Jvl-nU-arc"/>
-                            <constraint firstItem="teD-AV-YSq" firstAttribute="bottom" secondItem="v21-RN-gJq" secondAttribute="top" id="L09-kJ-p8l"/>
-                            <constraint firstItem="ypu-Lo-sZU" firstAttribute="centerX" secondItem="teD-AV-YSq" secondAttribute="centerX" id="LpG-WY-FmX"/>
-                            <constraint firstAttribute="trailing" secondItem="teD-AV-YSq" secondAttribute="trailing" id="k7G-Sg-fwg"/>
-                            <constraint firstItem="ypu-Lo-sZU" firstAttribute="top" secondItem="TBC-cO-8Yo" secondAttribute="bottom" id="zGM-UD-bzi"/>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="bottom" secondItem="v21-RN-gJq" secondAttribute="top" id="84e-Tv-UeA"/>
+                            <constraint firstItem="Iir-nh-rVS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BY7-1a-Xi8"/>
+                            <constraint firstAttribute="trailing" secondItem="teD-AV-YSq" secondAttribute="trailing" id="RAj-D4-b8m"/>
+                            <constraint firstItem="Iir-nh-rVS" firstAttribute="top" secondItem="TBC-cO-8Yo" secondAttribute="bottom" constant="14" id="gbe-hM-psS"/>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="centerX" secondItem="Iir-nh-rVS" secondAttribute="centerX" id="lhC-sE-hlJ"/>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nYo-CL-meh"/>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="top" secondItem="Iir-nh-rVS" secondAttribute="bottom" constant="20" id="piB-fK-RLU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="OTAKU COOK" id="kDx-R4-XeN"/>
                     <connections>
-                        <outlet property="mainTable" destination="ypu-Lo-sZU" id="HeK-9p-eWW"/>
+                        <outlet property="back" destination="Iir-nh-rVS" id="JCB-kD-Uiw"/>
                         <outlet property="tabBar" destination="teD-AV-YSq" id="i5M-Ft-o4n"/>
                     </connections>
                 </viewController>
