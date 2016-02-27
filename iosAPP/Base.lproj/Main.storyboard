@@ -1,51 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Ovk-XV-Zpw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ovk-XV-Zpw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--OTAKU COOK-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TBC-cO-8Yo"/>
+                        <viewControllerLayoutGuide type="bottom" id="v21-RN-gJq"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j7n-XT-IDb">
-                                <rect key="frame" x="30" y="106" width="124" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.48430296649999999" green="0.97508129799999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Shooping List"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="169" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ypu-Lo-sZU">
+                                <rect key="frame" x="20" y="0.0" width="560" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="169" id="IKt-1k-LD5">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="169"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IKt-1k-LD5" id="vfI-if-hRw">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="168"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="teD-AV-YSq">
+                                <rect key="frame" x="0.0" y="487" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem tag="1" title="Lista de la compra" id="Tu5-Ij-xrv"/>
+                                    <tabBarItem tag="2" title="Recetas" id="IBj-A0-mgB"/>
+                                    <tabBarItem tag="3" title="Mis ingredientes" id="L6O-3k-S9A"/>
+                                </items>
                                 <connections>
-                                    <segue destination="YQl-lv-HQZ" kind="push" id="MvL-OK-OLI"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="N31-O7-jYN"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5gi-cg-rlG">
-                                <rect key="frame" x="33" y="180" width="78" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ver recetas"/>
-                                <connections>
-                                    <segue destination="JH1-tf-IaM" kind="push" id="loB-zV-337"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NiY-Xm-6eD">
-                                <rect key="frame" x="35" y="142" width="114" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Tus Ingredientes"/>
-                                <connections>
-                                    <segue destination="Zd5-1g-hew" kind="push" id="6pb-LH-0wv"/>
-                                </connections>
-                            </button>
+                            </tabBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.07987690044400686" green="0.93144700755673238" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="top" secondItem="ypu-Lo-sZU" secondAttribute="bottom" id="9hf-2z-KSb"/>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Igj-QT-cfG"/>
+                            <constraint firstItem="ypu-Lo-sZU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Jvl-nU-arc"/>
+                            <constraint firstItem="teD-AV-YSq" firstAttribute="bottom" secondItem="v21-RN-gJq" secondAttribute="top" id="L09-kJ-p8l"/>
+                            <constraint firstItem="ypu-Lo-sZU" firstAttribute="centerX" secondItem="teD-AV-YSq" secondAttribute="centerX" id="LpG-WY-FmX"/>
+                            <constraint firstAttribute="trailing" secondItem="teD-AV-YSq" secondAttribute="trailing" id="k7G-Sg-fwg"/>
+                            <constraint firstItem="ypu-Lo-sZU" firstAttribute="top" secondItem="TBC-cO-8Yo" secondAttribute="bottom" id="zGM-UD-bzi"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="kDx-R4-XeN"/>
+                    <navigationItem key="navigationItem" title="OTAKU COOK" id="kDx-R4-XeN"/>
+                    <connections>
+                        <outlet property="mainTable" destination="ypu-Lo-sZU" id="HeK-9p-eWW"/>
+                        <outlet property="tabBar" destination="teD-AV-YSq" id="i5M-Ft-o4n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="390" y="257"/>
+            <point key="canvasLocation" x="731" y="271"/>
         </scene>
         <!--ShoppingListSB-->
         <scene sceneID="MQF-Ns-wAy">
@@ -55,7 +74,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5p-Ys-WFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721.5" y="-119"/>
+            <point key="canvasLocation" x="1184.5" y="73"/>
         </scene>
         <!--IngredientsSB-->
         <scene sceneID="Cx8-GE-wz6">
@@ -65,7 +84,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjA-dM-VhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721.5" y="351"/>
+            <point key="canvasLocation" x="1179" y="328"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jjb-Yq-Fk3">
@@ -88,7 +107,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1sq-NG-Y70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-7" y="249"/>
+            <point key="canvasLocation" x="-13.125" y="263.02816901408448"/>
         </scene>
         <!--ListRecipes-->
         <scene sceneID="UUg-9o-RKc">
@@ -98,7 +117,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSw-QV-lyB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721" y="228"/>
+            <point key="canvasLocation" x="1171" y="196"/>
         </scene>
     </scenes>
 </document>

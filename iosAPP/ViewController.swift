@@ -7,8 +7,12 @@
 //
 
 import UIKit
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITabBarDelegate {
+    @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var mainTable: UITableView!
+    var externalStoryboard: UIStoryboard!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         let dataStore = SQLiteDataStore.sharedInstance
         do{
@@ -36,6 +40,30 @@ class ViewController: UIViewController {
         print ("Finish")
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        switch item.tag{
+        case 1:
+            externalStoryboard = UIStoryboard(name: "ShoppingListSB", bundle: nil)
+            let shoppingListInstance = externalStoryboard.instantiateViewControllerWithIdentifier("shoppingListID") as? ShoopingListViewController
+            self.navigationController?.pushViewController(shoppingListInstance!, animated: true)
+            break
+        case 2:
+            externalStoryboard = UIStoryboard(name: "Recipe", bundle: nil)
+            let listRecipeInstance = externalStoryboard.instantiateViewControllerWithIdentifier("ListRecipes") as? RecipesViewController
+            self.navigationController?.pushViewController(listRecipeInstance!, animated: true)
+
+            break
+        default:
+            externalStoryboard = UIStoryboard(name: "IngredientsSB", bundle: nil)
+            let ingredientListInstance = externalStoryboard.instantiateViewControllerWithIdentifier("KitchenViewID") as? KitchenViewController
+            self.navigationController?.pushViewController(ingredientListInstance!, animated: true)
+
+            break
+        }
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
