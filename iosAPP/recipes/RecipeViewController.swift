@@ -66,7 +66,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     func drawView(){
         if recipe != nil {
             self.nombreReceta.text  = "\(recipe!.name)"
-            if recipe!.photo != "" {
+            if recipe!.photo != "" && Reachability.isConnectedToNetwork() {
                 let url = NSURL(string: recipe!.photo)
                 let data = NSData(contentsOfURL: url!)
                 self.imageView.image = UIImage(data: data!)
