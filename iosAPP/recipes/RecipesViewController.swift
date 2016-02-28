@@ -78,7 +78,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let row = tableView.indexPathForSelectedRow?.row
             let recipeRow = recetasString[row!]
             do {
-                var id = recipeRow["id"]
+                let id = recipeRow["id"]
                let recipe = try RecipeDataHelper.findIdServer(Int64(id as! Int))
                 if recipe != nil {
                     print("bd")
@@ -101,9 +101,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         do{
             recipeTMI = recipe
-            let tasks = try TaskDataHelper.findAllRecipe(recipe.recipeIdServer)! as [Task]
+            let tasks = try TaskDataHelper.findAllRecipe(recipe.recipeId)! as [Task]
             recipeTMI!.tasks = tasks
-            let measures = try MeasureDataHelper.findAllRecipe(recipe.recipeIdServer)! as [MeasureIngredients]
+            let measures = try MeasureDataHelper.findAllRecipe(recipe.recipeId)! as [MeasureIngredients]
             for m in measures {
                 var measure : MeasureIngredients
                 measure = m
@@ -213,7 +213,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             for r in recipes {
                 recipe = r
                 var post=Dictionary<String,AnyObject>()
-                var idString = NSNumber(double: Double((recipe?.recipeIdServer)!))
+                let idString = NSNumber(double: Double((recipe?.recipeIdServer)!))
                 post = ["id":idString,"name":(recipe?.name)!]
                 self.recetasString.append(post)
             }
@@ -232,6 +232,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
     }
+    @IBOutlet weak var searchBar: UITextField!
     @IBAction func searchAction2(sender: UITextField) {
         self.recetasString = self.recetasStringAux
         if !sender.text!.isEmpty {
@@ -262,6 +263,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         case 2:
             print ("Favoritas")
             recibirFavoritos()
+            
             break
         default:
              print ("Posibles")

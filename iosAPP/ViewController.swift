@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITabBarDelegate {
     var ingredients = [Ingredient]()
     var ingredientesString = ""
     var recipeSegue :Recipe?
+    var recipes :[Recipe]?
+    var random = 0
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -26,28 +28,23 @@ class ViewController: UIViewController, UITabBarDelegate {
         let dataStore = SQLiteDataStore.sharedInstance
         do{
             try dataStore.createTables()
-            
             if try StorageDataHelper.find(1) == nil {
-                
-            let  S = Storage()
-             let id = try  StorageDataHelper.insert(S)
+                let  S = Storage()
+                let id = try  StorageDataHelper.insert(S)
                 print ("storage creado \(id)" )
-                
             }
             if try CartDataHelper.find(1) == nil {
-                
                 let  C = Cart()
                 let id = try  CartDataHelper.insert(C)
                 print ("cart creado \(id)" )
                 
             }
-            
-        
         }catch _ {
             print ("error insert")
         }
         print ("Finish")
-        
+    }
+    func ingredientsStorage(){
         do {
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
             if self.ingredients.count == 0{
@@ -58,20 +55,11 @@ class ViewController: UIViewController, UITabBarDelegate {
                 let id = String(io.ingredientIdServer)
                 ingredientesString  += id  + ",";
             }
-            //print(ingredientesString)
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
-        recibirFavoritos()
-        cargarView()
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("backTapped:"))
-        back.userInteractionEnabled = true
-        back.addGestureRecognizer(tapGestureRecognizer)
-        // Do any additional setup after loading the view, typically from a nib.
     }
     func cargarView(){
-        
         print("imagen pulsada")
         do {
             if post["id"] != nil {
@@ -84,6 +72,8 @@ class ViewController: UIViewController, UITabBarDelegate {
                     let url = NSURL(string: recipe!.photo)
                     let data = NSData(contentsOfURL: url!)
                     self.imageRecipe.image = UIImage(data: data!)
+                }else {
+                    self.imageRecipe.image = UIImage(named: "sinImagen")
                 }
                 self.labelRecipe.text = recipeSegue?.name
             }
@@ -97,12 +87,14 @@ class ViewController: UIViewController, UITabBarDelegate {
     }
     func backTapped(img: AnyObject)
     {
+        if recipeSegue != nil {
             print("bd")
             externalStoryboard = UIStoryboard(name: "Recipe", bundle: nil)
             let secondViewController = externalStoryboard.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
             secondViewController.recipe = recipeSegue
             secondViewController.ingredients = ingredients
             self.navigationController?.pushViewController(secondViewController, animated: true)
+        }
     }
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
@@ -135,12 +127,17 @@ class ViewController: UIViewController, UITabBarDelegate {
     }
     func recibirFavoritos(){
         
-        var recipe : Recipe?
         do {
-            let recipes = try RecipeDataHelper.findAllFavorites()! as [Recipe]
-            if recipes.count != 0 {
-                var idString = NSNumber(double: Double((recipes[0].recipeIdServer)))
-                post = ["id":idString,"name":(recipes[0].name)]
+            recipes = try RecipeDataHelper.findAllFavorites()! as [Recipe]
+            if recipes!.count != 0 {
+                
+                var randomAux = Int(arc4random_uniform(UInt32(recipes!.count)))
+                while random == randomAux && recipes?.count > 1{
+                    randomAux = Int(arc4random_uniform(UInt32(recipes!.count)))
+                }
+                random = randomAux
+                let idString = NSNumber(double: Double((recipes![random].recipeIdServer)))
+                post = ["id":idString,"name":(recipes![random].name)]
             }
             
              
@@ -149,15 +146,22 @@ class ViewController: UIViewController, UITabBarDelegate {
         }
         
     }
+    @IBAction func randomAction(sender: AnyObject) {
+        //random = Int(arc4random_uniform(UInt32(recipes!.count)))
+        recibirFavoritos()
+        cargarView()
+        print ("random: " + "\(random)")
+
+    }
     func createRecipe(recipe: Recipe) -> Recipe{
         var recipeTMI: Recipe?
         var measuresArray = [MeasureIngredients]()
         
         do{
             recipeTMI = recipe
-            let tasks = try TaskDataHelper.findAllRecipe(recipe.recipeIdServer)! as [Task]
+            let tasks = try TaskDataHelper.findAllRecipe(recipe.recipeId)! as [Task]
             recipeTMI!.tasks = tasks
-            let measures = try MeasureDataHelper.findAllRecipe(recipe.recipeIdServer)! as [MeasureIngredients]
+            let measures = try MeasureDataHelper.findAllRecipe(recipe.recipeId)! as [MeasureIngredients]
             for m in measures {
                 var measure : MeasureIngredients
                 measure = m
