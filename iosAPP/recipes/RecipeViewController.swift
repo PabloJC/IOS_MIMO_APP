@@ -30,6 +30,9 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewDidLoad()
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ingredientCell")
         self.starsRating.settings.updateOnTouch = false
+        for iBD in self.ingredients {
+            ingredientsBDServerId.append(iBD.ingredientIdServer)
+        }
         if recipe == nil {
             recibir()
         }else {
@@ -39,9 +42,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             drawView()
         }
         
-        for iBD in self.ingredients {
-            ingredientsBDServerId.append(iBD.ingredientIdServer)
-        }
+        
         
         
         // Do any additional setup after loading the view.

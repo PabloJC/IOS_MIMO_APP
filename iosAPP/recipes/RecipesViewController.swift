@@ -22,6 +22,19 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewDidLoad()
         title = "\"Recetas\""
         
+        
+        loadIngredientsStorage()
+        recibirFavoritos()
+        
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(animated: Bool) {
+        
+        tableView.reloadData()
+    }
+    func loadIngredientsStorage(){
         do {
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
             if self.ingredients.count == 0{
@@ -36,18 +49,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
-        /*if !sincronized {
-            recibir()
-        }*/
-        recibirFavoritos()
-        
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        // Do any additional setup after loading the view.
-    }
-    override func viewDidAppear(animated: Bool) {
-        
-        tableView.reloadData()
     }
     
     //MARK : UITableViewDataSource
