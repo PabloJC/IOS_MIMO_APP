@@ -215,7 +215,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBAction func saveFavorites(sender: AnyObject) {
         print("Action salvar")
         var correcto = true
-        var recipeIns = recipe
+        let recipeIns = recipe
         var measure : MeasureIngredients
         var RecipeId : Int64?
         recipeIns?.favorite = FavoriteTypes.favorite
@@ -264,7 +264,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
         }
         if correcto {
-            var task: Task
+            var _: Task
             for t in (self.recipe?.tasks)! {
                 do{
                     t.recipeId = RecipeId!
