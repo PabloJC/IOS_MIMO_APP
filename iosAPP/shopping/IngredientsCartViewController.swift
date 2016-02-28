@@ -36,6 +36,8 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
         // Do any additional setup after loading the view.
     }
     
+   
+    
     func recibir(){
         if Reachability.isConnectedToNetwork() == true {
             let myapiClient = MyAPIClient()

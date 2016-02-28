@@ -53,7 +53,7 @@
                                         <rect key="frame" x="507" y="10" width="30" height="30"/>
                                         <state key="normal" title="+"/>
                                         <connections>
-                                            <segue destination="n9K-Fx-JeQ" kind="show" id="6Cq-qD-oui"/>
+                                            <action selector="actionButton:" destination="HQg-hu-mYB" eventType="touchUpInside" id="ByQ-i8-2bP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -88,6 +88,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="cPC-ee-TvP" id="DQH-kT-QeW"/>
                         <outlet property="myKitchen" destination="N5w-x1-XtJ" id="pNp-zH-iGD"/>
                     </connections>
                 </viewController>
@@ -95,7 +96,7 @@
                 <swipeGestureRecognizer direction="right" id="U8s-rq-EhG"/>
                 <tapGestureRecognizer id="U4u-Z8-mne"/>
             </objects>
-            <point key="canvasLocation" x="371" y="237"/>
+            <point key="canvasLocation" x="381" y="237"/>
         </scene>
         <!--Ingredients View Controller-->
         <scene sceneID="pLU-BI-6my">
