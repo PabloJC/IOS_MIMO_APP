@@ -24,7 +24,17 @@ class ViewController: UIViewController, UITabBarDelegate {
         
         super.viewDidLoad()
         back.layer.cornerRadius = 5
-        
+        initDB()
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("backTapped:"))
+        back.userInteractionEnabled = true
+        back.addGestureRecognizer(tapGestureRecognizer)
+    }
+    override func viewWillAppear(animated: Bool) {
+        ingredientsStorage()
+        recibirFavoritos()
+        cargarView()
+    }
+    func initDB(){
         let dataStore = SQLiteDataStore.sharedInstance
         do{
             try dataStore.createTables()
