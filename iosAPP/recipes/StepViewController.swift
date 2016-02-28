@@ -17,6 +17,7 @@ class StepViewController: UIViewController {
     @IBOutlet weak var uiTextField: UITextField!
     @IBOutlet weak var btAlarm: UIButton!
     var recipe : Recipe?
+    var notifications = [Notification]()
     var tasks = [AnyObject]()
     var currentTaskPos = 0
     var timer = NSTimer();
@@ -50,6 +51,20 @@ class StepViewController: UIViewController {
        }else {
         self.nextBT.setTitle("Finalizar", forState: .Normal)
         
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        recibirNotificationes()
+    }
+    
+    func recibirNotificationes(){
+        do{
+            notifications = try NotificationsDataHelper.findAll()!
+
+            print("Notificaciones cargadas")
+        }catch _{
+            print("Notificaciones no cargadas")
         }
     }
 
@@ -93,6 +108,8 @@ class StepViewController: UIViewController {
             stopTimer()
             btAlarm.selected = !btAlarm.selected
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
+            btAlarm.enabled = true
+            nextBT.enabled = true
         }else{
             self.uiTextField.text = timeString
         }
@@ -170,6 +187,8 @@ class StepViewController: UIViewController {
             uiTextField.enabled = false
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             self.startDate = NSDate();
+            sender2.enabled = false
+            nextBT.enabled = false
         } else {
             uiTextField.enabled = true
             self.stopTimer();
@@ -181,11 +200,14 @@ class StepViewController: UIViewController {
         print(timerAlert)
         notification.fireDate = fixedNotificationDate(timerAlert!)
         // 3
-        notification.alertBody = "Tarea pendiente de revision \(timerAlert)"
+        notification.alertBody = " la Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
         notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         // 7
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        
     }
+    
     
     func fixedNotificationDate(dateToFix: NSDate) -> NSDate {
         

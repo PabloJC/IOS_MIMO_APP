@@ -51,14 +51,7 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
                     print("\(error.debugDescription)")
             }
         } else {
-            let frame = CGRect(x: 10, y: 10, width: UIScreen.mainScreen().bounds.size.width, height: 50)
-            let aView = UIView(frame: frame)
             
-            aView.backgroundColor = UIColor.blackColor()
-            aView.transform.tx = 0
-            aView.transform.ty = 0
-
-            self.view.addSubview(aView)
             
             print("Internet connection FAILED")
         }

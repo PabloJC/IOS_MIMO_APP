@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITabBarDelegate {
         
         super.viewDidLoad()
         back.layer.cornerRadius = 5
+        
         let dataStore = SQLiteDataStore.sharedInstance
         do{
             try dataStore.createTables()
