@@ -61,6 +61,7 @@
 		B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A22E1C5E87EE0085C5C8 /* LaunchScreen.storyboard */; };
 		B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */; };
 		B5F579F31C74CFA6006A2FF2 /* SQLiteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F579F21C74CFA6006A2FF2 /* SQLiteDataStore.swift */; };
+		B5F93A7F1C836B960056CB50 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F93A7E1C836B960056CB50 /* TaskTableViewCell.swift */; };
 		B5F9707A1C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F970791C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +124,7 @@
 		B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleStepViewController.swift; path = recipes/SingleStepViewController.swift; sourceTree = "<group>"; };
 		B5F579F01C74CF0E006A2FF2 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
 		B5F579F21C74CFA6006A2FF2 /* SQLiteDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteDataStore.swift; path = BD/SQLiteDataStore.swift; sourceTree = "<group>"; };
+		B5F93A7E1C836B960056CB50 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = recipes/TaskTableViewCell.swift; sourceTree = "<group>"; };
 		B5F970791C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeIngredientTableViewCell.swift; path = recipes/RecipeIngredientTableViewCell.swift; sourceTree = "<group>"; };
 		C8202BCCE08F3DBEBAC269C9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E961B85E7B3B5CBE813A3A0F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +221,7 @@
 				B51199051C7BC8010017B164 /* FinalStepViewController.swift */,
 				B51199071C7BC8400017B164 /* SelectIngredientTableViewCell.swift */,
 				B5F970791C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift */,
+				B5F93A7E1C836B960056CB50 /* TaskTableViewCell.swift */,
 			);
 			name = Recipes;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				B51199221C7BEEB40017B164 /* Storage.swift in Sources */,
 				B51199351C7BEF170017B164 /* KitchenViewController.swift in Sources */,
 				B51199141C7BEE900017B164 /* TaskDataHelper.swift in Sources */,
+				B5F93A7F1C836B960056CB50 /* TaskTableViewCell.swift in Sources */,
 				B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */,
 				B51199101C7BEE900017B164 /* IngredientDataHelper.swift in Sources */,
 				B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */,

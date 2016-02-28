@@ -27,7 +27,7 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
         
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        //tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
         // Do any additional setup after loading the view.
     }
@@ -48,28 +48,29 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")
-        
+        //let cell = tableView.dequeueReusableCellWithIdentifier("Cell")
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TaskTableViewCell
         //let recipe = recipes[indexPath.row]
         if tasks.count > 0 {
             let taskrow = tasks[indexPath.row]
             let task = taskrow as? Task
             //cell!.textLabel!.text = recipe.valueForKey("name") as? String
-            cell!.textLabel!.text = "Paso " + (task?.name)!
+            cell!.nameTaskPortrait!.text = "Paso " + (task?.name)!
+            cell!.nameTaskLandscape!.text = "Paso " + (task?.name)! + "Landscape"
+            if task!.photo != "" && Reachability.isConnectedToNetwork() {
+                let url = NSURL(string: task!.photo)
+                let data = NSData(contentsOfURL: url!)
+                cell!.imageTask.image = UIImage(data: data!)
+            }
         }
        // print (tasks.count)
         
         return cell!
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // let row = indexPath.row
-        //let recipe = recetasString[row]
-        //idseleccionado = (recipe["id"]! as? Int)!
-        // let secondViewController = self.storyboard!.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
         
-        //self.navigationController!.pushViewController(secondViewController, animated: true)
+        
         self.performSegueWithIdentifier("stepDescription", sender: self)
-        //print("\(recipe["id"]!)")
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "stepDescription") {
