@@ -83,7 +83,7 @@
         <!--Recipe View Controller-->
         <scene sceneID="lzc-6e-LPU">
             <objects>
-                <viewController id="FG9-a9-t29" customClass="RecipeViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recipe" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FG9-a9-t29" customClass="RecipeViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Shf-2b-NIT">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -195,6 +195,7 @@
                     <navigationItem key="navigationItem" id="Rtb-PD-Hap"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="favoritebt" destination="nRe-9y-7d9" id="xzC-rK-ozX"/>
                         <outlet property="id" destination="CfE-Zo-k3I" id="Zfh-9V-SpK"/>
                         <outlet property="imageView" destination="tfK-mK-OUV" id="Asc-ZF-iEi"/>
                         <outlet property="nombreReceta" destination="lSq-aZ-Ti0" id="cTb-KO-MEa"/>

@@ -12,8 +12,8 @@ import Cosmos
 
 class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
+    @IBOutlet weak var favoritebt: UIButton!
     @IBOutlet weak var nombreReceta: UILabel!
-    @IBOutlet weak var TextBox: UITextView!
     @IBOutlet weak var id: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -33,6 +33,9 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         if recipe == nil {
             recibir()
         }else {
+            if recipe?.favorite == FavoriteTypes.favorite {
+                favoritebt.enabled = false
+            }
             drawView()
         }
         

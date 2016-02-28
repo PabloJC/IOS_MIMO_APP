@@ -17,12 +17,29 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var recetasStringAux = [Dictionary<String,AnyObject>]()
     var ingredients = [Ingredient]()
     var sincronized = false
+    var ingredientesString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "\"Recetas\""
+        
+        do {
+            ingredients = try IngredientDataHelper.findIngredientsInStorage()!
+            if self.ingredients.count == 0{
+                ingredientesString = "0"
+            }
+            for ing in ingredients {
+                let io = ing
+                let id = String(io.ingredientIdServer)
+                ingredientesString  += id  + ",";
+            }
+            //print(ingredientesString)
+        } catch _ {
+            print ("error al coger los ingredientes del almacen")
+        }
         /*if !sincronized {
             recibir()
         }*/
+        recibirFavoritos()
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
@@ -138,21 +155,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.recetasString = []
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
-        var ingredientesString = ""
-        do {
-            ingredients = try IngredientDataHelper.findIngredientsInStorage()!
-            if self.ingredients.count == 0{
-                ingredientesString = "0"
-            }
-            for ing in ingredients {
-                let io = ing 
-                let id = String(io.ingredientIdServer)
-                ingredientesString  += id  + ",";
-            }
-            //print(ingredientesString)
-        } catch _ {
-            print ("error al coger los ingredientes del almacen")
-        }
+        
         myapiClient.getRecipesIngredients(ingredientesString, recipes: { (receta, id) -> () in
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
@@ -203,6 +206,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func recibirFavoritos(){
         self.recetasString = []
+        self.activityIndicator.startAnimating()
         var recipe : Recipe?
         do {
             let recipes = try RecipeDataHelper.findAllFavorites()! as [Recipe]

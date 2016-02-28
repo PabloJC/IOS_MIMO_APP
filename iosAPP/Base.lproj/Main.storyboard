@@ -74,6 +74,8 @@
                     <navigationItem key="navigationItem" title="OTAKU COOK" id="kDx-R4-XeN"/>
                     <connections>
                         <outlet property="back" destination="Iir-nh-rVS" id="JCB-kD-Uiw"/>
+                        <outlet property="imageRecipe" destination="FSB-TM-wKW" id="MMe-Fo-hVA"/>
+                        <outlet property="labelRecipe" destination="dwk-BG-IBj" id="ZuO-8q-Eea"/>
                         <outlet property="tabBar" destination="teD-AV-YSq" id="i5M-Ft-o4n"/>
                     </connections>
                 </viewController>
