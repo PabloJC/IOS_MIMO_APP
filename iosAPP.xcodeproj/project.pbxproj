@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A010AF01C830F7A004C6F88 /* NotificationsDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AEF1C830F7A004C6F88 /* NotificationsDataHelper.swift */; };
 		3A010AF21C830FC6004C6F88 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AF11C830FC6004C6F88 /* Notification.swift */; };
-		3A010AF91C83245D004C6F88 /* Toast_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A010AF81C83245D004C6F88 /* Toast_Swift.framework */; };
 		3A010AFB1C832690004C6F88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A010AFA1C832690004C6F88 /* QuartzCore.framework */; };
 		3A010AFD1C8326F1004C6F88 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AFC1C8326F1004C6F88 /* Toast.swift */; };
 		3A1620711C821B2B00B25A24 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1620701C821B2B00B25A24 /* Reachability.swift */; };
@@ -136,7 +135,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A010AFB1C832690004C6F88 /* QuartzCore.framework in Frameworks */,
-				3A010AF91C83245D004C6F88 /* Toast_Swift.framework in Frameworks */,
 				3A1620731C821F0000B25A24 /* SystemConfiguration.framework in Frameworks */,
 				B559636C1C8109FD0013764F /* Cosmos.framework in Frameworks */,
 				3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */,
@@ -583,6 +581,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = iosAPP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
@@ -602,6 +601,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = iosAPP/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
