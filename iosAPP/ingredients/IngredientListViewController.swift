@@ -21,11 +21,20 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     var ingredients2 = [Ingredient]()
     
     @IBAction func search(sender: UITextField) {
-        ingredients = ingredients2
+        
+        ingredientsSection = ingredientsSection2
         if !sender.text!.isEmpty {
-            ingredients = ingredients.filter { (ingredient) -> Bool in
-            ingredient.name.lowercaseString.rangeOfString(sender.text!.lowercaseString) != nil
+            
+            for i in ingredientsSection.keys{
+                let ingredients = ingredientsSection[i]
+                ingredientsSection[i] =  ingredients!.filter({ (ingredient) -> Bool in
+                    ingredient.name.lowercaseString.rangeOfString(sender.text!.lowercaseString) != nil
+                })
+                if(ingredientsSection[i]?.count == 0){
+                    ingredientsSection.removeValueForKey(i)
+                }
             }
+            
         }
         table.reloadData()
     }
@@ -40,7 +49,8 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     
     
     func recibir(){
-        if Reachability.isConnectedToNetwork() == true {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.isConected {
             let myapiClient = MyAPIClient()
             myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
                 self.ingredientsSection[baseType] = ingredients
@@ -51,9 +61,8 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
                     print("\(error.debugDescription)")
             }
         } else {
-            
-            
-            print("Internet connection FAILED")
+
+            self.view.makeToast("No tienes conexión", duration: 2, position: .Center)
         }
         
     }

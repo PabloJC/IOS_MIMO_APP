@@ -44,8 +44,9 @@ class StepViewController: UIViewController {
             self.taskName.text = "Paso " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
           //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
-            total = Double((t?.seconds)!)
-           self.uiTextField.text = tiempo(Double((t?.seconds)!))
+         total = Double((t?.seconds)!)
+        self.uiTextField.text = tiempo(Double((t?.seconds)!))
+        
             print (NSDate())
         
        }else {
@@ -132,6 +133,8 @@ class StepViewController: UIViewController {
             currentTaskPos++
             t = tasks[currentTaskPos] as? Task
             self.taskName.text = "Paso " + (t?.name)!
+            total = Double((t?.seconds)!)
+            self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
             
         }
@@ -156,6 +159,8 @@ class StepViewController: UIViewController {
             currentTaskPos--
             t = tasks[currentTaskPos] as? Task
             self.taskName.text = "Paso " + (t?.name)!
+            total = Double((t?.seconds)!)
+            self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
             if currentTaskPos == 0 {
                 print("boton disable")
@@ -198,11 +203,30 @@ class StepViewController: UIViewController {
         let notification = UILocalNotification()
         // 15
         print(timerAlert)
+        notification.userInfo = Dictionary<String, AnyObject> ()
         notification.fireDate = fixedNotificationDate(timerAlert!)
         // 3
-        notification.alertBody = " la Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
+        notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
         notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         // 7
+        
+        let ntf = Notification()
+        ntf.firedate = timerAlert!
+        ntf.recipeId = (recipe?.recipeId)!
+        ntf.taskId = (t?.taskId)!
+        
+        
+        do{
+            
+            let id = try NotificationsDataHelper.insert(ntf)
+            print (id)
+            notification.userInfo = ["uid" : Int(id) ]
+            print("Notificacion insertada")
+         }catch _{
+            print("Error al crear el ingrediente")
+        }
+        
+        
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
         

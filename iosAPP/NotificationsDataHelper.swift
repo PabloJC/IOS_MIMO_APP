@@ -16,8 +16,7 @@ class NotificationsDataHelper: DataHelperProtocol {
     static let recipeId = Expression<Int64>("recipeId")
     static let notificationId = Expression<Int64>("notificationId")
     static let taskId = Expression<Int64>("taskId")
-    static let name = Expression<String>("name")
-    static let datetime = Expression<NSDate>("datetime")
+    static let firedate = Expression<NSDate>("firedate")
     
     typealias T = Notification
     
@@ -29,9 +28,8 @@ class NotificationsDataHelper: DataHelperProtocol {
             let _ = try DB.run(table.create(temporary: false, ifNotExists: true) { t in
                 t.column(notificationId, primaryKey: true)
                 t.column(recipeId)
-                t.column(name)
                 t.column(taskId)
-                t.column(datetime)
+                t.column(firedate)
                 
                 })
         }catch _ {
@@ -42,7 +40,7 @@ class NotificationsDataHelper: DataHelperProtocol {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
             throw DataAccessError.Datastore_Connection_Error
         }
-        let insert = table.insert(recipeId <- item.recipeId, name <- item.name, taskId <- item.taskId,datetime <- item.datetime)
+        let insert = table.insert(recipeId <- item.recipeId,taskId <- item.taskId,firedate <- item.firedate)
         do {
             let rowId = try DB.run(insert)
             guard rowId > 0 else {
@@ -78,10 +76,9 @@ class NotificationsDataHelper: DataHelperProtocol {
         for item in  items {
             let notification = Notification()
             notification.notificationId = item[notificationId]
-            notification.name = item[name]
             notification.taskId = item[taskId]
             notification.recipeId = item[recipeId]
-            notification.datetime = item[datetime]
+            notification.firedate = item[firedate]
             return notification
         }
         
@@ -100,10 +97,9 @@ class NotificationsDataHelper: DataHelperProtocol {
         for item in items {
             let notification = Notification()
             notification.notificationId = item[notificationId]
-            notification.name = item[name]
             notification.taskId = item[taskId]
             notification.recipeId = item[recipeId]
-            notification.datetime = item[datetime]
+            notification.firedate = item[firedate]
 
             retArray.append(notification)
         }

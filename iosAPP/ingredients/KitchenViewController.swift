@@ -11,6 +11,7 @@ import CoreData
 class KitchenViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
 
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var myKitchen: UITableView!
     
     var ingredients = [Ingredient]()
@@ -21,6 +22,15 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
 
         self.myKitchen.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Ingredient")
+    }
+    @IBAction func actionButton(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.isConected {
+            let instance = self.storyboard!.instantiateViewControllerWithIdentifier("categoryView") as? IngredientsViewController
+            self.navigationController?.pushViewController(instance!, animated: true)
+        }else{
+            self.view.makeToast("No tienes conexión", duration: 2, position: .Top)
+        }
     }
     
     @IBAction func storeIngredient(sender: UIButton) {
@@ -189,6 +199,8 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             return "Histórico"
         }
     }
+    
+
     
 
     /*

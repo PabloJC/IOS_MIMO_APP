@@ -44,7 +44,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="EVA-fh-4A1" kind="push" id="giL-IA-B4y"/>
+                                    <action selector="actionButton:" destination="uab-0M-YHm" eventType="touchUpInside" id="QfZ-qY-FGE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -57,12 +57,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPv-7I-gxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="186"/>
+            <point key="canvasLocation" x="117" y="168"/>
         </scene>
         <!--Categories View Controller-->
         <scene sceneID="P0m-Yp-jqc">
             <objects>
-                <viewController id="EVA-fh-4A1" customClass="CategoriesViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryShopping" id="EVA-fh-4A1" customClass="CategoriesViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BEu-o7-bVl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

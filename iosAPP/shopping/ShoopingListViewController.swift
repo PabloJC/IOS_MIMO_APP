@@ -38,6 +38,16 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
         
     }
     
+    @IBAction func actionButton(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.isConected {
+            let instance = self.storyboard!.instantiateViewControllerWithIdentifier("categoryShopping") as? CategoriesViewController
+            self.navigationController?.pushViewController(instance!, animated: true)
+        }else{
+            self.view.makeToast("No tienes conexión", duration: 2, position: .Top)
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].count
     }
