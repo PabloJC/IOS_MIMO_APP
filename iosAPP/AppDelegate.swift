@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let notificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge], categories: nil)
+        let notificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge,.Sound], categories: nil)
         
         application.registerUserNotificationSettings(notificationSettings)
         application.applicationIconBadgeNumber = 0
@@ -27,8 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
-        application.cancelAllLocalNotifications()
-        self.window?.rootViewController?.view.makeToast(notification.alertBody, duration: 6.0, position: .Center, title: nil, image: UIImage(named: "favoritos.png"), style: nil, completion: nil)
+        let name = notification.userInfo!["uid"]
+        print(name)
+        //application.cancelAllLocalNotifications()
+        self.window?.rootViewController?.view.makeToast(notification.alertBody, duration: 4.0, position: .Center, title: nil, image: UIImage(named: "favoritos.png"), style: nil, completion: nil)
     }
     
     func applicationDidBecomeActive(application: UIApplication) {

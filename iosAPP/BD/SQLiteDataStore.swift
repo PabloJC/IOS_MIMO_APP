@@ -42,6 +42,7 @@ class SQLiteDataStore {
             try TaskDataHelper.createTable()
             try StorageDataHelper.createTable()
             try CartDataHelper.createTable()
+            try NotificationsDataHelper.createTable()
             
         }catch{
             throw DataAccessError.Datastore_Connection_Error
