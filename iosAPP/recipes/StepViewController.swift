@@ -212,7 +212,7 @@ class StepViewController: UIViewController {
         
         let ntf = Notification()
         ntf.firedate = timerAlert!
-        ntf.recipeId = (recipe?.recipeId)!
+        ntf.recipeId = (recipe?.recipeIdServer)!
         ntf.taskId = (t?.taskId)!
         
         

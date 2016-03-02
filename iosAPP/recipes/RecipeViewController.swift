@@ -18,6 +18,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var starsRating: CosmosView!
+    @IBOutlet weak var cocinarBt: UIButton!
     var missingIngredients = [Ingredient]()
     var storedIngredients = [Ingredient]()
     var sections = [[Ingredient]]()
@@ -40,6 +41,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                 favoritebt.enabled = false
             }
             drawView()
+            comprobarNotificacion()
         }
         
         
@@ -50,7 +52,9 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func viewWillAppear(animated: Bool) {
         
-        
+        if recipe != nil {
+            comprobarNotificacion()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,9 +67,25 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.recipe = r
             }, finished: { () -> () in
                 self.drawView()
+                self.comprobarNotificacion()
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }
+    }
+    func comprobarNotificacion(){
+        do {
+            let id = recipe?.recipeIdServer
+            let notificaciones = try NotificationsDataHelper.findAllNotifications(id!)
+            if notificaciones?.count > 0 {
+                cocinarBt.enabled = false
+            }else {
+                cocinarBt.enabled = true
+                
+            }
+        }catch _ {
+            print("error al encontrar notificaciones")
+        }
+
     }
     func drawView(){
         if recipe != nil {
@@ -117,6 +137,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         if segue.identifier == "step" {
             let stepDestination = segue.destinationViewController as! StepViewController
             stepDestination.recipe = recipe
+            
         }
         else if segue.identifier == "stepList" {
             let stepListDestination = segue.destinationViewController as! StepListViewController
@@ -275,6 +296,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                     print("error al crear la tarea")
                 }
             }
+            favoritebt.enabled = false
             print("receta agregada")
         }
     }

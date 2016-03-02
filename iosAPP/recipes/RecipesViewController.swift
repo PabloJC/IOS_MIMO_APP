@@ -24,7 +24,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
         loadIngredientsStorage()
-        recibirFavoritos()
+        recibirTodas()
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
@@ -154,6 +154,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func recibir(){
         self.recetasString = []
+        self.tableView.reloadData()
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
         
@@ -182,6 +183,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     func recibirTodas(){
         self.recetasString = []
+        self.tableView.reloadData()
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
         myapiClient.getRecipes({ (receta,id) -> () in
@@ -207,6 +209,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func recibirFavoritos(){
         self.recetasString = []
+        self.tableView.reloadData()
         self.activityIndicator.startAnimating()
         var recipe : Recipe?
         do {

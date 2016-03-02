@@ -28,7 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
         let name = notification.userInfo!["uid"]
-        print(name)
+        let noti = Notification()
+        noti.notificationId = Int64(name! as! Int)
+        do{
+           try NotificationsDataHelper.delete(noti)
+        } catch _ {
+            print ("error al borrar notificacion")
+        }
+        
         //application.cancelAllLocalNotifications()
         self.window?.rootViewController?.view.makeToast(notification.alertBody, duration: 4.0, position: .Center, title: nil, image: UIImage(named: "favoritos.png"), style: nil, completion: nil)
     }

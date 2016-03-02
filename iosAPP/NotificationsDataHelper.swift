@@ -107,4 +107,24 @@ class NotificationsDataHelper: DataHelperProtocol {
         return retArray
         
     }
+    static func findAllNotifications(id: Int64) throws -> [T]? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        var retArray = [T]()
+        let query = table.filter(recipeId == id)
+        let items = try DB.prepare(query)
+        for item in items {
+            let notification = Notification()
+            notification.notificationId = item[notificationId]
+            notification.taskId = item[taskId]
+            notification.recipeId = item[recipeId]
+            notification.firedate = item[firedate]
+            
+            retArray.append(notification)
+        }
+        
+        return retArray
+        
+    }
    }
