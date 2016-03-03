@@ -67,11 +67,11 @@ class NotificationsDataHelper: DataHelperProtocol {
         }
     }
     
-    static func find(id: Int64) throws -> T? {
+    static func findNotificationByTask(idTask: Int64) throws -> T? {
         guard let DB = SQLiteDataStore.sharedInstance.DB else {
             throw DataAccessError.Datastore_Connection_Error
         }
-        let query = table.filter(notificationId == id)
+        let query = table.filter(taskId == idTask)
         let items = try DB.prepare(query)
         for item in  items {
             let notification = Notification()
@@ -85,6 +85,27 @@ class NotificationsDataHelper: DataHelperProtocol {
         return nil
         
     }
+    
+    static func find(id: Int64) throws -> T? {
+        guard let DB = SQLiteDataStore.sharedInstance.DB else {
+            throw DataAccessError.Datastore_Connection_Error
+        }
+        let query = table.filter(notificationId == id)
+        let items = try DB.prepare(query)
+        for item in  items {
+            let notification = Notification()
+            notification.notificationId = item[notificationId]
+            notification.taskId = item[taskId]
+            notification.recipeId = item[recipeId]
+            notification.firedate = item[firedate]
+            return notification
+
+        }
+        
+        return nil
+        
+    }
+
 
     
     
