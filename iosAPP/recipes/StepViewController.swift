@@ -41,7 +41,8 @@ class StepViewController: UIViewController {
                 return t.name < t2.name
             })
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
+            //self.taskName.text = "Paso " + (t?.name)!
+        self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
           //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
          total = Double((t?.seconds)!)
@@ -50,7 +51,7 @@ class StepViewController: UIViewController {
             print (NSDate())
         
        }else {
-        self.nextBT.setTitle("Finalizar", forState: .Normal)
+        self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
         
         }
     }
@@ -124,7 +125,7 @@ class StepViewController: UIViewController {
         if currentTaskPos < tasks.count-1{
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
-                bt.setTitle("Finalizar", forState: .Normal)
+                bt.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
                 print("boton cambiado a finalizar")
             }
             if currentTaskPos >= 0 {
@@ -132,7 +133,7 @@ class StepViewController: UIViewController {
             }
             currentTaskPos++
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
+            self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
@@ -153,12 +154,12 @@ class StepViewController: UIViewController {
         if currentTaskPos > 0 {
             
             if currentTaskPos < tasks.count {
-                self.nextBT.setTitle("Siguiente", forState: .Normal)
+                self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
             }
             
             currentTaskPos--
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
+            self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
@@ -206,7 +207,8 @@ class StepViewController: UIViewController {
         notification.userInfo = Dictionary<String, AnyObject> ()
         notification.fireDate = fixedNotificationDate(timerAlert!)
         // 3
-        notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
+        //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
+        notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
         notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         // 7
         

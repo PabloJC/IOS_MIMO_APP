@@ -472,18 +472,18 @@
                                 <exclude reference="fhI-XD-9F3"/>
                                 <exclude reference="sub-4y-uAi"/>
                                 <exclude reference="wSe-dR-q3V"/>
-                                <exclude reference="AMQ-3i-NGr"/>
-                                <exclude reference="Du9-hg-hsJ"/>
-                                <exclude reference="QmN-MP-fER"/>
-                                <exclude reference="UBG-oz-dCE"/>
-                                <exclude reference="fpT-wG-ZLM"/>
-                                <exclude reference="g0N-rK-usc"/>
                                 <exclude reference="46d-ej-wFS"/>
                                 <exclude reference="Eb2-Z4-fAm"/>
                                 <exclude reference="LrZ-PK-RhI"/>
                                 <exclude reference="fwI-y7-aY6"/>
                                 <exclude reference="kRH-tF-YWr"/>
                                 <exclude reference="qzn-c1-VP9"/>
+                                <exclude reference="AMQ-3i-NGr"/>
+                                <exclude reference="Du9-hg-hsJ"/>
+                                <exclude reference="QmN-MP-fER"/>
+                                <exclude reference="UBG-oz-dCE"/>
+                                <exclude reference="fpT-wG-ZLM"/>
+                                <exclude reference="g0N-rK-usc"/>
                                 <exclude reference="ed9-yb-0Tx"/>
                                 <exclude reference="nPH-Ot-b4u"/>
                                 <exclude reference="vTg-nd-2Ew"/>
@@ -521,11 +521,11 @@
                             <mask key="constraints">
                                 <include reference="392-uI-LGg"/>
                                 <include reference="sub-4y-uAi"/>
+                                <include reference="46d-ej-wFS"/>
+                                <include reference="fwI-y7-aY6"/>
                                 <include reference="Du9-hg-hsJ"/>
                                 <include reference="QmN-MP-fER"/>
                                 <include reference="fpT-wG-ZLM"/>
-                                <include reference="46d-ej-wFS"/>
-                                <include reference="fwI-y7-aY6"/>
                                 <include reference="nPH-Ot-b4u"/>
                                 <include reference="zUq-1g-gQE"/>
                                 <include reference="8J0-fW-uCn"/>
@@ -551,13 +551,13 @@
                                 <include reference="I2R-OB-SkC"/>
                                 <include reference="fhI-XD-9F3"/>
                                 <include reference="wSe-dR-q3V"/>
-                                <include reference="AMQ-3i-NGr"/>
-                                <include reference="UBG-oz-dCE"/>
-                                <include reference="g0N-rK-usc"/>
                                 <include reference="Eb2-Z4-fAm"/>
                                 <include reference="LrZ-PK-RhI"/>
                                 <include reference="kRH-tF-YWr"/>
                                 <include reference="qzn-c1-VP9"/>
+                                <include reference="AMQ-3i-NGr"/>
+                                <include reference="UBG-oz-dCE"/>
+                                <include reference="g0N-rK-usc"/>
                                 <include reference="ed9-yb-0Tx"/>
                                 <include reference="vTg-nd-2Ew"/>
                                 <include reference="PAE-fk-vgy"/>
@@ -645,6 +645,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="0.0" width="304" height="88.5"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>

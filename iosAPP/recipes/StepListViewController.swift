@@ -55,8 +55,8 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             let taskrow = tasks[indexPath.row]
             let task = taskrow as? Task
             //cell!.textLabel!.text = recipe.valueForKey("name") as? String
-            cell!.nameTaskPortrait!.text = "Paso " + (task?.name)!
-            cell!.nameTaskLandscape!.text = "Paso " + (task?.name)! + "Landscape"
+            cell!.nameTaskPortrait!.text = NSLocalizedString("PASO",comment:"Paso") + " " + (task?.name)!
+            cell!.nameTaskLandscape!.text = NSLocalizedString("PASO",comment:"Paso") + " "  + (task?.name)! + "Landscape"
             if task!.photo != "" && Reachability.isConnectedToNetwork() {
                 let url = NSURL(string: task!.photo)
                 let data = NSData(contentsOfURL: url!)
