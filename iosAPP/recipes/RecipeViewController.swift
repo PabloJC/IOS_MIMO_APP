@@ -41,7 +41,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                 favoritebt.enabled = false
             }
             drawView()
-            comprobarNotificacion()
+
         }
         
         
@@ -50,12 +50,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        if recipe != nil {
-            comprobarNotificacion()
-        }
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -67,26 +61,11 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             self.recipe = r
             }, finished: { () -> () in
                 self.drawView()
-                self.comprobarNotificacion()
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }
     }
-    func comprobarNotificacion(){
-        do {
-            let id = recipe?.recipeIdServer
-            let notificaciones = try NotificationsDataHelper.findAllNotifications(id!)
-            if notificaciones?.count > 0 {
-                cocinarBt.enabled = false
-            }else {
-                cocinarBt.enabled = true
-                
-            }
-        }catch _ {
-            print("error al encontrar notificaciones")
-        }
 
-    }
     func drawView(){
         if recipe != nil {
             self.nombreReceta.text  = "\(recipe!.name)"

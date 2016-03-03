@@ -28,6 +28,8 @@ class StepViewController: UIViewController {
     var t : Task?
     var total :Double?
     
+    var currentNotification = Notification()
+    
     
     
     override func viewDidLoad() {
@@ -48,7 +50,15 @@ class StepViewController: UIViewController {
          total = Double((t?.seconds)!)
         self.uiTextField.text = tiempo(Double((t?.seconds)!))
         
-            print (NSDate())
+            //print (NSDate())
+        if(self.findNotification()){
+            print("Notificación encontrada")
+            total = currentNotification.firedate.timeIntervalSinceNow
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            btAlarm.enabled = false
+        }else{
+            btAlarm.enabled = true
+        }
         
        }else {
         self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
@@ -56,18 +66,22 @@ class StepViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        recibirNotificationes()
-    }
     
-    func recibirNotificationes(){
+    func findNotification() -> Bool{
+        //Cuando se guarda en favoritos no hay problema, pero cuando no se guarda el taskid no cambia
+        var res = false
         do{
-            notifications = try NotificationsDataHelper.findAll()!
-
-            print("Notificaciones cargadas")
+            if let dso = try NotificationsDataHelper.findNotificationByTask((t?.taskIdServer)!){
+                currentNotification = dso
+                print(currentNotification)
+                res = true
+                
+            }
         }catch _{
-            print("Notificaciones no cargadas")
+            print("Error al encontrar Notification")
         }
+        return res
+
     }
 
     
@@ -90,7 +104,7 @@ class StepViewController: UIViewController {
             let second = comp.second
             total =  Double(hour + minute + second)
         }*/
-        
+    
         
         let timeIntervalCountDown = total! - timeInterval
         //let timeAlert = total! + timeInterval
@@ -108,10 +122,10 @@ class StepViewController: UIViewController {
         let timeString = dateFormatter.stringFromDate(timerDate);
         if timeIntervalCountDown <= 0 {
             stopTimer()
-            btAlarm.selected = !btAlarm.selected
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             btAlarm.enabled = true
             nextBT.enabled = true
+            total = Double((t?.seconds)!)
         }else{
             self.uiTextField.text = timeString
         }
@@ -122,6 +136,7 @@ class StepViewController: UIViewController {
         stopTimer()
         
         print ( "current: \(currentTaskPos) tamaño: \(tasks.count)" )
+       
         if currentTaskPos < tasks.count-1{
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
@@ -145,11 +160,19 @@ class StepViewController: UIViewController {
             print("restar ingredientes")
             //realizar la comprobacion de ingredientes restantes
         }
+        if(self.findNotification()){
+            print("Notificación encontrada")
+            total = currentNotification.firedate.timeIntervalSinceNow
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            btAlarm.enabled = false
+        }else{
+            btAlarm.enabled = true
+        }
     }
     
     @IBAction func previousAction(sender: AnyObject) {
         stopTimer()
-        
+       
         print ( "current: \(currentTaskPos) tamaño: \(tasks.count)" )
         if currentTaskPos > 0 {
             
@@ -170,7 +193,14 @@ class StepViewController: UIViewController {
             }
 
         }
-    }
+        if(self.findNotification()){
+            print("Notificación encontrada")
+            total = currentNotification.firedate.timeIntervalSinceNow
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            btAlarm.enabled = false
+        }else{
+            btAlarm.enabled = true
+        }    }
    /* @IBAction func countDownAction(sender: UIButton) {
         
         sender.selected = !sender.selected;
@@ -186,19 +216,27 @@ class StepViewController: UIViewController {
     }*/
     
     @IBAction func alarmAction(sender: AnyObject) {
+        
+        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        
+        if settings!.types == .None {
+            //let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
+            let ac = UIAlertController(title: "Alarma no admitida", message: "Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad", preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
+            return
+        }else{
+        
+        
+        
         let sender2 = sender as! UIButton
-        sender2.selected = !sender2.selected;
         //if selected fire timer, otherwise stop
-        if (sender2.selected) {
             uiTextField.enabled = false
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             self.startDate = NSDate();
             sender2.enabled = false
             nextBT.enabled = false
-        } else {
-            uiTextField.enabled = true
-            self.stopTimer();
-        }
+        
         timerAlert = NSDate(timeIntervalSinceNow: total!)
         // 1
         let notification = UILocalNotification()
@@ -215,8 +253,7 @@ class StepViewController: UIViewController {
         let ntf = Notification()
         ntf.firedate = timerAlert!
         ntf.recipeId = (recipe?.recipeIdServer)!
-        ntf.taskId = (t?.taskId)!
-        
+        ntf.taskId = (t?.taskIdServer)!
         
         do{
             
@@ -230,7 +267,7 @@ class StepViewController: UIViewController {
         
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
+        }
         
     }
     

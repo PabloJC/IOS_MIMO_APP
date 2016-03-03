@@ -27,11 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
-        let name = notification.userInfo!["uid"]
+        let id = notification.userInfo!["uid"]
         let noti = Notification()
-        noti.notificationId = Int64(name! as! Int)
+        noti.notificationId = Int64(id! as! Int)
         do{
            try NotificationsDataHelper.delete(noti)
+            print(id)
         } catch _ {
             print ("error al borrar notificacion")
         }
