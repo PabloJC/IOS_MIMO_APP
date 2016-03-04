@@ -43,7 +43,8 @@ class StepViewController: UIViewController {
                 return t.name < t2.name
             })
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
+            //self.taskName.text = "Paso " + (t?.name)!
+        self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
           //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
          total = Double((t?.seconds)!)
@@ -60,14 +61,13 @@ class StepViewController: UIViewController {
         }
         
        }else {
-        self.nextBT.setTitle("Finalizar", forState: .Normal)
+        self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
         
         }
     }
     
     
     func findNotification() -> Bool{
-        //Cuando se guarda en favoritos no hay problema, pero cuando no se guarda el taskid no cambia
         var res = false
         do{
             if let dso = try NotificationsDataHelper.findNotificationByTask((t?.taskIdServer)!){
@@ -122,9 +122,15 @@ class StepViewController: UIViewController {
         if timeIntervalCountDown <= 0 {
             stopTimer()
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            btAlarm.enabled = true
-            nextBT.enabled = true
-            total = Double((t?.seconds)!)
+            if findNotification() {
+                btAlarm.enabled = false
+                total = 0
+                
+            }else {
+                btAlarm.enabled = true
+                total = Double((t?.seconds)!)
+            }
+            
         }else{
             self.uiTextField.text = timeString
         }
@@ -139,7 +145,7 @@ class StepViewController: UIViewController {
         if currentTaskPos < tasks.count-1{
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
-                bt.setTitle("Finalizar", forState: .Normal)
+                bt.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
                 print("boton cambiado a finalizar")
             }
             if currentTaskPos >= 0 {
@@ -147,7 +153,7 @@ class StepViewController: UIViewController {
             }
             currentTaskPos++
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
+            self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
@@ -176,12 +182,12 @@ class StepViewController: UIViewController {
         if currentTaskPos > 0 {
             
             if currentTaskPos < tasks.count {
-                self.nextBT.setTitle("Siguiente", forState: .Normal)
+                self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
             }
             
             currentTaskPos--
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text = "Paso " + (t?.name)!
+            self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
@@ -234,7 +240,6 @@ class StepViewController: UIViewController {
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             self.startDate = NSDate();
             sender2.enabled = false
-            nextBT.enabled = false
         
         timerAlert = NSDate(timeIntervalSinceNow: total!)
         // 1
@@ -244,8 +249,19 @@ class StepViewController: UIViewController {
         notification.userInfo = Dictionary<String, AnyObject> ()
         notification.fireDate = fixedNotificationDate(timerAlert!)
         // 3
-        notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
-        notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
+        notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
+        //notification.soundName = UILocalNotificationDefaultSoundName
+        var sound = NSUserDefaults.standardUserDefaults().dictionaryForKey("sound")
+            print ("el setting diccionario es: \(sound)")
+        var sound2 = NSUserDefaults.standardUserDefaults().stringForKey("sound")
+            print ("el setting string es: \(sound2)")
+        notification.soundName = "one_piece_zoro.wav"
+
+        print("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
+        //UIApplication.sharedApplication().applicationIconBadgeNumber =  UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        //notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
+            
         // 7
         
         let ntf = Notification()
@@ -263,7 +279,12 @@ class StepViewController: UIViewController {
             print("Error al crear el ingrediente")
         }
         
-        
+            do{
+                let notificaciones = try NotificationsDataHelper.findAll()
+                notification.applicationIconBadgeNumber =  (notificaciones?.count)!
+            }catch _ {
+                print("error al mostrar notificaciones")
+            }
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
         

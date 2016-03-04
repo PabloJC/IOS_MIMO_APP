@@ -51,6 +51,8 @@
 		B537703C1C7D30780088326E /* CategoryCartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */; };
 		B53770401C7D33570088326E /* IngredientsCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B537703F1C7D33570088326E /* IngredientsCartViewController.swift */; };
 		B53770421C7D354F0088326E /* IngredientCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */; };
+		B552DC171C89775500613CF2 /* one_piece_zoro.wav in Resources */ = {isa = PBXBuildFile; fileRef = B552DC161C89775500613CF2 /* one_piece_zoro.wav */; };
+		B552DC191C897A6000613CF2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B552DC181C897A6000613CF2 /* Settings.bundle */; };
 		B559636C1C8109FD0013764F /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B559636B1C8109FD0013764F /* Cosmos.framework */; };
 		B559636E1C8116490013764F /* Recipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B559636D1C8116490013764F /* Recipe.storyboard */; };
 		B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */; };
@@ -59,6 +61,7 @@
 		B593A22D1C5E87EE0085C5C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B593A22C1C5E87EE0085C5C8 /* Assets.xcassets */; };
 		B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B593A22E1C5E87EE0085C5C8 /* LaunchScreen.storyboard */; };
 		B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */; };
+		B5E879901C87B1DB00723BFD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E879921C87B1DB00723BFD /* Localizable.strings */; };
 		B5F579F31C74CFA6006A2FF2 /* SQLiteDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F579F21C74CFA6006A2FF2 /* SQLiteDataStore.swift */; };
 		B5F93A7F1C836B960056CB50 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F93A7E1C836B960056CB50 /* TaskTableViewCell.swift */; };
 		B5F9707A1C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F970791C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift */; };
@@ -110,6 +113,8 @@
 		B537703B1C7D30780088326E /* CategoryCartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCartCollectionViewCell.swift; path = shopping/CategoryCartCollectionViewCell.swift; sourceTree = "<group>"; };
 		B537703F1C7D33570088326E /* IngredientsCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientsCartViewController.swift; path = shopping/IngredientsCartViewController.swift; sourceTree = "<group>"; };
 		B53770411C7D354F0088326E /* IngredientCartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCartTableViewCell.swift; path = shopping/IngredientCartTableViewCell.swift; sourceTree = "<group>"; };
+		B552DC161C89775500613CF2 /* one_piece_zoro.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = one_piece_zoro.wav; sourceTree = "<group>"; };
+		B552DC181C897A6000613CF2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B5579E4D1C821F270046EB01 /* Toast_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Toast_Swift.framework; path = "Pods/../build/Debug-iphoneos/Toast_Swift.framework"; sourceTree = "<group>"; };
 		B559636B1C8109FD0013764F /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = "Pods/../build/Debug-iphoneos/Cosmos.framework"; sourceTree = "<group>"; };
 		B559636D1C8116490013764F /* Recipe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recipe.storyboard; path = recipes/Recipe.storyboard; sourceTree = "<group>"; };
@@ -121,6 +126,11 @@
 		B593A22F1C5E87EE0085C5C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B593A2311C5E87EE0085C5C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5A09FAB1C737FAB0052494B /* SingleStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SingleStepViewController.swift; path = recipes/SingleStepViewController.swift; sourceTree = "<group>"; };
+		B5E8798B1C87B09400723BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		B5E8798C1C87B1A900723BFD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		B5E8798D1C87B1A900723BFD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B5E879911C87B1DB00723BFD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5E879931C87B1DE00723BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5F579F01C74CF0E006A2FF2 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
 		B5F579F21C74CFA6006A2FF2 /* SQLiteDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SQLiteDataStore.swift; path = BD/SQLiteDataStore.swift; sourceTree = "<group>"; };
 		B5F93A7E1C836B960056CB50 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskTableViewCell.swift; path = recipes/TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -270,10 +280,13 @@
 				B593A22C1C5E87EE0085C5C8 /* Assets.xcassets */,
 				B593A22E1C5E87EE0085C5C8 /* LaunchScreen.storyboard */,
 				B593A2311C5E87EE0085C5C8 /* Info.plist */,
+				B552DC161C89775500613CF2 /* one_piece_zoro.wav */,
 				B581B8AB1C6E8A670049CA1C /* Recipes */,
 				3AA6F4991C70ACA600161E89 /* Category.json */,
 				B5F579F41C74CFAD006A2FF2 /* BD */,
 				3A1620701C821B2B00B25A24 /* Reachability.swift */,
+				B5E879921C87B1DB00723BFD /* Localizable.strings */,
+				B552DC181C897A6000613CF2 /* Settings.bundle */,
 			);
 			path = iosAPP;
 			sourceTree = "<group>";
@@ -357,10 +370,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51199361C7BEF170017B164 /* IngredientsSB.storyboard in Resources */,
+				B552DC171C89775500613CF2 /* one_piece_zoro.wav in Resources */,
+				B552DC191C897A6000613CF2 /* Settings.bundle in Resources */,
 				3AA6F49A1C70ACA700161E89 /* Category.json in Resources */,
 				B559636E1C8116490013764F /* Recipe.storyboard in Resources */,
 				B593A2301C5E87EE0085C5C8 /* LaunchScreen.storyboard in Resources */,
 				B593A22D1C5E87EE0085C5C8 /* Assets.xcassets in Resources */,
+				B5E879901C87B1DB00723BFD /* Localizable.strings in Resources */,
 				B53770361C7D21060088326E /* ShoppingListSB.storyboard in Resources */,
 				B593A22B1C5E87EE0085C5C8 /* Main.storyboard in Resources */,
 			);
@@ -473,6 +489,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				B593A22A1C5E87EE0085C5C8 /* Base */,
+				B5E8798B1C87B09400723BFD /* en */,
+				B5E8798C1C87B1A900723BFD /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -481,8 +499,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				B593A22F1C5E87EE0085C5C8 /* Base */,
+				B5E8798D1C87B1A900723BFD /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B5E879921C87B1DB00723BFD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5E879911C87B1DB00723BFD /* es */,
+				B5E879931C87B1DE00723BFD /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

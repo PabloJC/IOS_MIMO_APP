@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; normalTitle = "Random"; ObjectID = "I51-fI-Mmm"; */
+"I51-fI-Mmm.normalTitle" = "Random";
+
+/* Class = "UITabBarItem"; title = "Recetas"; ObjectID = "IBj-A0-mgB"; */
+"IBj-A0-mgB.title" = "Recetas";
+
+/* Class = "UITabBarItem"; title = "Mis ingredientes"; ObjectID = "L6O-3k-S9A"; */
+"L6O-3k-S9A.title" = "Mis ingredientes";
+
+/* Class = "UITabBarItem"; title = "Lista de la compra"; ObjectID = "Tu5-Ij-xrv"; */
+"Tu5-Ij-xrv.title" = "Lista de la compra";
+
+/* Class = "UILabel"; text = "Sin Favoritos"; ObjectID = "dwk-BG-IBj"; */
+"dwk-BG-IBj.text" = "Sin Favoritos";
+
+/* Class = "UINavigationItem"; title = "OTAKU COOK"; ObjectID = "kDx-R4-XeN"; */
+"kDx-R4-XeN.title" = "OTAKU COOK";
