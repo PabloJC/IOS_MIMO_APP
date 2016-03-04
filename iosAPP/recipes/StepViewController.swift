@@ -68,7 +68,6 @@ class StepViewController: UIViewController {
     
     
     func findNotification() -> Bool{
-        //Cuando se guarda en favoritos no hay problema, pero cuando no se guarda el taskid no cambia
         var res = false
         do{
             if let dso = try NotificationsDataHelper.findNotificationByTask((t?.taskIdServer)!){
@@ -123,9 +122,15 @@ class StepViewController: UIViewController {
         if timeIntervalCountDown <= 0 {
             stopTimer()
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            btAlarm.enabled = true
-            nextBT.enabled = true
-            total = Double((t?.seconds)!)
+            if findNotification() {
+                btAlarm.enabled = false
+                total = 0
+                
+            }else {
+                btAlarm.enabled = true
+                total = Double((t?.seconds)!)
+            }
+            
         }else{
             self.uiTextField.text = timeString
         }
@@ -235,7 +240,6 @@ class StepViewController: UIViewController {
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             self.startDate = NSDate();
             sender2.enabled = false
-            nextBT.enabled = false
         
         timerAlert = NSDate(timeIntervalSinceNow: total!)
         // 1
@@ -247,7 +251,10 @@ class StepViewController: UIViewController {
         // 3
         //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
         notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
-        notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        print ("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
+        //UIApplication.sharedApplication().applicationIconBadgeNumber =  UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        //notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
+            
         // 7
         
         let ntf = Notification()
@@ -265,7 +272,12 @@ class StepViewController: UIViewController {
             print("Error al crear el ingrediente")
         }
         
-        
+            do{
+                let notificaciones = try NotificationsDataHelper.findAll()
+                notification.applicationIconBadgeNumber =  (notificaciones?.count)!
+            }catch _ {
+                print("error al mostrar notificaciones")
+            }
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
         

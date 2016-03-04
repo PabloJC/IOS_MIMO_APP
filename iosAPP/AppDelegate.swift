@@ -20,21 +20,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let notificationSettings = UIUserNotificationSettings(forTypes: [UIUserNotificationType.Alert, UIUserNotificationType.Badge,.Sound], categories: nil)
-        
         application.registerUserNotificationSettings(notificationSettings)
-        application.applicationIconBadgeNumber = 0
         return true
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        application.applicationIconBadgeNumber = 0
+        //application.applicationIconBadgeNumber =
+        
+       // UIApplication.sharedApplication().applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1
+        
+        
         let id = notification.userInfo!["uid"]
         let noti = Notification()
         noti.notificationId = Int64(id! as! Int)
         do{
            try NotificationsDataHelper.delete(noti)
-            print(id)
+            print("id de la notificacion borrada " + "\(id)!")
         } catch _ {
             print ("error al borrar notificacion")
+        }
+        do{
+            let notificaciones = try NotificationsDataHelper.findAll()
+            application.applicationIconBadgeNumber =  (notificaciones?.count)!
+        }catch _ {
+            print("error al mostrar notificaciones")
         }
         
         //application.cancelAllLocalNotifications()
