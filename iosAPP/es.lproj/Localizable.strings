@@ -26,3 +26,20 @@
 "LABELFINALRECETA"="¿Se le ha terminado algun ingrediente?";
 "BORRAR"="Borrar";
 "FINALIZARRECETA"="Finalizar Receta";
+
+"TITULOLISTACOMPRA"="Lista de la Compra";
+"COMPRAR"="Comprar";
+"COMPRA"="Compra";
+"HISTORICO"="Histórico";
+
+"TUSINGREDIENTES"="Tus Ingredientes";
+"AÑADIRINGREDIENTE"="Añadir Ingrediente";
+"ALMACEN"="Almacén";
+
+"INGREDIENTS"="Ingredientes";
+
+"BUSCARINGREDIENTE"="Buscar Ingrediente";
+
+"RANDOM"="Aleatorio";
+
+"SINCONEXION"="No tienes conexión";

@@ -11,6 +11,7 @@ import UIKit
 class IngredientListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var searchTv: UITextField! //Buscar Ingrediente
     
     
     var category = ""
@@ -42,9 +43,13 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
+        setText()
         recibir()
         
         // Do any additional setup after loading the view.
+    }
+    func setText(){
+        self.searchTv.placeholder = NSLocalizedString("BUSCARINGREDIENTE",comment:"Buscar Ingrediente")
     }
     
     
@@ -62,7 +67,7 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
             }
         } else {
 
-            self.view.makeToast("No tienes conexión", duration: 2, position: .Center)
+            self.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexión"), duration: 2, position: .Center)
         }
         
     }

@@ -26,3 +26,20 @@
 "LABELFINALRECETA"="Have you done any ingredients?";
 "BORRAR"="Delete";
 "FINALIZARRECETA"="Finish Recipe";
+
+"TITULOLISTACOMPRA"="Shopping List";
+"COMPRAR"="Buy";
+"COMPRA"="Purchase";
+"HISTORICO"="Historical";
+
+"TUSINGREDIENTES"="Your Ingredients";
+"AÑADIRINGREDIENTE"="Add Ingredient";
+"ALMACEN"="Store";
+
+"INGREDIENTS"="Ingredients";
+
+"BUSCARINGREDIENTE"="Search Ingredient";
+
+"RANDOM"="Random";
+
+"SINCONEXION"="You are offline";

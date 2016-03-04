@@ -12,12 +12,17 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
     
     @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var titleLabel: UILabel!
     var ingredients = [Ingredient]()
     var sections = [[Ingredient]]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        setText()
         self.table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "shoppingCell")
         // Do any additional setup after loading the view.
+    }
+    func setText(){
+        titleLabel.text = NSLocalizedString("TITULOLISTACOMPRA",comment:"Lista de la Compra")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,7 +49,7 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             let instance = self.storyboard!.instantiateViewControllerWithIdentifier("categoryShopping") as? CategoriesViewController
             self.navigationController?.pushViewController(instance!, animated: true)
         }else{
-            self.view.makeToast("No tienes conexión", duration: 2, position: .Top)
+            self.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexión"), duration: 2, position: .Top)
         }
     }
     
@@ -147,7 +152,7 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             self.presentViewController(activityViewController,animated: true, completion : nil)
             
         }*/
-        let buyAction = UITableViewRowAction(style: .Normal, title: "Comprar") { action, index in
+        let buyAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("COMPRAR",comment:"Comprar")) { action, index in
             var section = self.sections[indexPath.section]
             let ingredient = section[indexPath.row]
             self.sections[indexPath.section].removeAtIndex(indexPath.row)
@@ -156,7 +161,7 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
         }
         buyAction.backgroundColor = UIColor.blueColor()
         
-        let deleteAction = UITableViewRowAction(style: .Normal, title: "Borrar") { action, index in
+        let deleteAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("BORRAR",comment:"Borrar")) { action, index in
             var section = self.sections[indexPath.section]
             let ingredient = section[indexPath.row]
             self.sections[indexPath.section].removeAtIndex(indexPath.row)
@@ -179,9 +184,9 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if section == 0{
-            return "Compra"
+            return NSLocalizedString("COMPRA",comment:"Compra")
         }else{
-            return "Histórico"
+            return NSLocalizedString("HISTORICO",comment:"Histórico")
         }
     }
     
