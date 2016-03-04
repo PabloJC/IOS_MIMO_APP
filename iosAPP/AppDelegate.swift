@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         AFNetworkReachabilityManager.sharedManager().setReachabilityStatusChangeBlock {
             if($0 == .Unknown || $0 == .NotReachable){
-                self.window?.rootViewController?.view.makeToast("No tienes conexión", duration: 2, position: .Top)
+                self.window?.rootViewController?.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexion"), duration: 2, position: .Top)
                 self.isConected = false
             }
             if($0 == .ReachableViaWWAN || $0 == .ReachableViaWiFi){

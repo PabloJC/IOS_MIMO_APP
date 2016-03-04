@@ -183,6 +183,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.recetasString.append(post)
             
             }, finished: { () -> () in
+                self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
@@ -209,6 +210,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             post = ["id":id,"name":receta]
             self.recetasString.append(post)
             }, finished: { () -> () in
+               self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
@@ -279,6 +281,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         switch item.tag{
         case 1:
             print ("Todas")
+            view.makeToastActivity(.Center)
             recibirTodas()
             self.tableView.reloadData()
             break
@@ -289,6 +292,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             break
         default:
              print ("Posibles")
+             view.makeToastActivity(.Center)
              recibir()
              self.tableView.reloadData()
             break

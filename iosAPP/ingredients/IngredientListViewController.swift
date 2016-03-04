@@ -114,7 +114,7 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
             if ingredientsSection[key]!.count == 0{
                 self.navigationController?.popViewControllerAnimated(true)
             }
-            
+            view.makeToast(NSLocalizedString("INGREDIENTAÑADIDO",comment:"Se ha agregado un ingrediente al almacén"), duration: 2.0, position: .Center)
             print(ingredientId)
             print(ingredient.ingredientIdServer)
         }catch _{

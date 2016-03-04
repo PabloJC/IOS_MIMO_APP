@@ -154,11 +154,11 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         cell.nameIngredientLabel!.text = section[indexPath.row].name
         if section[indexPath.row].cartId == 1 {
-            cell.stateLabel.text = "Pendiente de compra"
+            cell.stateLabel.text = NSLocalizedString("PENDIENTECOMPRA",comment:"Pendiente de compra")
         }else if section[indexPath.row].cartId == 0 && section[indexPath.row].storageId == 0{
-            cell.stateLabel.text = "Sin unidades"
+            cell.stateLabel.text = NSLocalizedString("SINUNIDADES",comment:"Sin unidades")
         }else {
-            cell.stateLabel.text = "Producto en almacen"
+            cell.stateLabel.text = NSLocalizedString("PRODUCTOENALMACEN",comment:"Producto en almacen")
         }
         return cell
     }
@@ -198,13 +198,14 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             }
             ingredientToModify?.cartId = 1
             try IngredientDataHelper.updateCart(ingredientToModify!)
+            view.makeToast(NSLocalizedString("INGREDIENTECOMPRADO",comment:"Se ha agregado un ingrediente al carrito de la compra"), duration: 2.0, position: .Center)
             print("Ingrediente añadido al cart")
         }catch _{
             print("Error al añadir al cart")
         }
     }
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let buyAction = UITableViewRowAction(style: .Normal, title: "Comprar") { action, index in
+        let buyAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("COMPRAR",comment:"Comprar")) { action, index in
             var section = self.sections[indexPath.section]
             let ingredient = section[indexPath.row]
             self.sections[indexPath.section].removeAtIndex(indexPath.row)
@@ -216,9 +217,9 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if section == 0{
-            return "En almacen"
+            return NSLocalizedString("ENALMACEN",comment:"En almacén")
         }else{
-            return "Falta"
+            return NSLocalizedString("FALTA",comment:"Falta")
         }
     }
     @IBAction func saveFavorites(sender: AnyObject) {
@@ -283,6 +284,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                     print("error al crear la tarea")
                 }
             }
+             view.makeToast(NSLocalizedString("FAVAGREGADO",comment:"Compra Realizada"), duration: 2.0, position: .Center)
             favoritebt.enabled = false
             print("receta agregada")
         }

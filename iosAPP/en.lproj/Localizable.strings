@@ -42,4 +42,24 @@
 
 "RANDOM"="Random";
 
+"ALARMANOADMITIDA"="Unsupported alarm";
+"MENSAJEALARMA"="Because we do not have permissions to activate notifications or not we have asked you previously";
+
+"PENDIENTECOMPRA"="Pending purchase";
+"SINUNIDADES"="No units";
+"PRODUCTOENALMACEN"="Product in stock";
+"ENALMACEN"="In warehouse";
+"FALTA"="Lack";
+
+"COMPRAREALIZADA"="Purchase made";
+
+"FAVAGREGADO"="Recipe added to favorites";
+
+"ALARMACREADA"="Notification created";
+
+"INGREDIENTAÑADIDO"="An ingredient has been added to the store";
+"INGREDIENTECOMPRADO"="An ingredient has been added to shopping cart";
+
+"LISTATAREAS"="Task list";
+
 "SINCONEXION"="You are offline";

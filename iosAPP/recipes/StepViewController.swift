@@ -234,7 +234,7 @@ class StepViewController: UIViewController {
         
         if settings!.types == .None {
             //let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-            let ac = UIAlertController(title: "Alarma no admitida", message: "Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad", preferredStyle: .Alert)
+            let ac = UIAlertController(title: NSLocalizedString("ALARMANOADMITIDA",comment:"Alarma no admitida"), message: NSLocalizedString("MENSAJEALARMA",comment:"Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad"), preferredStyle: .Alert)
             ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(ac, animated: true, completion: nil)
             return
@@ -293,6 +293,7 @@ class StepViewController: UIViewController {
                 print("error al mostrar notificaciones")
             }
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            view.makeToast(NSLocalizedString("ALARMACREADA",comment:"Notificación creada"), duration: 2.0, position: .Center)
         }
         
     }
