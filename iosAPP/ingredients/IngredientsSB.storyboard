@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Xu-mR-Acg" id="rhF-Du-EyA">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -71,6 +71,7 @@
                                 <state key="normal" title="Añadir Ingrediente"/>
                                 <connections>
                                     <action selector="storeIngredient:" destination="HQg-hu-mYB" eventType="touchUpInside" id="8sf-RP-Y9w"/>
+                                    <segue destination="kUg-FW-KGT" kind="presentation" id="84N-A7-zAl"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -97,6 +98,34 @@
                 <tapGestureRecognizer id="U4u-Z8-mne"/>
             </objects>
             <point key="canvasLocation" x="381" y="237"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qbp-mr-zKo">
+            <objects>
+                <viewController id="kUg-FW-KGT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Hz-ZY-SXN"/>
+                        <viewControllerLayoutGuide type="bottom" id="aFF-DD-phd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3iu-AY-dr2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-9S-Hsz">
+                                <rect key="frame" x="0.0" y="87" width="600" height="216"/>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="B2a-9S-Hsz" firstAttribute="centerY" secondItem="3iu-AY-dr2" secondAttribute="centerY" id="5Ku-Eo-Ekc"/>
+                            <constraint firstItem="B2a-9S-Hsz" firstAttribute="leading" secondItem="3iu-AY-dr2" secondAttribute="leading" id="JtP-qw-i2E"/>
+                            <constraint firstAttribute="trailing" secondItem="B2a-9S-Hsz" secondAttribute="trailing" id="vQe-RS-4hz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7rn-g1-CeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="607" y="933"/>
         </scene>
         <!--Ingredients View Controller-->
         <scene sceneID="pLU-BI-6my">
@@ -196,7 +225,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sdI-fo-0zP" id="M83-re-mrJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="47.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4BU-11-XRr">

@@ -34,7 +34,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func storeIngredient(sender: UIButton) {
-        let alert = UIAlertController(title: "Nuevo Ingrediente",
+       /* let alert = UIAlertController(title: "Nuevo Ingrediente",
             message: "Añade un ingrediente",
             preferredStyle: .Alert)
         let saveAction = UIAlertAction(title: "Almacenar",
@@ -61,7 +61,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         alert.addAction(cancelAction)
         
         presentViewController(alert, animated: true, completion: nil)
-        
+        */
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
