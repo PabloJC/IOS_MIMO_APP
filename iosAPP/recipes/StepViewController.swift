@@ -251,7 +251,14 @@ class StepViewController: UIViewController {
         // 3
         //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
         notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
-        print ("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
+        //notification.soundName = UILocalNotificationDefaultSoundName
+        var sound = NSUserDefaults.standardUserDefaults().dictionaryForKey("sound")
+            print ("el setting diccionario es: \(sound)")
+        var sound2 = NSUserDefaults.standardUserDefaults().stringForKey("sound")
+            print ("el setting string es: \(sound2)")
+        notification.soundName = "one_piece_zoro.wav"
+
+        print("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
         //UIApplication.sharedApplication().applicationIconBadgeNumber =  UIApplication.sharedApplication().applicationIconBadgeNumber + 1
         //notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
             
