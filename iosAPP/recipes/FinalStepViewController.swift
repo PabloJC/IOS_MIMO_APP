@@ -22,10 +22,23 @@ class FinalStepViewController: UIViewController,UITableViewDelegate,UITableViewD
     //ids de los ingredientes del almacen
     var ingredientsStorageIDS = [Int64]()
     
+    @IBOutlet weak var labelTv: UILabel!
+    @IBOutlet weak var borrarBt: UIButton!
     
+    @IBOutlet weak var finalizarBt: UIButton! //Finalizar Receta
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Final de la receta"
+        setTextBt()
+        initIngredientFinal()
+        self.tableView.allowsMultipleSelection = true
+    }
+    func setTextBt(){
+        title = NSLocalizedString("TITULOFINALRECETA",comment:"Final de la receta")
+        self.labelTv.text = NSLocalizedString("LABELFINALRECETA",comment:"¿Se le ha terminado algun ingrediente?")
+        self.borrarBt.setTitle(NSLocalizedString("BORRAR",comment:"Borrar"), forState: .Normal)
+        self.finalizarBt.setTitle(NSLocalizedString("FINALIZARRECETA",comment:"Finalizar Receta"), forState: .Normal)
+    }
+    func initIngredientFinal() {
         do{
             ingredientsStorage = try IngredientDataHelper.findIngredientsInStorage()!
             for i in ingredientsStorage {
@@ -50,12 +63,7 @@ class FinalStepViewController: UIViewController,UITableViewDelegate,UITableViewD
                 print ("no se ha encontrado el ingrediente")
             }
         }
-       
-        
-        
-        self.tableView.allowsMultipleSelection = true
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

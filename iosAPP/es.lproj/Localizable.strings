@@ -9,4 +9,20 @@
 "PASO"="Paso";
 "FINALIZAR"="Finalizar";
 "SIGUIENTE"="Siguiente";
+"ANTERIOR"="Anterior";
+"ALARMA"="Alarma";
 "NOTIFICACION"="La Tarea %@ de la receta '%@' pendiente de revision";
+
+"COCINAR"="Cocinar";
+"VERPASOS"="Ver Pasos";
+
+"RECETAS"="Recetas";
+"BUSQUEDA"="Busqueda";
+"TOTAL"="Total";
+"FAVORITOS"="Favoritos";
+"POSIBLES"="Posibles";
+
+"TITULOFINALRECETA"="Final de la receta";
+"LABELFINALRECETA"="¿Se le ha terminado algun ingrediente?";
+"BORRAR"="Borrar";
+"FINALIZARRECETA"="Finalizar Receta";

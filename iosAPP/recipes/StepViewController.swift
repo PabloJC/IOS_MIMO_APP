@@ -10,12 +10,13 @@ import UIKit
 
 class StepViewController: UIViewController {
     @IBOutlet weak var PreviousBT: UIButton!
+    @IBOutlet weak var nextBT: UIButton!
+    @IBOutlet weak var btAlarm: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var taskName: UILabel!
     @IBOutlet weak var descriptionLabel: UITextView!
-    @IBOutlet weak var nextBT: UIButton!
     @IBOutlet weak var uiTextField: UITextField!
-    @IBOutlet weak var btAlarm: UIButton!
+    
     var recipe : Recipe?
     var notifications = [Notification]()
     var tasks = [AnyObject]()
@@ -36,6 +37,7 @@ class StepViewController: UIViewController {
         
         super.viewDidLoad()
         // toolbar()
+        setTextBt()
         if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
                 let t = task as Task
@@ -65,6 +67,12 @@ class StepViewController: UIViewController {
             
         }
     }
+    func setTextBt(){
+        self.btAlarm.setTitle(NSLocalizedString("ALARMA",comment:"Alarma"), forState: .Normal)
+        self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
+        self.PreviousBT.setTitle(NSLocalizedString("ANTERIOR",comment:"Anterior"), forState: .Normal)
+    }
+    
     
     
     func findNotification() -> Bool{

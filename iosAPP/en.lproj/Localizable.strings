@@ -9,4 +9,20 @@
 "PASO"="Task";
 "FINALIZAR"="Finish";
 "SIGUIENTE"="Next";
+"ANTERIOR"="Previous";
+"ALARMA"="Alarm";
 "NOTIFICACION"="Task %@  '%@' recipe  is pending review";
+
+"COCINAR"="Cook";
+"VERPASOS"="See tasks";
+
+"RECETAS"="Recipes";
+"BUSQUEDA"="Search";
+"TOTAL"="Total";
+"FAVORITOS"="Favorites";
+"POSIBLES"="Possible";
+
+"TITULOFINALRECETA"="Final Recipe";
+"LABELFINALRECETA"="Have you done any ingredients?";
+"BORRAR"="Delete";
+"FINALIZARRECETA"="Finish Recipe";

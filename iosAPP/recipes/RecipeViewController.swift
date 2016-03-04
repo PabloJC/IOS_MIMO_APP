@@ -13,12 +13,15 @@ import Cosmos
 class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     @IBOutlet weak var favoritebt: UIButton!
+    @IBOutlet weak var cocinarBt: UIButton!
+    @IBOutlet weak var verPasosBt: UIButton!
     @IBOutlet weak var nombreReceta: UILabel!
     @IBOutlet weak var id: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var starsRating: CosmosView!
-    @IBOutlet weak var cocinarBt: UIButton!
+    
+    
     var missingIngredients = [Ingredient]()
     var storedIngredients = [Ingredient]()
     var sections = [[Ingredient]]()
@@ -31,6 +34,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         super.viewDidLoad()
         //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ingredientCell")
         self.starsRating.settings.updateOnTouch = false
+        setTextBt()
         for iBD in self.ingredients {
             ingredientsBDServerId.append(iBD.ingredientIdServer)
         }
@@ -48,6 +52,10 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         
         
         // Do any additional setup after loading the view.
+    }
+    func setTextBt(){
+        self.cocinarBt.setTitle(NSLocalizedString("COCINAR",comment:"Cocinar"), forState: .Normal)
+        self.verPasosBt.setTitle(NSLocalizedString("VERPASOS",comment:"Ver Pasos"), forState: .Normal)
     }
     
     
