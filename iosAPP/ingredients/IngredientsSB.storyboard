@@ -22,11 +22,11 @@
                                 <rect key="frame" x="20" y="63" width="560" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0Xu-mR-Acg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Ingredient" id="0Xu-mR-Acg">
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Xu-mR-Acg" id="rhF-Du-EyA">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -48,6 +48,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="31" y="14" width="268" height="26"/>
+                                        </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPC-ee-TvP">
                                         <rect key="frame" x="507" y="10" width="30" height="30"/>
@@ -72,7 +75,7 @@
                                     <rect key="frame" x="85" y="750" width="230" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="storeIngredient:" destination="HQg-hu-mYB" eventType="touchUpInside" id="8sf-RP-Y9w"/>
+                                    <segue destination="kUg-FW-KGT" kind="show" id="Ygi-m7-y9Z"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -91,7 +94,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="cPC-ee-TvP" id="DQH-kT-QeW"/>
-                        <outlet property="addIngredient" destination="Xf7-sY-B0k" id="UMZ-Nd-7B1"/>
+                        <outlet property="addIngredient" destination="Xf7-sY-B0k" id="jpZ-3c-2d9"/>
                         <outlet property="myKitchen" destination="N5w-x1-XtJ" id="pNp-zH-iGD"/>
                         <outlet property="titleLabel" destination="gbd-Jv-jF6" id="pvG-qT-kcl"/>
                     </connections>
@@ -101,6 +104,103 @@
                 <tapGestureRecognizer id="U4u-Z8-mne"/>
             </objects>
             <point key="canvasLocation" x="381" y="237"/>
+        </scene>
+        <!--Show Modal View Controller-->
+        <scene sceneID="qbp-mr-zKo">
+            <objects>
+                <viewController storyboardIdentifier="myModalView" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kUg-FW-KGT" customClass="ShowModalViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Hz-ZY-SXN"/>
+                        <viewControllerLayoutGuide type="bottom" id="aFF-DD-phd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3iu-AY-dr2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-9S-Hsz">
+                                <rect key="frame" x="41" y="93" width="519" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kUg-FW-KGT" id="OUp-8i-99I"/>
+                                    <outlet property="delegate" destination="kUg-FW-KGT" id="Tcx-7W-zHw"/>
+                                </connections>
+                            </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nombre del ingrediente" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXj-I7-RA5">
+                                <rect key="frame" x="134" y="345" width="347" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Selecciona categoría" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojC-UX-tae">
+                                <rect key="frame" x="220" y="64" width="160" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRA-sr-YPU">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="kUg-FW-KGT" eventType="touchUpInside" id="SdS-r4-2Cd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sXj-I7-RA5" firstAttribute="centerX" secondItem="oRA-sr-YPU" secondAttribute="centerX" id="0UR-Sy-XtM"/>
+                            <constraint firstItem="ojC-UX-tae" firstAttribute="top" secondItem="7Hz-ZY-SXN" secondAttribute="bottom" constant="39" id="1iB-dF-sxA"/>
+                            <constraint firstItem="ojC-UX-tae" firstAttribute="centerX" secondItem="B2a-9S-Hsz" secondAttribute="centerX" id="6mm-Vr-lOe"/>
+                            <constraint firstItem="B2a-9S-Hsz" firstAttribute="leading" secondItem="3iu-AY-dr2" secondAttribute="leadingMargin" constant="2" id="Gk2-yd-6da"/>
+                            <constraint firstItem="B2a-9S-Hsz" firstAttribute="top" secondItem="ojC-UX-tae" secondAttribute="bottom" constant="19" id="Htc-lo-OTP"/>
+                            <constraint firstItem="sXj-I7-RA5" firstAttribute="centerX" secondItem="3iu-AY-dr2" secondAttribute="centerX" id="eFd-V4-H09"/>
+                            <constraint firstItem="oRA-sr-YPU" firstAttribute="top" secondItem="sXj-I7-RA5" secondAttribute="bottom" constant="8" symbolic="YES" id="eaa-fd-Tlu"/>
+                            <constraint firstItem="sXj-I7-RA5" firstAttribute="top" secondItem="B2a-9S-Hsz" secondAttribute="bottom" constant="8" symbolic="YES" id="qg3-aJ-Dcq"/>
+                            <constraint firstItem="sXj-I7-RA5" firstAttribute="leading" secondItem="3iu-AY-dr2" secondAttribute="leadingMargin" constant="36" id="rO9-HF-jg1"/>
+                            <constraint firstItem="B2a-9S-Hsz" firstAttribute="centerX" secondItem="sXj-I7-RA5" secondAttribute="centerX" id="yHy-Wx-7VI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="oRA-sr-YPU"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Gk2-yd-6da"/>
+                                <exclude reference="Htc-lo-OTP"/>
+                                <exclude reference="yHy-Wx-7VI"/>
+                                <exclude reference="1iB-dF-sxA"/>
+                                <exclude reference="6mm-Vr-lOe"/>
+                                <exclude reference="0UR-Sy-XtM"/>
+                                <exclude reference="eFd-V4-H09"/>
+                                <exclude reference="qg3-aJ-Dcq"/>
+                                <exclude reference="rO9-HF-jg1"/>
+                                <exclude reference="eaa-fd-Tlu"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="oRA-sr-YPU"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Gk2-yd-6da"/>
+                                <include reference="Htc-lo-OTP"/>
+                                <include reference="yHy-Wx-7VI"/>
+                                <include reference="1iB-dF-sxA"/>
+                                <include reference="6mm-Vr-lOe"/>
+                                <include reference="0UR-Sy-XtM"/>
+                                <include reference="eFd-V4-H09"/>
+                                <include reference="qg3-aJ-Dcq"/>
+                                <include reference="rO9-HF-jg1"/>
+                                <include reference="eaa-fd-Tlu"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="categoryLb" destination="ojC-UX-tae" id="R7e-Rf-TMz"/>
+                        <outlet property="ingredientTv" destination="sXj-I7-RA5" id="TfE-ds-CK5"/>
+                        <outlet property="picker" destination="B2a-9S-Hsz" id="dmq-31-HST"/>
+                        <outlet property="saveBt" destination="oRA-sr-YPU" id="u1O-Ub-gGU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7rn-g1-CeT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="381" y="987.75"/>
         </scene>
         <!--Ingredients View Controller-->
         <scene sceneID="pLU-BI-6my">
@@ -304,7 +404,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sdI-fo-0zP" id="M83-re-mrJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="47.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4BU-11-XRr">

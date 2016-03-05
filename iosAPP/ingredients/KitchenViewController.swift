@@ -14,21 +14,23 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var myKitchen: UITableView!
     @IBOutlet weak var addIngredient: UIButton!
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     var ingredients = [Ingredient]()
     var sections = [[Ingredient]]()
-    var ingredientId : Int64!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setText()
+          setText()
         self.myKitchen.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Ingredient")
     }
-    func setText(){
+   func setText(){
         titleLabel.text = NSLocalizedString("TUSINGREDIENTES",comment:"Tus Ingredientes")
         addIngredient.setTitle(NSLocalizedString("AÑADIRINGREDIENTE",comment:"Añadir Ingrediente"), forState: .Normal)
     }
+    
+    
     @IBAction func actionButton(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if appDelegate.isConected {
@@ -38,37 +40,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexión"), duration: 2, position: .Top)
         }
     }
-    
-    @IBAction func storeIngredient(sender: UIButton) {
-        let alert = UIAlertController(title: "Nuevo Ingrediente",
-            message: "Añade un ingrediente",
-            preferredStyle: .Alert)
-        let saveAction = UIAlertAction(title: "Almacenar",
-            style: .Default,
-            handler: { (action:UIAlertAction) -> Void in
-                print("Almacenar")
-                
-                let ingredient = Ingredient()
-                ingredient.name = (alert.textFields!.first?.text!)!
-                self.addIngredient(ingredient)
-        })
-        
-        let cancelAction = UIAlertAction (title: "Cancelar",
-            style: .Default,
-            handler: { (action:UIAlertAction) -> Void in
-                print("Cancelar")
-        })
-        
-        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
-            
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        presentViewController(alert, animated: true, completion: nil)
-        
-    }
+
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sections.count
@@ -78,6 +50,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if titleLabel != nil {
         sections.removeAll()
         do{
             var ingredients1 = try IngredientDataHelper.findIngredientsInStorage()!
@@ -90,6 +63,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             print("\(ingredients.count)")
         }catch _{
             print("Error al recibir los ingredientes")
+            }
         }
 
 
@@ -138,27 +112,6 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-    func addIngredient(ingredient: Ingredient) {
-        
-        do{
-            ingredient.storageId = 1
-            ingredientId =  try IngredientDataHelper.insert(ingredient)
-            
-            
-            sections[0].append(ingredient)
-            sections[0].sortInPlace({ $0.name < $1.name })
-            
-            let index = sections[0].indexOf(ingredient)
-            myKitchen.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
-
-            print(ingredientId)
-            print(ingredient.ingredientIdServer)
-        }catch _{
-            print("Error al crear el ingrediente")
-        }
-    }
-    
-    
     func deleteIngredientStore(ingredient: Ingredient){
         do{
             ingredient.storageId = 0
@@ -205,18 +158,5 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             return NSLocalizedString("HISTORICO",comment:"Histórico")
         }
     }
-    
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
