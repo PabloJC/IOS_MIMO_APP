@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // UIApplication.sharedApplication().applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1
         
         
-       /* let id = notification.userInfo!["uid"]
+        let id = notification.userInfo!["uid"]
         let noti = Notification()
         noti.notificationId = Int64(id! as! Int)
         do{
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("id de la notificacion borrada " + "\(id)!")
         } catch _ {
             print ("error al borrar notificacion")
-        }*/
+        }
         
         
         //application.cancelAllLocalNotifications()
