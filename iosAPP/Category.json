@@ -1,14 +1,14 @@
 {"Categories":[
- {"idCategory":1,"category":"Aceites_Salsas"},
- {"idCategory":2,"category":"Carnes"},
- {"idCategory":3,"category":"Congelados"},
- {"idCategory":4,"category":"Derivados"},
- {"idCategory":5,"category":"Dulces"},
- {"idCategory":6,"category":"Frutas"},
- {"idCategory":7,"category":"Lacteos"},
- {"idCategory":8,"category":"Legumbres"},
- {"idCategory":9,"category":"Otros"},
- {"idCategory":10,"category":"Pescados"},
- {"idCategory":11,"category":"Tuberculos"},
- {"idCategory":12,"category":"Verduras"}
+ {"idCategory":1,"category":"Aceites_Salsas","image":"Carne"},
+ {"idCategory":2,"category":"Carnes","image" : "Carne"},
+ {"idCategory":3,"category":"Congelados","image" : "Congelado"},
+ {"idCategory":4,"category":"Derivados","image" : "Derivados"},
+ {"idCategory":5,"category":"Dulces","image" : "Dulces"},
+ {"idCategory":6,"category":"Frutas","image" : "Fruta"},
+ {"idCategory":7,"category":"Lacteos","image" : "Carne"},
+ {"idCategory":8,"category":"Legumbres","image" : "Carne"},
+ {"idCategory":9,"category":"Otros","image" : "Carne"},
+ {"idCategory":10,"category":"Pescados","image" : "Carne"},
+ {"idCategory":11,"category":"Tuberculos","image" : "Carne"},
+ {"idCategory":12,"category":"Verduras","image" : "Carne"}
   ]}

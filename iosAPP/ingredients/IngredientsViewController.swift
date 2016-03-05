@@ -13,7 +13,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var categorias: UICollectionView!
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
-    var items = [String]()
+    var items = [Dictionary<String,AnyObject>]()
     var category = ""
 
     @IBOutlet weak var ingredientsLabel: UILabel!
@@ -37,7 +37,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
                 options: [.MutableContainers, .MutableLeaves]) as! [String:AnyObject]
             
             for category in objOrigen["Categories"] as! [[String:AnyObject]] {
-                items.append(category["category"] as! String)
+                items.append(category)
             }
             
         } catch let error as NSError {
@@ -53,14 +53,19 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
         
-        cell.categoryLabel.text = self.items[indexPath.item]
-        cell.backgroundColor = UIColor.yellowColor()
+        cell.categoryLabel.text = self.items[indexPath.item]["category"] as? String
+        let image = self.items[indexPath.item]["image"] as! String
+        print(image)
+        //cell.backgroundColor = UIColor.yellowColor()
+        if(image != ""){
+            cell.image.image = UIImage(named: image)
+        }
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        category = items[indexPath.row]
+        category = items[indexPath.row]["category"] as! String
         performSegueWithIdentifier("ingredientsCategory", sender: self)
     }
     
