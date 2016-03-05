@@ -33,8 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let noti = Notification()
         noti.notificationId = Int64(id! as! Int)
         do{
-           try NotificationsDataHelper.delete(noti)
-            print("id de la notificacion borrada " + "\(id)!")
+           let notificationSearch = try NotificationsDataHelper.find(noti.notificationId)
+            if notificationSearch != nil {
+                try NotificationsDataHelper.delete(noti)
+                print("id de la notificacion borrada " + "\(id)!")
+            }
         } catch _ {
             print ("error al borrar notificacion")
         }
