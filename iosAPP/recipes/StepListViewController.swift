@@ -14,7 +14,7 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var tasks = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\"Lista de tareas\""
+        title = NSLocalizedString("LISTATAREAS",comment:"Lista de tareas")
         if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
                 let t = task as Task

@@ -16,9 +16,14 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
     var items = [String]()
     var category = ""
 
+    @IBOutlet weak var ingredientsLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setText()
         categoryInit()
+    }
+    func setText(){
+        ingredientsLabel.text = NSLocalizedString("INGREDIENTS",comment:"Ingredientes")
     }
     
     func categoryInit(){

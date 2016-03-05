@@ -148,4 +148,5 @@ class NotificationsDataHelper: DataHelperProtocol {
         return retArray
         
     }
+    
    }

@@ -12,7 +12,9 @@ class ViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var imageRecipe: UIImageView!
     @IBOutlet weak var labelRecipe: UILabel!
-
+    
+    @IBOutlet weak var randomBt: UIButton!
+    
     var externalStoryboard: UIStoryboard!
     var post=Dictionary<String,AnyObject>()
     var ingredients = [Ingredient]()
@@ -24,6 +26,7 @@ class ViewController: UIViewController, UITabBarDelegate {
         
         super.viewDidLoad()
         back.layer.cornerRadius = 5
+        setTextBt()
         initDB()
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("backTapped:"))
         back.userInteractionEnabled = true
@@ -33,6 +36,9 @@ class ViewController: UIViewController, UITabBarDelegate {
         ingredientsStorage()
         recibirFavoritos()
         cargarView()
+    }
+    func setTextBt(){
+        randomBt.setTitle(NSLocalizedString("RANDOM",comment:"Aleatorio"), forState: .Normal)
     }
     func initDB(){
         let dataStore = SQLiteDataStore.sharedInstance

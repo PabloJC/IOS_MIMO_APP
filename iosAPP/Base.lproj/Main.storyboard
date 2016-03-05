@@ -21,6 +21,15 @@
                             <view opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iir-nh-rVS">
                                 <rect key="frame" x="20" y="14" width="560" height="453"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sin Favoritos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
+                                        <rect key="frame" x="8" y="12" width="456" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="naG-sr-gyO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I51-fI-Mmm">
                                         <rect key="frame" x="472" y="8" width="80" height="49"/>
                                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,15 +41,6 @@
                                             <action selector="randomAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KXX-Sb-J5m"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sin Favoritos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
-                                        <rect key="frame" x="8" y="12" width="456" height="42"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="naG-sr-gyO"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -88,6 +88,7 @@
                         <outlet property="back" destination="Iir-nh-rVS" id="JCB-kD-Uiw"/>
                         <outlet property="imageRecipe" destination="FSB-TM-wKW" id="MMe-Fo-hVA"/>
                         <outlet property="labelRecipe" destination="dwk-BG-IBj" id="ZuO-8q-Eea"/>
+                        <outlet property="randomBt" destination="I51-fI-Mmm" id="q7F-rd-805"/>
                         <outlet property="tabBar" destination="teD-AV-YSq" id="i5M-Ft-o4n"/>
                     </connections>
                 </viewController>

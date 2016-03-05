@@ -13,15 +13,17 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UITextField!
     var recetasString = [Dictionary<String,AnyObject>]()
     var recetasStringAux = [Dictionary<String,AnyObject>]()
     var ingredients = [Ingredient]()
     var sincronized = false
     var ingredientesString = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "\"Recetas\""
-        
+       
+        setTextBt()
         
         loadIngredientsStorage()
         recibirTodas()
@@ -30,6 +32,22 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    func setTextBt(){
+         title = NSLocalizedString("RECETAS",comment:"Recetas")
+        self.searchBar.placeholder = NSLocalizedString("BUSQUEDA",comment:"Busqueda")
+        let tabItems = self.tabBar.items! as [UITabBarItem]
+        let tabItem0 = tabItems[0] as UITabBarItem
+        let tabItem1 = tabItems[1] as UITabBarItem
+        let tabItem2 = tabItems[2] as UITabBarItem
+        tabItem0.title = NSLocalizedString("TOTAL",comment:"Total")
+        tabItem1.title = NSLocalizedString("FAVORITOS",comment:"Favoritos")
+        tabItem2.title = NSLocalizedString("POSIBLES",comment:"Posibles")
+        
+    }
+    
     override func viewDidAppear(animated: Bool) {
         
         tableView.reloadData()
@@ -120,7 +138,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     
-    @IBAction func saveRecipeAction(sender: AnyObject) {
+    /*@IBAction func saveRecipeAction(sender: AnyObject) {
         
         /* let alert = UIAlertController(title: "New Recipe",
         message: "Add a new recipe",
@@ -150,7 +168,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         presentViewController(alert, animated: true, completion: nil)*/
         
-    }
+    }*/
     
     func recibir(){
         self.recetasString = []
@@ -165,6 +183,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.recetasString.append(post)
             
             }, finished: { () -> () in
+                self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
@@ -191,6 +210,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             post = ["id":id,"name":receta]
             self.recetasString.append(post)
             }, finished: { () -> () in
+               self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
@@ -236,7 +256,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
     }
-    @IBOutlet weak var searchBar: UITextField!
+    
     @IBAction func searchAction2(sender: UITextField) {
         self.recetasString = self.recetasStringAux
         if !sender.text!.isEmpty {
@@ -247,7 +267,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         tableView.reloadData()
     }
-    @IBAction func recetasDisponiblesAction(sender: UIButton) {
+   /* @IBAction func recetasDisponiblesAction(sender: UIButton) {
         
         recibir()
         self.tableView.reloadData()
@@ -255,12 +275,13 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBAction func todasLasRecetasAction(sender: UIButton) {
         recibirTodas()
         self.tableView.reloadData()
-    }
+    }*/
     
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         switch item.tag{
         case 1:
             print ("Todas")
+            view.makeToastActivity(.Center)
             recibirTodas()
             self.tableView.reloadData()
             break
@@ -271,6 +292,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             break
         default:
              print ("Posibles")
+             view.makeToastActivity(.Center)
              recibir()
              self.tableView.reloadData()
             break

@@ -13,7 +13,9 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var myKitchen: UITableView!
+    @IBOutlet weak var addIngredient: UIButton!
     
+    @IBOutlet weak var titleLabel: UILabel!
     var ingredients = [Ingredient]()
     var sections = [[Ingredient]]()
     var ingredientId : Int64!
@@ -38,7 +40,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             let instance = self.storyboard!.instantiateViewControllerWithIdentifier("categoryView") as? IngredientsViewController
             self.navigationController?.pushViewController(instance!, animated: true)
         }else{
-            self.view.makeToast("No tienes conexión", duration: 2, position: .Top)
+            self.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexión"), duration: 2, position: .Top)
         }
     }
 
@@ -173,9 +175,9 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         if section == 0{
-            return "Almacén"
+            return NSLocalizedString("ALMACEN",comment:"Almacén")
         }else{
-            return "Histórico"
+            return NSLocalizedString("HISTORICO",comment:"Histórico")
         }
     }
     

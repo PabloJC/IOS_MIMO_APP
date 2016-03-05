@@ -9,4 +9,57 @@
 "PASO"="Paso";
 "FINALIZAR"="Finalizar";
 "SIGUIENTE"="Siguiente";
+"ANTERIOR"="Anterior";
+"ALARMA"="Alarma";
 "NOTIFICACION"="La Tarea %@ de la receta '%@' pendiente de revision";
+
+"COCINAR"="Cocinar";
+"VERPASOS"="Ver Pasos";
+
+"RECETAS"="Recetas";
+"BUSQUEDA"="Busqueda";
+"TOTAL"="Total";
+"FAVORITOS"="Favoritos";
+"POSIBLES"="Posibles";
+
+"TITULOFINALRECETA"="Final de la receta";
+"LABELFINALRECETA"="¿Se le ha terminado algun ingrediente?";
+"BORRAR"="Borrar";
+"FINALIZARRECETA"="Finalizar Receta";
+
+"TITULOLISTACOMPRA"="Lista de la Compra";
+"COMPRAR"="Comprar";
+"COMPRA"="Compra";
+"HISTORICO"="Histórico";
+
+"TUSINGREDIENTES"="Tus Ingredientes";
+"AÑADIRINGREDIENTE"="Añadir Ingrediente";
+"ALMACEN"="Almacén";
+
+"INGREDIENTS"="Ingredientes";
+
+"BUSCARINGREDIENTE"="Buscar Ingrediente";
+
+"RANDOM"="Aleatorio";
+
+"ALARMANOADMITIDA"="Alarma no admitida";
+"MENSAJEALARMA"="Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad";
+
+"PENDIENTECOMPRA"="Pendiente de compra";
+"SINUNIDADES"="Sin unidades";
+"PRODUCTOENALMACEN"="Producto en almacen";
+"ENALMACEN"="En almacen";
+"FALTA"="Falta";
+
+"COMPRAREALIZADA"="Compra realizada";
+
+"FAVAGREGADO"="Receta agregada a favoritos";
+
+"ALARMACREADA"="Notificación creada";
+
+"INGREDIENTAÑADIDO"="Se ha agregado un ingrediente al almacén";
+"INGREDIENTECOMPRADO"="Se ha agregado un ingrediente al carrito de la compra";
+
+"LISTATAREAS"="Lista de tareas";
+
+"SINCONEXION"="No tienes conexión";

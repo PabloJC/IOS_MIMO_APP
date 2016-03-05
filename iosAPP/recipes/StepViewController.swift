@@ -10,12 +10,13 @@ import UIKit
 
 class StepViewController: UIViewController {
     @IBOutlet weak var PreviousBT: UIButton!
+    @IBOutlet weak var nextBT: UIButton!
+    @IBOutlet weak var btAlarm: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var taskName: UILabel!
     @IBOutlet weak var descriptionLabel: UITextView!
-    @IBOutlet weak var nextBT: UIButton!
     @IBOutlet weak var uiTextField: UITextField!
-    @IBOutlet weak var btAlarm: UIButton!
+    
     var recipe : Recipe?
     var notifications = [Notification]()
     var tasks = [AnyObject]()
@@ -35,8 +36,9 @@ class StepViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-       // toolbar()
-       if recipe?.tasks.count > 0 {
+        // toolbar()
+        setTextBt()
+        if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
                 let t = task as Task
                 let t2 = task2 as Task
@@ -44,27 +46,33 @@ class StepViewController: UIViewController {
             })
             t = tasks[currentTaskPos] as? Task
             //self.taskName.text = "Paso " + (t?.name)!
-        self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
+            self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
-          //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
-         total = Double((t?.seconds)!)
-        self.uiTextField.text = tiempo(Double((t?.seconds)!))
-        
+            //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
+            total = Double((t?.seconds)!)
+            self.uiTextField.text = tiempo(Double((t?.seconds)!))
+            
             //print (NSDate())
-        if(self.findNotification()){
-            print("Notificación encontrada")
-            total = currentNotification.firedate.timeIntervalSinceNow
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-            btAlarm.enabled = false
-        }else{
-            btAlarm.enabled = true
-        }
-        
-       }else {
-        self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
-        
+            if(self.findNotification()){
+                print("Notificación encontrada")
+                total = currentNotification.firedate.timeIntervalSinceNow
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+                btAlarm.enabled = false
+            }else{
+                btAlarm.enabled = true
+            }
+            
+        }else {
+            self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
+            
         }
     }
+    func setTextBt(){
+        self.btAlarm.setTitle(NSLocalizedString("ALARMA",comment:"Alarma"), forState: .Normal)
+        self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
+        self.PreviousBT.setTitle(NSLocalizedString("ANTERIOR",comment:"Anterior"), forState: .Normal)
+    }
+    
     
     
     func findNotification() -> Bool{
@@ -80,38 +88,38 @@ class StepViewController: UIViewController {
             print("Error al encontrar Notification")
         }
         return res
-
+        
     }
-
+    
     
     func stopTimer() {
         self.timer.invalidate();
     }
     
-   func updateTimer() {
+    func updateTimer() {
         // Create date from the elapsed time
         let currentDate:NSDate = NSDate();
         let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
         
         
-       /*
+        /*
         if let pD = pickerNSDate  {
-            let calendar = NSCalendar.currentCalendar()
-            let comp = calendar.components([.Hour, .Minute, .Second], fromDate: pD)
-            let hour = comp.hour * 3600
-            let minute = comp.minute * 60
-            let second = comp.second
-            total =  Double(hour + minute + second)
+        let calendar = NSCalendar.currentCalendar()
+        let comp = calendar.components([.Hour, .Minute, .Second], fromDate: pD)
+        let hour = comp.hour * 3600
+        let minute = comp.minute * 60
+        let second = comp.second
+        total =  Double(hour + minute + second)
         }*/
-    
+        
         
         let timeIntervalCountDown = total! - timeInterval
         //let timeAlert = total! + timeInterval
         let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
-       // print(timerDate)
+        // print(timerDate)
         
         //timerAlert = NSDate(timeIntervalSinceNow: total!)
-
+        
         // Create a date formatter
         let dateFormatter = NSDateFormatter();
         dateFormatter.dateFormat = "mm:ss";
@@ -135,13 +143,13 @@ class StepViewController: UIViewController {
             self.uiTextField.text = timeString
         }
     }
-   
+    
     
     @IBAction func nextAction(sender: AnyObject) {
         stopTimer()
         
         print ( "current: \(currentTaskPos) tamaño: \(tasks.count)" )
-       
+        
         if currentTaskPos < tasks.count-1{
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
@@ -177,7 +185,7 @@ class StepViewController: UIViewController {
     
     @IBAction func previousAction(sender: AnyObject) {
         stopTimer()
-       
+        
         print ( "current: \(currentTaskPos) tamaño: \(tasks.count)" )
         if currentTaskPos > 0 {
             
@@ -196,7 +204,7 @@ class StepViewController: UIViewController {
                 let bt = sender as! UIButton
                 bt.enabled = false
             }
-
+            
         }
         if(self.findNotification()){
             print("Notificación encontrada")
@@ -206,18 +214,18 @@ class StepViewController: UIViewController {
         }else{
             btAlarm.enabled = true
         }    }
-   /* @IBAction func countDownAction(sender: UIButton) {
-        
-        sender.selected = !sender.selected;
-        //if selected fire timer, otherwise stop
-        if (sender.selected) {
-            uiTextField.enabled = false
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-            self.startDate = NSDate();
-        } else {
-            uiTextField.enabled = true
-            self.stopTimer();
-        }
+    /* @IBAction func countDownAction(sender: UIButton) {
+    
+    sender.selected = !sender.selected;
+    //if selected fire timer, otherwise stop
+    if (sender.selected) {
+    uiTextField.enabled = false
+    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+    self.startDate = NSDate();
+    } else {
+    uiTextField.enabled = true
+    self.stopTimer();
+    }
     }*/
     
     @IBAction func alarmAction(sender: AnyObject) {
@@ -226,66 +234,66 @@ class StepViewController: UIViewController {
         
         if settings!.types == .None {
             //let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-            let ac = UIAlertController(title: "Alarma no admitida", message: "Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad", preferredStyle: .Alert)
+            let ac = UIAlertController(title: NSLocalizedString("ALARMANOADMITIDA",comment:"Alarma no admitida"), message: NSLocalizedString("MENSAJEALARMA",comment:"Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad"), preferredStyle: .Alert)
             ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(ac, animated: true, completion: nil)
             return
         }else{
-        
-        
-        
-        let sender2 = sender as! UIButton
-        //if selected fire timer, otherwise stop
+            let sender2 = sender as! UIButton
+            //if selected fire timer, otherwise stop
             uiTextField.enabled = false
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             self.startDate = NSDate();
             sender2.enabled = false
-        
-        timerAlert = NSDate(timeIntervalSinceNow: total!)
-        // 1
-        let notification = UILocalNotification()
-        // 15
-        print(timerAlert)
-        notification.userInfo = Dictionary<String, AnyObject> ()
-        notification.fireDate = fixedNotificationDate(timerAlert!)
-        // 3
-        //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
-        notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
-        //notification.soundName = UILocalNotificationDefaultSoundName
-        var sound = NSUserDefaults.standardUserDefaults().dictionaryForKey("sound")
-            print ("el setting diccionario es: \(sound)")
-        var sound2 = NSUserDefaults.standardUserDefaults().stringForKey("sound")
-            print ("el setting string es: \(sound2)")
-        notification.soundName = "one_piece_zoro.wav"
-
-        print("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
-        //UIApplication.sharedApplication().applicationIconBadgeNumber =  UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-        //notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
             
-        // 7
-        
-        let ntf = Notification()
-        ntf.firedate = timerAlert!
-        ntf.recipeId = (recipe?.recipeIdServer)!
-        ntf.taskId = (t?.taskIdServer)!
-        
-        do{
+            timerAlert = NSDate(timeIntervalSinceNow: total!)
+            // 1
+            let notification = UILocalNotification()
+            // 15
+            print(timerAlert)
+            notification.userInfo = Dictionary<String, AnyObject> ()
+            notification.fireDate = fixedNotificationDate(timerAlert!)
+            // 3
+            //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
+            notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
+            //
+            let freak = NSUserDefaults.standardUserDefaults().boolForKey("sound")
+            if freak {
+                notification.soundName = "one_piece_zoro.wav"
+            }else {
+                notification.soundName = UILocalNotificationDefaultSoundName
+            }
             
-            let id = try NotificationsDataHelper.insert(ntf)
-            print (id)
-            notification.userInfo = ["uid" : Int(id) ]
-            print("Notificacion insertada")
-         }catch _{
-            print("Error al crear el ingrediente")
-        }
-        
+            
+            print("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
+            //UIApplication.sharedApplication().applicationIconBadgeNumber =  UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+            //notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
+            
+            // 7
+            
+            let ntf = Notification()
+            ntf.firedate = timerAlert!
+            ntf.recipeId = (recipe?.recipeIdServer)!
+            ntf.taskId = (t?.taskIdServer)!
+            
+            do{
+                
+                let id = try NotificationsDataHelper.insert(ntf)
+                print (id)
+                notification.userInfo = ["uid" : Int(id) ]
+                print("Notificacion insertada")
+            }catch _{
+                print("Error al crear el ingrediente")
+            }
+            
             do{
                 let notificaciones = try NotificationsDataHelper.findAll()
                 notification.applicationIconBadgeNumber =  (notificaciones?.count)!
             }catch _ {
                 print("error al mostrar notificaciones")
             }
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            view.makeToast(NSLocalizedString("ALARMACREADA",comment:"Notificación creada"), duration: 2.0, position: .Center)
         }
         
     }
@@ -299,26 +307,26 @@ class StepViewController: UIViewController {
         return fixedDate
         
     }
-
+    
     
     /*@IBAction func textFieldEditing(sender: UITextField) {
-        let datePickerView: UIDatePicker = UIDatePicker()
-        
-        datePickerView.datePickerMode = UIDatePickerMode.CountDownTimer
-        
-        sender.inputView = datePickerView
-        
-        datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+    let datePickerView: UIDatePicker = UIDatePicker()
+    
+    datePickerView.datePickerMode = UIDatePickerMode.CountDownTimer
+    
+    sender.inputView = datePickerView
+    
+    datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func datePickerValueChanged(sender: UIDatePicker) {
-       
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "mm:ss";
-        tiempoPicker = dateFormatter.stringFromDate(sender.date)
-        pickerNSDate  = sender.date
-        uiTextField.text = dateFormatter.stringFromDate(sender.date)
-        
+    
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "mm:ss";
+    tiempoPicker = dateFormatter.stringFromDate(sender.date)
+    pickerNSDate  = sender.date
+    uiTextField.text = dateFormatter.stringFromDate(sender.date)
+    
     }*/
     func tiempo (seconds: Double) -> String{
         self.startDate = NSDate();
@@ -339,7 +347,7 @@ class StepViewController: UIViewController {
         return timeString
     }
     
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "endRecipe") {
             let svc = segue.destinationViewController as! FinalStepViewController
@@ -354,23 +362,23 @@ class StepViewController: UIViewController {
         }
     }
     /*func toolbar (){
-        let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-        
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        
-        toolBar.barStyle = UIBarStyle.BlackTranslucent
-        
-        toolBar.tintColor = UIColor.whiteColor()
-        
-        toolBar.backgroundColor = UIColor.blackColor()
-        let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "donePressed:")
-        toolBar.setItems([okBarBtn], animated: true)
-        uiTextField.inputAccessoryView = toolBar
+    let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
+    
+    toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+    
+    toolBar.barStyle = UIBarStyle.BlackTranslucent
+    
+    toolBar.tintColor = UIColor.whiteColor()
+    
+    toolBar.backgroundColor = UIColor.blackColor()
+    let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "donePressed:")
+    toolBar.setItems([okBarBtn], animated: true)
+    uiTextField.inputAccessoryView = toolBar
     }
     func donePressed(sender: UIBarButtonItem) {
-        
-        uiTextField.resignFirstResponder()
-        
+    
+    uiTextField.resignFirstResponder()
+    
     }*/
-
+    
 }
