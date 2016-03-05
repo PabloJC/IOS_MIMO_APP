@@ -11,13 +11,19 @@ import UIKit
 class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var items = [String]()
+    var ingredientId : Int64!
      @IBOutlet weak var picker: UIPickerView!
-     @IBOutlet weak var newIngredient: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryInit()
     }
+
+    @IBOutlet weak var saveBt: UIButton!
+    @IBOutlet weak var ingredientTv: UITextField!
+    @IBOutlet weak var categoryLb: UILabel!
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,15 +61,30 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         return items.count
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveAction(sender: AnyObject) {
+        let newIngredient = Ingredient()
+        newIngredient.name = ingredientTv.text!
+        let fila = picker.selectedRowInComponent(0)
+        print(items[fila])
+        newIngredient.category = items[fila]
+        newIngredient.baseType = ingredientTv.text!
+        addIngredient(newIngredient)
+        let viewControllers = (self.navigationController?.viewControllers)! as [UIViewController]
+        print(viewControllers.count)
+        self.navigationController?.popToViewController(viewControllers[viewControllers.count - 2 ], animated: true)
     }
-    */
+    
+    func addIngredient(ingredient: Ingredient) {
+        
+        do{
+            ingredient.storageId = 1
+            ingredientId =  try IngredientDataHelper.insert(ingredient)
+            
+            print(ingredientId)
+        }catch _{
+            print("Error al crear el ingrediente")
+        }
+    }
+    
 
 }
