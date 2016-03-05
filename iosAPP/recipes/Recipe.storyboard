@@ -412,7 +412,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="PNa-bl-QH8" secondAttribute="trailing" constant="19" id="CcO-1o-wmF"/>
                             <constraint firstItem="tfK-mK-OUV" firstAttribute="top" secondItem="CfE-Zo-k3I" secondAttribute="bottom" constant="25" id="Du9-hg-hsJ"/>
                             <constraint firstAttribute="trailing" secondItem="wOG-Dt-sar" secondAttribute="trailing" constant="216" id="Fre-Ce-ZBH"/>
-                            <constraint firstItem="Fcu-Y0-ZbT" firstAttribute="bottom" secondItem="ZhN-1A-evz" secondAttribute="bottom" id="I5r-ud-ekI"/>
+                            <constraint firstItem="Fcu-Y0-ZbT" firstAttribute="bottom" secondItem="ZhN-1A-evz" secondAttribute="bottom" id="I5r-ud-ekI">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-38"/>
+                            </constraint>
                             <constraint firstItem="Fcu-Y0-ZbT" firstAttribute="top" secondItem="wOG-Dt-sar" secondAttribute="bottom" constant="8" symbolic="YES" id="KYw-l1-TNK"/>
                             <constraint firstItem="tfK-mK-OUV" firstAttribute="leading" secondItem="lSq-aZ-Ti0" secondAttribute="leading" id="PNT-GT-vqg"/>
                             <constraint firstItem="lSq-aZ-Ti0" firstAttribute="leading" secondItem="CfE-Zo-k3I" secondAttribute="leading" id="Pa6-Ov-KlD"/>
@@ -1510,6 +1512,6 @@
         <image name="sinImagen" width="320" height="240"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2mU-B2-tWd"/>
+        <segue reference="CQb-VM-lRQ"/>
     </inferredMetricsTieBreakers>
 </document>
