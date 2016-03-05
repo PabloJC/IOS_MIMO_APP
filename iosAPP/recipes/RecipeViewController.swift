@@ -32,7 +32,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     var ingredientsBDServerId = [Int64]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ingredientCell")
         self.starsRating.settings.updateOnTouch = false
         setTextBt()
         for iBD in self.ingredients {
@@ -47,11 +46,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             drawView()
 
         }
-        
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
     func setTextBt(){
         self.cocinarBt.setTitle(NSLocalizedString("COCINAR",comment:"Cocinar"), forState: .Normal)
@@ -61,7 +55,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     func recibir(){
         let myapiClient = MyAPIClient()
@@ -167,28 +160,7 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         return indexPath.section == 1 ? true : false
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*if indexPath.section == 1{
-        let ingredient = sections[1][indexPath.row]
-        do{
-        ingredient.cartId = 1
-        try IngredientDataHelper.updateCart(ingredient)
-        
-        sections[indexPath.section].removeAtIndex(indexPath.row)
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
-        
-        sections[0].append(ingredient)
-        sections[0].sortInPlace({ $0.name < $1.name })
-        
-        let index = sections[0].indexOf(ingredient)
-        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 0)], withRowAnimation: .Automatic)
-        
-        }catch _{
-        print("Error al insertar ingrediente en storage")
-        }
-        
-        }*/
-    }
+    
     func buyIngredientStore(ingredient: Ingredient){
         do{
             var ingredientToModify = try IngredientDataHelper.findIdServer(ingredient.ingredientIdServer)
@@ -215,7 +187,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         return [buyAction]
     }
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         if section == 0{
             return NSLocalizedString("ENALMACEN",comment:"En almacén")
         }else{

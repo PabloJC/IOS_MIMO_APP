@@ -9,7 +9,7 @@
         <!--OTAKU COOK-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtakuScene" id="BYZ-38-t0r" customClass="ViewController" customModule="OtakuCook" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TBC-cO-8Yo"/>
                         <viewControllerLayoutGuide type="bottom" id="v21-RN-gJq"/>
@@ -119,7 +119,7 @@
         <!--Navigation Controller-->
         <scene sceneID="jjb-Yq-Fk3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ovk-XV-Zpw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ovk-XV-Zpw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FFn-SW-cE6">
