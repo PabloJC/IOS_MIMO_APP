@@ -18,11 +18,20 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     var sections = [[Ingredient]]()
     var ingredientId : Int64!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.myKitchen.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Ingredient")
+        
     }
+    
+   
+    @IBAction func storeIngredient(sender: AnyObject) {
+
+    }
+    
+    
     @IBAction func actionButton(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if appDelegate.isConected {
@@ -32,37 +41,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             self.view.makeToast("No tienes conexión", duration: 2, position: .Top)
         }
     }
-    
-    @IBAction func storeIngredient(sender: UIButton) {
-       /* let alert = UIAlertController(title: "Nuevo Ingrediente",
-            message: "Añade un ingrediente",
-            preferredStyle: .Alert)
-        let saveAction = UIAlertAction(title: "Almacenar",
-            style: .Default,
-            handler: { (action:UIAlertAction) -> Void in
-                print("Almacenar")
-                
-                let ingredient = Ingredient()
-                ingredient.name = (alert.textFields!.first?.text!)!
-                self.addIngredient(ingredient)
-        })
-        
-        let cancelAction = UIAlertAction (title: "Cancelar",
-            style: .Default,
-            handler: { (action:UIAlertAction) -> Void in
-                print("Cancelar")
-        })
-        
-        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
-            
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        presentViewController(alert, animated: true, completion: nil)
-        */
-    }
+
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sections.count

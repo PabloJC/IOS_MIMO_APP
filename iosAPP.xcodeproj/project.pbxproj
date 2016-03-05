@@ -15,6 +15,7 @@
 		3A1620731C821F0000B25A24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1620721C821F0000B25A24 /* SystemConfiguration.framework */; };
 		3AA6F49A1C70ACA700161E89 /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6F4991C70ACA600161E89 /* Category.json */; };
 		3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */; };
+		3ADC30251C8B46CE0064AE7C /* ShowModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC30241C8B46CE0064AE7C /* ShowModalViewController.swift */; };
 		6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E961B85E7B3B5CBE813A3A0F /* Pods.framework */; };
 		B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5036DE61C6FB62300C180DE /* RecipeViewController.swift */; };
 		B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5036DE71C6FB62300C180DE /* RecipesViewController.swift */; };
@@ -78,6 +79,7 @@
 		3A1620721C821F0000B25A24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AA6F4991C70ACA600161E89 /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Category.json; sourceTree = "<group>"; };
 		3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
+		3ADC30241C8B46CE0064AE7C /* ShowModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowModalViewController.swift; sourceTree = "<group>"; };
 		B5036DE61C6FB62300C180DE /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeViewController.swift; path = recipes/RecipeViewController.swift; sourceTree = "<group>"; };
 		B5036DE71C6FB62300C180DE /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipesViewController.swift; path = recipes/RecipesViewController.swift; sourceTree = "<group>"; };
 		B51199051C7BC8010017B164 /* FinalStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinalStepViewController.swift; path = recipes/FinalStepViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				B511992D1C7BEF170017B164 /* IngredientsViewController.swift */,
 				B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */,
 				B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */,
+				3ADC30241C8B46CE0064AE7C /* ShowModalViewController.swift */,
 			);
 			name = ingredients;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				B51199121C7BEE900017B164 /* CartDataHelper.swift in Sources */,
 				B53770381C7D21060088326E /* StorageCellListTableViewCell.swift in Sources */,
 				B51199221C7BEEB40017B164 /* Storage.swift in Sources */,
+				3ADC30251C8B46CE0064AE7C /* ShowModalViewController.swift in Sources */,
 				B51199351C7BEF170017B164 /* KitchenViewController.swift in Sources */,
 				B51199141C7BEE900017B164 /* TaskDataHelper.swift in Sources */,
 				B5F93A7F1C836B960056CB50 /* TaskTableViewCell.swift in Sources */,
@@ -614,6 +618,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -634,6 +639,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
