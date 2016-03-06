@@ -75,7 +75,6 @@ class StepViewController: UIViewController {
         do{
             if let dso = try NotificationsDataHelper.findNotificationByTask((t?.taskIdServer)!){
                 currentNotification = dso
-                print(currentNotification)
                 res = true
                 
             }
@@ -123,7 +122,6 @@ class StepViewController: UIViewController {
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
                 bt.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
-                print("boton cambiado a finalizar")
             }
             if currentTaskPos >= 0 {
                 self.PreviousBT.enabled = true
@@ -141,7 +139,6 @@ class StepViewController: UIViewController {
             self.performSegueWithIdentifier("endRecipe", sender: self)
         }
         if(self.findNotification()){
-            print("Notificación encontrada")
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             btAlarm.enabled = false
@@ -165,14 +162,13 @@ class StepViewController: UIViewController {
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
             if currentTaskPos == 0 {
-                print("boton disable")
                 let bt = sender as! UIButton
                 bt.enabled = false
             }
             
         }
         if(self.findNotification()){
-            print("Notificación encontrada")
+          
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             btAlarm.enabled = false
@@ -218,7 +214,6 @@ class StepViewController: UIViewController {
             do{
                 
                 let id = try NotificationsDataHelper.insert(ntf)
-                print (id)
                 notification.userInfo = ["uid" : Int(id) ]
                 print("Notificacion insertada")
             }catch _{

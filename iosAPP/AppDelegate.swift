@@ -24,11 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        //application.applicationIconBadgeNumber =
-        
-       // UIApplication.sharedApplication().applicationIconBadgeNumber = application.applicationIconBadgeNumber - 1
-        
-        
         let id = notification.userInfo!["uid"]
         let noti = Notification()
         noti.notificationId = Int64(id! as! Int)
@@ -36,18 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            let notificationSearch = try NotificationsDataHelper.find(noti.notificationId)
             if notificationSearch != nil {
                 try NotificationsDataHelper.delete(noti)
-                print("id de la notificacion borrada " + "\(id)!")
             }
         } catch _ {
             print ("error al borrar notificacion")
         }
-        
-        
-        //application.cancelAllLocalNotifications()
         self.window?.rootViewController?.view.makeToast(notification.alertBody, duration: 4.0, position: .Center, title: nil, image: UIImage(named: "favoritos.png"), style: nil, completion: nil)
     }
     func applicationWillEnterForeground(application: UIApplication) {
-    print ("he abierto la app")
         do {
             let notifications = try NotificationsDataHelper.findAll()! as [Notification]
             for noti in notifications {
@@ -56,12 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if now.compare(noti.firedate) == NSComparisonResult.OrderedDescending || now.compare(noti.firedate) == NSComparisonResult.OrderedSame {
                     do{
                         try NotificationsDataHelper.delete(noti2)
-                        print("id de la notificacion borrada " + "\(noti2.notificationId)!")
                     } catch _ {
                         print ("error al borrar notificacion")
                     }
                 }
-                print(noti.firedate)
             }
             print(notifications.count)
         }catch _ {

@@ -35,7 +35,6 @@ class StorageDataHelper: DataHelperProtocol {
             throw DataAccessError.Datastore_Connection_Error
         }
         let insert = table.insert()
-        print (insert)
         do {
             let rowId = try DB.run(insert)
             guard rowId > 0 else {

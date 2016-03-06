@@ -11,7 +11,6 @@
 		3A010AF21C830FC6004C6F88 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AF11C830FC6004C6F88 /* Notification.swift */; };
 		3A010AFB1C832690004C6F88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A010AFA1C832690004C6F88 /* QuartzCore.framework */; };
 		3A010AFD1C8326F1004C6F88 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AFC1C8326F1004C6F88 /* Toast.swift */; };
-		3A1620711C821B2B00B25A24 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1620701C821B2B00B25A24 /* Reachability.swift */; };
 		3A1620731C821F0000B25A24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1620721C821F0000B25A24 /* SystemConfiguration.framework */; };
 		3AA6F49A1C70ACA700161E89 /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6F4991C70ACA600161E89 /* Category.json */; };
 		3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */; };
@@ -73,7 +72,6 @@
 		3A010AF81C83245D004C6F88 /* Toast_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Toast_Swift.framework; path = "Pods/../build/Debug-iphoneos/Toast_Swift.framework"; sourceTree = "<group>"; };
 		3A010AFA1C832690004C6F88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A010AFC1C8326F1004C6F88 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
-		3A1620701C821B2B00B25A24 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3A1620721C821F0000B25A24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AA6F4991C70ACA600161E89 /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Category.json; sourceTree = "<group>"; };
 		3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				B581B8AB1C6E8A670049CA1C /* Recipes */,
 				3AA6F4991C70ACA600161E89 /* Category.json */,
 				B5F579F41C74CFAD006A2FF2 /* BD */,
-				3A1620701C821B2B00B25A24 /* Reachability.swift */,
 				B5E879921C87B1DB00723BFD /* Localizable.strings */,
 				B552DC181C897A6000613CF2 /* Settings.bundle */,
 			);
@@ -436,7 +433,6 @@
 			files = (
 				B51199331C7BEF170017B164 /* IngredientListViewController.swift in Sources */,
 				B51199111C7BEE900017B164 /* RecipeDataHelper.swift in Sources */,
-				3A1620711C821B2B00B25A24 /* Reachability.swift in Sources */,
 				B53770421C7D354F0088326E /* IngredientCartTableViewCell.swift in Sources */,
 				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
 				3A010AF01C830F7A004C6F88 /* NotificationsDataHelper.swift in Sources */,

@@ -37,7 +37,8 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
    
     
     func recibir(){
-        if Reachability.isConnectedToNetwork() == true {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.isConected {
             let myapiClient = MyAPIClient()
             myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
                 self.ingredientsSection[baseType] = ingredients

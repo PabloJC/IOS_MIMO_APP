@@ -46,13 +46,11 @@ class ViewController: UIViewController, UITabBarDelegate {
             try dataStore.createTables()
             if try StorageDataHelper.find(1) == nil {
                 let  S = Storage()
-                let id = try  StorageDataHelper.insert(S)
-                print ("storage creado \(id)" )
+                try  StorageDataHelper.insert(S)
             }
             if try CartDataHelper.find(1) == nil {
                 let  C = Cart()
-                let id = try  CartDataHelper.insert(C)
-                print ("cart creado \(id)" )
+                try  CartDataHelper.insert(C)
                 
             }
         }catch _ {
@@ -76,7 +74,6 @@ class ViewController: UIViewController, UITabBarDelegate {
         }
     }
     func cargarView(){
-        print("imagen pulsada")
         do {
             if post["id"] != nil {
                 let id = post["id"]
@@ -84,7 +81,8 @@ class ViewController: UIViewController, UITabBarDelegate {
                 if recipe != nil {
                     recipeSegue = createRecipe(recipe!)
                 }
-                if recipeSegue!.photo != "" && Reachability.isConnectedToNetwork() {
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                if recipeSegue!.photo != "" && appDelegate.isConected {
                     let url = NSURL(string: recipe!.photo)
                     let data = NSData(contentsOfURL: url!)
                     self.imageRecipe.image = UIImage(data: data!)
@@ -104,7 +102,6 @@ class ViewController: UIViewController, UITabBarDelegate {
     func backTapped(img: AnyObject)
     {
         if recipeSegue != nil {
-            print("bd")
             externalStoryboard = UIStoryboard(name: "Recipe", bundle: nil)
             let secondViewController = externalStoryboard.instantiateViewControllerWithIdentifier("recipe") as! RecipeViewController
             secondViewController.recipe = recipeSegue
@@ -166,7 +163,6 @@ class ViewController: UIViewController, UITabBarDelegate {
         //random = Int(arc4random_uniform(UInt32(recipes!.count)))
         recibirFavoritos()
         cargarView()
-        print ("random: " + "\(random)")
 
     }
     func createRecipe(recipe: Recipe) -> Recipe{

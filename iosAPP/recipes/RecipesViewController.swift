@@ -249,7 +249,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         case 1:
             print ("Todas")
             if sincronized {
-                print("dentro")
                 sincronized = false
                 
                 recibirTodas()
