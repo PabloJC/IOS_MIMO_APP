@@ -62,4 +62,7 @@
 
 "LISTATAREAS"="Task list";
 
+"INGREDIENTEVACIO"="Ingredient field is empty";
+"REQUISITOTEXTO"="The name of the ingredient is required";
+
 "SINCONEXION"="You are offline";

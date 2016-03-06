@@ -53,8 +53,6 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
         searchTv.delegate = self
         setText()
         recibir()
-        
-        // Do any additional setup after loading the view.
     }
     func setText(){
         self.searchTv.placeholder = NSLocalizedString("BUSCARINGREDIENTE",comment:"Buscar Ingrediente")

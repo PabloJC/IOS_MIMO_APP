@@ -36,7 +36,7 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     func categoryInit(){
@@ -78,15 +78,24 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @IBAction func saveAction(sender: AnyObject) {
         let newIngredient = Ingredient()
-        newIngredient.name = ingredientTv.text!
-        let fila = picker.selectedRowInComponent(0)
-        print(items[fila])
-        newIngredient.category = items[fila]
-        newIngredient.baseType = ingredientTv.text!
-        addIngredient(newIngredient)
-        let viewControllers = (self.navigationController?.viewControllers)! as [UIViewController]
-        print(viewControllers.count)
-        self.navigationController?.popToViewController(viewControllers[viewControllers.count - 2 ], animated: true)
+        if let text = ingredientTv.text where !text.isEmpty{
+            newIngredient.name = ingredientTv.text!
+            let fila = picker.selectedRowInComponent(0)
+            print(items[fila])
+            newIngredient.category = items[fila]
+            newIngredient.baseType = ingredientTv.text!
+            
+            addIngredient(newIngredient)
+            let viewControllers = (self.navigationController?.viewControllers)! as [UIViewController]
+            print(viewControllers.count)
+            self.navigationController?.popToViewController(viewControllers[viewControllers.count - 2 ], animated: true)
+        } else  {
+            let ac = UIAlertController(title: NSLocalizedString("INGREDIENTEVACIO",comment:"El campo ingrediente está vacío"), message: NSLocalizedString("REQUISITOTEXTO",comment:"Es necesario que el ingrediente tenga un nombre"), preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
+        
+        }
+        
     }
     
     func addIngredient(ingredient: Ingredient) {

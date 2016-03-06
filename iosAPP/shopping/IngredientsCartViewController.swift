@@ -42,6 +42,7 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
         super.viewDidLoad()
         recibir()
         searchTv.delegate = self
+        
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

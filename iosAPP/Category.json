@@ -1,14 +1,14 @@
 {"Categories":[
- {"idCategory":1,"category":"Aceites_Salsas","image":""},
+ {"idCategory":1,"category":"Aceites_Salsas","image":"Salsas"},
  {"idCategory":2,"category":"Carnes","image" : "Carne"},
  {"idCategory":3,"category":"Congelados","image" : "Congelado"},
  {"idCategory":4,"category":"Derivados","image" : "Derivados"},
  {"idCategory":5,"category":"Dulces","image" : "Dulces"},
  {"idCategory":6,"category":"Frutas","image" : "Fruta"},
- {"idCategory":7,"category":"Lacteos","image" : ""},
- {"idCategory":8,"category":"Legumbres","image" : ""},
- {"idCategory":9,"category":"Otros","image" : ""},
- {"idCategory":10,"category":"Pescados","image" : ""},
- {"idCategory":11,"category":"Tuberculos","image" : ""},
- {"idCategory":12,"category":"Verduras","image" : ""}
+ {"idCategory":7,"category":"Lacteos","image" : "Lacteos"},
+ {"idCategory":8,"category":"Legumbres","image" : "Legumbres"},
+ {"idCategory":9,"category":"Otros","image" : "Otros"},
+ {"idCategory":10,"category":"Pescados","image" : "Pescado"},
+ {"idCategory":11,"category":"Tuberculos","image" : "Tuberculos"},
+ {"idCategory":12,"category":"Verduras","image" : "Verduras"}
   ]}

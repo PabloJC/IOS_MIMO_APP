@@ -49,8 +49,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         screenWidth = UIScreen.mainScreen().bounds.width
         screenHeight = UIScreen.mainScreen().bounds.height
         if (toInterfaceOrientation.isLandscape){
-            print("landscape")
-            
+
             myLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
             myLayout.minimumInteritemSpacing = 0
             myLayout.minimumLineSpacing = 0
@@ -58,7 +57,6 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
             myLayout.itemSize = CGSize(width:screenHeight/4 , height: screenWidth/3)
             
         }else{
-            print("portrait")
             myLayout.itemSize = CGSize(width: screenHeight/3, height: screenWidth/5.5)
         }
         self.categorias.setCollectionViewLayout(myLayout, animated: false)
@@ -93,8 +91,6 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         
         cell.categoryLabel.text = self.items[indexPath.item]["category"] as? String
         var image = self.items[indexPath.item]["image"] as! String
-        print(image)
-        //cell.backgroundColor = UIColor.yellowColor()
         if(image == ""){
             image = "Carne"
         }
@@ -118,15 +114,4 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         }
 
     }
-    
-        /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

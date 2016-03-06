@@ -147,13 +147,10 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             sections[indexPath.section].removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
             deleteIngredientStore(ingredient)
-            
-            print(ingredient.name)
             sections[1].append(ingredient)
             sections[1].sortInPlace({ $0.name < $1.name })
             
             let index = sections[1].indexOf(ingredient)
-            print(ingredient.name)
             tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 1)], withRowAnimation: .Automatic)
         }
     }

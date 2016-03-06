@@ -62,4 +62,7 @@
 
 "LISTATAREAS"="Lista de tareas";
 
+"INGREDIENTEVACIO"="El campo ingrediente está vacío";
+"REQUISITOTEXTO"="Es necesario que el ingrediente tenga un nombre";
+
 "SINCONEXION"="No tienes conexión";
