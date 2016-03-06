@@ -15,8 +15,9 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     var items = [Dictionary<String,AnyObject>]()
     var category = ""
-    let screenWidth = UIScreen.mainScreen().bounds.width
-    let screenHeight = UIScreen.mainScreen().bounds.height
+    var screenWidth = UIScreen.mainScreen().bounds.width
+    var screenHeight = UIScreen.mainScreen().bounds.height
+    var myLayout = UICollectionViewFlowLayout()
     
 
     @IBOutlet weak var ingredientsLabel: UILabel!
@@ -24,17 +25,43 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         super.viewDidLoad()
         setText()
         categoryInit()
-        let myLayout = UICollectionViewFlowLayout()
-        
+    
         myLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         myLayout.minimumInteritemSpacing = 0
         myLayout.minimumLineSpacing = 0
-        myLayout.itemSize = CGSize(width: screenWidth/3, height: screenHeight/6)
+
+        if UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation){
+            screenWidth = UIScreen.mainScreen().bounds.width
+            screenHeight = UIScreen.mainScreen().bounds.height
+            print("POO")
+            myLayout.itemSize = CGSize(width:screenWidth/4 , height: screenHeight/3)
+        }else{
+            myLayout.itemSize = CGSize(width: screenWidth/3, height: screenHeight/5.5)
+        }
         
         self.categorias.setCollectionViewLayout(myLayout, animated: false)
     }
     func setText(){
         ingredientsLabel.text = NSLocalizedString("INGREDIENTS",comment:"Ingredientes")
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        screenWidth = UIScreen.mainScreen().bounds.width
+        screenHeight = UIScreen.mainScreen().bounds.height
+        if (toInterfaceOrientation.isLandscape){
+            print("landscape")
+            
+            myLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            myLayout.minimumInteritemSpacing = 0
+            myLayout.minimumLineSpacing = 0
+            
+            myLayout.itemSize = CGSize(width:screenHeight/4 , height: screenWidth/3)
+            
+        }else{
+            print("portrait")
+            myLayout.itemSize = CGSize(width: screenHeight/3, height: screenWidth/5.5)
+        }
+        self.categorias.setCollectionViewLayout(myLayout, animated: false)
     }
     
     func categoryInit(){
@@ -69,7 +96,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         print(image)
         //cell.backgroundColor = UIColor.yellowColor()
         if(image == ""){
-            image = "sinImagen"
+            image = "Carne"
         }
         cell.image.image = UIImage(named: image)
         
