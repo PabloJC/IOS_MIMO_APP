@@ -19,7 +19,6 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
         super.viewDidLoad()
         setText()
         self.table.registerClass(UITableViewCell.self, forCellReuseIdentifier: "shoppingCell")
-        // Do any additional setup after loading the view.
     }
     func setText(){
         titleLabel.text = NSLocalizedString("TITULOLISTACOMPRA",comment:"Lista de la Compra")
@@ -62,16 +61,12 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.table.dequeueReusableCellWithIdentifier("shoppingCell")!
-        /*if ingredients.count > 0 {
-        cell.textLabel!.text = ingredients[indexPath.row].name
-        }*/
         let section = sections[indexPath.section]
         
         cell.textLabel!.text = section[indexPath.row].name
         return cell
     }
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
         return indexPath.section == 0 ? true : false
     }
     
@@ -120,41 +115,9 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             print("Error al comprar del cart")
         }
     }
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        /*if editingStyle == .Delete{
-            var section = sections[indexPath.section]
-            let ingredient = section[indexPath.row]
-            sections[indexPath.section].removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
-            deleteIngredientStore(ingredient)
-            
-            print(ingredient.name)
-            sections[1].append(ingredient)
-            sections[1].sortInPlace({ $0.name < $1.name })
-            
-            let index = sections[1].indexOf(ingredient)
-            print(ingredient.name)
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 1)], withRowAnimation: .Automatic)
-        }
-        if editingStyle == .Insert {
-            var section = sections[indexPath.section]
-            let ingredient = section[indexPath.row]
-            sections[indexPath.section].removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
-            buyIngredientStore(ingredient)
-        }*/
-
-    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
    
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-       /* var buyAction  = UITableViewRowAction(style: .Normal, title: "Comprar") { (action, indexPath) -> Void in
-            var section = self.sections[indexPath.section]
-            let ingredient = section[indexPath.row]
-            let activityViewController = UIActivityViewController(activityItems: [ingredient], applicationActivities: nil)
-            self.presentViewController(activityViewController,animated: true, completion : nil)
-            
-        }*/
         let buyAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("COMPRAR",comment:"Comprar")) { action, index in
             var section = self.sections[indexPath.section]
             let ingredient = section[indexPath.row]

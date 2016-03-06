@@ -32,8 +32,6 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
-        
-        // Do any additional setup after loading the view.
     }
     
    
