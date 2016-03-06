@@ -97,35 +97,14 @@ class StepViewController: UIViewController {
     }
     
     func updateTimer() {
-        // Create date from the elapsed time
         let currentDate:NSDate = NSDate();
         let timeInterval:NSTimeInterval = currentDate.timeIntervalSinceDate(self.startDate!);
         
-        
-        /*
-        if let pD = pickerNSDate  {
-        let calendar = NSCalendar.currentCalendar()
-        let comp = calendar.components([.Hour, .Minute, .Second], fromDate: pD)
-        let hour = comp.hour * 3600
-        let minute = comp.minute * 60
-        let second = comp.second
-        total =  Double(hour + minute + second)
-        }*/
-        
-        
         let timeIntervalCountDown = total! - timeInterval
-        //let timeAlert = total! + timeInterval
         let timerDate:NSDate = NSDate(timeIntervalSince1970: timeIntervalCountDown);
-        // print(timerDate)
-        
-        //timerAlert = NSDate(timeIntervalSinceNow: total!)
-        
-        // Create a date formatter
         let dateFormatter = NSDateFormatter();
         dateFormatter.dateFormat = "mm:ss";
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0);
-        
-        // Format the elapsed time and set it to the label
         let timeString = dateFormatter.stringFromDate(timerDate);
         if timeIntervalCountDown <= 0 {
             stopTimer()
@@ -133,12 +112,10 @@ class StepViewController: UIViewController {
             if findNotification() {
                 btAlarm.enabled = false
                 total = 0
-                
             }else {
                 btAlarm.enabled = true
                 total = Double((t?.seconds)!)
             }
-            
         }else{
             self.uiTextField.text = timeString
         }
@@ -147,9 +124,6 @@ class StepViewController: UIViewController {
     
     @IBAction func nextAction(sender: AnyObject) {
         stopTimer()
-        
-        print ( "current: \(currentTaskPos) tamaño: \(tasks.count)" )
-        
         if currentTaskPos < tasks.count-1{
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
@@ -170,8 +144,6 @@ class StepViewController: UIViewController {
         else {
             
             self.performSegueWithIdentifier("endRecipe", sender: self)
-            print("restar ingredientes")
-            //realizar la comprobacion de ingredientes restantes
         }
         if(self.findNotification()){
             print("Notificación encontrada")
@@ -185,8 +157,6 @@ class StepViewController: UIViewController {
     
     @IBAction func previousAction(sender: AnyObject) {
         stopTimer()
-        
-        print ( "current: \(currentTaskPos) tamaño: \(tasks.count)" )
         if currentTaskPos > 0 {
             
             if currentTaskPos < tasks.count {
@@ -213,20 +183,8 @@ class StepViewController: UIViewController {
             btAlarm.enabled = false
         }else{
             btAlarm.enabled = true
-        }    }
-    /* @IBAction func countDownAction(sender: UIButton) {
-    
-    sender.selected = !sender.selected;
-    //if selected fire timer, otherwise stop
-    if (sender.selected) {
-    uiTextField.enabled = false
-    self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-    self.startDate = NSDate();
-    } else {
-    uiTextField.enabled = true
-    self.stopTimer();
+        }
     }
-    }*/
     
     @IBAction func alarmAction(sender: AnyObject) {
         

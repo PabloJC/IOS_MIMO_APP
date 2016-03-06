@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             let notifications = try NotificationsDataHelper.findAll()! as [Notification]
             for noti in notifications {
-                var noti2 = noti as Notification
+                let noti2 = noti as Notification
                 let now = NSDate()
                 if now.compare(noti.firedate) == NSComparisonResult.OrderedDescending || now.compare(noti.firedate) == NSComparisonResult.OrderedSame {
                     do{

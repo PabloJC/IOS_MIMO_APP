@@ -17,8 +17,11 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var recetasString = [Dictionary<String,AnyObject>]()
     var recetasStringAux = [Dictionary<String,AnyObject>]()
     var ingredients = [Ingredient]()
-    var sincronized = false
+    var sincronized = true
     var ingredientesString = ""
+    var tabItem0 : UITabBarItem!
+    var tabItem1 : UITabBarItem!
+    var tabItem2 : UITabBarItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +32,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         recibirTodas()
         
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        // Do any additional setup after loading the view.
     }
     
     
@@ -39,9 +40,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
          title = NSLocalizedString("RECETAS",comment:"Recetas")
         self.searchBar.placeholder = NSLocalizedString("BUSQUEDA",comment:"Busqueda")
         let tabItems = self.tabBar.items! as [UITabBarItem]
-        let tabItem0 = tabItems[0] as UITabBarItem
-        let tabItem1 = tabItems[1] as UITabBarItem
-        let tabItem2 = tabItems[2] as UITabBarItem
+        tabItem0 = tabItems[0] as UITabBarItem
+       tabItem1 = tabItems[1] as UITabBarItem
+        tabItem2 = tabItems[2] as UITabBarItem
         tabItem0.title = NSLocalizedString("TOTAL",comment:"Total")
         tabItem1.title = NSLocalizedString("FAVORITOS",comment:"Favoritos")
         tabItem2.title = NSLocalizedString("POSIBLES",comment:"Posibles")
@@ -63,7 +64,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 let id = String(io.ingredientIdServer)
                 ingredientesString  += id  + ",";
             }
-            //print(ingredientesString)
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
@@ -137,56 +137,25 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
     }
     
-    
-    /*@IBAction func saveRecipeAction(sender: AnyObject) {
-        
-        /* let alert = UIAlertController(title: "New Recipe",
-        message: "Add a new recipe",
-        preferredStyle: .Alert)
-        
-        let saveAction = UIAlertAction(title: "Save",
-        style: .Default,
-        handler: { (action:UIAlertAction) -> Void in
-        
-        let textField = alert.textFields!.first
-        self.save(textField!.text!)
-        self.tableView.reloadData()
-        
-        })
-        
-        let cancelAction = UIAlertAction (title: "Cancel",
-        style: .Default,
-        handler: { (action:UIAlertAction) -> Void in
-        })
-        
-        alert.addTextFieldWithConfigurationHandler { (textField: UITextField) -> Void in
-        
-        }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        presentViewController(alert, animated: true, completion: nil)*/
-        
-    }*/
-    
     func recibir(){
         self.recetasString = []
         self.tableView.reloadData()
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
-        
+         self.view.makeToastActivity(.Center)
         myapiClient.getRecipesIngredients(ingredientesString, recipes: { (receta, id) -> () in
+           
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
             self.recetasString.append(post)
             
             }, finished: { () -> () in
+                
                 self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
-                    self.sincronized = true
+                    
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
@@ -196,6 +165,8 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     
                     print("sin recetas agregadas")
                 }
+               self.sincronized = true
+                
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }
@@ -205,12 +176,15 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.tableView.reloadData()
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
+        self.view.makeToastActivity(.Center)
         myapiClient.getRecipes({ (receta,id) -> () in
+            
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             self.recetasString.append(post)
             }, finished: { () -> () in
-               self.view.hideToastActivity()
+                
+                self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
                     self.sincronized = true
@@ -220,6 +194,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }else {
                     print("sin recetas agregadas")
                 }
+                self.sincronized = true
                 
             }) { (error) -> () in
                 print("\(error.debugDescription)")
@@ -242,6 +217,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.recetasString.append(post)
             }
             self.recetasStringAux = self.recetasString
+            
             if !self.recetasString.isEmpty {
                 self.sincronized = true
                 self.tableView.reloadData()
@@ -250,7 +226,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }else {
                 print("sin recetas agregadas")
             }
-            
+           self.sincronized = true
         }catch _ {
             print("error al recibir favoritos")
         }
@@ -267,34 +243,39 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         tableView.reloadData()
     }
-   /* @IBAction func recetasDisponiblesAction(sender: UIButton) {
-        
-        recibir()
-        self.tableView.reloadData()
-    }
-    @IBAction func todasLasRecetasAction(sender: UIButton) {
-        recibirTodas()
-        self.tableView.reloadData()
-    }*/
-    
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        view.hideToastActivity()
         switch item.tag{
         case 1:
             print ("Todas")
-            view.makeToastActivity(.Center)
-            recibirTodas()
-            self.tableView.reloadData()
+            if sincronized {
+                print("dentro")
+                sincronized = false
+                
+                recibirTodas()
+                self.tableView.reloadData()
+                
+            }
+            
             break
         case 2:
             print ("Favoritas")
-            recibirFavoritos()
+            if sincronized {
+                sincronized = false
+               recibirFavoritos()
+            }
+            
             
             break
         default:
              print ("Posibles")
-             view.makeToastActivity(.Center)
-             recibir()
-             self.tableView.reloadData()
+             if sincronized {
+                sincronized = false
+                
+                recibir()
+                self.tableView.reloadData()
+             }
+             
             break
         }
     }
