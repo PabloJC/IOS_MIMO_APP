@@ -8,19 +8,30 @@
 
 import UIKit
 
-class IngredientsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
+class IngredientsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     @IBOutlet weak var categorias: UICollectionView!
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     var items = [Dictionary<String,AnyObject>]()
     var category = ""
+    let screenWidth = UIScreen.mainScreen().bounds.width
+    let screenHeight = UIScreen.mainScreen().bounds.height
+    
 
     @IBOutlet weak var ingredientsLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         setText()
         categoryInit()
+        let myLayout = UICollectionViewFlowLayout()
+        
+        myLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        myLayout.minimumInteritemSpacing = 0
+        myLayout.minimumLineSpacing = 0
+        myLayout.itemSize = CGSize(width: screenWidth/3, height: screenHeight/6)
+        
+        self.categorias.setCollectionViewLayout(myLayout, animated: false)
     }
     func setText(){
         ingredientsLabel.text = NSLocalizedString("INGREDIENTS",comment:"Ingredientes")
@@ -54,12 +65,13 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CategoryCollectionViewCell
         
         cell.categoryLabel.text = self.items[indexPath.item]["category"] as? String
-        let image = self.items[indexPath.item]["image"] as! String
+        var image = self.items[indexPath.item]["image"] as! String
         print(image)
         //cell.backgroundColor = UIColor.yellowColor()
-        if(image != ""){
-            cell.image.image = UIImage(named: image)
+        if(image == ""){
+            image = "sinImagen"
         }
+        cell.image.image = UIImage(named: image)
         
         return cell
     }
