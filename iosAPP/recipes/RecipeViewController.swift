@@ -156,7 +156,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         return cell
     }
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
         return indexPath.section == 1 ? true : false
     }
     
