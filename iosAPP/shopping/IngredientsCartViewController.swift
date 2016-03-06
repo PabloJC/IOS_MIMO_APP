@@ -32,14 +32,13 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
-        
-        // Do any additional setup after loading the view.
     }
     
    
     
     func recibir(){
-        if Reachability.isConnectedToNetwork() == true {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.isConected {
             let myapiClient = MyAPIClient()
             myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
                 self.ingredientsSection[baseType] = ingredients

@@ -21,22 +21,9 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
                 let t2 = task2 as Task
                 return t.name < t2.name
             })
-
-            //tasks = (recipe!.tasks?.sortedArrayUsingDescriptors([NSSortDescriptor(key: "name", ascending: true)]))!
             self.tableView.reloadData()
         }
-        
-        
-        //tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-
-        // Do any additional setup after loading the view.
-    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+      }
     
 
     //MARK : UITableViewDataSource
@@ -47,23 +34,20 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        //let cell = tableView.dequeueReusableCellWithIdentifier("Cell")
+     
         let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as? TaskTableViewCell
-        //let recipe = recipes[indexPath.row]
         if tasks.count > 0 {
             let taskrow = tasks[indexPath.row]
             let task = taskrow as? Task
-            //cell!.textLabel!.text = recipe.valueForKey("name") as? String
             cell!.nameTaskPortrait!.text = NSLocalizedString("PASO",comment:"Paso") + " " + (task?.name)!
             cell!.nameTaskLandscape!.text = NSLocalizedString("PASO",comment:"Paso") + " "  + (task?.name)! + "Landscape"
-            if task!.photo != "" && Reachability.isConnectedToNetwork() {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            if task!.photo != "" && appDelegate.isConected {
                 let url = NSURL(string: task!.photo)
                 let data = NSData(contentsOfURL: url!)
                 cell!.imageTask.image = UIImage(data: data!)
             }
         }
-       // print (tasks.count)
         
         return cell!
     }
@@ -78,8 +62,6 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             let taskrow = tasks[(tableView.indexPathForSelectedRow?.row)!]
             let task = taskrow as? Task
             svc.task = task
-            // print("dentro")
-            
         } 
     }
 

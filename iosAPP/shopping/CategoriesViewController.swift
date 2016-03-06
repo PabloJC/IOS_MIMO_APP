@@ -12,7 +12,7 @@ class CategoriesViewController: UIViewController,UICollectionViewDelegate,UIColl
 
     @IBOutlet weak var categorias: UICollectionView!
     
-    let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
+    let reuseIdentifier = "cell"
     var items = [String]()
     var category = ""
     

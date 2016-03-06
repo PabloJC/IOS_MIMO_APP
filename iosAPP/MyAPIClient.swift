@@ -29,7 +29,6 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     
                     let result = responseObject! as! [[String:AnyObject]]
-                    //print("\(result)")
                     for recipe in result {
                         let id = recipe["id"]!
                         let nombre = recipe["name"]!
@@ -58,7 +57,6 @@ class MyAPIClient: AFHTTPSessionManager {
 			success: { operation, responseObject in
 	            
     	            let result = responseObject! as! [[String:AnyObject]]
-                 //print("\(result)")
                 for recipe in result {
                     let id = recipe["id"]!
                     let nombre = recipe["name"]!
@@ -87,13 +85,11 @@ class MyAPIClient: AFHTTPSessionManager {
                 success: { operation, responseObject in
                     let recipe = Recipe()
                     let result = responseObject! as! [String:AnyObject]
-                   // print("\(result)")
                     let name = result["name"]
                     let id = result["id"]
                     let photo = result["photo"]
                     if !(photo  is NSNull) {
                         recipe.photo = (photo as? String)!
-                      
                     }
                     let author = result["author"]
                     recipe.author = (author as? String)!
@@ -186,8 +182,6 @@ class MyAPIClient: AFHTTPSessionManager {
                 let filterString = filters.joinWithSeparator(",")
                 url = url+"?ids="+filterString
             }
-            
-            print(url)
 
             self.GET(url,
                 parameters: nil,

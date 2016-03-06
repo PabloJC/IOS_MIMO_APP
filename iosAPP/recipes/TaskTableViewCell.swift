@@ -10,18 +10,16 @@ import UIKit
 
 class TaskTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     @IBOutlet weak var imageTask: UIImageView!
     @IBOutlet weak var nameTaskLandscape: UILabel!
     @IBOutlet weak var nameTaskPortrait: UILabel!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

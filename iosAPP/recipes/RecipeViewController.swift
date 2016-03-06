@@ -70,7 +70,8 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     func drawView(){
         if recipe != nil {
             self.nombreReceta.text  = "\(recipe!.name)"
-            if recipe!.photo != "" && Reachability.isConnectedToNetwork() {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            if recipe!.photo != "" && appDelegate.isConected {
                 let url = NSURL(string: recipe!.photo)
                 let data = NSData(contentsOfURL: url!)
                 self.imageView.image = UIImage(data: data!)
@@ -100,7 +101,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         }
     }
     @IBAction func prepareRecipeAction(sender: AnyObject) {
-        print (recipe?.tasks.count)
         if recipe?.tasks.count != 0 {
             self.performSegueWithIdentifier("step", sender: self)
         }else{
@@ -156,7 +156,6 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         return cell
     }
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // the cells you would like the actions to appear needs to be editable
         return indexPath.section == 1 ? true : false
     }
     

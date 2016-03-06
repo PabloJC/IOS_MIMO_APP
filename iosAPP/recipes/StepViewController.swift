@@ -36,7 +36,6 @@ class StepViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        // toolbar()
         setTextBt()
         if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
@@ -45,16 +44,12 @@ class StepViewController: UIViewController {
                 return t.name < t2.name
             })
             t = tasks[currentTaskPos] as? Task
-            //self.taskName.text = "Paso " + (t?.name)!
             self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
             self.descriptionLabel.text = t?.taskDescription
-            //  self.tiempoPicker = tiempo(Double((t?.seconds)!))
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             
-            //print (NSDate())
             if(self.findNotification()){
-                print("Notificación encontrada")
                 total = currentNotification.firedate.timeIntervalSinceNow
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
                 btAlarm.enabled = false
@@ -80,7 +75,6 @@ class StepViewController: UIViewController {
         do{
             if let dso = try NotificationsDataHelper.findNotificationByTask((t?.taskIdServer)!){
                 currentNotification = dso
-                print(currentNotification)
                 res = true
                 
             }
@@ -128,7 +122,6 @@ class StepViewController: UIViewController {
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
                 bt.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
-                print("boton cambiado a finalizar")
             }
             if currentTaskPos >= 0 {
                 self.PreviousBT.enabled = true
@@ -146,7 +139,6 @@ class StepViewController: UIViewController {
             self.performSegueWithIdentifier("endRecipe", sender: self)
         }
         if(self.findNotification()){
-            print("Notificación encontrada")
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             btAlarm.enabled = false
@@ -170,14 +162,13 @@ class StepViewController: UIViewController {
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
             if currentTaskPos == 0 {
-                print("boton disable")
                 let bt = sender as! UIButton
                 bt.enabled = false
             }
             
         }
         if(self.findNotification()){
-            print("Notificación encontrada")
+          
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             btAlarm.enabled = false
@@ -191,43 +182,29 @@ class StepViewController: UIViewController {
         let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
         
         if settings!.types == .None {
-            //let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
             let ac = UIAlertController(title: NSLocalizedString("ALARMANOADMITIDA",comment:"Alarma no admitida"), message: NSLocalizedString("MENSAJEALARMA",comment:"Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad"), preferredStyle: .Alert)
             ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(ac, animated: true, completion: nil)
             return
         }else{
             let sender2 = sender as! UIButton
-            //if selected fire timer, otherwise stop
             uiTextField.enabled = false
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             self.startDate = NSDate();
             sender2.enabled = false
             
             timerAlert = NSDate(timeIntervalSinceNow: total!)
-            // 1
             let notification = UILocalNotification()
-            // 15
-            print(timerAlert)
             notification.userInfo = Dictionary<String, AnyObject> ()
             notification.fireDate = fixedNotificationDate(timerAlert!)
-            // 3
-            //notification.alertBody = "La Tarea \(t!.name) de la receta '\(recipe!.name)' pendiente de revision"
             notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
-            //
+
             let freak = NSUserDefaults.standardUserDefaults().boolForKey("sound")
             if freak {
                 notification.soundName = "one_piece_zoro.wav"
             }else {
                 notification.soundName = UILocalNotificationDefaultSoundName
             }
-            
-            
-            print("numero de notificaciones pendientes" + "\(UIApplication.sharedApplication().applicationIconBadgeNumber)")
-            //UIApplication.sharedApplication().applicationIconBadgeNumber =  UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-            //notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber
-            
-            // 7
             
             let ntf = Notification()
             ntf.firedate = timerAlert!
@@ -237,7 +214,6 @@ class StepViewController: UIViewController {
             do{
                 
                 let id = try NotificationsDataHelper.insert(ntf)
-                print (id)
                 notification.userInfo = ["uid" : Int(id) ]
                 print("Notificacion insertada")
             }catch _{
@@ -266,26 +242,6 @@ class StepViewController: UIViewController {
         
     }
     
-    
-    /*@IBAction func textFieldEditing(sender: UITextField) {
-    let datePickerView: UIDatePicker = UIDatePicker()
-    
-    datePickerView.datePickerMode = UIDatePickerMode.CountDownTimer
-    
-    sender.inputView = datePickerView
-    
-    datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-    }
-    
-    func datePickerValueChanged(sender: UIDatePicker) {
-    
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "mm:ss";
-    tiempoPicker = dateFormatter.stringFromDate(sender.date)
-    pickerNSDate  = sender.date
-    uiTextField.text = dateFormatter.stringFromDate(sender.date)
-    
-    }*/
     func tiempo (seconds: Double) -> String{
         self.startDate = NSDate();
         let currentDate:NSDate = NSDate();
@@ -315,28 +271,6 @@ class StepViewController: UIViewController {
             }
             
             svc.ingredientsFinishIDS = ingredientsFinish
-            // print("dentro")
-            
         }
     }
-    /*func toolbar (){
-    let toolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
-    
-    toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-    
-    toolBar.barStyle = UIBarStyle.BlackTranslucent
-    
-    toolBar.tintColor = UIColor.whiteColor()
-    
-    toolBar.backgroundColor = UIColor.blackColor()
-    let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "donePressed:")
-    toolBar.setItems([okBarBtn], animated: true)
-    uiTextField.inputAccessoryView = toolBar
-    }
-    func donePressed(sender: UIBarButtonItem) {
-    
-    uiTextField.resignFirstResponder()
-    
-    }*/
-    
 }
