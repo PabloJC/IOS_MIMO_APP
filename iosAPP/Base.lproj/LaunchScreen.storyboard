@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +17,32 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTAKU COOK BY MIKEL BALDUCIEL &amp; PABLO JIMENEZ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uf-TH-EAH">
+                                <rect key="frame" x="62" y="297" width="466" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="u9g-4X-MWd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Carne" translatesAutoresizingMaskIntoConstraints="NO" id="ZEE-ad-VkW">
+                                <rect key="frame" x="180" y="161" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="c5d-Fo-hHR"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Uf-TH-EAH" secondAttribute="trailing" constant="52" id="FwR-d4-6NK"/>
+                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="top" secondItem="ZEE-ad-VkW" secondAttribute="bottom" constant="8" symbolic="YES" id="KoS-TS-1if"/>
+                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="42" id="noE-jv-93o"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="9Uf-TH-EAH" secondAttribute="bottom" constant="188" id="qih-8n-y35"/>
+                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wTc-j7-PQv"/>
+                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="141" id="zTW-HD-cX3"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +50,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Carne" width="183" height="183"/>
+    </resources>
 </document>
