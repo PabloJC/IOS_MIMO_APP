@@ -8,22 +8,31 @@
 
 import UIKit
 
-class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
     
     var items = [String]()
     var ingredientId : Int64!
      @IBOutlet weak var picker: UIPickerView!
-
+    var pos : CGFloat!
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryInit()
+       // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
 
     @IBOutlet weak var saveBt: UIButton!
     @IBOutlet weak var ingredientTv: UITextField!
     @IBOutlet weak var categoryLb: UILabel!
     
-
+    func keyboardWillShow(sender: NSNotification) {
+        pos = self.view.frame.origin.y
+        self.view.frame.origin.y = -150
+    }
+    
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = pos
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -60,6 +69,12 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return items.count
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        ingredientTv.resignFirstResponder()
+        return true
+    }
+    
     
     @IBAction func saveAction(sender: AnyObject) {
         let newIngredient = Ingredient()

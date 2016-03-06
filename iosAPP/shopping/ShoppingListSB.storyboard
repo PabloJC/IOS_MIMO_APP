@@ -334,7 +334,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="search:" destination="21k-qY-A3d" eventType="editingDidEnd" id="z4H-CT-2GP"/>
+                                    <action selector="search:" destination="21k-qY-A3d" eventType="editingChanged" id="3TO-gr-PaM"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -395,6 +395,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ghz-zp-Hr5"/>
                     <connections>
+                        <outlet property="searchTv" destination="YlV-jR-Lxe" id="86i-qf-Def"/>
                         <outlet property="table" destination="OQs-tX-Idp" id="ByG-da-d65"/>
                     </connections>
                 </viewController>

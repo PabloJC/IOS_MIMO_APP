@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IngredientListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class IngredientListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchTv: UITextField! //Buscar Ingrediente
@@ -39,10 +39,18 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
         }
         table.reloadData()
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        searchTv.resignFirstResponder()
+        return true
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
+        searchTv.delegate = self
         setText()
         recibir()
         
@@ -50,6 +58,13 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     }
     func setText(){
         self.searchTv.placeholder = NSLocalizedString("BUSCARINGREDIENTE",comment:"Buscar Ingrediente")
+    }
+    
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(red: 1, green: 1, blue: 0.8, alpha: 0.5)
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textAlignment = .Center
+        header
     }
     
     

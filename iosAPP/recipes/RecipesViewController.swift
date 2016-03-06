@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITabBarDelegate {
+class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITabBarDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +25,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
        
         setTextBt()
         
@@ -34,6 +35,10 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        searchBar.resignFirstResponder()
+        return true
+    }
     
     
     func setTextBt(){

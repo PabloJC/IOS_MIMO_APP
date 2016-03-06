@@ -30,6 +30,14 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         addIngredient.setTitle(NSLocalizedString("AÑADIRINGREDIENTE",comment:"Añadir Ingrediente"), forState: .Normal)
     }
     
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(red: 1, green: 1, blue: 0.8, alpha: 0.5)
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textAlignment = .Center
+        header
+    }
+
+    
     
     @IBAction func actionButton(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

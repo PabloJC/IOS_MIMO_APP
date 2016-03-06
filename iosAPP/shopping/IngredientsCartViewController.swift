@@ -8,10 +8,11 @@
 
 import UIKit
 
-class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var table: UITableView!
     
+    @IBOutlet weak var searchTv: UITextField!
     
     var category = ""
     var ingredients = [Ingredient]()
@@ -21,19 +22,32 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
     var ingredients2 = [Ingredient]()
     
     @IBAction func search(sender: UITextField) {
-        ingredients = ingredients2
+        ingredientsSection = ingredientsSection2
         if !sender.text!.isEmpty {
-            ingredients = ingredients.filter { (ingredient) -> Bool in
-                ingredient.name.lowercaseString.rangeOfString(sender.text!.lowercaseString) != nil
+            
+            for i in ingredientsSection.keys{
+                let ingredients = ingredientsSection[i]
+                ingredientsSection[i] =  ingredients!.filter({ (ingredient) -> Bool in
+                    ingredient.name.lowercaseString.rangeOfString(sender.text!.lowercaseString) != nil
+                })
+                if(ingredientsSection[i]?.count == 0){
+                    ingredientsSection.removeValueForKey(i)
+                }
             }
+            
         }
         table.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
+        searchTv.delegate = self
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        searchTv.resignFirstResponder()
+        return true
+    }
    
     
     func recibir(){
@@ -53,6 +67,37 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
         }
         
     }
+    
+    /*func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return ingredientsSection.count
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let key = Array(ingredientsSection.keys)[section]
+        return key
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let key = Array(ingredientsSection.keys)[section]
+        return (ingredientsSection[key]?.count)!
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.table.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientCartTableViewCell
+        
+        let key = Array(ingredientsSection.keys)[indexPath.section]
+        
+        cell.textLabel!.text = ingredientsSection[key]![indexPath.row].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let key = Array(ingredientsSection.keys)[indexPath.section]
+        let newIngredient = ingredientsSection[key]![indexPath.row]
+        addIngredient(key,ingredient: newIngredient)
+        table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    }*/
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return ingredientsSection.count
@@ -84,6 +129,11 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
         addIngredient(key,ingredient: newIngredient)
         table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
+
+    
+    
+    
+    
     func addIngredient(key: String,ingredient: Ingredient) {
         
         do{
