@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,45 +17,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZEE-ad-VkW">
-                                <rect key="frame" x="189" y="141" width="222" height="183"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="222" id="xnT-ef-kIN"/>
-                                </constraints>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="80" y="172" width="240" height="328"/>
-                                </variation>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="ONH-H0-neE">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTAKU COOK BY MIKEL BALDUCIEL &amp; PABLO JIMENEZ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uf-TH-EAH">
-                                <rect key="frame" x="67" y="332" width="466" height="115"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="115" id="M54-Hz-BZg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="62" y="497" width="266" height="115"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="47" id="3zz-Yn-XeK"/>
-                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="centerX" secondItem="ZEE-ad-VkW" secondAttribute="centerX" id="E4I-aE-prM"/>
-                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="121" id="Eqc-ch-eb3"/>
-                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VQr-Je-PS5"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="9Uf-TH-EAH" secondAttribute="bottom" constant="153" id="gpy-g0-Bn1"/>
-                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="top" secondItem="ZEE-ad-VkW" secondAttribute="bottom" constant="8" symbolic="YES" id="xEl-Yv-hRA"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="9SB-g4-w0t"/>
+                            <constraint firstAttribute="trailing" secondItem="ONH-H0-neE" secondAttribute="trailing" id="OxQ-Ed-r1B"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ph9-Tm-yEU"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TqC-nH-pYX"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="VKF-ij-ecq"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="Zy5-5s-b48"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="dS1-6E-zHV"/>
+                            <constraint firstAttribute="trailing" secondItem="ONH-H0-neE" secondAttribute="trailing" id="hqg-Zx-EMm"/>
+                            <constraint firstAttribute="trailing" secondItem="ONH-H0-neE" secondAttribute="trailing" id="lyj-uY-aKB"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="mCL-qy-kkk"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="qSf-g5-Ts0"/>
+                            <constraint firstItem="ONH-H0-neE" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="z82-FB-8ZC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9SB-g4-w0t"/>
+                                <exclude reference="OxQ-Ed-r1B"/>
+                                <exclude reference="Ph9-Tm-yEU"/>
+                                <exclude reference="dS1-6E-zHV"/>
+                                <exclude reference="lyj-uY-aKB"/>
+                                <exclude reference="mCL-qy-kkk"/>
+                                <exclude reference="qSf-g5-Ts0"/>
+                                <exclude reference="z82-FB-8ZC"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Ph9-Tm-yEU"/>
+                                <include reference="dS1-6E-zHV"/>
+                                <include reference="lyj-uY-aKB"/>
+                                <include reference="mCL-qy-kkk"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="9SB-g4-w0t"/>
+                                <include reference="OxQ-Ed-r1B"/>
+                                <include reference="qSf-g5-Ts0"/>
+                                <include reference="z82-FB-8ZC"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="193" height="193"/>
+        <image name="launchScreen" width="250" height="444"/>
     </resources>
 </document>
