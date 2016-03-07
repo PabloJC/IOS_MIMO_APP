@@ -35,7 +35,6 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             sections.append(ingredients)
             sections.append(ingredients2)
             table.reloadData()
-            print("\(ingredients.count)")
         }catch _{
             print("Error al recibir los ingredientes")
         }
@@ -133,13 +132,9 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
             self.sections[indexPath.section].removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
             self.deleteIngredientStore(ingredient)
-            
-            print(ingredient.name)
             self.sections[1].append(ingredient)
             self.sections[1].sortInPlace({ $0.name < $1.name })
-            
             let index = self.sections[1].indexOf(ingredient)
-            print(ingredient.name)
             tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: index!, inSection: 1)], withRowAnimation: .Automatic)
             
         }

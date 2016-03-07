@@ -16,10 +16,13 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var pos : CGFloat!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setText()
         categoryInit()
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }
+    @IBOutlet weak var selectCategoryLb: UILabel!
+    @IBOutlet weak var addIngredientLb: UILabel!
 
     @IBOutlet weak var saveBt: UIButton!
     @IBOutlet weak var ingredientTv: UITextField!
@@ -33,10 +36,13 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y = pos
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
+    
+    func setText() {
+        saveBt.setTitle(NSLocalizedString("AGREGAR",comment:"Agregar"), forState: .Normal)
+        ingredientTv.placeholder = NSLocalizedString("BUSCARINGREDIENTE",comment:"Buscar Ingrediente")
+        categoryLb.text = NSLocalizedString("NUEVOINGREDIENTE",comment:"Nuevo ingrediente")
+        selectCategoryLb.text = NSLocalizedString("SELECCIONARCATEGORIA",comment:"Selecciona Categoría")
+        addIngredientLb.text = NSLocalizedString("AÑADENOMBREINGREDIENTE",comment:"Añade un nombre a tu ingrediente")
     }
     
     func categoryInit(){

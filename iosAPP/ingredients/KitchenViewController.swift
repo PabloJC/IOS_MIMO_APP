@@ -31,11 +31,12 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(red: 1, green: 1, blue: 0.8, alpha: 0.5)
         let header = view as! UITableViewHeaderFooterView
+        
         header.textLabel?.textAlignment = .Center
-        header
+        
     }
+
 
     
     
@@ -68,7 +69,6 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
             sections.append(ingredients1)
             sections.append(ingredients2)
             myKitchen.reloadData()
-            print("\(ingredients.count)")
         }catch _{
             print("Error al recibir los ingredientes")
             }

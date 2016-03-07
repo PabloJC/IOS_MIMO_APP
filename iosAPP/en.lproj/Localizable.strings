@@ -65,4 +65,9 @@
 "INGREDIENTEVACIO"="Ingredient field is empty";
 "REQUISITOTEXTO"="The name of the ingredient is required";
 
+"NUEVOINGREDIENTE"="New ingredient";
+"AÑADENOMBREINGREDIENTE"="Add name to your ingredient";
+"SELECCIONARCATEGORIA"="Select Category";
+"AGREGAR"="Add";
+
 "SINCONEXION"="You are offline";

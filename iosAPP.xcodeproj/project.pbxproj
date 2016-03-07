@@ -605,7 +605,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ab75c4af-e617-4b62-8a5f-5cc1ab23db73";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -626,7 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ab75c4af-e617-4b62-8a5f-5cc1ab23db73";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

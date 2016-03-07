@@ -12,7 +12,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBOutlet weak var categorias: UICollectionView!
     
-    let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
+    let reuseIdentifier = "cell" 
     var items = [Dictionary<String,AnyObject>]()
     var category = ""
     var screenWidth = UIScreen.mainScreen().bounds.width

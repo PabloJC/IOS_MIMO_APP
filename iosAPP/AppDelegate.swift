@@ -51,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            print(notifications.count)
         }catch _ {
             
         }

@@ -36,8 +36,6 @@ class MeasureDataHelper: DataHelperProtocol {
                 t.column(quantity)
                 t.column(recipeId)
                 t.column(ingredientId)
-               
-                print("tabla recipe creada")
                 })
         }catch _ {
             print("error create table")

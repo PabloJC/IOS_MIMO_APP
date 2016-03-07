@@ -65,4 +65,9 @@
 "INGREDIENTEVACIO"="El campo ingrediente está vacío";
 "REQUISITOTEXTO"="Es necesario que el ingrediente tenga un nombre";
 
+"NUEVOINGREDIENTE"="Nuevo ingrediente";
+"AÑADENOMBREINGREDIENTE"="Añade un nombre a tu ingrediente";
+"SELECCIONARCATEGORIA"="Selecciona Categoría";
+"AGREGAR"="Agregar";
+
 "SINCONEXION"="No tienes conexión";

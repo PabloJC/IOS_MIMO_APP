@@ -18,30 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTAKU COOK BY MIKEL BALDUCIEL &amp; PABLO JIMENEZ" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uf-TH-EAH">
-                                <rect key="frame" x="62" y="297" width="466" height="115"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZEE-ad-VkW">
+                                <rect key="frame" x="189" y="141" width="222" height="183"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="115" id="u9g-4X-MWd"/>
+                                    <constraint firstAttribute="width" constant="222" id="xnT-ef-kIN"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="172" width="240" height="328"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OTAKU COOK BY MIKEL BALDUCIEL &amp; PABLO JIMENEZ" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Uf-TH-EAH">
+                                <rect key="frame" x="67" y="332" width="466" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="M54-Hz-BZg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="62" y="497" width="266" height="115"/>
+                                </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Carne" translatesAutoresizingMaskIntoConstraints="NO" id="ZEE-ad-VkW">
-                                <rect key="frame" x="180" y="161" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="c5d-Fo-hHR"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Uf-TH-EAH" secondAttribute="trailing" constant="52" id="FwR-d4-6NK"/>
-                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="top" secondItem="ZEE-ad-VkW" secondAttribute="bottom" constant="8" symbolic="YES" id="KoS-TS-1if"/>
-                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="42" id="noE-jv-93o"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="9Uf-TH-EAH" secondAttribute="bottom" constant="188" id="qih-8n-y35"/>
-                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wTc-j7-PQv"/>
-                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="141" id="zTW-HD-cX3"/>
+                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="47" id="3zz-Yn-XeK"/>
+                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="centerX" secondItem="ZEE-ad-VkW" secondAttribute="centerX" id="E4I-aE-prM"/>
+                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="121" id="Eqc-ch-eb3"/>
+                            <constraint firstItem="ZEE-ad-VkW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VQr-Je-PS5"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="9Uf-TH-EAH" secondAttribute="bottom" constant="153" id="gpy-g0-Bn1"/>
+                            <constraint firstItem="9Uf-TH-EAH" firstAttribute="top" secondItem="ZEE-ad-VkW" secondAttribute="bottom" constant="8" symbolic="YES" id="xEl-Yv-hRA"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -51,6 +57,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Carne" width="183" height="183"/>
+        <image name="Logo" width="193" height="193"/>
     </resources>
 </document>
