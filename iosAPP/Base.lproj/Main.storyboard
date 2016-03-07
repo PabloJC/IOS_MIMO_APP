@@ -50,11 +50,13 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="N31-O7-jYN"/>
                                 </connections>
                             </tabBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="r5H-f6-R7z">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="TituloApp" translatesAutoresizingMaskIntoConstraints="NO" id="r5H-f6-R7z">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="237" id="INb-aH-1Ny"/>
-                                    <constraint firstAttribute="height" constant="91" id="yor-lv-S8A"/>
+                                    <constraint firstAttribute="height" constant="91" id="yor-lv-S8A">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="90"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -73,10 +75,10 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <view opaque="NO" alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iir-nh-rVS">
+                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iir-nh-rVS">
                                 <rect key="frame" x="20" y="26" width="560" height="441"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sinImagen" translatesAutoresizingMaskIntoConstraints="NO" id="FSB-TM-wKW">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="sinImagen" translatesAutoresizingMaskIntoConstraints="NO" id="FSB-TM-wKW">
                                         <rect key="frame" x="28" y="75" width="544" height="387"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="231" id="H3L-ny-IhF"/>
@@ -92,7 +94,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sin Favoritos" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sin Favoritos" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwk-BG-IBj">
                                         <rect key="frame" x="8" y="0.0" width="456" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="3I6-k8-2g6"/>
@@ -140,12 +142,6 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="B9m-kz-oCr"/>
-                                        <exclude reference="U4o-uL-Gti"/>
-                                        <exclude reference="eck-tX-PhW"/>
-                                        <exclude reference="fi7-vi-vMi"/>
-                                        <exclude reference="hbO-Oh-4Jy"/>
-                                        <exclude reference="qyB-Aq-rdw"/>
                                         <exclude reference="BuA-si-cK5"/>
                                         <exclude reference="MKq-n3-076"/>
                                         <exclude reference="MOv-b9-wUO"/>
@@ -153,31 +149,37 @@
                                         <exclude reference="c4R-Dv-7Uh"/>
                                         <exclude reference="fYq-sT-Gft"/>
                                         <exclude reference="m6F-1r-HBH"/>
+                                        <exclude reference="B9m-kz-oCr"/>
+                                        <exclude reference="U4o-uL-Gti"/>
+                                        <exclude reference="eck-tX-PhW"/>
+                                        <exclude reference="fi7-vi-vMi"/>
+                                        <exclude reference="hbO-Oh-4Jy"/>
+                                        <exclude reference="qyB-Aq-rdw"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact">
                                     <mask key="constraints">
-                                        <include reference="B9m-kz-oCr"/>
-                                        <include reference="eck-tX-PhW"/>
-                                        <include reference="hbO-Oh-4Jy"/>
                                         <include reference="MKq-n3-076"/>
                                         <include reference="MOv-b9-wUO"/>
                                         <include reference="VC4-0I-1uC"/>
+                                        <include reference="B9m-kz-oCr"/>
+                                        <include reference="eck-tX-PhW"/>
+                                        <include reference="hbO-Oh-4Jy"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="U4o-uL-Gti"/>
-                                        <include reference="fi7-vi-vMi"/>
-                                        <include reference="qyB-Aq-rdw"/>
                                         <include reference="BuA-si-cK5"/>
                                         <include reference="c4R-Dv-7Uh"/>
                                         <include reference="fYq-sT-Gft"/>
                                         <include reference="m6F-1r-HBH"/>
+                                        <include reference="U4o-uL-Gti"/>
+                                        <include reference="fi7-vi-vMi"/>
+                                        <include reference="qyB-Aq-rdw"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I51-fI-Mmm">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I51-fI-Mmm">
                                 <rect key="frame" x="472" y="-4" width="80" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="bPt-CL-XvW"/>
@@ -222,7 +224,9 @@
                             <constraint firstItem="teD-AV-YSq" firstAttribute="top" secondItem="Iir-nh-rVS" secondAttribute="bottom" constant="20" id="AEJ-09-beh"/>
                             <constraint firstItem="Iir-nh-rVS" firstAttribute="leading" secondItem="r5H-f6-R7z" secondAttribute="leading" id="C8a-Is-WPm"/>
                             <constraint firstItem="Iir-nh-rVS" firstAttribute="leading" secondItem="I51-fI-Mmm" secondAttribute="leading" id="Hpb-ZZ-ngR"/>
-                            <constraint firstItem="Iir-nh-rVS" firstAttribute="top" secondItem="r5H-f6-R7z" secondAttribute="bottom" constant="8" symbolic="YES" id="JUC-gd-Wi6"/>
+                            <constraint firstItem="Iir-nh-rVS" firstAttribute="top" secondItem="r5H-f6-R7z" secondAttribute="bottom" constant="8" symbolic="YES" id="JUC-gd-Wi6">
+                                <variation key="heightClass=regular-widthClass=compact" constant="9"/>
+                            </constraint>
                             <constraint firstItem="Iir-nh-rVS" firstAttribute="trailing" secondItem="I51-fI-Mmm" secondAttribute="trailing" id="KqZ-uZ-hf0"/>
                             <constraint firstItem="teD-AV-YSq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="M70-WK-C6K"/>
                             <constraint firstItem="r5H-f6-R7z" firstAttribute="top" secondItem="TBC-cO-8Yo" secondAttribute="bottom" id="M7U-Ay-6Sf"/>
@@ -392,9 +396,9 @@
     </scenes>
     <resources>
         <image name="Compra" width="29" height="29"/>
-        <image name="Logo" width="193" height="193"/>
         <image name="Nevera" width="29" height="29"/>
         <image name="Recetas" width="29" height="29"/>
+        <image name="TituloApp" width="400" height="100"/>
         <image name="random" width="120" height="15"/>
         <image name="sinImagen" width="656" height="400"/>
     </resources>

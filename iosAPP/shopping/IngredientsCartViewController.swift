@@ -41,6 +41,7 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         recibir()
+        setText()
         searchTv.delegate = self
         
     }
@@ -49,10 +50,17 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
         searchTv.resignFirstResponder()
         return true
     }
-   
+    func setText(){
+        self.searchTv.placeholder = NSLocalizedString("BUSCARINGREDIENTE",comment:"Buscar Ingrediente")
+    }
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textAlignment = .Center
+    }
     
     func recibir(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+         self.view.makeToastActivity(.Center)
         if appDelegate.isConected {
             let myapiClient = MyAPIClient()
             myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
@@ -60,6 +68,7 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
                 },finished: { () -> () in
                     self.ingredientsSection2 = self.ingredientsSection
                     self.table.reloadData()
+                    self.view.hideToastActivity()
                 }) { (error) -> () in
                     print("\(error.debugDescription)")
             }

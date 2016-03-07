@@ -59,15 +59,14 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(red: 1, green: 1, blue: 0.8, alpha: 0.5)
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textAlignment = .Center
-        header
     }
     
     
     func recibir(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+         self.view.makeToastActivity(.Center)
         if appDelegate.isConected {
             let myapiClient = MyAPIClient()
             myapiClient.getCategory(category, ingredients: { (baseType,ingredients) -> () in
@@ -75,6 +74,7 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
                 },finished: { () -> () in
                     self.ingredientsSection2 = self.ingredientsSection
                     self.table.reloadData()
+                    self.view.hideToastActivity()
                 }) { (error) -> () in
                     print("\(error.debugDescription)")
             }
