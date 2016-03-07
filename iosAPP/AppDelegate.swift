@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch _ {
             print ("error al borrar notificacion")
         }
-        self.window?.rootViewController?.view.makeToast(notification.alertBody, duration: 4.0, position: .Center, title: nil, image: UIImage(named: "favoritos.png"), style: nil, completion: nil)
+        self.window?.rootViewController?.view.makeToast(notification.alertBody, duration: 4.0, position: .Center, title: nil, image: UIImage(named: "AlarmaActivada"), style: nil, completion: nil)
     }
     func applicationWillEnterForeground(application: UIApplication) {
         do {

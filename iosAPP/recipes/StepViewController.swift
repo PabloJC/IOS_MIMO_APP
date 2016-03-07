@@ -52,8 +52,10 @@ class StepViewController: UIViewController {
             if(self.findNotification()){
                 total = currentNotification.firedate.timeIntervalSinceNow
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+                btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
                 btAlarm.enabled = false
             }else{
+                btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
                 btAlarm.enabled = true
             }
             
@@ -104,9 +106,11 @@ class StepViewController: UIViewController {
             stopTimer()
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             if findNotification() {
+                btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
                 btAlarm.enabled = false
                 total = 0
             }else {
+                btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
                 btAlarm.enabled = true
                 total = Double((t?.seconds)!)
             }
@@ -141,8 +145,10 @@ class StepViewController: UIViewController {
         if(self.findNotification()){
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
             btAlarm.enabled = false
         }else{
+            btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
             btAlarm.enabled = true
         }
     }
@@ -171,14 +177,16 @@ class StepViewController: UIViewController {
           
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
             btAlarm.enabled = false
         }else{
+            btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
             btAlarm.enabled = true
         }
     }
     
     @IBAction func alarmAction(sender: AnyObject) {
-        
+        btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
         let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
         
         if settings!.types == .None {
