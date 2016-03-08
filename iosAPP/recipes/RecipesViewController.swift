@@ -75,6 +75,8 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     //MARK : UITableViewDataSource
+    
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return recetasString.count
@@ -90,7 +92,10 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             cell!.textLabel?.lineBreakMode = .ByWordWrapping
             cell!.textLabel?.font = UIFont.systemFontOfSize(15)
             cell!.textLabel?.numberOfLines = 2
+            cell!.textLabel?.textAlignment = .Center
         }
+        cell!.addBorderBottom(size: 0.5, color: UIColor(red: 78, green: 159, blue: 255, alpha: 0))
+        cell!.backgroundColor = UIColor.whiteColor()
         
         return cell!
     }

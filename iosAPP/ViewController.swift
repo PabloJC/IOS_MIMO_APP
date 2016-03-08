@@ -31,6 +31,11 @@ class ViewController: UIViewController, UITabBarDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("backTapped:"))
         back.userInteractionEnabled = true
         back.addGestureRecognizer(tapGestureRecognizer)
+        
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        
+        self.view.layer.insertSublayer(background, atIndex: 0)
     }
     override func viewWillAppear(animated: Bool) {
         ingredientsStorage()

@@ -24,6 +24,9 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
           setText()
         self.myKitchen.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Ingredient")
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, atIndex: 0)
     }
    func setText(){
         titleLabel.text = NSLocalizedString("TUSINGREDIENTES",comment:"Tus Ingredientes")
@@ -32,7 +35,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
-        
+        header.addBorderBottom(size: 1, color: UIColor.blackColor())
         header.textLabel?.textAlignment = .Center
         
     }
@@ -85,7 +88,8 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = self.myKitchen.dequeueReusableCellWithIdentifier("Ingredient")!
         
         let section = sections[indexPath.section]
-        
+        cell.addBorderBottom(size: 0.5, color: UIColor(red: 78, green: 159, blue: 255, alpha: 0))
+        cell.backgroundColor = UIColor.whiteColor()
         cell.textLabel!.text = section[indexPath.row].name
         
         return cell

@@ -29,6 +29,7 @@ class IngredientsViewController: UIViewController, UICollectionViewDataSource, U
         myLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         myLayout.minimumInteritemSpacing = 0
         myLayout.minimumLineSpacing = 0
+        
 
         if UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation){
             screenWidth = UIScreen.mainScreen().bounds.width
