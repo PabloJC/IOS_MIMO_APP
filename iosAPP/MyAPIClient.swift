@@ -129,7 +129,7 @@ class MyAPIClient: AFHTTPSessionManager {
                         }
                         
                         ingredientsRecipe.measure = (i["measure"] as? String)!
-                        ingredientsRecipe.quantity = Int64(i["quantity"] as! Int)
+                        ingredientsRecipe.quantity = Double(i["quantity"] as! Float)
                         ingredientsRecipe.measureIdServer = Int64(ingre["id"] as! Int)
                         ingredientsRecipe.ingredient = ingredientsObject
                         recipe.measures.append(ingredientsRecipe)

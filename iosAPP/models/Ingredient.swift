@@ -22,4 +22,6 @@ class Ingredient : NSObject {
     var frozen = FrozenTypes.noFrozen
    var storageId = Int64()
     var cartId = Int64()
+    var measure = String()
+    var quantity = Double()
 }

@@ -12,6 +12,8 @@ class RecipeIngredientTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameIngredientLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var quantityLabel: UILabel!
+    @IBOutlet weak var measureLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

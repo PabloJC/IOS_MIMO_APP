@@ -16,7 +16,7 @@ class MeasureDataHelper: DataHelperProtocol {
     static let measureId = Expression<Int64>("measureId")
     static let measureIdServer = Expression<Int64>("measureIdServer")
     static let measure = Expression<String>("measure")
-    static let quantity = Expression<Int64>("quantity")
+    static let quantity = Expression<Double>("quantity")
     static let recipeId = Expression<Int64>("recipeId")
     static let ingredientId = Expression<Int64>("ingredientId")
     

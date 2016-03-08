@@ -73,15 +73,23 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             if recipe!.photo != "" && appDelegate.isConected {
                 let url = NSURL(string: recipe!.photo)
-                let data = NSData(contentsOfURL: url!)
-                self.imageView.image = UIImage(data: data!)
+                if let data = NSData(contentsOfURL: url!) {
+                     self.imageView.image = UIImage(data: data)
+                }
+                //let data = NSData(contentsOfURL: url!)
+               // self.imageView.image = UIImage(data: data!)
             }
             self.starsRating.rating = Double(recipe!.score)
             for i in recipe!.measures{
+                print (i.quantity)
+                var ingre: Ingredient!
                 let i2 = i
                 if self.ingredientsBDServerId.contains(i2.ingredient.ingredientIdServer) {
                     i2.ingredient.storageId = 1
-                    self.storedIngredients.append(i2.ingredient)
+                    ingre = i2.ingredient
+                    ingre.measure = i2.measure
+                    ingre.quantity = Double(i2.quantity)
+                    self.storedIngredients.append(ingre)
                 }else {
                     do {
                         var iBD = try IngredientDataHelper.findIdServer(i2.ingredient.ingredientIdServer)
@@ -89,7 +97,11 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                             try IngredientDataHelper.insert(i2.ingredient)
                             iBD = try IngredientDataHelper.findIdServer(i2.ingredient.ingredientIdServer)
                         }
-                        self.missingIngredients.append(iBD!)
+                        ingre = iBD
+                        ingre.measure = i2.measure
+                        ingre.quantity = Double(i2.quantity)
+                        
+                        self.missingIngredients.append(ingre)
                     }catch _ {
                         
                     }
@@ -146,6 +158,8 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
         let section = sections[indexPath.section]
         
         cell.nameIngredientLabel!.text = section[indexPath.row].name
+        cell.measureLabel!.text = section[indexPath.row].measure
+        cell.quantityLabel.text = "\(section[indexPath.row].quantity)"
         if section[indexPath.row].cartId == 1 {
             cell.stateLabel.text = NSLocalizedString("PENDIENTECOMPRA",comment:"Pendiente de compra")
         }else if section[indexPath.row].cartId == 0 && section[indexPath.row].storageId == 0{

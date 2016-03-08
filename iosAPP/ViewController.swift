@@ -84,8 +84,9 @@ class ViewController: UIViewController, UITabBarDelegate {
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 if recipeSegue!.photo != "" && appDelegate.isConected {
                     let url = NSURL(string: recipe!.photo)
-                    let data = NSData(contentsOfURL: url!)
-                    self.imageRecipe.image = UIImage(data: data!)
+                    if let data = NSData(contentsOfURL: url!) {
+                        self.imageRecipe.image = UIImage(data: data)
+                    }
                 }else {
                     self.imageRecipe.image = UIImage(named: "sinImagen")
                 }
