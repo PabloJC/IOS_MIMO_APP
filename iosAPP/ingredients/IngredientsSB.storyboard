@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Xu-mR-Acg" id="rhF-Du-EyA">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <gestureRecognizers/>
@@ -437,6 +437,12 @@
                                 <exclude reference="Xuh-lb-faC"/>
                                 <exclude reference="asK-8A-Hex"/>
                                 <exclude reference="rce-fz-Awd"/>
+                                <exclude reference="PrH-nI-6wg"/>
+                                <exclude reference="VjR-iq-F2u"/>
+                                <exclude reference="cmV-6g-60C"/>
+                                <exclude reference="o5D-iv-Voa"/>
+                                <exclude reference="ojE-K3-m0w"/>
+                                <exclude reference="xaE-Tc-sA0"/>
                                 <exclude reference="7Ky-DB-0vy"/>
                                 <exclude reference="AfV-Km-HQd"/>
                                 <exclude reference="aac-ij-cNn"/>
@@ -444,17 +450,11 @@
                                 <exclude reference="tq3-my-1y6"/>
                                 <exclude reference="tr8-4v-q3O"/>
                                 <exclude reference="yQz-ND-UYl"/>
-                                <exclude reference="PrH-nI-6wg"/>
-                                <exclude reference="VjR-iq-F2u"/>
-                                <exclude reference="cmV-6g-60C"/>
-                                <exclude reference="o5D-iv-Voa"/>
-                                <exclude reference="ojE-K3-m0w"/>
-                                <exclude reference="xaE-Tc-sA0"/>
+                                <exclude reference="ftc-gU-qvV"/>
                                 <exclude reference="M0h-cH-30Q"/>
                                 <exclude reference="Ulz-if-4qY"/>
                                 <exclude reference="dHh-yF-st3"/>
                                 <exclude reference="nnW-n0-f66"/>
-                                <exclude reference="ftc-gU-qvV"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -469,15 +469,15 @@
                                 <include reference="Xuh-lb-faC"/>
                                 <include reference="asK-8A-Hex"/>
                                 <include reference="rce-fz-Awd"/>
-                                <include reference="7Ky-DB-0vy"/>
-                                <include reference="AfV-Km-HQd"/>
-                                <include reference="yQz-ND-UYl"/>
                                 <include reference="VjR-iq-F2u"/>
                                 <include reference="cmV-6g-60C"/>
                                 <include reference="ojE-K3-m0w"/>
                                 <include reference="xaE-Tc-sA0"/>
-                                <include reference="Ulz-if-4qY"/>
+                                <include reference="7Ky-DB-0vy"/>
+                                <include reference="AfV-Km-HQd"/>
+                                <include reference="yQz-ND-UYl"/>
                                 <include reference="ftc-gU-qvV"/>
+                                <include reference="Ulz-if-4qY"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -491,12 +491,12 @@
                                 <include reference="fxs-LF-eEU"/>
                                 <include reference="6re-2x-7my"/>
                                 <include reference="Rzd-qM-TcY"/>
+                                <include reference="PrH-nI-6wg"/>
+                                <include reference="o5D-iv-Voa"/>
                                 <include reference="aac-ij-cNn"/>
                                 <include reference="r3n-hC-t3V"/>
                                 <include reference="tq3-my-1y6"/>
                                 <include reference="tr8-4v-q3O"/>
-                                <include reference="PrH-nI-6wg"/>
-                                <include reference="o5D-iv-Voa"/>
                                 <include reference="M0h-cH-30Q"/>
                                 <include reference="dHh-yF-st3"/>
                                 <include reference="nnW-n0-f66"/>
@@ -834,7 +834,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sdI-fo-0zP" id="M83-re-mrJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="47.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4BU-11-XRr">

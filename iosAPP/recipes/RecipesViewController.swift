@@ -31,7 +31,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         loadIngredientsStorage()
         recibirTodas()
-        
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
@@ -87,6 +86,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if recetasString.count > 0 {
             let recipe = recetasString[indexPath.row]
             cell!.textLabel!.text = recipe["name"] as? String
+            cell!.textLabel?.lineBreakMode = .ByWordWrapping
+            cell!.textLabel?.font = UIFont.systemFontOfSize(15)
+            cell!.textLabel?.numberOfLines = 2
         }
         
         return cell!
