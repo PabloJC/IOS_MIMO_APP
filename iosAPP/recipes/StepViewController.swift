@@ -50,11 +50,13 @@ class StepViewController: UIViewController {
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             
             if t?.photo != "" && appDelegate.isConected {
+                self.view.makeToastActivity(.Center)
                 print(t!.photo)
                 let url = NSURL(string: t!.photo)
                 if let data = NSData(contentsOfURL: url!) {
                     self.imageView.image = UIImage(data: data)
                 }
+                self.view.hideToastActivity()
             }else {
                 self.imageView.image = UIImage(named: "sinImagen")
 
@@ -131,7 +133,9 @@ class StepViewController: UIViewController {
     
     
     @IBAction func nextAction(sender: AnyObject) {
+        self.view.makeToastActivity(.Center)
         stopTimer()
+        
         if currentTaskPos < tasks.count-1{
             if currentTaskPos == tasks.count-2 {
                 let bt = sender as! UIButton
@@ -147,10 +151,13 @@ class StepViewController: UIViewController {
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
             if t?.photo != "" && appDelegate.isConected {
+                
                 let url = NSURL(string: t!.photo)
                 if let data = NSData(contentsOfURL: url!) {
                     self.imageView.image = UIImage(data: data)
                 }
+               
+                
             }
             else {
                 self.imageView.image = UIImage(named: "sinImagen")
@@ -171,10 +178,13 @@ class StepViewController: UIViewController {
             btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
             btAlarm.enabled = true
         }
+         self.view.hideToastActivity()
     }
     
     @IBAction func previousAction(sender: AnyObject) {
+        self.view.makeToastActivity(.Center)
         stopTimer()
+        
         if currentTaskPos > 0 {
             
             if currentTaskPos < tasks.count {
@@ -213,6 +223,7 @@ class StepViewController: UIViewController {
             btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
             btAlarm.enabled = true
         }
+         self.view.hideToastActivity()
     }
     
     @IBAction func alarmAction(sender: AnyObject) {

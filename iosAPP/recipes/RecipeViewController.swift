@@ -58,10 +58,12 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     func recibir(){
         let myapiClient = MyAPIClient()
+        self.view.makeToastActivity(.Center)
         myapiClient.getrecipe(idText, recipe2: { (r) -> () in
             self.recipe = r
             }, finished: { () -> () in
                 self.drawView()
+                self.view.hideToastActivity()
             }) { (error) -> () in
                 print("\(error.debugDescription)")
         }

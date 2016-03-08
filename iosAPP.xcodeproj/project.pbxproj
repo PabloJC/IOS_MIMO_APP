@@ -594,8 +594,8 @@
 			baseConfigurationReference = C8202BCCE08F3DBEBAC269C9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -605,7 +605,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
-				PROVISIONING_PROFILE = "ab75c4af-e617-4b62-8a5f-5cc1ab23db73";
+				PROVISIONING_PROFILE = "719ecd4f-ad04-41dc-bb13-0f79412e2cbd";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -615,8 +615,8 @@
 			baseConfigurationReference = 0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -626,7 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = es.upsa.mimo.OtakuCook;
 				PRODUCT_NAME = OtakuCook;
-				PROVISIONING_PROFILE = "ab75c4af-e617-4b62-8a5f-5cc1ab23db73";
+				PROVISIONING_PROFILE = "719ecd4f-ad04-41dc-bb13-0f79412e2cbd";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
