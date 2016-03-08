@@ -51,6 +51,7 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
         }
     }
     
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].count
     }
@@ -62,6 +63,8 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
         let cell = self.table.dequeueReusableCellWithIdentifier("shoppingCell")!
         let section = sections[indexPath.section]
         
+        cell.addBorderBottom(size: 0.5, color: UIColor(red: 78, green: 159, blue: 255, alpha: 0))
+        cell.backgroundColor = UIColor.whiteColor()
         cell.textLabel!.text = section[indexPath.row].name
         return cell
     }
@@ -116,6 +119,7 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
+        header.addBorderBottom(size: 1, color: UIColor.blackColor())
         header.textLabel?.textAlignment = .Center
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
