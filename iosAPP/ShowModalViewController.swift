@@ -18,6 +18,13 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         super.viewDidLoad()
         setText()
         categoryInit()
+        
+        picker.layer.cornerRadius = 5
+        saveBt.layer.cornerRadius = 5
+        
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, atIndex: 0)
        // NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
     }

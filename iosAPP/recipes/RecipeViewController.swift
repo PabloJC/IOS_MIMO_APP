@@ -46,6 +46,12 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             drawView()
 
         }
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, atIndex: 0)
+        tableView.layer.cornerRadius = 5
+        cocinarBt.layer.cornerRadius = 5
+        verPasosBt.layer.cornerRadius = 5
     }
     func setTextBt(){
         self.cocinarBt.setTitle(NSLocalizedString("COCINAR",comment:"Cocinar"), forState: .Normal)
