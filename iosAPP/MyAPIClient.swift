@@ -140,6 +140,10 @@ class MyAPIClient: AFHTTPSessionManager {
                         taskObject.taskIdServer = Int64(t["id"] as! Int)
                         taskObject.name = (t["name"] as? String)!
                         taskObject.taskDescription = (t["description"] as? String)!
+                        let photo = t["photo"]
+                        if !(photo  is NSNull) {
+                            taskObject.photo = (photo as? String)!
+                        }
                         if t["seconds"] is NSNull {}
                         else{
                            taskObject.seconds = Int64(t["seconds"] as! Int)

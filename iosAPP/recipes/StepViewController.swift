@@ -30,7 +30,7 @@ class StepViewController: UIViewController {
     var total :Double?
     
     var currentNotification = Notification()
-    
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
     override func viewDidLoad() {
@@ -49,6 +49,16 @@ class StepViewController: UIViewController {
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             
+            if t?.photo != "" && appDelegate.isConected {
+                print(t!.photo)
+                let url = NSURL(string: t!.photo)
+                if let data = NSData(contentsOfURL: url!) {
+                    self.imageView.image = UIImage(data: data)
+                }
+            }else {
+                self.imageView.image = UIImage(named: "sinImagen")
+
+            }
             if(self.findNotification()){
                 total = currentNotification.firedate.timeIntervalSinceNow
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
@@ -136,6 +146,16 @@ class StepViewController: UIViewController {
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
+            if t?.photo != "" && appDelegate.isConected {
+                let url = NSURL(string: t!.photo)
+                if let data = NSData(contentsOfURL: url!) {
+                    self.imageView.image = UIImage(data: data)
+                }
+            }
+            else {
+                self.imageView.image = UIImage(named: "sinImagen")
+                
+            }
             
         }
         else {
@@ -167,6 +187,16 @@ class StepViewController: UIViewController {
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
             self.descriptionLabel.text = t?.taskDescription
+            if t?.photo != "" && appDelegate.isConected {
+                let url = NSURL(string: t!.photo)
+                if let data = NSData(contentsOfURL: url!) {
+                    self.imageView.image = UIImage(data: data)
+                }
+            }
+            else {
+                self.imageView.image = UIImage(named: "sinImagen")
+                
+            }
             if currentTaskPos == 0 {
                 let bt = sender as! UIButton
                 bt.enabled = false

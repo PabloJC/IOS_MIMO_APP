@@ -76,8 +76,9 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
                 if let data = NSData(contentsOfURL: url!) {
                      self.imageView.image = UIImage(data: data)
                 }
-                //let data = NSData(contentsOfURL: url!)
-               // self.imageView.image = UIImage(data: data!)
+            }else {
+                self.imageView.image = UIImage(named: "sinImagen")
+                
             }
             self.starsRating.rating = Double(recipe!.score)
             for i in recipe!.measures{
