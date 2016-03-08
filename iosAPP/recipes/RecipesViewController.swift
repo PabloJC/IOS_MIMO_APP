@@ -31,6 +31,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         loadIngredientsStorage()
         recibirTodas()
+        
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
@@ -143,7 +144,11 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return recipeTMI!
 
     }
-    
+    func order(){
+        self.recetasString.sortInPlace{
+            (($0 )["name"] as? String) < (($1 )["name"] as? String)
+        }
+    }
     func recibir(){
         self.recetasString = []
         self.tableView.reloadData()
@@ -162,7 +167,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
-                    
+                    self.order()
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
@@ -194,6 +199,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.view.hideToastActivity()
                 self.recetasStringAux = self.recetasString
                 if !self.recetasString.isEmpty {
+                    self.order()
                     self.sincronized = true
                     self.tableView.reloadData()
                     self.activityIndicator.stopAnimating()
@@ -226,6 +232,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.recetasStringAux = self.recetasString
             
             if !self.recetasString.isEmpty {
+                self.order()
                 self.sincronized = true
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
