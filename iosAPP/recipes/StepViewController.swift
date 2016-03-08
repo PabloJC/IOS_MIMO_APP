@@ -75,6 +75,13 @@ class StepViewController: UIViewController {
             self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
             
         }
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        self.view.layer.insertSublayer(background, atIndex: 0)
+        descriptionLabel.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 5.0
+
     }
     func setTextBt(){
         self.btAlarm.setTitle(NSLocalizedString("ALARMA",comment:"Alarma"), forState: .Normal)

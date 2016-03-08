@@ -14,6 +14,11 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
     var tasks = [AnyObject]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        
+        self.view.layer.insertSublayer(background, atIndex: 0)
         title = NSLocalizedString("LISTATAREAS",comment:"Lista de tareas")
         if recipe?.tasks.count > 0 {
             tasks = recipe!.tasks.sort({ (task, task2) -> Bool in
@@ -40,7 +45,7 @@ class StepListViewController: UIViewController,UITableViewDelegate,UITableViewDa
             let taskrow = tasks[indexPath.row]
             let task = taskrow as? Task
             cell!.nameTaskPortrait!.text = NSLocalizedString("PASO",comment:"Paso") + " " + (task?.name)!
-            cell!.nameTaskLandscape!.text = NSLocalizedString("PASO",comment:"Paso") + " "  + (task?.name)! + "Landscape"
+            cell!.nameTaskLandscape!.text = NSLocalizedString("PASO",comment:"Paso") + " "  + (task?.name)!
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             if task!.photo != "" && appDelegate.isConected {
                 let url = NSURL(string: task!.photo)

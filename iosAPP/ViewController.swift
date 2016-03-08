@@ -36,6 +36,8 @@ class ViewController: UIViewController, UITabBarDelegate {
         background.frame = self.view.bounds
         
         self.view.layer.insertSublayer(background, atIndex: 0)
+        imageRecipe.layer.masksToBounds = true
+        imageRecipe.layer.cornerRadius = 5.0
     }
     override func viewWillAppear(animated: Bool) {
         ingredientsStorage()

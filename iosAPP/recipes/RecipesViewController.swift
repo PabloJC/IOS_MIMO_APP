@@ -26,12 +26,13 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-       
+        
         setTextBt()
         
         loadIngredientsStorage()
-        recibirTodas()
-        
+        //recibirTodas()
+        recibirFavoritos()
+        tabBar.selectedItem = tabItem1
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
@@ -42,11 +43,11 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     
     func setTextBt(){
-         title = NSLocalizedString("RECETAS",comment:"Recetas")
+        title = NSLocalizedString("RECETAS",comment:"Recetas")
         self.searchBar.placeholder = NSLocalizedString("BUSQUEDA",comment:"Busqueda")
         let tabItems = self.tabBar.items! as [UITabBarItem]
         tabItem0 = tabItems[0] as UITabBarItem
-       tabItem1 = tabItems[1] as UITabBarItem
+        tabItem1 = tabItems[1] as UITabBarItem
         tabItem2 = tabItems[2] as UITabBarItem
         tabItem0.title = NSLocalizedString("TOTAL",comment:"Total")
         tabItem1.title = NSLocalizedString("FAVORITOS",comment:"Favoritos")
@@ -85,7 +86,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")
-
+        
         if recetasString.count > 0 {
             let recipe = recetasString[indexPath.row]
             cell!.textLabel!.text = recipe["name"] as? String
@@ -111,12 +112,12 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let recipeRow = recetasString[row!]
             do {
                 let id = recipeRow["id"]
-               let recipe = try RecipeDataHelper.findIdServer(Int64(id as! Int))
+                let recipe = try RecipeDataHelper.findIdServer(Int64(id as! Int))
                 if recipe != nil {
                     print("bd")
-                  recipeSegue = createRecipe(recipe!)
+                    recipeSegue = createRecipe(recipe!)
                     svc.recipe = recipeSegue
-                     svc.ingredients = ingredients
+                    svc.ingredients = ingredients
                 }else {
                     print("server")
                     svc.idText = "\(recipeRow["id"]!)"
@@ -147,7 +148,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         }
         return recipeTMI!
-
+        
     }
     func order(){
         self.recetasString.sortInPlace{
@@ -159,9 +160,9 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.tableView.reloadData()
         let myapiClient = MyAPIClient()
         self.activityIndicator.startAnimating()
-         self.view.makeToastActivity(.Center)
+        self.view.makeToastActivity(.Center)
         myapiClient.getRecipesIngredients(ingredientesString, recipes: { (receta, id) -> () in
-           
+            
             var post=Dictionary<String,AnyObject>()
             post = ["id":id,"name":receta]
             
@@ -182,7 +183,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     
                     print("sin recetas agregadas")
                 }
-               self.sincronized = true
+                self.sincronized = true
                 
             }) { (error) -> () in
                 print("\(error.debugDescription)")
@@ -245,7 +246,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }else {
                 print("sin recetas agregadas")
             }
-           self.sincronized = true
+            self.sincronized = true
         }catch _ {
             print("error al recibir favoritos")
         }
@@ -264,15 +265,19 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         view.hideToastActivity()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         switch item.tag{
         case 1:
             print ("Todas")
-            if sincronized {
-                sincronized = false
-                
-                recibirTodas()
-                self.tableView.reloadData()
-                
+            
+            if appDelegate.isConected {
+                if sincronized {
+                    sincronized = false
+                    recibirTodas()
+                    self.tableView.reloadData()
+                }
+            }else {
+                self.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexión"), duration: 2, position: .Top)
             }
             
             break
@@ -280,20 +285,26 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
             print ("Favoritas")
             if sincronized {
                 sincronized = false
-               recibirFavoritos()
+                recibirFavoritos()
             }
             
             
             break
         default:
-             print ("Posibles")
-             if sincronized {
-                sincronized = false
-                
-                recibir()
-                self.tableView.reloadData()
-             }
-             
+            print ("Posibles")
+            
+            if appDelegate.isConected {
+                if sincronized {
+                    sincronized = false
+                    
+                    recibir()
+                    self.tableView.reloadData()
+                }
+            }else {
+                self.view.makeToast(NSLocalizedString("SINCONEXION",comment:"No tienes conexión"), duration: 2, position: .Top)
+            }
+            
+            
             break
         }
     }

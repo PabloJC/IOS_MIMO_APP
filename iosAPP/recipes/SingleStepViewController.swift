@@ -16,6 +16,14 @@ class SingleStepViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        taskDescriptionTextView.layer.cornerRadius = 5
+        taskImageView.layer.masksToBounds = true
+        taskImageView.layer.cornerRadius = 5.0
+        
+        self.view.layer.insertSublayer(background, atIndex: 0)
         self.taskNameLabel.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (task?.name)!
         self.taskDescriptionTextView.text = task?.taskDescription
         if task?.photo != "" && appDelegate.isConected {
