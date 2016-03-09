@@ -14,13 +14,13 @@ enum FrozenTypes: Int64{
 }
 
 class Ingredient : NSObject {
-   var ingredientId = Int64()
+    var ingredientId = Int64()
     var ingredientIdServer =  Int64()
     var name = String ()
-   var baseType = String()
-   var category = String()
+    var baseType = String()
+    var category = String()
     var frozen = FrozenTypes.noFrozen
-   var storageId = Int64()
+    var storageId = Int64()
     var cartId = Int64()
     var measure = String()
     var quantity = Double()
@@ -53,5 +53,17 @@ class Ingredient : NSObject {
     static func deleteIngredientCart(ingredient: Ingredient) throws -> Void{
         ingredient.cartId = 0
         try IngredientDataHelper.updateCart(ingredient)
+    }
+    static func stringIngredientsIds(ingredients :[Ingredient]) -> String {
+        var ingredientesString = "0"
+        if ingredients.count != 0{
+            
+            for ing in ingredients {
+                let io = ing
+                let id = String(io.ingredientIdServer)
+                ingredientesString  += id  + ",";
+            }
+        }
+        return ingredientesString
     }
 }

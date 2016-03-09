@@ -53,15 +53,6 @@ class ViewController: UIViewController, UITabBarDelegate {
             try dataStore.createTables()
             Storage.initStorage()
             Cart.initCart()
-            /*if try StorageDataHelper.find(1) == nil {
-                let  S = Storage()
-                try  StorageDataHelper.insert(S)
-            }
-            if try CartDataHelper.find(1) == nil {
-                let  C = Cart()
-                try  CartDataHelper.insert(C)
-                
-            }*/
         }catch _ {
             print ("error insert")
         }
@@ -70,14 +61,6 @@ class ViewController: UIViewController, UITabBarDelegate {
     func ingredientsStorage(){
         do {
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
-            if self.ingredients.count == 0{
-                ingredientesString = "0"
-            }
-            for ing in ingredients {
-                let io = ing
-                let id = String(io.ingredientIdServer)
-                ingredientesString  += id  + ",";
-            }
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
@@ -141,13 +124,6 @@ class ViewController: UIViewController, UITabBarDelegate {
             break
         }
     }
-    
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     func recibirFavoritos(){
         
         do {
@@ -170,7 +146,7 @@ class ViewController: UIViewController, UITabBarDelegate {
         
     }
     @IBAction func randomAction(sender: AnyObject) {
-        //random = Int(arc4random_uniform(UInt32(recipes!.count)))
+        
         recibirFavoritos()
         cargarView()
 
