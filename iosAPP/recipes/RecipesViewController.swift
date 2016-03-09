@@ -62,14 +62,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func loadIngredientsStorage(){
         do {
             ingredients = try IngredientDataHelper.findIngredientsInStorage()!
-            if self.ingredients.count == 0{
-                ingredientesString = "0"
-            }
-            for ing in ingredients {
-                let io = ing
-                let id = String(io.ingredientIdServer)
-                ingredientesString  += id  + ",";
-            }
+            ingredientesString = Ingredient.stringIngredientsIds(ingredients)
         } catch _ {
             print ("error al coger los ingredientes del almacen")
         }
