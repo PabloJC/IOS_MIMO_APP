@@ -158,7 +158,6 @@ class StepViewController: UIViewController {
     func checkConectivity() -> Void{
         if t?.photo != "" && appDelegate.isConected {
             self.view.makeToastActivity(.Center)
-            print(t!.photo)
             let url = NSURL(string: t!.photo)
             if let data = NSData(contentsOfURL: url!) {
                 self.imageView.image = UIImage(data: data)
