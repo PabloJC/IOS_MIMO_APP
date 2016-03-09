@@ -78,37 +78,6 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
         
     }
     
-    /*func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return ingredientsSection.count
-    }
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let key = Array(ingredientsSection.keys)[section]
-        return key
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let key = Array(ingredientsSection.keys)[section]
-        return (ingredientsSection[key]?.count)!
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.table.dequeueReusableCellWithIdentifier("ingredientCell", forIndexPath: indexPath) as! IngredientCartTableViewCell
-        
-        let key = Array(ingredientsSection.keys)[indexPath.section]
-        
-        cell.textLabel!.text = ingredientsSection[key]![indexPath.row].name
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let key = Array(ingredientsSection.keys)[indexPath.section]
-        let newIngredient = ingredientsSection[key]![indexPath.row]
-        addIngredient(key,ingredient: newIngredient)
-        table.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }*/
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return ingredientsSection.count
     }
@@ -147,18 +116,13 @@ class IngredientsCartViewController: UIViewController,UITableViewDelegate,UITabl
     func addIngredient(key: String,ingredient: Ingredient) {
         
         do{
-            ingredient.cartId = 1
-            print(ingredient.cartId)
-            let ingredientId =  try IngredientDataHelper.insert(ingredient)
+            try Ingredient.addIngredientCart(ingredient)
             let arraySection = ingredientsSection[key]
             ingredientsSection[key]?.removeAtIndex((arraySection?.indexOf(ingredient))!)
             
             if ingredientsSection[key]!.count == 0{
                 self.navigationController?.popViewControllerAnimated(true)
             }
-            
-            print(ingredientId)
-            print(ingredient.ingredientIdServer)
         }catch _{
             print("Error al crear el ingrediente")
         }

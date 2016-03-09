@@ -118,9 +118,7 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
     func addIngredient(key: String,ingredient: Ingredient) {
         
         do{
-            ingredient.storageId = 1
-            print(ingredient.storageId)
-            let ingredientId =  try IngredientDataHelper.insert(ingredient)
+            try Ingredient.addIngredientStorage(ingredient)
             let arraySection = ingredientsSection[key]
             ingredientsSection[key]?.removeAtIndex((arraySection?.indexOf(ingredient))!)
             
@@ -128,8 +126,6 @@ class IngredientListViewController: UIViewController,UITableViewDelegate,UITable
                 self.navigationController?.popViewControllerAnimated(true)
             }
             view.makeToast(NSLocalizedString("INGREDIENTAÑADIDO",comment:"Se ha agregado un ingrediente al almacén"), duration: 2.0, position: .Center)
-            print(ingredientId)
-            print(ingredient.ingredientIdServer)
         }catch _{
             print("Error al crear el ingrediente")
         }
