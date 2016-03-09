@@ -114,10 +114,7 @@ class ShowModalViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     func addIngredient(ingredient: Ingredient) {
         
         do{
-            ingredient.storageId = 1
-            ingredientId =  try IngredientDataHelper.insert(ingredient)
-            
-            print(ingredientId)
+            try Ingredient.addIngredientStorage(ingredient)
         }catch _{
             print("Error al crear el ingrediente")
         }

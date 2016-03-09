@@ -76,9 +76,8 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
         if indexPath.section == 1{
             let ingredient = sections[1][indexPath.row]
             do{
-                ingredient.cartId = 1
-                try IngredientDataHelper.updateCart(ingredient)
                 
+                try Ingredient.updateIngredientCart(ingredient)
                 sections[indexPath.section].removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
                 
@@ -96,23 +95,16 @@ class ShoopingListViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     func deleteIngredientStore(ingredient: Ingredient){
         do{
-            ingredient.cartId = 0
-            try IngredientDataHelper.updateCart(ingredient)
-            
-            print("Ingrediente eliminado del cart")
+            try Ingredient.deleteIngredientCart(ingredient)
         }catch _{
             print("Error al eliminar del cart")
         }
     }
     func buyIngredientStore(ingredient: Ingredient){
         do{
-            ingredient.cartId = 0
-            ingredient.storageId = 1
-            try IngredientDataHelper.updateCart(ingredient)
-            try IngredientDataHelper.updateStorage(ingredient)
+            try Ingredient.deleteIngredientCart(ingredient)
+            try Ingredient.updateIngredientStorage(ingredient)
             view.makeToast(NSLocalizedString("COMPRAREALIZADA",comment:"Compra Realizada"), duration: 2.0, position: .Center)
-            
-            print("Ingrediente comprado del cart")
         }catch _{
             print("Error al comprar del cart")
         }

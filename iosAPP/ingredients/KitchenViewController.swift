@@ -99,8 +99,7 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
         if indexPath.section == 1{
             let ingredient = sections[1][indexPath.row]
             do{
-                ingredient.storageId = 1
-                try IngredientDataHelper.updateStorage(ingredient)
+                try Ingredient.updateIngredientStorage(ingredient)
                 
                 sections[indexPath.section].removeAtIndex(indexPath.row)
                 myKitchen.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
@@ -126,20 +125,18 @@ class KitchenViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func deleteIngredientStore(ingredient: Ingredient){
         do{
-            ingredient.storageId = 0
-            try IngredientDataHelper.updateStorage(ingredient)
-            print("Ingrediente eliminado del storage")
+            try Ingredient.deleteIngredientStorage(ingredient)
         }catch _{
             print("Error al eliminar del storage")
         }
     }
 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        var res = false
         if indexPath.section == 0{
-            return true
-        }else{
-            return false
+            res = true
         }
+        return res
     }
     
     
