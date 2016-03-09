@@ -29,7 +29,7 @@ class StepViewController: UIViewController {
     var t : Task?
     var total :Double?
     
-    var currentNotification = Notification()
+    var currentNotification : Notification?
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
@@ -48,28 +48,8 @@ class StepViewController: UIViewController {
             self.descriptionLabel.text = t?.taskDescription
             total = Double((t?.seconds)!)
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            
-            if t?.photo != "" && appDelegate.isConected {
-                self.view.makeToastActivity(.Center)
-                print(t!.photo)
-                let url = NSURL(string: t!.photo)
-                if let data = NSData(contentsOfURL: url!) {
-                    self.imageView.image = UIImage(data: data)
-                }
-                self.view.hideToastActivity()
-            }else {
-                self.imageView.image = UIImage(named: "sinImagen")
-
-            }
-            if((Notification.findNotification(t!)) != nil){
-                total = currentNotification.firedate.timeIntervalSinceNow
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-                btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
-                btAlarm.enabled = false
-            }else{
-                btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
-                btAlarm.enabled = true
-            }
+            checkConectivity()
+            checkNotification()
             
         }else {
             self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
@@ -135,77 +115,65 @@ class StepViewController: UIViewController {
                 self.PreviousBT.enabled = true
             }
             currentTaskPos++
-            t = tasks[currentTaskPos] as? Task
-            self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
-            total = Double((t?.seconds)!)
-            self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            self.descriptionLabel.text = t?.taskDescription
-            if t?.photo != "" && appDelegate.isConected {
-                
-                let url = NSURL(string: t!.photo)
-                if let data = NSData(contentsOfURL: url!) {
-                    self.imageView.image = UIImage(data: data)
-                }
-               
-                
-            }
-            else {
-                self.imageView.image = UIImage(named: "sinImagen")
-                
-            }
-            
+            changeCurrentTask()
         }
         else {
             
             self.performSegueWithIdentifier("endRecipe", sender: self)
         }
-        if Notification.findNotification(t!) != nil {
-            total = currentNotification.firedate.timeIntervalSinceNow
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-            btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
-            btAlarm.enabled = false
-        }else{
-            btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
-            btAlarm.enabled = true
-        }
-         self.view.hideToastActivity()
+        checkNotification()
+        self.view.hideToastActivity()
     }
+    
+    
     
     @IBAction func previousAction(sender: AnyObject) {
         self.view.makeToastActivity(.Center)
         stopTimer()
         
         if currentTaskPos > 0 {
-            
             if currentTaskPos < tasks.count {
                 self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
             }
-            
             currentTaskPos--
-            t = tasks[currentTaskPos] as? Task
-            self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
-            total = Double((t?.seconds)!)
-            self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            self.descriptionLabel.text = t?.taskDescription
-            if t?.photo != "" && appDelegate.isConected {
-                let url = NSURL(string: t!.photo)
-                if let data = NSData(contentsOfURL: url!) {
-                    self.imageView.image = UIImage(data: data)
-                }
-            }
-            else {
-                self.imageView.image = UIImage(named: "sinImagen")
-                
-            }
+            changeCurrentTask()
             if currentTaskPos == 0 {
                 let bt = sender as! UIButton
                 bt.enabled = false
             }
+        }
+        checkNotification()
+        self.view.hideToastActivity()
+    }
+    
+    func changeCurrentTask() -> Void{
+        t = tasks[currentTaskPos] as? Task
+        self.taskName.text = NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
+        total = Double((t?.seconds)!)
+        self.uiTextField.text = tiempo(Double((t?.seconds)!))
+        self.descriptionLabel.text = t?.taskDescription
+        checkConectivity()
+    }
+    
+    func checkConectivity() -> Void{
+        if t?.photo != "" && appDelegate.isConected {
+            self.view.makeToastActivity(.Center)
+            print(t!.photo)
+            let url = NSURL(string: t!.photo)
+            if let data = NSData(contentsOfURL: url!) {
+                self.imageView.image = UIImage(data: data)
+            }
+            self.view.hideToastActivity()
+        }else {
+            self.imageView.image = UIImage(named: "sinImagen")
             
         }
-        if Notification.findNotification(t!) != nil {
-          
-            total = currentNotification.firedate.timeIntervalSinceNow
+    }
+    
+    func checkNotification() -> Void{
+        self.currentNotification = Notification.findNotification(t!)
+        if self.currentNotification != nil {
+            total = currentNotification!.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
             btAlarm.enabled = false
@@ -213,7 +181,6 @@ class StepViewController: UIViewController {
             btAlarm.setImage(UIImage(named: "AlarmaReposo"), forState: .Normal)
             btAlarm.enabled = true
         }
-         self.view.hideToastActivity()
     }
     
     @IBAction func alarmAction(sender: AnyObject) {
@@ -251,7 +218,6 @@ class StepViewController: UIViewController {
             ntf.taskId = (t?.taskIdServer)!
             
             do{
-                
                 let id = try NotificationsDataHelper.insert(ntf)
                 notification.userInfo = ["uid" : Int(id) ]
                 print("Notificacion insertada")
