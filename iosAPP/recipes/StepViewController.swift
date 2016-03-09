@@ -61,7 +61,7 @@ class StepViewController: UIViewController {
                 self.imageView.image = UIImage(named: "sinImagen")
 
             }
-            if(self.findNotification()){
+            if((Notification.findNotification(t!)) != nil){
                 total = currentNotification.firedate.timeIntervalSinceNow
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
                 btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
@@ -90,23 +90,6 @@ class StepViewController: UIViewController {
     }
     
     
-    
-    func findNotification() -> Bool{
-        var res = false
-        do{
-            if let dso = try NotificationsDataHelper.findNotificationByTask((t?.taskIdServer)!){
-                currentNotification = dso
-                res = true
-                
-            }
-        }catch _{
-            print("Error al encontrar Notification")
-        }
-        return res
-        
-    }
-    
-    
     func stopTimer() {
         self.timer.invalidate();
     }
@@ -124,7 +107,7 @@ class StepViewController: UIViewController {
         if timeIntervalCountDown <= 0 {
             stopTimer()
             self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            if findNotification() {
+            if Notification.findNotification(t!) != nil {
                 btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
                 btAlarm.enabled = false
                 total = 0
@@ -176,7 +159,7 @@ class StepViewController: UIViewController {
             
             self.performSegueWithIdentifier("endRecipe", sender: self)
         }
-        if(self.findNotification()){
+        if Notification.findNotification(t!) != nil {
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
             btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
@@ -220,7 +203,7 @@ class StepViewController: UIViewController {
             }
             
         }
-        if(self.findNotification()){
+        if Notification.findNotification(t!) != nil {
           
             total = currentNotification.firedate.timeIntervalSinceNow
             self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);

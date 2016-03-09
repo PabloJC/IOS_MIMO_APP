@@ -115,7 +115,7 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 let recipe = try RecipeDataHelper.findIdServer(Int64(id as! Int))
                 if recipe != nil {
                     print("bd")
-                    recipeSegue = createRecipe(recipe!)
+                    recipeSegue = Recipe.createRecipe(recipe!)
                     svc.recipe = recipeSegue
                     svc.ingredients = ingredients
                 }else {
@@ -127,28 +127,6 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 print ("error al buscar la receta")
             }
         }
-    }
-    func createRecipe(recipe: Recipe) -> Recipe{
-        var recipeTMI: Recipe?
-        var measuresArray = [MeasureIngredients]()
-        
-        do{
-            recipeTMI = recipe
-            let tasks = try TaskDataHelper.findAllRecipe(recipe.recipeId)! as [Task]
-            recipeTMI!.tasks = tasks
-            let measures = try MeasureDataHelper.findAllRecipe(recipe.recipeId)! as [MeasureIngredients]
-            for m in measures {
-                var measure : MeasureIngredients
-                measure = m
-                measure.ingredient = try IngredientDataHelper.find(measure.ingredientId)!
-                measuresArray.append(measure)
-            }
-            recipeTMI?.measures = measuresArray
-        }catch _ {
-            
-        }
-        return recipeTMI!
-        
     }
     func order(){
         self.recetasString.sortInPlace{

@@ -219,69 +219,10 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     @IBAction func saveFavorites(sender: AnyObject) {
         print("Action salvar")
-        var correcto = true
-        let recipeIns = recipe
-        var measure : MeasureIngredients
-        var RecipeId : Int64?
-        recipeIns?.favorite = FavoriteTypes.favorite
-        do{
-            
-            let r = try RecipeDataHelper.findIdServer((recipeIns?.recipeIdServer)!)
-            if r == nil {
-                RecipeId = try RecipeDataHelper.insert(recipe!)
-            }else {
-                correcto = false
-            }
-           
-            
-        }catch _ {
-            correcto = false
-            print("error al crear receta favorita")
-        }
+        let correcto = Recipe.saveFavorite(recipe!)
         if correcto {
-            var ingredient: Ingredient
-            for m in (self.recipe?.measures)! {
-                do {
-                    
-                    measure = m
-                    measure.recipeId = RecipeId!
-                    ingredient = measure.ingredient
-                    let i = try IngredientDataHelper.findIdServer(ingredient.ingredientIdServer)
-                    if i == nil {
-                         let IngredientId = try IngredientDataHelper.insert(ingredient)
-                        measure.ingredientId = IngredientId
-                        
-                    }else {
-                        measure.ingredientId = (i?.ingredientId)!
-                    }
-                }catch _ {
-                    correcto = false
-                    print("error al crear ingrediente de receta")
-                }
-                if correcto {
-                    do {
-                        try MeasureDataHelper.insert(measure)
-                    }catch _ {
-                        correcto = false
-                        print("error al crear medida de ingrediente")
-                    }
-                }
-            }
-        }
-        if correcto {
-            var _: Task
-            for t in (self.recipe?.tasks)! {
-                do{
-                    t.recipeId = RecipeId!
-                   try TaskDataHelper.insert(t)
-                    
-                } catch _ {
-                    print("error al crear la tarea")
-                }
-            }
-             view.makeToast(NSLocalizedString("FAVAGREGADO",comment:"Compra Realizada"), duration: 2.0, position: .Center)
+            view.makeToast(NSLocalizedString("FAVAGREGADO",comment:"Compra Realizada"), duration: 2.0, position: .Center)
             favoritebt.enabled = false
-            print("receta agregada")
         }
     }
     

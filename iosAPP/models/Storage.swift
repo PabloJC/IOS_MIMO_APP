@@ -11,4 +11,15 @@ import Foundation
 class Storage : NSObject {
     var storageId = Int64()
     var ingredientes = [Ingredient]()
+    
+    static func initStorage() {
+        do {
+            if try StorageDataHelper.find(1) == nil {
+                let  S = Storage()
+                try  StorageDataHelper.insert(S)
+            }
+        } catch _ {
+            
+        }
+    }
 }

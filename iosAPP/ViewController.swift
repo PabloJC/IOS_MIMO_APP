@@ -51,7 +51,9 @@ class ViewController: UIViewController, UITabBarDelegate {
         let dataStore = SQLiteDataStore.sharedInstance
         do{
             try dataStore.createTables()
-            if try StorageDataHelper.find(1) == nil {
+            Storage.initStorage()
+            Cart.initCart()
+            /*if try StorageDataHelper.find(1) == nil {
                 let  S = Storage()
                 try  StorageDataHelper.insert(S)
             }
@@ -59,7 +61,7 @@ class ViewController: UIViewController, UITabBarDelegate {
                 let  C = Cart()
                 try  CartDataHelper.insert(C)
                 
-            }
+            }*/
         }catch _ {
             print ("error insert")
         }

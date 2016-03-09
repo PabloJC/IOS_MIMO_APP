@@ -35,4 +35,17 @@ class Notification: NSObject {
     var recipeId = Int64()
     var taskId = Int64()
     
+    static func findNotification(task:Task) -> Notification?{
+        var currentNotification : Notification?
+        do{
+            if let dso = try NotificationsDataHelper.findNotificationByTask((task.taskIdServer)){
+                currentNotification = dso
+                
+            }
+        }catch _{
+            print("Error al encontrar Notification")
+        }
+        return currentNotification
+        
+    }
 }

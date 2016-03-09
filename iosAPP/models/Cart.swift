@@ -11,4 +11,15 @@ import Foundation
 class Cart : NSObject {
     var cartId = Int64()
     var ingredientes = [Ingredient]()
+    static func initCart() {
+        do {
+            if try CartDataHelper.find(1) == nil {
+                let  C = Cart()
+                try  CartDataHelper.insert(C)
+                
+            }
+        } catch _ {
+            
+        }
+    }
 }
