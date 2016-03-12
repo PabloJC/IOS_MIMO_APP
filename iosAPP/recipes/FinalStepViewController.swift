@@ -23,11 +23,15 @@ class FinalStepViewController: UIViewController,UITableViewDelegate,UITableViewD
     var ingredientsStorageIDS = [Int64]()
     
     @IBOutlet weak var labelTv: UILabel!
+    
+    @IBOutlet weak var seleccionLb: UILabel!
     @IBOutlet weak var borrarBt: UIButton!
     
     @IBOutlet weak var finalizarBt: UIButton! //Finalizar Receta
     override func viewDidLoad() {
         super.viewDidLoad()
+        borrarBt.hidden = true
+        
         setTextBt()
         initIngredientFinal()
         self.tableView.allowsMultipleSelection = true
@@ -37,6 +41,7 @@ class FinalStepViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.labelTv.text = NSLocalizedString("LABELFINALRECETA",comment:"¿Se le ha terminado algun ingrediente?")
         self.borrarBt.setTitle(NSLocalizedString("BORRAR",comment:"Borrar"), forState: .Normal)
         self.finalizarBt.setTitle(NSLocalizedString("FINALIZARRECETA",comment:"Finalizar Receta"), forState: .Normal)
+        self.seleccionLb.text = NSLocalizedString("SELECCIONINGREDIENTES",comment:"marca los ingredientes")
     }
     func initIngredientFinal() {
         do{
@@ -101,12 +106,13 @@ class FinalStepViewController: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-
+        
         if cell!.selected
         {
             cell!.selected = false
             if cell!.accessoryType == UITableViewCellAccessoryType.None
             {
+                
                 cell!.accessoryType = UITableViewCellAccessoryType.Checkmark
                 ingredientsErase.append(ingredientsFinish[indexPath.row])
             }
@@ -116,7 +122,19 @@ class FinalStepViewController: UIViewController,UITableViewDelegate,UITableViewD
                 let index = ingredientsFinish.indexOf(ingredientsFinish[indexPath.row])
                 ingredientsErase.removeAtIndex(index!)
             }
+            if ingredientsErase.count > 0 {
+                borrarBt.enabled = true
+                borrarBt.hidden = false
+                borrarBt.backgroundColor = UIColor.redColor()
+                borrarBt.layer.cornerRadius = 5
+            }else {
+                borrarBt.hidden = true
+                borrarBt.backgroundColor = nil
+                borrarBt.enabled = false
+            }
         }
+        
+        
     }
     @IBAction func eraseIngredients(sender: AnyObject) {
     

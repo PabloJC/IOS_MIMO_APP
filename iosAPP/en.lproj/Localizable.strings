@@ -24,6 +24,7 @@
 
 "TITULOFINALRECETA"="Final Recipe";
 "LABELFINALRECETA"="Have you done any ingredients?";
+"SELECCIONINGREDIENTES"="Please, mark them";
 "BORRAR"="Delete";
 "FINALIZARRECETA"="Finish Recipe";
 
@@ -69,5 +70,7 @@
 "AÑADENOMBREINGREDIENTE"="Add name to your ingredient";
 "SELECCIONARCATEGORIA"="Select Category";
 "AGREGAR"="Add";
+
+
 
 "SINCONEXION"="You are offline";
