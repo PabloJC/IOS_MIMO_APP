@@ -7,15 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A010AF01C830F7A004C6F88 /* NotificationsDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AEF1C830F7A004C6F88 /* NotificationsDataHelper.swift */; };
-		3A010AF21C830FC6004C6F88 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AF11C830FC6004C6F88 /* Notification.swift */; };
 		3A010AFB1C832690004C6F88 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A010AFA1C832690004C6F88 /* QuartzCore.framework */; };
-		3A010AFD1C8326F1004C6F88 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A010AFC1C8326F1004C6F88 /* Toast.swift */; };
 		3A1620731C821F0000B25A24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1620721C821F0000B25A24 /* SystemConfiguration.framework */; };
 		3AA6F49A1C70ACA700161E89 /* Category.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AA6F4991C70ACA600161E89 /* Category.json */; };
 		3ACE5BEA1C7CB91000FC22C6 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */; };
-		3AD4CE171C8F140A0070CB62 /* CAGradientLayer_Convience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4CE161C8F140A0070CB62 /* CAGradientLayer_Convience.swift */; };
-		3ADC30251C8B46CE0064AE7C /* ShowModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADC30241C8B46CE0064AE7C /* ShowModalViewController.swift */; };
 		6CA582234B713AC51F41F382 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E961B85E7B3B5CBE813A3A0F /* Pods.framework */; };
 		B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5036DE61C6FB62300C180DE /* RecipeViewController.swift */; };
 		B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5036DE71C6FB62300C180DE /* RecipesViewController.swift */; };
@@ -43,8 +38,13 @@
 		B511993A1C7BEF170017B164 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */; };
 		B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */; };
 		B52536AD1C94727000BB2020 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52536AC1C94727000BB2020 /* SDWebImage.framework */; };
+		B52536BD1C949B8900BB2020 /* CAGradientLayer_Convience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52536BA1C949B8900BB2020 /* CAGradientLayer_Convience.swift */; };
+		B52536BE1C949B8900BB2020 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52536BB1C949B8900BB2020 /* MyAPIClient.swift */; };
+		B52536BF1C949B8900BB2020 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52536BC1C949B8900BB2020 /* Toast.swift */; };
+		B52536C11C949BA200BB2020 /* ShowModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52536C01C949BA200BB2020 /* ShowModalViewController.swift */; };
+		B52536C31C949BB100BB2020 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52536C21C949BB100BB2020 /* Notification.swift */; };
+		B52536C51C949BC100BB2020 /* NotificationsDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52536C41C949BC100BB2020 /* NotificationsDataHelper.swift */; };
 		B5304EFE1C65652A00E7CB17 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */; };
-		B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */; };
 		B53770351C7D21060088326E /* ShoopingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770311C7D21060088326E /* ShoopingListViewController.swift */; };
 		B53770361C7D21060088326E /* ShoppingListSB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B53770321C7D21060088326E /* ShoppingListSB.storyboard */; };
 		B537703A1C7D2FF10088326E /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770391C7D2FF10088326E /* CategoriesViewController.swift */; };
@@ -69,16 +69,11 @@
 
 /* Begin PBXFileReference section */
 		0409C01C7D553A2C69C60FAD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		3A010AEF1C830F7A004C6F88 /* NotificationsDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsDataHelper.swift; sourceTree = "<group>"; };
-		3A010AF11C830FC6004C6F88 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		3A010AF81C83245D004C6F88 /* Toast_Swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Toast_Swift.framework; path = "Pods/../build/Debug-iphoneos/Toast_Swift.framework"; sourceTree = "<group>"; };
 		3A010AFA1C832690004C6F88 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		3A010AFC1C8326F1004C6F88 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		3A1620721C821F0000B25A24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AA6F4991C70ACA600161E89 /* Category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Category.json; sourceTree = "<group>"; };
 		3ACE5BE91C7CB91000FC22C6 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = "Pods/../build/Debug-iphoneos/SQLite.framework"; sourceTree = "<group>"; };
-		3AD4CE161C8F140A0070CB62 /* CAGradientLayer_Convience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAGradientLayer_Convience.swift; sourceTree = "<group>"; };
-		3ADC30241C8B46CE0064AE7C /* ShowModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowModalViewController.swift; sourceTree = "<group>"; };
 		B5036DE61C6FB62300C180DE /* RecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeViewController.swift; path = recipes/RecipeViewController.swift; sourceTree = "<group>"; };
 		B5036DE71C6FB62300C180DE /* RecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipesViewController.swift; path = recipes/RecipesViewController.swift; sourceTree = "<group>"; };
 		B51199051C7BC8010017B164 /* FinalStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FinalStepViewController.swift; path = recipes/FinalStepViewController.swift; sourceTree = "<group>"; };
@@ -105,8 +100,13 @@
 		B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = ingredients/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientTableViewCell.swift; path = ingredients/IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		B52536AC1C94727000BB2020 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage.framework"; sourceTree = "<group>"; };
+		B52536BA1C949B8900BB2020 /* CAGradientLayer_Convience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CAGradientLayer_Convience.swift; path = Util/CAGradientLayer_Convience.swift; sourceTree = "<group>"; };
+		B52536BB1C949B8900BB2020 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyAPIClient.swift; path = Util/MyAPIClient.swift; sourceTree = "<group>"; };
+		B52536BC1C949B8900BB2020 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Toast.swift; path = Util/Toast.swift; sourceTree = "<group>"; };
+		B52536C01C949BA200BB2020 /* ShowModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShowModalViewController.swift; path = ingredients/ShowModalViewController.swift; sourceTree = "<group>"; };
+		B52536C21C949BB100BB2020 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = models/Notification.swift; sourceTree = "<group>"; };
+		B52536C41C949BC100BB2020 /* NotificationsDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsDataHelper.swift; path = BD/NotificationsDataHelper.swift; sourceTree = "<group>"; };
 		B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
-		B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
 		B53770311C7D21060088326E /* ShoopingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoopingListViewController.swift; path = shopping/ShoopingListViewController.swift; sourceTree = "<group>"; };
 		B53770321C7D21060088326E /* ShoppingListSB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ShoppingListSB.storyboard; path = shopping/ShoppingListSB.storyboard; sourceTree = "<group>"; };
 		B53770391C7D2FF10088326E /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesViewController.swift; path = shopping/CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -160,8 +160,9 @@
 		3A010AF51C8320BA004C6F88 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3A010AFC1C8326F1004C6F88 /* Toast.swift */,
-				3AD4CE161C8F140A0070CB62 /* CAGradientLayer_Convience.swift */,
+				B52536BA1C949B8900BB2020 /* CAGradientLayer_Convience.swift */,
+				B52536BB1C949B8900BB2020 /* MyAPIClient.swift */,
+				B52536BC1C949B8900BB2020 /* Toast.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -195,13 +196,13 @@
 		B51199271C7BEF090017B164 /* ingredients */ = {
 			isa = PBXGroup;
 			children = (
+				B52536C01C949BA200BB2020 /* ShowModalViewController.swift */,
 				B51199281C7BEF170017B164 /* IngredientListViewController.swift */,
 				B511992A1C7BEF170017B164 /* KitchenViewController.swift */,
 				B511992B1C7BEF170017B164 /* IngredientsSB.storyboard */,
 				B511992D1C7BEF170017B164 /* IngredientsViewController.swift */,
 				B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */,
 				B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */,
-				3ADC30241C8B46CE0064AE7C /* ShowModalViewController.swift */,
 			);
 			name = ingredients;
 			sourceTree = "<group>";
@@ -239,13 +240,13 @@
 		B581B8AC1C6E8A740049CA1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B52536C21C949BB100BB2020 /* Notification.swift */,
 				B511991B1C7BEEB40017B164 /* Cart.swift */,
 				B511991C1C7BEEB40017B164 /* Storage.swift */,
 				B511991D1C7BEEB40017B164 /* MeasureIngredients.swift */,
 				B511991E1C7BEEB40017B164 /* Task.swift */,
 				B511991F1C7BEEB40017B164 /* Recipe.swift */,
 				B51199201C7BEEB40017B164 /* Ingredient.swift */,
-				3A010AF11C830FC6004C6F88 /* Notification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -274,7 +275,6 @@
 				3A010AF51C8320BA004C6F88 /* Utils */,
 				B53770301C7D20F00088326E /* shopping */,
 				B51199271C7BEF090017B164 /* ingredients */,
-				B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */,
 				B581B8AC1C6E8A740049CA1C /* Models */,
 				B593A2251C5E87EE0085C5C8 /* AppDelegate.swift */,
 				B593A2271C5E87EE0085C5C8 /* ViewController.swift */,
@@ -295,6 +295,7 @@
 		B5F579F41C74CFAD006A2FF2 /* BD */ = {
 			isa = PBXGroup;
 			children = (
+				B52536C41C949BC100BB2020 /* NotificationsDataHelper.swift */,
 				B51199091C7BEE900017B164 /* IngredientDataHelper.swift */,
 				B511990A1C7BEE900017B164 /* RecipeDataHelper.swift */,
 				B511990B1C7BEE900017B164 /* CartDataHelper.swift */,
@@ -303,7 +304,6 @@
 				B511990E1C7BEE900017B164 /* MeasureDataHelper.swift */,
 				B511990F1C7BEE900017B164 /* DataHelperProtocol.swift */,
 				B5F579F21C74CFA6006A2FF2 /* SQLiteDataStore.swift */,
-				3A010AEF1C830F7A004C6F88 /* NotificationsDataHelper.swift */,
 			);
 			name = BD;
 			sourceTree = "<group>";
@@ -439,24 +439,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				B51199331C7BEF170017B164 /* IngredientListViewController.swift in Sources */,
-				3AD4CE171C8F140A0070CB62 /* CAGradientLayer_Convience.swift in Sources */,
+				B52536C11C949BA200BB2020 /* ShowModalViewController.swift in Sources */,
 				B51199111C7BEE900017B164 /* RecipeDataHelper.swift in Sources */,
 				B53770421C7D354F0088326E /* IngredientCartTableViewCell.swift in Sources */,
 				B5A09FAC1C737FAB0052494B /* SingleStepViewController.swift in Sources */,
-				3A010AF01C830F7A004C6F88 /* NotificationsDataHelper.swift in Sources */,
 				B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */,
 				B51199381C7BEF170017B164 /* IngredientsViewController.swift in Sources */,
 				B593A2281C5E87EE0085C5C8 /* ViewController.swift in Sources */,
 				B51199121C7BEE900017B164 /* CartDataHelper.swift in Sources */,
 				B51199221C7BEEB40017B164 /* Storage.swift in Sources */,
-				3ADC30251C8B46CE0064AE7C /* ShowModalViewController.swift in Sources */,
 				B51199351C7BEF170017B164 /* KitchenViewController.swift in Sources */,
 				B51199141C7BEE900017B164 /* TaskDataHelper.swift in Sources */,
 				B5F93A7F1C836B960056CB50 /* TaskTableViewCell.swift in Sources */,
 				B593A2261C5E87EE0085C5C8 /* AppDelegate.swift in Sources */,
 				B51199101C7BEE900017B164 /* IngredientDataHelper.swift in Sources */,
 				B5036DE91C6FB62300C180DE /* RecipesViewController.swift in Sources */,
-				3A010AFD1C8326F1004C6F88 /* Toast.swift in Sources */,
 				B53770351C7D21060088326E /* ShoopingListViewController.swift in Sources */,
 				B511991A1C7BEEA00017B164 /* StepListViewController.swift in Sources */,
 				B51199231C7BEEB40017B164 /* MeasureIngredients.swift in Sources */,
@@ -466,17 +463,20 @@
 				B51199161C7BEE900017B164 /* DataHelperProtocol.swift in Sources */,
 				B53770401C7D33570088326E /* IngredientsCartViewController.swift in Sources */,
 				B5036DE81C6FB62300C180DE /* RecipeViewController.swift in Sources */,
+				B52536BE1C949B8900BB2020 /* MyAPIClient.swift in Sources */,
 				B5F9707A1C7DBE18001E5A87 /* RecipeIngredientTableViewCell.swift in Sources */,
 				B537703A1C7D2FF10088326E /* CategoriesViewController.swift in Sources */,
 				B537703C1C7D30780088326E /* CategoryCartCollectionViewCell.swift in Sources */,
 				B51199081C7BC8400017B164 /* SelectIngredientTableViewCell.swift in Sources */,
+				B52536BD1C949B8900BB2020 /* CAGradientLayer_Convience.swift in Sources */,
+				B52536C51C949BC100BB2020 /* NotificationsDataHelper.swift in Sources */,
 				B51199191C7BEEA00017B164 /* StepViewController.swift in Sources */,
 				B51199061C7BC8010017B164 /* FinalStepViewController.swift in Sources */,
-				B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */,
 				B51199261C7BEEB40017B164 /* Ingredient.swift in Sources */,
 				B51199241C7BEEB40017B164 /* Task.swift in Sources */,
-				3A010AF21C830FC6004C6F88 /* Notification.swift in Sources */,
 				B5F579F31C74CFA6006A2FF2 /* SQLiteDataStore.swift in Sources */,
+				B52536C31C949BB100BB2020 /* Notification.swift in Sources */,
+				B52536BF1C949B8900BB2020 /* Toast.swift in Sources */,
 				B511993A1C7BEF170017B164 /* CategoryCollectionViewCell.swift in Sources */,
 				B51199251C7BEEB40017B164 /* Recipe.swift in Sources */,
 			);
