@@ -26,18 +26,22 @@ class SingleStepViewController: UIViewController {
         self.view.layer.insertSublayer(background, atIndex: 0)
         self.taskNameLabel.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (task?.name)!
         self.taskDescriptionTextView.text = task?.taskDescription
+       checkConectivity()
+        
+    }
+    
+    func checkConectivity(){
         if task?.photo != "" && appDelegate.isConected {
+             self.view.makeToastActivity(.Center)
             let url = NSURL(string: task!.photo)
-            if let data = NSData(contentsOfURL: url!) {
-                self.taskImageView.image = UIImage(data: data)
-            }
+            self.taskImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "sinImagen"))
+            self.view.hideToastActivity()
         }
         else {
             self.taskImageView.image = UIImage(named: "sinImagen")
             
         }
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

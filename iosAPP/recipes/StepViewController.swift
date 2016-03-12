@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class StepViewController: UIViewController {
     @IBOutlet weak var PreviousBT: UIButton!
@@ -44,12 +45,7 @@ class StepViewController: UIViewController {
                 return t.name < t2.name
             })
             t = tasks[currentTaskPos] as? Task
-            self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
-            self.descriptionLabel.text = t?.taskDescription
-            total = Double((t?.seconds)!)
-            self.uiTextField.text = tiempo(Double((t?.seconds)!))
-            checkConectivity()
-            checkNotification()
+            drawView()
             
         }else {
             self.nextBT.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
@@ -63,12 +59,114 @@ class StepViewController: UIViewController {
         imageView.layer.cornerRadius = 5.0
 
     }
+    func drawView(){
+        self.taskName.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (t?.name)!
+        self.descriptionLabel.text = t?.taskDescription
+        total = Double((t?.seconds)!)
+        self.uiTextField.text = tiempo(Double((t?.seconds)!))
+        checkConectivity()
+        checkNotification()
+    }
     func setTextBt(){
         self.btAlarm.setTitle(NSLocalizedString("ALARMA",comment:"Alarma"), forState: .Normal)
         self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
         self.PreviousBT.setTitle(NSLocalizedString("ANTERIOR",comment:"Anterior"), forState: .Normal)
     }
+    @IBAction func nextAction(sender: AnyObject) {
+        
+        stopTimer()
+        
+        if currentTaskPos < tasks.count-1{
+            if currentTaskPos == tasks.count-2 {
+                let bt = sender as! UIButton
+                bt.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
+            }
+            if currentTaskPos >= 0 {
+                self.PreviousBT.enabled = true
+            }
+            currentTaskPos++
+            changeCurrentTask()
+        }
+        else {
+            
+            self.performSegueWithIdentifier("endRecipe", sender: self)
+        }
+        checkNotification()
+        
+    }
     
+    
+    
+    @IBAction func previousAction(sender: AnyObject) {
+        
+        stopTimer()
+        
+        if currentTaskPos > 0 {
+            if currentTaskPos < tasks.count {
+                self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
+            }
+            currentTaskPos--
+            changeCurrentTask()
+            if currentTaskPos == 0 {
+                let bt = sender as! UIButton
+                bt.enabled = false
+            }
+        }
+        checkNotification()
+    }
+    @IBAction func alarmAction(sender: AnyObject) {
+        btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
+        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
+        
+        if settings!.types == .None {
+            let ac = UIAlertController(title: NSLocalizedString("ALARMANOADMITIDA",comment:"Alarma no admitida"), message: NSLocalizedString("MENSAJEALARMA",comment:"Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad"), preferredStyle: .Alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(ac, animated: true, completion: nil)
+            return
+        }else{
+            let sender2 = sender as! UIButton
+            uiTextField.enabled = false
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
+            self.startDate = NSDate();
+            sender2.enabled = false
+            
+            timerAlert = NSDate(timeIntervalSinceNow: total!)
+            let notification = UILocalNotification()
+            notification.userInfo = Dictionary<String, AnyObject> ()
+            notification.fireDate = fixedNotificationDate(timerAlert!)
+            notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
+            
+            let freak = NSUserDefaults.standardUserDefaults().boolForKey("sound")
+            if freak {
+                notification.soundName = "one_piece_zoro.wav"
+            }else {
+                notification.soundName = UILocalNotificationDefaultSoundName
+            }
+            
+            let ntf = Notification()
+            ntf.firedate = timerAlert!
+            ntf.recipeId = (recipe?.recipeIdServer)!
+            ntf.taskId = (t?.taskIdServer)!
+            
+            do{
+                let id = try NotificationsDataHelper.insert(ntf)
+                notification.userInfo = ["uid" : Int(id) ]
+                print("Notificacion insertada")
+            }catch _{
+                print("Error al crear el ingrediente")
+            }
+            
+            do{
+                let notificaciones = try NotificationsDataHelper.findAll()
+                notification.applicationIconBadgeNumber =  (notificaciones?.count)!
+            }catch _ {
+                print("error al mostrar notificaciones")
+            }
+            UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            view.makeToast(NSLocalizedString("ALARMACREADA",comment:"Notificación creada"), duration: 2.0, position: .Center)
+        }
+        
+    }
     
     func stopTimer() {
         self.timer.invalidate();
@@ -102,49 +200,7 @@ class StepViewController: UIViewController {
     }
     
     
-    @IBAction func nextAction(sender: AnyObject) {
-        self.view.makeToastActivity(.Center)
-        stopTimer()
-        
-        if currentTaskPos < tasks.count-1{
-            if currentTaskPos == tasks.count-2 {
-                let bt = sender as! UIButton
-                bt.setTitle(NSLocalizedString("FINALIZAR", comment: "Finalizar"), forState: .Normal)
-            }
-            if currentTaskPos >= 0 {
-                self.PreviousBT.enabled = true
-            }
-            currentTaskPos++
-            changeCurrentTask()
-        }
-        else {
-            
-            self.performSegueWithIdentifier("endRecipe", sender: self)
-        }
-        checkNotification()
-        self.view.hideToastActivity()
-    }
-    
-    
-    
-    @IBAction func previousAction(sender: AnyObject) {
-        self.view.makeToastActivity(.Center)
-        stopTimer()
-        
-        if currentTaskPos > 0 {
-            if currentTaskPos < tasks.count {
-                self.nextBT.setTitle(NSLocalizedString("SIGUIENTE",comment:"Siguiente"), forState: .Normal)
-            }
-            currentTaskPos--
-            changeCurrentTask()
-            if currentTaskPos == 0 {
-                let bt = sender as! UIButton
-                bt.enabled = false
-            }
-        }
-        checkNotification()
-        self.view.hideToastActivity()
-    }
+   
     
     func changeCurrentTask() -> Void{
         t = tasks[currentTaskPos] as? Task
@@ -159,9 +215,7 @@ class StepViewController: UIViewController {
         if t?.photo != "" && appDelegate.isConected {
             self.view.makeToastActivity(.Center)
             let url = NSURL(string: t!.photo)
-            if let data = NSData(contentsOfURL: url!) {
-                self.imageView.image = UIImage(data: data)
-            }
+            self.imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "sinImagen"))
             self.view.hideToastActivity()
         }else {
             self.imageView.image = UIImage(named: "sinImagen")
@@ -182,59 +236,7 @@ class StepViewController: UIViewController {
         }
     }
     
-    @IBAction func alarmAction(sender: AnyObject) {
-        btAlarm.setImage(UIImage(named: "AlarmaActivada"), forState: .Normal)
-        let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        
-        if settings!.types == .None {
-            let ac = UIAlertController(title: NSLocalizedString("ALARMANOADMITIDA",comment:"Alarma no admitida"), message: NSLocalizedString("MENSAJEALARMA",comment:"Debido a que no tenemos permisos para activar notificaciones, o no te lo hemos preguntado con anterioridad"), preferredStyle: .Alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(ac, animated: true, completion: nil)
-            return
-        }else{
-            let sender2 = sender as! UIButton
-            uiTextField.enabled = false
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true);
-            self.startDate = NSDate();
-            sender2.enabled = false
-            
-            timerAlert = NSDate(timeIntervalSinceNow: total!)
-            let notification = UILocalNotification()
-            notification.userInfo = Dictionary<String, AnyObject> ()
-            notification.fireDate = fixedNotificationDate(timerAlert!)
-            notification.alertBody = NSString(format: NSLocalizedString("NOTIFICACION", comment: "notificacion"),"\(t!.name)","\(recipe!.name)") as String
-
-            let freak = NSUserDefaults.standardUserDefaults().boolForKey("sound")
-            if freak {
-                notification.soundName = "one_piece_zoro.wav"
-            }else {
-                notification.soundName = UILocalNotificationDefaultSoundName
-            }
-            
-            let ntf = Notification()
-            ntf.firedate = timerAlert!
-            ntf.recipeId = (recipe?.recipeIdServer)!
-            ntf.taskId = (t?.taskIdServer)!
-            
-            do{
-                let id = try NotificationsDataHelper.insert(ntf)
-                notification.userInfo = ["uid" : Int(id) ]
-                print("Notificacion insertada")
-            }catch _{
-                print("Error al crear el ingrediente")
-            }
-            
-            do{
-                let notificaciones = try NotificationsDataHelper.findAll()
-                notification.applicationIconBadgeNumber =  (notificaciones?.count)!
-            }catch _ {
-                print("error al mostrar notificaciones")
-            }
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            view.makeToast(NSLocalizedString("ALARMACREADA",comment:"Notificación creada"), duration: 2.0, position: .Center)
-        }
-        
-    }
+    
     
     
     func fixedNotificationDate(dateToFix: NSDate) -> NSDate {

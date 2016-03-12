@@ -42,6 +42,7 @@
 		B51199381C7BEF170017B164 /* IngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511992D1C7BEF170017B164 /* IngredientsViewController.swift */; };
 		B511993A1C7BEF170017B164 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */; };
 		B511993B1C7BEF170017B164 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */; };
+		B52536AD1C94727000BB2020 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52536AC1C94727000BB2020 /* SDWebImage.framework */; };
 		B5304EFE1C65652A00E7CB17 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */; };
 		B5304F001C65661200E7CB17 /* MyAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */; };
 		B53770351C7D21060088326E /* ShoopingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53770311C7D21060088326E /* ShoopingListViewController.swift */; };
@@ -103,6 +104,7 @@
 		B511992D1C7BEF170017B164 /* IngredientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientsViewController.swift; path = ingredients/IngredientsViewController.swift; sourceTree = "<group>"; };
 		B511992F1C7BEF170017B164 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = ingredients/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		B51199301C7BEF170017B164 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientTableViewCell.swift; path = ingredients/IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		B52536AC1C94727000BB2020 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "Pods/../build/Debug-iphoneos/SDWebImage.framework"; sourceTree = "<group>"; };
 		B5304EFD1C65652A00E7CB17 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		B5304EFF1C65661200E7CB17 /* MyAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPIClient.swift; sourceTree = "<group>"; };
 		B53770311C7D21060088326E /* ShoopingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShoopingListViewController.swift; path = shopping/ShoopingListViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52536AD1C94727000BB2020 /* SDWebImage.framework in Frameworks */,
 				3A010AFB1C832690004C6F88 /* QuartzCore.framework in Frameworks */,
 				3A1620731C821F0000B25A24 /* SystemConfiguration.framework in Frameworks */,
 				B559636C1C8109FD0013764F /* Cosmos.framework in Frameworks */,
@@ -175,6 +178,7 @@
 		971AFBF608513A1576D1C472 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B52536AC1C94727000BB2020 /* SDWebImage.framework */,
 				3A010AFA1C832690004C6F88 /* QuartzCore.framework */,
 				3A010AF81C83245D004C6F88 /* Toast_Swift.framework */,
 				B5579E4D1C821F270046EB01 /* Toast_Swift.framework */,

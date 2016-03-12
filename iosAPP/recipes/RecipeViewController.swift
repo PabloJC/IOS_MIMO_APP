@@ -83,9 +83,10 @@ class RecipeViewController: UIViewController,UITableViewDelegate,UITableViewData
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             if recipe!.photo != "" && appDelegate.isConected {
                 let url = NSURL(string: recipe!.photo)
-                if let data = NSData(contentsOfURL: url!) {
+                self.imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "sinImagen"))
+                /*if let data = NSData(contentsOfURL: url!) {
                      self.imageView.image = UIImage(data: data)
-                }
+                }*/
             }else {
                 self.imageView.image = UIImage(named: "sinImagen")
                 

@@ -212,11 +212,12 @@ class RecipesViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.order()
                 self.sincronized = true
                 self.tableView.reloadData()
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.hidden = true
+                
             }else {
                 print("sin recetas agregadas")
             }
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidden = true
             self.sincronized = true
         }catch _ {
             print("error al recibir favoritos")
