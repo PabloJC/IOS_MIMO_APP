@@ -1,0 +1,76 @@
+/* 
+  Localizable.strings
+  iosAPP
+
+  Created by mikel balduciel diaz on 3/3/16.
+  Copyright © 2016 mikel balduciel diaz. All rights reserved.
+*/
+
+"PASO"="Task";
+"FINALIZAR"="Finish";
+"SIGUIENTE"="Next";
+"ANTERIOR"="Previous";
+"ALARMA"="Alarm";
+"NOTIFICACION"="Task %@  '%@' recipe  is pending review";
+
+"COCINAR"="Cook";
+"VERPASOS"="See tasks";
+
+"RECETAS"="Recipes";
+"BUSQUEDA"="Search";
+"TOTAL"="Total";
+"FAVORITOS"="Favorites";
+"POSIBLES"="Possible";
+
+"TITULOFINALRECETA"="Final Recipe";
+"LABELFINALRECETA"="Have you done any ingredients?";
+"SELECCIONINGREDIENTES"="Please, mark them";
+"BORRAR"="Delete";
+"FINALIZARRECETA"="Finish Recipe";
+
+"TITULOLISTACOMPRA"="Shopping List";
+"COMPRAR"="Buy";
+"COMPRA"="Purchase";
+"HISTORICO"="Historical";
+
+"TUSINGREDIENTES"="Your Ingredients";
+"AÑADIRINGREDIENTE"="Add own Ingredient";
+"ALMACEN"="Store";
+
+"INGREDIENTS"="Server Ingredients";
+
+"BUSCARINGREDIENTE"="Search Ingredient";
+
+"RANDOM"="Random";
+
+"ALARMANOADMITIDA"="Unsupported alarm";
+"MENSAJEALARMA"="Because we do not have permissions to activate notifications or not we have asked you previously";
+
+"PENDIENTECOMPRA"="Pending purchase";
+"SINUNIDADES"="No units";
+"PRODUCTOENALMACEN"="Product in stock";
+"ENALMACEN"="In warehouse";
+"FALTA"="Lack";
+
+"COMPRAREALIZADA"="Purchase made";
+
+"FAVAGREGADO"="Recipe added to favorites";
+
+"ALARMACREADA"="Notification created";
+
+"INGREDIENTAÑADIDO"="An ingredient has been added to the store";
+"INGREDIENTECOMPRADO"="An ingredient has been added to shopping cart";
+
+"LISTATAREAS"="Task list";
+
+"INGREDIENTEVACIO"="Ingredient field is empty";
+"REQUISITOTEXTO"="The name of the ingredient is required";
+
+"NUEVOINGREDIENTE"="New ingredient";
+"AÑADENOMBREINGREDIENTE"="Add name to your ingredient";
+"SELECCIONARCATEGORIA"="Select Category";
+"AGREGAR"="Add";
+
+
+
+"SINCONEXION"="You are offline";

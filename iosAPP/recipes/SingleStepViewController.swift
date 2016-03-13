@@ -13,28 +13,36 @@ class SingleStepViewController: UIViewController {
     @IBOutlet weak var taskNameLabel: UILabel!
     @IBOutlet weak var taskDescriptionTextView: UITextView!
     @IBOutlet weak var taskImageView: UIImageView!
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.taskNameLabel.text = "Paso " + (task?.name)!
+        
+        let background = CAGradientLayer().blueToWhite()
+        background.frame = self.view.bounds
+        taskDescriptionTextView.layer.cornerRadius = 5
+        taskImageView.layer.masksToBounds = true
+        taskImageView.layer.cornerRadius = 5.0
+        
+        self.view.layer.insertSublayer(background, atIndex: 0)
+        self.taskNameLabel.text =  NSLocalizedString("PASO",comment:"Paso") + " " + (task?.name)!
         self.taskDescriptionTextView.text = task?.taskDescription
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       checkConectivity()
+        
     }
     
-  
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func checkConectivity(){
+        if task?.photo != "" && appDelegate.isConected {
+             self.view.makeToastActivity(.Center)
+            let url = NSURL(string: task!.photo)
+            self.taskImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "sinImagen"))
+            self.view.hideToastActivity()
+        }
+        else {
+            self.taskImageView.image = UIImage(named: "sinImagen")
+            
+        }
     }
-    */
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
